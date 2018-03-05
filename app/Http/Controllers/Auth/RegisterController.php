@@ -7,35 +7,33 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
-{
+class RegisterController extends Controller {
     /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
+      |--------------------------------------------------------------------------
+      | Register Controller
+      |--------------------------------------------------------------------------
+      |
+      | This controller handles the registration of new users as well as their
+      | validation and creation. By default this controller uses a trait to
+      | provide this functionality without requiring any additional code.
+      |
+     */
 
-    use RegistersUsers;
+use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/register';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest');
     }
 
@@ -45,12 +43,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+                    'username' => 'required|string|max:255',
+                    'email'    => 'required|string|email|max:255|unique:users',
+                    'password' => 'required|string|min:6|confirmed',
+                    'phone'    => 'required|integer|min:10|'
         ]);
     }
 
@@ -60,12 +58,28 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
+        if (!isset($data['role'])) {
+            $data['role'] = 0;
+        } else {
+            $data['role'] = 1;
+        }
+
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
+                    'username' => $data['username'],
+                    'date_of_birth' => $data['date'],
+                    'email' => $data['email'],
+                    'phone' => $data['phone'],
+                    'password' => bcrypt($data['password']),
+                    'gender' => $data['gender'],
+                    'avata_image' => 'avata_image',
+                    'full_name' => $data['username'],
+                    'indentifier' => '1',
+                    'address' => $data['address'],
+                    'role' => $data['role'],
+                    'is_delete' => '1',
         ]);
+        
+        return redirect('/home');
     }
 }
