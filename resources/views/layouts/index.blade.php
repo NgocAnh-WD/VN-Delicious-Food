@@ -24,6 +24,7 @@
     $(".memenu").memenu();
 });</script>	
         <!-- /start menu -->
+        <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
     </head>
     <body> 
         <!--header-->	
@@ -167,10 +168,7 @@
             </div>
         </div>
         <!---->
-        <div class="banner">
-            <div class="container">
-            </div>
-        </div>
+        
         <!---->
         @yield('welcome')
         <!---->
