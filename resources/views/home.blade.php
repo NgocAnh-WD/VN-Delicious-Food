@@ -88,129 +88,25 @@
 <div class="container">
     <h3>Featured Products</h3>
     <div class="feature-grids">
+        @if($image_products)
+        @foreach($image_products as $key => $image_product)
         <div class="col-md-3 feature-grid jewel">
-            <a href="product.html"><img src="images/f1.jpg" alt=""/>	
+            <a href="{{ url('/products') }}"><img src="{{ asset($image_product['link_image']) }}" alt=""/>	
                 <div class="arrival-info">
-                    <h4>Jewellerys #1</h4>
-                    <p>Rs 12000</p>
-                    <span class="pric1"><del>Rs 18000</del></span>
+                    <h4>{{$image_product['product']['category'] ? $image_product['product']['category']['name'] : 'Uncategorized'}}</h4>
+                    <p>{{$image_product['product']['name']}}</p>
+                    <span class="pric1"><del>{{$image_product['product']['name']}}</del></span>
                     <span class="disc">[12% Off]</span>
                 </div>
                 <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
+                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
                 </div>
                 <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
+                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
                 </div></a>
         </div>
-        <div class="col-md-3 feature-grid">
-            <a href="product.html"><img src="images/f2.jpg" alt=""/>	
-                <div class="arrival-info">
-                    <h4>Jewellerys #1</h4>
-                    <p>Rs 68000</p>
-                    <span class="pric1"><del>Rs 70000</del></span>
-                    <span class="disc">[10% Off]</span>
-                </div>
-                <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                </div>
-                <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                </div></a>
-        </div>
-        <div class="col-md-3 feature-grid jewel">
-            <a href="product.html"><img src="images/f3.jpg" alt=""/>	
-                <div class="arrival-info">
-                    <h4>Wedding Ceramic Pot </h4>
-                    <p>Rs 1200</p>
-                    <span class="pric1"><del>Rs 2000</del></span>
-                    <span class="disc">[10% Off]</span>
-                </div>
-                <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                </div>
-                <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                </div></a>
-        </div>
-        <div class="col-md-3 feature-grid">
-            <a href="product.html"><img src="images/f4.jpg" alt=""/>	
-                <div class="arrival-info">
-                    <h4>Jewellerys #1</h4>
-                    <p>Rs 12000</p>
-                    <span class="pric1"><del>Rs 18000</del></span>
-                    <span class="disc">[12% Off]</span>
-                </div>
-                <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                </div>
-                <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                </div></a>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-    <div class="feature-grids">
-        <div class="col-md-3 feature-grid jewel">
-            <a href="product.html"><img src="images/p7.jpg" alt=""/>	
-                <div class="arrival-info">
-                    <h4>Jewellerys #1</h4>
-                    <p>Rs 12000</p>
-                    <span class="pric1"><del>Rs 18000</del></span>
-                    <span class="disc">[12% Off]</span>
-                </div>
-                <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                </div>
-                <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                </div></a>
-        </div>
-        <div class="col-md-3 feature-grid">
-            <a href="product.html"><img src="images/p11.jpg" alt=""/>	
-                <div class="arrival-info">
-                    <h4>Jewellerys #1</h4>
-                    <p>Rs 12000</p>
-                    <span class="pric1"><del>Rs 18000</del></span>
-                    <span class="disc">[12% Off]</span>
-                </div>
-                <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                </div>
-                <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                </div></a>
-        </div>
-        <div class="col-md-3 feature-grid jewel">
-            <a href="product.html"><img src="images/p12.jpg" alt=""/>	
-                <div class="arrival-info">
-                    <h4>Jewellerys #1</h4>
-                    <p>Rs 12000</p>
-                    <span class="pric1"><del>Rs 18000</del></span>
-                    <span class="disc">[12% Off]</span>
-                </div>
-                <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                </div>
-                <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                </div></a>
-        </div>
-        <div class="col-md-3 feature-grid">
-            <a href="product.html"><img src="images/f2.jpg" alt=""/>	
-                <div class="arrival-info">
-                    <h4>Jewellerys #1</h4>
-                    <p>Rs 12000</p>
-                    <span class="pric1"><del>Rs 18000</del></span>
-                    <span class="disc">[12% Off]</span>
-                </div>
-                <div class="viw">
-                    <a href="product.html"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                </div>
-                <div class="shrt">
-                    <a href="product.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                </div></a>
-        </div>
+        @endforeach
+        @endif
         <div class="clearfix"></div>
     </div>
 </div>
@@ -221,66 +117,25 @@
     <h3>New Arrivals</h3>
     <div class="arrival-grids">			 
         <ul id="flexiselDemo1">
+            @if($image_products_new)
+            @foreach($image_products_new as $key => $image_product_new)
             <li>
-                <a href="product.html"><img src="images/a1.jpg" alt=""/>	
+                <a href="{{ url('/products') }}"><img src="{{ asset($image_product_new['link_image']) }}" alt=""/>
                     <div class="arrival-info">
-                        <h4>Fusion Black Polyester Suits</h4>
-                        <p>Rs 12000</p>
-                        <span class="pric1"><del>Rs 18000</del></span>
-                        <span class="disc">[12% Off]</span>
-                    </div>
-                    <div class="viw">
-                        <a href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                    </div>
-                    <div class="shrt">
-                        <a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                    </div></a>
-            </li>
-            <li>
-                <a href="product.html"><img src="images/a2.jpg" alt=""/>
-                    <div class="arrival-info">
-                        <h4>Vogue4All White Net Gowns</h4>
-                        <p>Rs 14000</p>
-                        <span class="pric1"><del>Rs 15000</del></span>
+                        <h4>{{$image_product_new['product']['category'] ? $image_product_new['product']['category']['name'] : 'Uncategorized'}}</h4>
+                        <p>{{$image_product_new['product']['name']}}</p>
+                        <span class="pric1"><del>{{$image_product_new['product']['name']}}</del></span>
                         <span class="disc">[10% Off]</span>
                     </div>
                     <div class="viw">
-                        <a href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
+                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
                     </div>
                     <div class="shrt">
-                        <a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
+                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
                     </div></a>
             </li>
-            <li>
-                <a href="product.html"><img src="images/a3.jpg" alt=""/>	
-                    <div class="arrival-info">
-                        <h4>Platinum Waist Coat Set Navy</h4>
-                        <p>Rs 4000</p>
-                        <span class="pric1"><del>Rs 8500</del></span>
-                        <span class="disc">[45% Off]</span>
-                    </div>
-                    <div class="viw">
-                        <a href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                    </div>
-                    <div class="shrt">
-                        <a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                    </div></a>
-            </li>
-            <li>
-                <a href="product.html"> <img src="images/a4.jpg" alt=""/>	
-                    <div class="arrival-info">
-                        <h4>La Fanatise White Net Gowns</h4>
-                        <p>Rs 18000</p>
-                        <span class="pric1"><del>Rs 21000</del></span>
-                        <span class="disc">[8% Off]</span>
-                    </div>
-                    <div class="viw">
-                        <a href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
-                    </div>
-                    <div class="shrt">
-                        <a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
-                    </div></a>
-            </li>
+            @endforeach
+            @endif
         </ul>
         <script type="text/javascript">
             $(window).load(function () {
