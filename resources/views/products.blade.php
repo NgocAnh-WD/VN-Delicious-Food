@@ -51,11 +51,11 @@
                         <div class="clearfix"> </div>
                     </ul>
                     <div class="single-bottom">						
-                        <a href="#"><p>Gifts</p></a>
-                        <a href="#"><p>Flowers</p></a>
-                        <a href="#"><p>Shoes</p></a>
-                        <a href="#"><p>Suits</p></a>
-                        <a href="#"><p>Dresses</p></a>
+                        @if($categories)
+                        @foreach($categories as $key => $category)
+                        <a href="{{ url('single',$category->id) }}"><p>{{$category['name']}}</p></a>
+                        @endforeach
+                        @endif
                     </div>
                 </div>						  
                 <div class="tab2">

@@ -40,12 +40,15 @@ class HomeController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.name', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
             ->paginate(9);
-        
-        return view('products', compact('image_products'));
+        $categories = Category::orderBy('id','asc')->get();
+        return view('products', compact('image_products','categories'));
 }
     
-    public function index2(){
-        return view('product_details');
+    public function index2($id){
+        $product_detail = DB::table('products')
+                ->where('category_id', '=', $id)
+                ->get();
+        return view('product_details', compact('product_detail'));
     }
     
     public function index3(){
