@@ -41,7 +41,7 @@
                         <th>{{$category->description}}</th>
                         <th>{{$category->created_at}}</th>
                         <th>{{$category->updated_at}}</th>
-                        <th><a href="{{ url('admin/categories/'.$category->id.'/edit') }}">Edit</a> | <a href="{{ url('admin/categories/'.$category->id.'/destroy') }}">Delete</a></th>
+                        <th><a href="{{ url('admin/categories/'.$category->id.'/edit') }}">Edit</a></th>
                     </tr>
                     @endforeach
                 </tbody>
