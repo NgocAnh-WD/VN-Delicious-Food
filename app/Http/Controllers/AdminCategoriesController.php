@@ -33,18 +33,16 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        
+
         $this->validate($request, [
             'name' => 'required|min:3',
-        ],[
+                ], [
             'name.required' => 'Name is required.',
             'name.min' => 'Name is very short.'
         ]);
 //        
         $input = $request->all();
         Category::create($input);
-//       Category::create($request->all());
-//        return redirect('/admin/categories'); 
         return redirect()->back();
     }
 
@@ -93,8 +91,7 @@ class AdminCategoriesController extends Controller {
     public function destroy($id) {
         Category::findOrFail($id)->delete();
         \Illuminate\Support\Facades\Session::flash('deleted_category', 'The category has been deleted');
-        return redirect('/admin/categories'); 
- //       return redirect()->back();
+        return redirect('/admin/categories');
     }
 
 }
