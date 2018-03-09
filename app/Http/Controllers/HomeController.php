@@ -38,16 +38,14 @@ class HomeController extends Controller
             ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
             ->leftJoin('images', 'products.id', '=', 'images.product_id')
             ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
-            ->select('products.name', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
+            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
             ->paginate(9);
         $categories = Category::orderBy('id','asc')->get();
         return view('products', compact('image_products','categories'));
 }
     
     public function index2($id){
-        $product_detail = DB::table('products')
-                ->where('category_id', '=', $id)
-                ->get();
+        $product_detail = Product::where('category_id','=',$id)->get();
         return view('product_details', compact('product_detail'));
     }
     

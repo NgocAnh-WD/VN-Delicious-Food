@@ -11,7 +11,7 @@
         <div class="col-md-9 product-model-sec">
             @if($image_products)
             @foreach($image_products as $key => $image_product)
-            <a href="{{ url('/single') }}"> <div class="product-grid love-grid">
+            <a href="{{ url('/single',$image_product->product_id) }}"> <div class="product-grid love-grid">
                     <div class="more-product"><span> </span></div>						
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
                         <img src="{{ asset($image_product->link_image) }}" class="img-responsive" alt=""/>
