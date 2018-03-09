@@ -230,7 +230,7 @@ try {
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="">
+                                <a href="{{ url('admin/products/index') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     All Products
                                 </a>
@@ -239,7 +239,7 @@ try {
                             </li>
 
                             <li class="">
-                                <a href="jqgrid.html">
+                              <a href="{{ url('admin/products/create') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Create Product
                                 </a>
@@ -248,7 +248,7 @@ try {
                             </li>
 
                             <li class="">
-                                <a href="jqgrid.html">
+                                <a href="{{ url('admin/products/edit') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Edit Product
                                 </a>
