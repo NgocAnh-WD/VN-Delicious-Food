@@ -22,6 +22,6 @@ Route::get('/products', 'HomeController@index1')->name('products');
 Route::get('/single/{id}', 'HomeController@index2')->name('product_details');
 Route::get('/cart', 'HomeController@index3')->name('cart');
 Route::get('/admin', 'HomeController@index4')->name('admin');
-Route::resource('admin/products', 'AdminProductsController', array('as' => 'admin'));
+//Route::resource('admin/products', 'AdminProductsController', array('as' => 'admin'));
 Route::resource('admin/categories', 'AdminCategoriesController', array('as' => 'admin'));
 Route::resource('admin/users', 'AdminUserController', array('as' => 'admin'));

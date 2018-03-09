@@ -191,14 +191,7 @@ try {
                         <b class="arrow"></b>
 
                         <ul class="submenu">
-                            <li class="">
-                                <a href="{{url('admin/users')}}" class="dropdown-toggle">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    All Users
-                                    <b class="arrow fa fa-angle-down"></b>
-                                </a>
-                                <b class="arrow"></b>
-                            </li>
+                            
 
                             <li class="">
                                 <a href="{{ url('admin/users/create')}}">
@@ -209,9 +202,9 @@ try {
                             </li>                                                       
 
                             <li class="">
-                                <a href="{{ url('admin/users/edit')}}">
+                                <a href="{{ url('admin/users')}}">
                                     <i class="menu-icon fa fa-caret-right"></i>
-                                    Edit User
+                                    All Users
                                 </a>
                                 <b class="arrow"></b>
                             </li> 

@@ -2,8 +2,8 @@
 @extends('layouts.admin');
 
 @section('content')
-    <h1>Create User</h1>
-    
+<h1>Create User</h1>
+
     @if(count($errors))
         <div class="alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.
@@ -17,7 +17,7 @@
     @endif
     
     <div class="container">
-        <form action="{{ url('/admin/user') }}" method="post">
+        <form action="{{ url('/admin/users') }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             
             <div class=" row col-md-7 form-group {{ $errors->has('username') ? 'has-error' : '' }}">

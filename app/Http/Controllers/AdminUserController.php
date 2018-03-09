@@ -28,6 +28,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
+//        \Illuminate\Support\Facades\Session::flash('create_user','The user has been create!!!');
         return view('admin.users.createUser');
     }
 
@@ -56,10 +57,12 @@ class AdminUserController extends Controller
        $input['indentifier'] = 1;
        $input['date_of_birth'] = $request['date'];
        $input['full_name'] = $request['username'];
+        $input['avata_image'] = $request['username'];
        $input['password'] = bcrypt($request -> password);
        
        User::create($input);
-       return redirect('/admin/user');
+       return redirect('/admin/users');
+       
     }
 
     /**
@@ -84,6 +87,7 @@ class AdminUserController extends Controller
         $user = User::findOrFail($id);
         
         return view('admin.users.edit',['users' => $user]);
+        \Illuminate\Support\Facades\Session::flash('edit_user','The user has been edit');
     }
 
     /**
@@ -105,7 +109,8 @@ class AdminUserController extends Controller
             $input['password'] = bcrypt($request -> password);
         }
         $user->update($input);
-        return redirect('/admin/user');
+        \Illuminate\Support\Facades\Session::flash('update_user','The user has been updated');
+        return redirect('/admin/users');
     }
 
     /**
@@ -120,6 +125,6 @@ class AdminUserController extends Controller
         $user->delete();
         
         \Illuminate\Support\Facades\Session::flash('deleted_user','The user has been deleted');
-        return redirect('/admin/user');
+        return redirect('/admin/users');
     }
 }

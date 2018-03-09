@@ -1,9 +1,19 @@
 @extends('layouts.admin');
 
 @section('content')
-    @if(Session::has('deleted_use'))
-        <p class="bg-danger">{{session('deleted_use') }}</p>
+
+    @if(Session::has('create_user'))
+        <p class="bg-danger">{{session('create_user')}}</p>
     @endif
+
+    @if(Session::has('deleted_use'))
+        <p class="bg-danger">{{session('deleted_user') }}</p>
+    @endif
+    
+    @if(Session::has('deleted_use'))
+        <p class="bg-danger">{{session('edit_user') }}</p>
+    @endif
+    
 <h1>Users</h1>
 
 <table class="table">
@@ -29,7 +39,8 @@
             @foreach ($users as $user) 
                 <tr>
                     <td>{{$user->id}}</td>
-                    <td>{{$user->avata_image}}</td>
+                    <td><img height="50" src="{{$user->avata_image ? asset( $user->avata_image ): 'http://placehold.it/400x400'}}" alt="" ></td>
+<!--                    <td>{{$user->avata_image}}</td>-->
                     <td><a href="{{route('admin.users.edit',$user->id) }}" > {{$user->username}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->role?'active':'inactive'}}</td>
