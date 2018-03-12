@@ -56,4 +56,15 @@ class HomeController extends Controller
     public function index4(){
         return view('layouts/admin');
     }
+    public function get_products_by_category($id) {
+        $image_products = DB::table('products')
+            ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
+            ->leftJoin('images', 'products.id', '=', 'images.product_id')
+            ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
+            ->where('products.category_id','=',$id)
+            ->paginate(9);
+        $categories = Category::orderBy('id','asc')->get();
+        return view('products', compact('image_products','categories'));
+    }
 }

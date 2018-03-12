@@ -53,7 +53,7 @@
                     <div class="single-bottom">						
                         @if($categories)
                         @foreach($categories as $key => $category)
-                        <a href="{{ url('single',$category->id) }}"><p>{{$category['name']}}</p></a>
+                        <a href="{{ url('pro_cate',$category->id) }}"><p>{{$category['name']}}</p></a>
                         @endforeach
                         @endif
                     </div>
