@@ -10,7 +10,11 @@ class Product extends Model
     use Notifiable;
 
     protected $fillable = [
-        'name', 'category_id', 'description', 'is_delete'
+           'name',
+        'photo_id',
+        'category_id',
+        'description',
+
     ];
     
     public function category() {

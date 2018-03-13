@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Product;
 use Illuminate\Http\Request;
 
 class AdminImageController extends Controller
@@ -34,7 +34,7 @@ class AdminImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();   
     }
 
     /**

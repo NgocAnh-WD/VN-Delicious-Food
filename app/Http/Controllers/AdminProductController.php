@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Product;
 use App\Image;
 use App\Category;
 use App\User;
-use App\Product;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class AdminProductController extends Controller
      */
     public function index()
     {
-       $products = Product::orderBy('created_at', 'asc')->paginate(3);
+         $products = Product::orderBy('created_at', 'asc')->paginate(3);
 
         return view('admin.products.index', compact('products'));
     }
@@ -30,7 +30,7 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-         $categories = Category::pluck('name', 'id')->all();
+        $categories = Category::pluck('name', 'id')->all();
        // var_dump($categories);
         return view('admin.products.create', compact('categories'));
     }
@@ -43,15 +43,15 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $user = Auth::user();
-        
-        
+         $input = $request->all();
+//        $user = Auth::user();
+//        
+//        
 //        if($user) {
 //            $input['user_id'] = $user->id;
-//            $post = new Post();
+            $product = new Product();
 
-            if($file = $request->file('photo_id')) {
+            if($file = $request->file('link_image')) {
                 $year = date('Y');
                 $month = date('m');
                 $day = date('d');
@@ -70,19 +70,15 @@ class AdminProductController extends Controller
                 $image = Image::create(['file'=> $upload_url. $name]);
 
 
-                $input['photo_id'] = $photo->id;
+                $input['link_image'] = $image->id;
 
 
                 }
 
-                $post->create($input);
+                $product->create($input);
 
 
                 return redirect('/admin/products');
-            
-//        } else {
-//            return view("errors.submit-error", ["data"=>"Please login as administrator!"]);
-//        }
     }
 
     /**
@@ -104,7 +100,7 @@ class AdminProductController extends Controller
      */
     public function edit($id)
     {
-         $products = Product::findOrFail($id);
+          $product = Product::findOrFail($id);
 
         $categories = Category::pluck('name', 'id')->all();
 
@@ -120,11 +116,11 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $products = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
          
          $input = $request->all();
          
-           if ($file = $request->file('photo_id')) {
+           if ($file = $request->file('link_image')) {
            $year = date('Y');
            $month = date('m');
            $day = date('d');
@@ -140,15 +136,15 @@ class AdminProductController extends Controller
 
            $file->move($upload_url, $name);
 
-           $photo = Photo::create(['file' => $upload_url . $name]);
+           $image = Image::create(['file' => $upload_url . $name]);
 
 
-           $input['photo_id'] = $photo->id;
+           $input['link_image'] = $image->id;
        }else{ 
            
            
             }
-             $products->update($input);
+             $product->update($input);
             return redirect('/admin/products');
     }
 
@@ -160,12 +156,12 @@ class AdminProductController extends Controller
      */
     public function destroy($id)
     {
-         $products = Post::findOrFail($id);
+          $products = Product::findOrFail($id);
 
         $products->delete();
 
 
-        \Illuminate\Support\Facades\Session::flash('deleted_product','The product has been deleted');
+        \Illuminate\Support\Facades\Session::flash('delete_product','The product has been deleted');
 
 
         return redirect('/admin/products');
