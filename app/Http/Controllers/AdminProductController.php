@@ -5,9 +5,14 @@ use App\Product;
 use App\Image;
 use App\Category;
 use App\User;
+use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+
+
+
+
 
 class AdminProductController extends Controller
 {
@@ -44,16 +49,17 @@ class AdminProductController extends Controller
     public function store(Request $request)
     {
          $input = $request->all();
-//        $user = Auth::user();
-//        
-//        
-//        if($user) {
-//            $input['user_id'] = $user->id;
-            $product = new Product();
 
+            $product = new Product();
+            $product->create($input);
+            
+            $product_id = DB::getPdo()->lastInsertId();
+            
+            
             if($file = $request->file('link_image')) {
                 $year = date('Y');
                 $month = date('m');
+                
                 $day = date('d');
                 $sub_folder = $year.'/'.$month.'/'.$day.'/';
                 $upload_url= 'images/'.$sub_folder;
@@ -67,16 +73,9 @@ class AdminProductController extends Controller
 
                 $file->move($upload_url, $name);
 
-                $image = Image::create(['file'=> $upload_url. $name]);
-
-
-                $input['link_image'] = $image->id;
-
+                $image = Image::create(['link_image'=> $upload_url. $name,'product_id'=> $product_id]);
 
                 }
-
-                $product->create($input);
-
 
                 return redirect('/admin/products');
     }
@@ -100,7 +99,7 @@ class AdminProductController extends Controller
      */
     public function edit($id)
     {
-          $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id);
 
         $categories = Category::pluck('name', 'id')->all();
 
@@ -119,6 +118,7 @@ class AdminProductController extends Controller
         $product = Product::findOrFail($id);
          
          $input = $request->all();
+         $produc_id = $id;
          
            if ($file = $request->file('link_image')) {
            $year = date('Y');
@@ -136,13 +136,9 @@ class AdminProductController extends Controller
 
            $file->move($upload_url, $name);
 
-           $image = Image::create(['file' => $upload_url . $name]);
-
-
-           $input['link_image'] = $image->id;
+           $image = Image::create(['link_image' => $upload_url . $name,'product_id'=>$product_id]);
        }else{ 
-           
-           
+                      
             }
              $product->update($input);
             return redirect('/admin/products');
