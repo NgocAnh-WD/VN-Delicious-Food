@@ -45,8 +45,11 @@ class HomeController extends Controller
 }
     
     public function index2($id){
-        $product_detail = Product::where('category_id','=',$id)->get();
-        return view('product_details', compact('product_detail'));
+        $product_detail = DB::table('products')->where('id',$id)->first();
+        $image = DB::table('images')->select('id','link_image')->where('product_id',$product_detail->id)->get();
+        $price_size = DB::table('price_sizes')->select('id','size','quality','price', 'quantity')->where('product_id',$product_detail->id)->get();
+        $comment = DB::table('comments')->select('id','user_id','title','content', 'created_at')->where('product_id',$product_detail->id)->get();
+        return view('product_details', compact('product_detail', 'image', 'price_size', 'comment'));
     }
     
     public function index3(){

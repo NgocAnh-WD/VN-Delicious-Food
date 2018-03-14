@@ -4,168 +4,73 @@
 <div class="single-sec">
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li class="active">Products</li>
+            <li><a href="{{asset('/home')}}">Home</a></li>
+            <li class="active"><a href="{{asset('/products')}}">Products</a></li>
         </ol>
         <!-- start content -->	
         <div class="col-md-9 det">
             <div class="single_left">
-                <div class="flexslider">
-                    <ul class="slides">
-                        <li data-thumb="images/s11.jpeg">
-                            <img src="images/s11.jpeg" />
+                <div class="bzoom_wrap">
+                    <ul id="bzoom">
+                        @foreach($image as $images)
+                        <li>
+                            <img class="bzoom_thumb_image" src="{{asset($images->link_image)}}" style="width: 250px; height: 350px;"/>
+                            <img class="bzoom_big_image" src="{{asset($images->link_image)}}"/>
                         </li>
-                        <li data-thumb="images/s22.jpeg">
-                            <img src="images/s22.jpeg" />
-                        </li>
-                        <li data-thumb="images/s33.jpeg">
-                            <img src="images/s33.jpeg" />
-                        </li>
-                        <li data-thumb="images/s44.jpeg">
-                            <img src="images/s44.jpeg" />
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
-                <!-- FlexSlider -->
-                <script defer src="js/jquery.flexslider.js"></script>
-                <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-
-                <script>
-                    // Can also be used with $(document).ready()
-                    $(window).load(function () {
-                        $('.flexslider').flexslider({
-                            animation: "slide",
-                            controlNav: "thumbnails"
-                        });
-                    });
-                </script>
             </div>
             <div class="single-right">
-                <h3>American Diamond Famina Ruby Copper, Brass Jewel Set</h3>
-                <div class="id"><h4>ID: SB2379</h4></div>
-                <form action="" class="sky-form">
-                    <fieldset>					
-                        <section>
-                            <div class="rating">
-                                <input type="radio" name="stars-rating" id="stars-rating-5">
-                                <label for="stars-rating-5"><i class="icon-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-4">
-                                <label for="stars-rating-4"><i class="icon-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-3">
-                                <label for="stars-rating-3"><i class="icon-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-2">
-                                <label for="stars-rating-2"><i class="icon-star"></i></label>
-                                <input type="radio" name="stars-rating" id="stars-rating-1">
-                                <label for="stars-rating-1"><i class="icon-star"></i></label>
-                                <div class="clearfix"></div>
-                            </div>
-                        </section>
-                    </fieldset>
-                </form>
-                <div class="cost">
-                    <div class="prdt-cost">
-                        <ul>
-                            <li>MRP: <del>Rs 55000</del></li>								 
-                            <li>Sellling Price:</li>
-                            <li class="active">Rs 35000</li>
-                            <a href="#">BUY NOW</a>
-                        </ul>
-                    </div>
-                    <div class="check">
-                        <p><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>Enter pin code for delivery & availability</p>
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Pin code">
-                            </div>
-                            <button type="submit" class="btn btn-default">Verify</button>
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="item-list">
-                    <ul>
-                        <li>Material: Silver,Gold</li>
-                        <li>Color: Red</li>
-                        <li>Type: Earring & Pendant Set</li>
-                        <li>Brand: American Diamond</li>
-                        <li><a href="#">Click here for more details</a></li>
-                    </ul>
+                <h3>{{$product_detail ->name}}</h3>
+                <h4 style=" font-size: 16px;">ID Sản phẩm: {{$product_detail->id}}</h4>
+                <div class="item-sec">
+                    <h4>Chi tiết sản phẩm</h4>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td><p>Size</p></td>
+                                <td><p>Price</p></td>
+                                <td><p>Quantity</p></td>
+                                <td><p>Action</p></td>
+                            </tr>
+                            @foreach($price_size as $price_sizes)
+                            <tr>
+                                <td><p>{{$price_sizes->size}}</p></td>
+                                <td><p>{{$price_sizes->price}}</p></td>
+                                <td><p>{{$price_sizes->quantity}}</p></td>
+                                <td>
+                                    <button type="submit" class="btn btn-success" style="margin-top: 20px;">
+                                        <span>
+                                            <a href="{{asset('/cart')}}" style="color:#FFF">Add Product</a>
+                                        </span>
+                                    </button>
+                                    <button type="submit" class="btn btn-success" style="margin-top: 20px;">
+                                        <span>
+                                            <a href="#" style="color:#FFF">Buy Now</a>
+                                        </span>
+                                    </button>
+                                </td>
+                            </tr>														
+                        </tbody>
+                        @endforeach
+                    </table>
                 </div>
                 <div class="single-bottom1">
                     <h6>Details</h6>
-                    <p class="prod-desc">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam. Ut wisi enim ad minim veniam iriure dolor in hendrerit in vulputate velit esse molestie consequat.</p>
-                </div>					 
+                    <p class="prod-desc">{{$product_detail->description}}</p>
+                </div>	
+                <button type="submit" class="btn btn-danger" style="margin-top: 20px;">
+                    <span>
+                        <a href="{{asset('/products')}}" style="color:#FFF">Back to Home</a>
+                    </span>
+                </button>
             </div>
             <div class="clearfix"></div>
-            <div class="sofaset-info">
-                <h4>Product Summary: American Diamond Famina Ruby Copper, Brass Jewel Set</h4>
-                <ul>
-                    <li>Classic and vibrant detailing</li>
-                    <li>Design: Exquisitely crafted necklace set to suit your festive mood</li>
-                    <li>Stones Used: Synthetic stones and beads</li>
-                    <li>Colour: Brown Jute, Sheron Brown</li>
-                    <li>Recommended Wear: Festive</li>
-                    <li>Note: The image has been enlarged for better viewing</li>
-                    <li>Contents: 4 Pc</li>
-                    <li>Delivery Time: 7 to 10 days from the Day of Dispatch</li>							 
-                </ul>
-            </div>
-            <!---->
-            <div class="product-table">
-                <h3>Specifications of American Diamond Famina Ruby Copper, Brass Jewel Set</h3>
-                <div class="item-sec">
-                    <h4>Features</h4>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td><p>Pearl Type</p></td>
-                                <td><p>Plastic</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>Color</p></td>
-                                <td><p>Gold</p></td>
-                            </tr>														
-                        </tbody>
-                    </table>
-                </div>		
-                <div class="item-sec">
-                    <h4>General</h4>
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr>
-                                <td><p>Base Material</p></td>
-                                <td><p>Alloy</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>Brand</p></td>
-                                <td><p>Ethnic Jewels</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>Precious/Artificial Jewellery</p></td>
-                                <td><p>Fashion Jewellery</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>Model Number</p></td>
-                                <td><p>ID 4523</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>Occasion</p></td>
-                                <td><p>Wedding & Engagement</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>Type</p></td>
-                                <td><p>Earring & Necklace Set</p></td>
-                            </tr>
-                            <tr>
-                                <td><p>Ideal For</p></td>
-                                <td><p>Women</p></td>
-                            </tr>							
-                        </tbody>
-                    </table>
-                </div>	
-            </div>
             <div class="arrivals">	
-                <h3>Related Products</h3>
+                <div class="product-table">
+                    <h3>Sản phẩm cùng loại</h3>
+                </div>
                 <div class="arrival-grids">			 
                     <ul id="flexiselDemo1">
                         <li>
@@ -243,10 +148,10 @@
                             });
                         });
                     </script>
-                    <script type="text/javascript" src="js/jquery.flexisel.js"></script>	  
+                    <script type="text/javascript" src="{{asset('js/jquery.flexisel.js')}}"></script>	  
                 </div>
             </div>			
-            <!---->
+            <div class="clearfix"></div>
         </div>
         <div class="rsidebar span_1_of_left">
             <section  class="sky-form">
@@ -315,92 +220,68 @@
 
                     <!--script-->
                     <script>
-        $(document).ready(function () {
-            $(".tab1 .single-bottom").hide();
-            $(".tab2 .single-bottom").hide();
-            $(".tab3 .single-bottom").hide();
-            $(".tab4 .single-bottom").hide();
-            $(".tab5 .single-bottom").hide();
+                        $(document).ready(function () {
+                            $(".tab1 .single-bottom").hide();
+                            $(".tab2 .single-bottom").hide();
+                            $(".tab3 .single-bottom").hide();
+                            $(".tab4 .single-bottom").hide();
+                            $(".tab5 .single-bottom").hide();
 
-            $(".tab1 ul").click(function () {
-                $(".tab1 .single-bottom").slideToggle(300);
-                $(".tab2 .single-bottom").hide();
-                $(".tab3 .single-bottom").hide();
-                $(".tab4 .single-bottom").hide();
-                $(".tab5 .single-bottom").hide();
-            })
-            $(".tab2 ul").click(function () {
-                $(".tab2 .single-bottom").slideToggle(300);
-                $(".tab1 .single-bottom").hide();
-                $(".tab3 .single-bottom").hide();
-                $(".tab4 .single-bottom").hide();
-                $(".tab5 .single-bottom").hide();
-            })
-            $(".tab3 ul").click(function () {
-                $(".tab3 .single-bottom").slideToggle(300);
-                $(".tab4 .single-bottom").hide();
-                $(".tab5 .single-bottom").hide();
-                $(".tab2 .single-bottom").hide();
-                $(".tab1 .single-bottom").hide();
-            })
-            $(".tab4 ul").click(function () {
-                $(".tab4 .single-bottom").slideToggle(300);
-                $(".tab5 .single-bottom").hide();
-                $(".tab3 .single-bottom").hide();
-                $(".tab2 .single-bottom").hide();
-                $(".tab1 .single-bottom").hide();
-            })
-            $(".tab5 ul").click(function () {
-                $(".tab5 .single-bottom").slideToggle(300);
-                $(".tab4 .single-bottom").hide();
-                $(".tab3 .single-bottom").hide();
-                $(".tab2 .single-bottom").hide();
-                $(".tab1 .single-bottom").hide();
-            })
-        });
+                            $(".tab1 ul").click(function () {
+                                $(".tab1 .single-bottom").slideToggle(300);
+                                $(".tab2 .single-bottom").hide();
+                                $(".tab3 .single-bottom").hide();
+                                $(".tab4 .single-bottom").hide();
+                                $(".tab5 .single-bottom").hide();
+                            })
+                            $(".tab2 ul").click(function () {
+                                $(".tab2 .single-bottom").slideToggle(300);
+                                $(".tab1 .single-bottom").hide();
+                                $(".tab3 .single-bottom").hide();
+                                $(".tab4 .single-bottom").hide();
+                                $(".tab5 .single-bottom").hide();
+                            })
+                            $(".tab3 ul").click(function () {
+                                $(".tab3 .single-bottom").slideToggle(300);
+                                $(".tab4 .single-bottom").hide();
+                                $(".tab5 .single-bottom").hide();
+                                $(".tab2 .single-bottom").hide();
+                                $(".tab1 .single-bottom").hide();
+                            })
+                            $(".tab4 ul").click(function () {
+                                $(".tab4 .single-bottom").slideToggle(300);
+                                $(".tab5 .single-bottom").hide();
+                                $(".tab3 .single-bottom").hide();
+                                $(".tab2 .single-bottom").hide();
+                                $(".tab1 .single-bottom").hide();
+                            })
+                            $(".tab5 ul").click(function () {
+                                $(".tab5 .single-bottom").slideToggle(300);
+                                $(".tab4 .single-bottom").hide();
+                                $(".tab3 .single-bottom").hide();
+                                $(".tab2 .single-bottom").hide();
+                                $(".tab1 .single-bottom").hide();
+                            })
+                        });
                     </script>
                     <!-- script -->					 
             </section>
-            <section  class="sky-form">
-                <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>DISCOUNTS</h4>
-                <div class="row row1 scroll-pane">
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Upto - 10% (20)</label>
-                    </div>
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>40% - 50% (5)</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>30% - 20% (7)</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>10% - 5% (2)</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other(50)</label>
-                    </div>
-                </div>
-            </section> 				 				 
-            <section  class="sky-form">
-                <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Price</h4>
-                <ul class="dropdown-menu1">
-                    <li><a href="">								               
-                            <div id="slider-range"></div>							
-                            <input type="text" id="amount" style="border: 0; font-weight: NORMAL;   font-family: 'Arimo', sans-serif;" />
-                        </a></li>			
-                </ul>
-            </section>
-            <!---->
-            <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+            <script type="text/javascript" src="{{asset('js/jquery-ui.min.js')}}"></script>
+            <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-ui.css')}}">
             <script type='text/javascript'>//<![CDATA[ 
-        $(window).load(function () {
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 400000,
-                values: [8500, 350000],
-                slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
-                }
-            });
-            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+                        $(window).load(function () {
+                            $("#slider-range").slider({
+                                range: true,
+                                min: 0,
+                                max: 400000,
+                                values: [8500, 350000],
+                                slide: function (event, ui) {
+                                    $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
+                                }
+                            });
+                            $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
-        });//]]> 
+                        });//]]> 
             </script>
             <!---->
             <section  class="sky-form">
@@ -417,25 +298,69 @@
                         <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Stone Items   (30)</label>
                     </div>
                 </div>
-            </section>
-            <section  class="sky-form">
-                <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Brand</h4>
-                <div class="row row1 scroll-pane">
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Akasana Collectio</label>
-                    </div>
-                    <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Colori</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Crafts Hub</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Jisha</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Karatcart</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>Titan</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Amuktaa</label>
-                    </div>
-                </div>
-            </section>			
+            </section>		
         </div> 
         <div class="clearfix"></div>
-    </div>	 
+        <div class="arrivals">
+            <div class="product-table">
+                <h3>Đánh giá của khách hàng</h3>
+                @if(Auth::check())
+                <div class="well">
+                    <h4>Bình luận về sản phẩm:</h4>
+                    <form action="{{ route('comments.store') }}" method="post" enctype='multipart/form-data'>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                        <input type="hidden" name="product_id" value="{{$product_detail->id}}">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="title">
+                            <textarea name="content" class="form-control" rows="5" id="content"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Comment" />
+                        </div>
+                    </form>
+                </div>
+                @endif
+
+                @if($comment)
+                @foreach($comment as $comments)
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="media">
+                                <!--                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a href="#">
+                                                                                                                        {{$comments->user_id }}<br><br>
+                                        </a>
+                                    </div>
+                                                                </div>-->
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comments->title}}</a></h4>
+                                        {{str_limit($comments->content, 300)}}       
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--                                        Date/Time-->
+                                        <p><span class="glyphicon glyphicon-time"></span> Posted {{$comments->created_at}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+
+                @section('scripts')
+                <script>
+                    $(".comment-reply-container .toggle-reply").click(function () {
+                        $(this).next().slideToggle("slow");
+                    });
+                </script>
+                @endsection
+            </div>
+        </div>	 
+    </div>
 </div>
 @endsection
