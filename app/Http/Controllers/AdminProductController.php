@@ -103,7 +103,7 @@ class AdminProductController extends Controller
 
         $categories = Category::pluck('name', 'id')->all();
 
-        return view('admin.products.edit', compact('products', 'categories'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -118,8 +118,9 @@ class AdminProductController extends Controller
         $product = Product::findOrFail($id);
          
          $input = $request->all();
-         $produc_id = $id;
-         
+        
+        $product_id = $id;
+
            if ($file = $request->file('link_image')) {
            $year = date('Y');
            $month = date('m');
@@ -136,7 +137,7 @@ class AdminProductController extends Controller
 
            $file->move($upload_url, $name);
 
-           $image = Image::create(['link_image' => $upload_url . $name,'product_id'=>$product_id]);
+           $image = Image::create(['link_image' => $upload_url . $name]);
        }else{ 
                       
             }
