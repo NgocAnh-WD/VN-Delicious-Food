@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', 'LoginController@showLogin');
+Route::post('/login', 'LoginController@showLogin');
 Route::post('/login', 'LoginController@processLogin');
+Route::get('logout', function(){
+    Auth::logout(); // logout user
+    return Redirect::to('/');
+});
 
 Auth::routes();
 
@@ -37,3 +41,24 @@ Route::resource('admin/products', 'AdminProductController', array('as' => 'admin
 Route::resource('admin/categories', 'AdminCategoriesController', array('as' => 'admin'));
 Route::resource('admin/users', 'AdminUserController', array('as' => 'admin'));
 
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
