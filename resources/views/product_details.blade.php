@@ -328,13 +328,14 @@
                     <div class="row">
                         <div class="col-md-8">
                             <div class="media">
-                                <!--                                <div class="row">
+                                <div class="row">
                                     <div class="col-md-12">
-                                        <a href="#">
-                                                                                                                        {{$comments->user_id }}<br><br>
-                                        </a>
+                                        @if($comments->user)                                                                 
+                                        <img src="{{asset($comments->user->avata_image)}}" width="50px" height="50px">
+                                        {{$comments->user->username}}<br>
+                                        @endif
                                     </div>
-                                                                </div>-->
+                                </div>
                                 <div class="row">
                                     <div class="col-md-8">
                                         <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comments->title}}</a></h4>
@@ -342,7 +343,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <!--                                        Date/Time-->
-                                        <p><span class="glyphicon glyphicon-time"></span> Posted {{$comments->created_at}}</p>
+                                        <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comments->created_at}}</p>
                                     </div>
                                 </div>
                             </div>
