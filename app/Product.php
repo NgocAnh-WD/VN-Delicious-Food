@@ -15,15 +15,17 @@ class Product extends Model
         'category_id',
         'description',
 
+        
+        
     ];
     
     public function category() {
         return $this->belongsTo('App\Category');
     }
-//    public function images() {
-//        return $this->hasMany('App\Image');
-//    }
-//    public function price_sizes() {
-//        return $this->hasMany('App\Price_size');
-//    }
+    public function images() {
+        return $this->hasMany('App\Image');
+    }
+    public function photo(){
+        return $this->images()->get()->first();
+    }
 }
