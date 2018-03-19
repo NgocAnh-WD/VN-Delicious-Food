@@ -108,7 +108,7 @@
                 </div>
 
                 script
-                <script type="text/javascript">
+-->                <script type="text/javascript">
                     $(document).ready(function () {
                         $(".tab1 .single-bottom").hide();
                         $(".tab2 .single-bottom").hide();
@@ -152,7 +152,7 @@
                             $(".tab1 .single-bottom").hide();
                         })
                     });
-                </script>
+                </script><!--
                  script 					 
         </section>-->
         <section  class="sky-form">

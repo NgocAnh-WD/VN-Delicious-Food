@@ -154,7 +154,9 @@
             <div class="clearfix"></div>
         </div>
         <div class="rsidebar span_1_of_left">
-            <section  class="sky-form">
+            
+            @include('includes.categories_widget')
+<!--            <section  class="sky-form">
                 <div class="product_right">
                     <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Categories</h4>
                     <div class="tab1">
@@ -216,7 +218,7 @@
                             <a href="#"><p></p></a>
                             <a href="#"><p>Relax Chairs</p></a>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!--script-->
                     <script>
@@ -265,7 +267,7 @@
                         });
                     </script>
                     <!-- script -->					 
-            </section>
+<!--            </section>-->
             <script type="text/javascript" src="{{asset('js/jquery-ui.min.js')}}"></script>
             <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-ui.css')}}">
             <script type='text/javascript'>//<![CDATA[ 
