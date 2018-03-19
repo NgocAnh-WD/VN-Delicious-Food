@@ -35,6 +35,7 @@ Route::get('/admin', 'HomeController@index4')->name('admin');
 Route::resource('admin/products', 'AdminProductController', array('as' => 'admin'));
 Route::resource('admin/categories', 'AdminCategoriesController', array('as' => 'admin'));
 Route::resource('admin/users', 'AdminUserController', array('as' => 'admin'));
+Route::resource('admin/comments', 'AdminCommentsController', array('as' => 'admin'));
 
 Auth::routes();
 

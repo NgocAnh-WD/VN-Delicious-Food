@@ -10,7 +10,7 @@ class Comment extends Model
     use Notifiable;
 
     protected $fillable = [
-        'user_id', 'product_id', 'title', 'content', 'is_delete'
+        'user_id', 'product_id', 'title', 'content', 'is_delete', 'created_at'
     ];
     
     public function user() {
