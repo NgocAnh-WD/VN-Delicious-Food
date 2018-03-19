@@ -3,9 +3,7 @@
     <head>
         <title>Food Store</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <!--<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />-->
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery.min.js"></script>
+        <script src="{{asset('js/jquery.min.js')}}"></script>
         <!-- Custom Theme files -->
         <!--theme-style-->
         <link href="{{asset('css/style.css')}}" rel="stylesheet">	
@@ -53,26 +51,67 @@
             <div class="header-bottom">
                 <div class="container">			
                     <div class="logo">
-                        <a href="index.html"><h1>Food Store</h1></a>
+                        <a href="{{asset('/products')}}"><h1>Food Store</h1></a>
                     </div>
                     <!---->
 
                     <div class="top-nav">
-                        <ul class="memenu skyblue"><li class="active"><a href="index.html">Home</a></li>
-                            <li class="grid"><a href="#">Wedding</a>
+                        <ul class="memenu skyblue"><li class="active"><a href="{{asset('/home')}}">Home</a></li>
+                            <li class="grid"><a href="{{asset('/products')}}">Products</a>
+                                <div class="mepanel">
+                                    <div class="row">
+                                        <div class="col1 me-one">
+                                            <h4>Products</h4>
+                                            <ul>
+                                                <li><a href="{{asset('/products')}}">Trà sữa</a></li>
+                                                <li><a href="{{asset('/products')}}">Sinh tố</a></li>
+                                                <li><a href="{{asset('/products')}}">Chè</a></li>
+                                                <li><a href="{{asset('/products')}}">Gà rán</a></li>
+                                                <li><a href="{{asset('/products')}}">Lẩu hải sản</a></li>
+                                                <li><a href="{{asset('/products')}}">Mỳ cay</a></li>
+                                                <li><a href="{{asset('/products')}}">Bánh tráng trộn</a></li>
+                                                <li><a href="{{asset('/products')}}">Nem rán</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col1 me-one">
+                                            <h4>Price - Size</h4>
+                                            <ul>
+                                                <li><a href="{{asset('/products')}}">Men</a></li>
+                                                <li><a href="{{asset('/products')}}">Women</a></li>
+                                                <li><a href="{{asset('/products')}}">Brands</a></li>
+                                                <li><a href="{{asset('/products')}}">Kids</a></li>
+                                                <li><a href="{{asset('/products')}}">Accessories</a></li>
+                                                <li><a href="{{asset('/products')}}">Style Videos</a></li>
+                                            </ul>	
+                                        </div>
+                                        <div class="col1 me-one">
+                                            <h4>Popular Brands</h4>
+                                            <ul>
+                                                <li><a href="product.html">Levis</a></li>
+                                                <li><a href="product.html">Persol</a></li>
+                                                <li><a href="product.html">Nike</a></li>
+                                                <li><a href="product.html">Edwin</a></li>
+                                                <li><a href="product.html">New Balance</a></li>
+                                                <li><a href="product.html">Jack & Jones</a></li>
+                                                <li><a href="product.html">Paul Smith</a></li>
+                                                <li><a href="product.html">Ray-Ban</a></li>
+                                                <li><a href="product.html">Wood Wood</a></li>
+                                            </ul>	
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="grid"><a href="#">News</a>
                                 <div class="mepanel">
                                     <div class="row">
                                         <div class="col1 me-one">
                                             <h4>Shop</h4>
                                             <ul>
-                                                <li><a href="product.html">New Arrivals</a></li>
-                                                <li><a href="product.html">Men</a></li>
-                                                <li><a href="product.html">Women</a></li>
-                                                <li><a href="product.html">Accessories</a></li>
-                                                <li><a href="product.html">Kids</a></li>
-                                                <li><a href="login.html">login</a></li>
-                                                <li><a href="product.html">Brands</a></li>
-                                                <li><a href="product.html">My Shopping Bag</a></li>
+                                                <li><a href="{{asset('/products')}}">New Product</a></li>
+                                                <li><a href="#">Discount</a></li>
+                                                <li><a href="#">New </a></li>
+                                                <li><a href="#">Accessories</a></li>
+                                                <li><a href="#">Kids</a></li>                                           
                                             </ul>
                                         </div>
                                         <div class="col1 me-one">
@@ -103,51 +142,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="grid"><a href="#">Bride Style</a>
-                                <div class="mepanel">
-                                    <div class="row">
-                                        <div class="col1 me-one">
-                                            <h4>Shop</h4>
-                                            <ul>
-                                                <li><a href="product.html">New Arrivals</a></li>
-                                                <li><a href="product.html">Men</a></li>
-                                                <li><a href="product.html">Women</a></li>
-                                                <li><a href="product.html">Accessories</a></li>
-                                                <li><a href="product.html">Kids</a></li>
-                                                <li><a href="login.html">login</a></li>
-                                                <li><a href="product.html">Brands</a></li>
-                                                <li><a href="product.html">My Shopping Bag</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col1 me-one">
-                                            <h4>Style Zone</h4>
-                                            <ul>
-                                                <li><a href="product.html">Men</a></li>
-                                                <li><a href="product.html">Women</a></li>
-                                                <li><a href="product.html">Brands</a></li>
-                                                <li><a href="product.html">Kids</a></li>
-                                                <li><a href="product.html">Accessories</a></li>
-                                                <li><a href="product.html">Style Videos</a></li>
-                                            </ul>	
-                                        </div>
-                                        <div class="col1 me-one">
-                                            <h4>Popular Brands</h4>
-                                            <ul>
-                                                <li><a href="product.html">Levis</a></li>
-                                                <li><a href="product.html">Persol</a></li>
-                                                <li><a href="product.html">Nike</a></li>
-                                                <li><a href="product.html">Edwin</a></li>
-                                                <li><a href="product.html">New Balance</a></li>
-                                                <li><a href="product.html">Jack & Jones</a></li>
-                                                <li><a href="product.html">Paul Smith</a></li>
-                                                <li><a href="product.html">Ray-Ban</a></li>
-                                                <li><a href="product.html">Wood Wood</a></li>
-                                            </ul>	
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid"><a href="typo.html">Typo</a></li>
+                            <li class="grid"><a href="#">Typo</a></li>
                             <li class="grid"><a href="contact.html">Contact</a></li>
                         </ul>
                         <div class="clearfix"> </div>

@@ -305,7 +305,7 @@
             <div class="product-table">
                 <h3>Đánh giá của khách hàng</h3>
                 @if(Auth::check())
-                <div class="well">
+                <div class="comment">
                     <h4>Bình luận về sản phẩm:</h4>
                     <form action="{{ route('comments.store') }}" method="post" enctype='multipart/form-data'>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
@@ -326,28 +326,25 @@
                 @foreach($comment as $comments)
                 <div class="well">
                     <div class="row">
-                        <div class="col-md-8">
-                            <div class="media">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @if($comments->user)                                                                 
-                                        <img src="{{asset($comments->user->avata_image)}}" width="50px" height="50px">
-                                        {{$comments->user->username}}<br>
-                                        @endif
-                                    </div>
+
+                        <div class="media">
+                            <div class="col-md-2">
+                                @if($comments->user)
+                                <div class="image">
+                                    <img src="{{asset($comments->user->avata_image)}}" width="70px" height="70px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comments->title}}</a></h4>
-                                        {{str_limit($comments->content, 300)}}       
-                                    </div>
-                                    <div class="col-md-4">
-                                        <!--                                        Date/Time-->
-                                        <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comments->created_at}}</p>
-                                    </div>
-                                </div>
+                                {{$comments->user->username}}<br>
+                                @endif
+                            </div>
+                            <div class="col-md-7">
+                                <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comments->title}}</a></h4>
+                                {{str_limit($comments->content, 300)}} 
+                            </div>
+                            <div class="col-md-2">
+                                <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comments->created_at}}</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 @endforeach
