@@ -11,6 +11,7 @@
         <div class="col-md-9 product-model-sec">
             @if($image_products)
             @foreach($image_products as $key => $image_product)
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <a href="{{ url('/single',$image_product->product_id) }}"> <div class="product-grid love-grid">
                     <div class="more-product"><span> </span></div>						
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
@@ -41,7 +42,8 @@
         </div>
     </div>
     <div class="rsidebar span_1_of_left">
-        <section  class="sky-form">
+        @include('includes.categories_widget')
+<!--        <section  class="sky-form">
             <div class="product_right">
                 <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Categories</h4>
                 <div class="tab1">
@@ -105,8 +107,8 @@
                     </div>
                 </div>
 
-                <!--script-->
-                <script>
+                script
+                <script type="text/javascript">
                     $(document).ready(function () {
                         $(".tab1 .single-bottom").hide();
                         $(".tab2 .single-bottom").hide();
@@ -151,21 +153,25 @@
                         })
                     });
                 </script>
-                <!-- script -->					 
-        </section>
+                 script 					 
+        </section>-->
         <section  class="sky-form">
-            <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>DISCOUNTS</h4>
+            <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>PRICES</h4>
             <div class="row row1 scroll-pane">
-                <div class="col col-4">
-                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Upto - 10% (20)</label>
-                </div>
-                <div class="col col-4">
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>40% - 50% (5)</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>30% - 20% (7)</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>10% - 5% (2)</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Other(50)</label>
-                </div>
+                <form method="POST" name="FormSortProduct" action="">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    <div class="col col-4">
+                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published1" value="100" ><i></i>10.000-100.000 (VND)</label>
+                    </div>
+                    <div class="col col-4">                    
+                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published2" value="200"><i></i>109.000-199.000 (VND)</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published3" value="400"><i></i>200.000-399.000 (VND)</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published4" value="500"><i></i>400.000-499.000 (VND)</label>
+                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published5" value="501"><i></i>Over 500.000 (VND)</label>
+                    </div>
+                </form>
             </div>
+            <div id="getrequest"></div>
         </section> 				 				 
         <section  class="sky-form">
             <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Price</h4>
@@ -176,37 +182,170 @@
                     </a></li>			
             </ul>
         </section>
+        <section>
+            <form id="register" action="#">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <label for="firstname"></label>
+                <input type="text" id="firstname" class="form-control">
+                <label for="lastname"></label>
+                <input type="text" id="lastname" class="form-control">
+
+                <input type="submit" value="Register" class="btn btn-primary">
+            </form>
+            <div id="postRequestData"></div>
+        </section>
+        <script type="text/javascript">
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $(document).ready(function () {
+                $('#register').submit(function () {
+                    var fname = $('#firstname').val();
+                    var lname = $('#lasttname').val();
+
+                    $.post('register', {firstname: fname, lastname: lname}, function (data) {
+                        console.log(data);
+                        $('#postRequestData').html(data);
+                    });
+                });
+            });
+        </script>
         <!---->
         <script type="text/javascript" src="js/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <script type='text/javascript'>//<![CDATA[ 
-                    $(window).load(function () {
-                        $("#slider-range").slider({
-                            range: true,
-                            min: 0,
-                            max: 400000,
-                            values: [8500, 350000],
-                            slide: function (event, ui) {
-                                $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
-                            }
+            $(document).ready(function () {
+                for (var i = 1; i < 2; i++) {
+                    var idcheckbox = 'published' + i;
+                    document.getElementById(idcheckbox).onclick = function () {
+                        var checkbox = document.getElementsByName('checkbox');
+                        var result = "";
+                        var value = checkbox[i].value;
+                        $.get('sortby', function (data) {
+                            $('#getrequest').append(data);
+                            console.log(data);
                         });
-                        $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
 
-                    });//]]> 
+                        // Lặp qua từng checkbox để lấy giá trị
+//                                for (var i = 0; i < checkbox.length; i++) {
+//                                    if (checkbox[i].checked === true) {
+//                                        var value = checkbox[i].value;
+//                                        var url = 'http://localhost/php_project_laravel/public/sortby/';
+//                                        var _token = $("form[name='FormSortProduct']").find("input[name= '_token']").val();
+//                                        $.ajax({
+//                                            url: url + value,
+//                                            type: 'POST',
+//                                            cache: false,
+//                                            data: {"_token": _token, "value": value},
+//                                            success: function (data) {
+////                                                alert(value);
+//                                            }
+//                                        });
+//                                    }
+//                                }
+                    }
+                }
+
+                // In ra kết quả
+//                            var url = 'http://localhost/php_project_laravel/public/sortby/';
+//                            var _token = $("form[name='FormSortProduct']").find("input[name= '_token']").val();
+////                            alert(_token);
+//                           $.ajax({
+//                              url: url + result,
+//                              type: 'POST',
+//                              cache:false,
+//                              data:{"_token":_token,"price":result},
+//                              success:function(data){
+//                                  
+//                              }
+
+//                        }
+//                        document.getElementById('published2').onclick = function () {
+//                            var checkbox = document.getElementsByName('checkbox');
+//                            var result = "";
+//
+//                            // Lặp qua từng checkbox để lấy giá trị
+//                            for (var i = 0; i < checkbox.length; i++) {
+//                                if (checkbox[i].checked === true) {
+//                                    result += ' [' + checkbox[i].value + ']';
+//                                }
+//                            }
+//
+//                            // In ra kết quả
+//                            alert("Sở thích là: " + result);
+//                        }
+//                        document.getElementById('published3').onclick = function () {
+//                            var checkbox = document.getElementsByName('checkbox');
+//                            var result = "";
+//
+//                            // Lặp qua từng checkbox để lấy giá trị
+//                            for (var i = 0; i < checkbox.length; i++) {
+//                                if (checkbox[i].checked === true) {
+//                                    result += ' [' + checkbox[i].value + ']';
+//                                }
+//                            }
+//
+//                            // In ra kết quả
+//                            alert("Sở thích là: " + result);
+//                        }
+//                        document.getElementById('published4').onclick = function () {
+//                            var checkbox = document.getElementsByName('checkbox');
+//                            var result = "";
+//
+//                            // Lặp qua từng checkbox để lấy giá trị
+//                            for (var i = 0; i < checkbox.length; i++) {
+//                                if (checkbox[i].checked === true) {
+//                                    result += ' [' + checkbox[i].value + ']';
+//                                }
+//                            }
+//
+//                            // In ra kết quả
+//                            alert("Sở thích là: " + result);
+//                        }
+//                        document.getElementById('published5').onclick = function () {
+//                            var checkbox = document.getElementsByName('checkbox');
+//                            var result = "";
+//
+//                            // Lặp qua từng checkbox để lấy giá trị
+//                            for (var i = 0; i < checkbox.length; i++) {
+//                                if (checkbox[i].checked === true) {
+//                                    result += ' [' + checkbox[i].value + ']';
+//                                }
+//                            }
+//
+//                            // In ra kết quả
+//                            alert("Sở thích là: " + result);
+//                        }
+            });
+            $(window).load(function () {
+                $("#slider-range").slider({
+                    range: true,
+                    min: 0,
+                    max: 400000,
+                    values: [8500, 350000],
+                    slide: function (event, ui) {
+                        $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
+                    }
+                });
+                $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+            });//]]> 
         </script>
         <!---->
         <section  class="sky-form">
             <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Type</h4>
             <div class="row row1 scroll-pane">
                 <div class="col col-4">
-                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>1 Gram Gold (30)</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxtype" checked=""><i></i>1 Gram Gold (30)</label>
                 </div>
                 <div class="col col-4">
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Gold Plated   (30)</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Platinum      (30)</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Silver        (30)</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Jewellery Sets  (30)</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Stone Items   (30)</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxtype"><i></i>Gold Plated   (30)</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxtype"><i></i>Platinum      (30)</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxtype"><i></i>Silver        (30)</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxtype"><i></i>Jewellery Sets  (30)</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxtype"><i></i>Stone Items   (30)</label>
                 </div>
             </div>
         </section>
@@ -214,15 +353,15 @@
             <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Brand</h4>
             <div class="row row1 scroll-pane">
                 <div class="col col-4">
-                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Akasana Collectio</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxbr" checked=""><i></i>Akasana Collectio</label>
                 </div>
                 <div class="col col-4">
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Colori</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Crafts Hub</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Jisha</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Karatcart</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>Titan</label>
-                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Amuktaa</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxbr"><i></i>Colori</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxbr"><i></i>Crafts Hub</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxbr"><i></i>Jisha</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxbr"><i></i>Karatcart</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxbr" ><i></i>Titan</label>
+                    <label class="checkbox"><input type="checkbox" name="checkboxbr"><i></i>Amuktaa</label>
                 </div>
             </div>
         </section>			

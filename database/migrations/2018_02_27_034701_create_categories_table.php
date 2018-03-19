@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('is_delete');
-            $table->timestamps();
+            $table->timestamps();            
         });
     }
 

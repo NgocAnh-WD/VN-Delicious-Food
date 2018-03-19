@@ -42,7 +42,7 @@ class HomeController extends Controller
             ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
             ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
             ->paginate(9);
-        $categories = Category::orderBy('id','asc')->get();
+        $categories = Category::get();
         return view('products', compact('image_products','categories'));
 }
     
