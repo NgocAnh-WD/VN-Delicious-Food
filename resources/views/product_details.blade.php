@@ -304,23 +304,8 @@
         <div class="arrivals">
             <div class="product-table">
                 <h3>Đánh giá của khách hàng</h3>
-                @if(Auth::check())
-                <div class="comment">
-                    <h4>Bình luận về sản phẩm:</h4>
-                    <form action="{{ route('comments.store') }}" method="post" enctype='multipart/form-data'>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                        <input type="hidden" name="product_id" value="{{$product_detail->id}}">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="title">
-                            <textarea name="content" class="form-control" rows="5" id="content"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Comment" />
-                        </div>
-                    </form>
-                </div>
-                @endif
+                
+               
 
                 @if($comment)
                 @foreach($comment as $comments)

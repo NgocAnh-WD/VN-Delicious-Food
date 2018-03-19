@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Category;
 use App\Product;
 use App\Image;
+use App\User;
 use App\Price_size;
+use App\Comment;
+
 
 class HomeController extends Controller
 {
@@ -51,7 +54,7 @@ class HomeController extends Controller
         $product_detail = DB::table('products')->where('id',$id)->first();
         $image = DB::table('images')->select('id','link_image')->where('product_id',$product_detail->id)->get();
         $price_size = DB::table('price_sizes')->select('id','size','quality','price', 'quantity')->where('product_id',$product_detail->id)->get();
-        $comment = DB::table('comments')->select('id','user_id','title','content', 'created_at')->where('product_id',$product_detail->id)->get();
+        $comment = Comment::where('product_id', $product_detail->id)->get();
         $categories = Category::get();
         return view('product_details', compact('product_detail', 'image', 'price_size', 'comment','categories'));
     }
