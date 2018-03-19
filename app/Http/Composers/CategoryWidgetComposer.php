@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View;
  * and open the template in the editor.
  */
 class CategoryWidgetComposer{
-    public function composer(View $view) {
+    public function compose(View $view) {
         $categories = Category::get();
         $view->with('categories',$categories);
     }

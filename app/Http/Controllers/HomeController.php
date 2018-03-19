@@ -32,7 +32,8 @@ class HomeController extends Controller
     {
         $image_products = Image::limit(12)->get();
         $image_products_new = Image::limit(6)->get();
-        return view('home', compact('image_products','image_products_new'));
+        $categories = Category::get();
+        return view('home', compact('image_products','image_products_new','categories'));
     }
     
     public function index1(){
@@ -51,7 +52,8 @@ class HomeController extends Controller
         $image = DB::table('images')->select('id','link_image')->where('product_id',$product_detail->id)->get();
         $price_size = DB::table('price_sizes')->select('id','size','quality','price', 'quantity')->where('product_id',$product_detail->id)->get();
         $comment = DB::table('comments')->select('id','user_id','title','content', 'created_at')->where('product_id',$product_detail->id)->get();
-        return view('product_details', compact('product_detail', 'image', 'price_size', 'comment'));
+        $categories = Category::get();
+        return view('product_details', compact('product_detail', 'image', 'price_size', 'comment','categories'));
     }
     
     public function index3(){
@@ -69,7 +71,7 @@ class HomeController extends Controller
             ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
             ->where('products.category_id','=',$id)
             ->paginate(9);
-        $categories = Category::orderBy('id','asc')->get();
+        $categories = Category::get();
         return view('products', compact('image_products','categories'));
     }
 }
