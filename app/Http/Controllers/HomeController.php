@@ -1,78 +1,77 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Category;
 use App\Product;
 use App\Image;
-use App\User;
-use App\Comment;
 use App\Price_size;
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-//    public function __construct()
-//    {
-//        $this->middleware('auth');
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+
+    
+    public function index()
+    {
         $image_products = Image::limit(12)->get();
         $image_products_new = Image::limit(6)->get();
-        return view('home', compact('image_products', 'image_products_new'));
+        $categories = Category::get();
+        return view('home', compact('image_products','image_products_new','categories'));
     }
-
-    public function index1() {
+    
+    public function index1(){
         $image_products = DB::table('products')
-                ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
-                ->leftJoin('images', 'products.id', '=', 'images.product_id')
-                ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
-                ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image', 'categories.name AS name_category')
-                ->paginate(9);
-        $categories = Category::orderBy('id', 'asc')->get();
-        return view('products', compact('image_products', 'categories'));
+            ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
+            ->leftJoin('images', 'products.id', '=', 'images.product_id')
+            ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
+            ->paginate(9);
+        $categories = Category::get();
+        return view('products', compact('image_products','categories'));
+}
+    
+    public function index2($id){
+        $product_detail = DB::table('products')->where('id',$id)->first();
+        $image = DB::table('images')->select('id','link_image')->where('product_id',$product_detail->id)->get();
+        $price_size = DB::table('price_sizes')->select('id','size','quality','price', 'quantity')->where('product_id',$product_detail->id)->get();
+        $comment = DB::table('comments')->select('id','user_id','title','content', 'created_at')->where('product_id',$product_detail->id)->get();
+        $categories = Category::get();
+        return view('product_details', compact('product_detail', 'image', 'price_size', 'comment','categories'));
     }
-
-    public function index2($id) {
-        $product_detail = DB::table('products')->where('id', $id)->first();
-        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
-        $price_size = DB::table('price_sizes')->select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
-//        $comment = DB::table('comments')->select('id','user_id','title','content', 'created_at')->where('product_id',$product_detail->id)->get();
-        $comment = Comment::where('product_id', $product_detail->id)->get();
-//        $users = User::with('comments')->get();
-        return view('product_details', compact('product_detail', 'image', 'price_size', 'comment'));
-    }
-
-    public function index3() {
+    
+    public function index3(){
         return view('cart');
     }
-
-    public function index4() {
+    
+    public function index4(){
         return view('layouts/admin');
     }
-
     public function get_products_by_category($id) {
         $image_products = DB::table('products')
-                ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
-                ->leftJoin('images', 'products.id', '=', 'images.product_id')
-                ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
-                ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image', 'categories.name AS name_category')
-                ->where('products.category_id', '=', $id)
-                ->paginate(9);
-        $categories = Category::orderBy('id', 'asc')->get();
-        return view('products', compact('image_products', 'categories'));
+            ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
+            ->leftJoin('images', 'products.id', '=', 'images.product_id')
+            ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
+            ->where('products.category_id','=',$id)
+            ->paginate(9);
+        $categories = Category::get();
+        return view('products', compact('image_products','categories'));
     }
-
 }

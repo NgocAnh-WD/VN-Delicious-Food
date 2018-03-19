@@ -26,7 +26,7 @@ use RegistersUsers;
      *
      * @var string
      */
-    protected $redirectTo = '/register';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -45,7 +45,7 @@ use RegistersUsers;
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-                    'username' => 'required|string|max:255',
+                    'name' => 'required|string|max:255',
                     'email'    => 'required|string|email|max:255|unique:users',
                     'password' => 'required|string|min:6|confirmed',
                     'phone'    => 'required|integer|min:10|'
@@ -59,24 +59,24 @@ use RegistersUsers;
      * @return \App\User
      */
     protected function create(array $data) {
-        if (!isset($data['role'])) {
-            $data['role'] = 0;
+        if (!isset($data['is_active'])) {
+            $data['is_active'] = 0;
         } else {
-            $data['role'] = 1;
+            $data['is_active'] = 1;
         }
 
         return User::create([
-                    'username' => $data['username'],
+                    'username' => $data['name'],
                     'date_of_birth' => $data['date'],
                     'email' => $data['email'],
                     'phone' => $data['phone'],
                     'password' => bcrypt($data['password']),
                     'gender' => $data['gender'],
                     'avata_image' => 'avata_image',
-                    'full_name' => $data['username'],
+                    'full_name' => $data['name'],
                     'indentifier' => '1',
                     'address' => $data['address'],
-                    'role' => $data['role'],
+                    'role' => $data['is_active'],
                     'is_delete' => '1',
         ]);
         
