@@ -20,4 +20,5 @@ class Order_detail extends Model
     public function product(){
         return $this->belongsToMany('App\Product');
     }
+    
 }

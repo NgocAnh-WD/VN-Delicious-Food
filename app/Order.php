@@ -17,9 +17,8 @@ class Order extends Model
         'shipped_date',
         'status',
     ];
-    
     public function order_details(){
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo('App\Order_detail');
     }
 }
 

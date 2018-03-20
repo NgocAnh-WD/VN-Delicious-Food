@@ -18,6 +18,7 @@ class CreateSlidesTable extends Migration
             $table->string('link_image');
             $table->integer('is_delete');
             $table->timestamps();
+            
         });
     }
 

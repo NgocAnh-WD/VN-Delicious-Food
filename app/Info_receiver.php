@@ -12,4 +12,5 @@ class Info_receiver extends Model
     protected $fillable = [
         'full_name','address','phone'
     ];
+    
 }

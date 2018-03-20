@@ -20,7 +20,7 @@ class Product extends Model
     ];
     
     public function category() {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\Child_category');
     }
     public function images() {
         return $this->hasMany('App\Image');

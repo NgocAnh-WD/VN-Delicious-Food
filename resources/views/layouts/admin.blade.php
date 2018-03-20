@@ -223,7 +223,7 @@ try {
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="{{ url('admin/products/index') }}">
+                                <a href="{{ url('admin/products') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     All Products
                                 </a>
@@ -344,7 +344,7 @@ try {
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="#">
+                                <a href="{{ url('admin/comments') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     All Comments
                                 </a>
