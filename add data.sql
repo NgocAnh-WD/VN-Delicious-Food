@@ -1,16 +1,27 @@
 USE adnt_laravel_db;
 
-INSERT INTO categories(name,description)
-	VALUE('Chè','1', 'Dac san Hue'),
-	     ('Kem','1', 'Merio'),
-         ('Bánh mì','1', 'Diem tam'),
-         ('Khoai tây','1', 'Món ăn nhanh'),
-         ('Nước uống cồn','1', ''),
-         ('Nước trái cây','1', ''),
-         ('Snack','1', ''),
-         ('Trái cây','1', 'Diem tam'),
-         ('Đồ đặc biệt','1', 'Diem tam'),
-         ('Trà sữa','1','Nuoc uong');
+INSERT INTO parent_categories(name,is_delete)
+	VALUE('Món ngọt','0'),
+	     ('Món đông lạnh', '0'),
+         ('Rượu', '0'),
+         ('Nước', '0'),
+         ('Trái cây','0'),
+         ('Trà', '0'),
+         ('Bột', '0'),
+         ('Đồ đóng gói','0'),
+         ('Tốt sức khỏe','0');
+
+INSERT INTO child_categories(parent_id,name,is_delete,description)
+	VALUE('1','Chè','0', 'Dac san Hue'),
+	     ('2','Kem','0', 'Merio'),
+         ('7','Bánh mì','0', 'Diem tam'),
+         ('8','Khoai tây','0', 'Món ăn nhanh'),
+         ('3','Nước uống cồn','0', ''),
+         ('4','Nước trái cây','0', ''),
+         ('8','Snack','0', ''),
+         ('5','Trái cây','0', 'Diem tam'),
+         ('9','Đồ đặc biệt','0', 'Diem tam'),
+         ('6','Trà sữa','0','Nuoc uong');
          
 INSERT INTO products(name, category_id, description,is_delete)
 	VALUE('Chè thái', 1, '',0),
@@ -43,7 +54,7 @@ INSERT INTO products(name, category_id, description,is_delete)
         ('Trà sữa chân châu', 10, '',0),		
         ('Trà sữa truyền thống', 10, '',0);
         
-INSERT INTO price_size(product_id, size, quality, price, quantity)
+INSERT INTO price_sizes(product_id, size, quality, price, quantity)
 	  VALUE (3, 'Nhỏ', '', 120.000, 15),
 			(6, 'Lớn', '', 10.000, 50),
             (2, 'Vừa', 'Đặc biệt', 45.000, 5),
@@ -72,5 +83,36 @@ INSERT INTO price_size(product_id, size, quality, price, quantity)
             (28, 'Vừa', '', 90.000, 15),
             (29, 'Vừa', '', 85.000, 15),
             (7, 'Vừa', 'Loại 1', 120.000, 20);
+            
+INSERT INTO images(product_id, link_image,is_delete)
+	  VALUE (1, 'images/2018/03/06/f1.jpg',0),
+			(2, 'images/2018/03/06/f2.jpg',0),
+            (3, 'images/2018/03/06/f3.jpg',0),
+            (4, 'images/2018/03/06/f4.jpg',0),
+            (5, 'images/2018/03/06/p7.jpg',0),
+            (6, 'images/2018/03/06/p11.jpg',0),
+			(7, 'images/2018/03/06/p12.jpg',0),
+            (8, 'images/2018/03/06/p12.jpg',0),
+            (9, 'images/2018/03/06/p11.jpg',0),
+            (10, 'images/2018/03/06/p7.jpg',0),
+            (11, 'images/2018/03/06/f1.jpg',0),
+            (12, 'images/2018/03/06/f2.jpg',0),
+            (13, 'images/2018/03/06/f4.jpg',0),
+            (14, 'images/2018/03/06/f3.jpg',0),
+            (15, 'images/2018/03/06/p7.jpg',0),
+            (16, 'images/2018/03/06/f2.jpg',0),
+            (17, 'images/2018/03/06/f3.jpg',0),
+            (18, 'images/2018/03/06/f4.jpg',0),
+            (19, 'images/2018/03/06/f1.jpg',0),
+            (20, 'images/2018/03/06/p12.jpg',0),
+            (21, 'images/2018/03/06/p11.jpg',0),
+            (22, 'images/2018/03/06/p7.jpg',0),
+            (23, 'images/2018/03/06/p11.jpg',0),
+            (24, 'images/2018/03/06/f1.jpg',0),
+            (25, 'images/2018/03/06/f4.jpg',0),
+            (26, 'images/2018/03/06/f3.jpg',0),
+            (27, 'images/2018/03/06/f2.jpg',0),
+            (28, 'images/2018/03/06/p11.jpg',0),
+            (29, 'images/2018/03/06/f1.jpg',0);
             
             
