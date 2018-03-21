@@ -1,29 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Product;
 use App\Image;
-use App\Category;
+use App\Parent_category;
+use App\Child_category;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
+class AdminProductController extends Controller {
 
-
-
-
-class AdminProductController extends Controller
-{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-         $products = Product::orderBy('created_at', 'asc')->paginate(3);
+    public function index() {
+        $products = Product::orderBy('created_at', 'asc')->paginate(3);
 
         return view('admin.products.index', compact('products'));
     }
@@ -33,11 +30,9 @@ class AdminProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $categories = Category::pluck('name', 'id')->all();
-       // var_dump($categories);
-        return view('admin.products.create', compact('categories'));
+    public function create() {
+        $child_categories = Child_category::pluck('name', 'id')->all();
+        return view('admin.products.create', compact('child_categories'));
     }
 
     /**
@@ -46,38 +41,36 @@ class AdminProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-         $input = $request->all();
+    public function store(Request $request) {
+        $input = $request->all();
 
-            $product = new Product();
-            $product->create($input);
-            
-            $product_id = DB::getPdo()->lastInsertId();
-            
-            
-            if($file = $request->file('link_image')) {
-                $year = date('Y');
-                $month = date('m');
-                
-                $day = date('d');
-                $sub_folder = $year.'/'.$month.'/'.$day.'/';
-                $upload_url= 'images/'.$sub_folder;
+        $product = new Product();
+        $product->create($input);
 
-                if (! File::exists(public_path().'/'.$upload_url)) {
-                       File::makeDirectory(public_path().'/'.$upload_url,0777,true);
-                  }
-
-                $name = time() . $file->getClientOriginalName();
+        $product_id = DB::getPdo()->lastInsertId();
 
 
-                $file->move($upload_url, $name);
+        if ($file = $request->file('link_image')) {
+            $year = date('Y');
+            $month = date('m');
 
-                $image = Image::create(['link_image'=> $upload_url. $name,'product_id'=> $product_id]);
+            $day = date('d');
+            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+            $upload_url = 'images/' . $sub_folder;
 
-                }
+            if (!File::exists(public_path() . '/' . $upload_url)) {
+                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+            }
 
-                return redirect('/admin/products');
+            $name = time() . $file->getClientOriginalName();
+
+
+            $file->move($upload_url, $name);
+
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product_id]);
+        }
+
+        return redirect('/admin/products');
     }
 
     /**
@@ -86,8 +79,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -97,13 +89,12 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
         $product = Product::findOrFail($id);
 
-        $categories = Category::pluck('name', 'id')->all();
+        $child_categories = Child_category::pluck('name', 'id')->all();
 
-        return view('admin.products.edit', compact('product', 'categories'));
+        return view('admin.products.edit', compact('product', 'child_categories'));
     }
 
     /**
@@ -113,36 +104,32 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         $product = Product::findOrFail($id);
-         
-         $input = $request->all();
-        
+
+        $input = $request->all();
+
         $product_id = $id;
 
-           if ($file = $request->file('link_image')) {
-           $year = date('Y');
-           $month = date('m');
-           $day = date('d');
-           $sub_folder = $year . '/' . $month . '/' . $day . '/';
-           $upload_url = 'images/' . $sub_folder;
+        if ($file = $request->file('link_image')) {
+            $year = date('Y');
+            $month = date('m');
+            $day = date('d');
+            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+            $upload_url = 'images/' . $sub_folder;
 
-           if (!File::exists(public_path() . '/' . $upload_url)) {
-               File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
-           }
-
-           $name = time() . $file->getClientOriginalName();
-
-
-           $file->move($upload_url, $name);
-
-           $image = Image::create(['link_image' => $upload_url . $name]);
-       }else{ 
-                      
+            if (!File::exists(public_path() . '/' . $upload_url)) {
+                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
             }
-             $product->update($input);
-            return redirect('/admin/products');
+            $name = time() . $file->getClientOriginalName();
+            $file->move($upload_url, $name);
+
+            $image = Image::create(['link_image' => $upload_url . $name]);
+        } else {
+            
+        }
+        $product->update($input);
+        return redirect('/admin/products');
     }
 
     /**
@@ -151,16 +138,11 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-          $products = Product::findOrFail($id);
-
+    public function destroy($id) {
+        $products = Product::findOrFail($id);
         $products->delete();
-
-
-        \Illuminate\Support\Facades\Session::flash('delete_product','The product has been deleted');
-
-
+        \Illuminate\Support\Facades\Session::flash('delete_product', 'The product has been deleted');
         return redirect('/admin/products');
     }
+
 }
