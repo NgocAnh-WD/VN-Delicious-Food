@@ -14,6 +14,10 @@
              <th>Photo</th>
              <th>Category</th>
              <th>Description</th>
+             <th>Size</th>
+             <th>Quality</th>
+             <th>Price</th>
+             <th>Quantity</th>
              <th>Created at</th>
              <th>Update</th>
         </thead>
@@ -25,7 +29,11 @@
                 <td><a href="{{ url('admin/products/'. $product->id.'/edit') }}">{{$product->name}}</a></td>        
                 <td><img height="50" src="{{$product->photo()? asset( $product->photo()->link_image ): 'http://placehold.it/400x400'}}" alt=""></td>
                 <td>{{$product->category ? $product->category->name : 'Uncategorized'}}</td>
-                <td>{{str_limit($product->description)}}</td>     
+                <td>{{str_limit($product->description)}}</td>
+                <td>{{$product->price()->size}}</td>
+                <td>{{$product->price()->quality}}</td>
+                <td>{{$product->price()->price}}</td>
+                <td>{{$product->price()->quantity}}</td>
                 <td>{{$product->created_at}}</td>
                 <td>{{$product->updated_at}}</td>
 

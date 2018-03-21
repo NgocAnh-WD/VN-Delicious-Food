@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-Use App\Category;
+Use App\Child_category;
 
 class AdminCategoriesController extends Controller {
 
@@ -13,7 +13,7 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $categories = Category::all();
+        $categories = Child_category::all();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -42,7 +42,7 @@ class AdminCategoriesController extends Controller {
         ]);
 //        
         $input = $request->all();
-        Category::create($input);
+        Child_category::create($input);
         return redirect()->back();
     }
 
@@ -63,7 +63,7 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $category = Category::findOrFail($id);
+        $category = Child_category::findOrFail($id);
         return view('admin.categories.edit', compact('category'));
     }
 
@@ -76,7 +76,7 @@ class AdminCategoriesController extends Controller {
      */
     public function update(Request $request, $id) {
 
-        $category = Category::findOrFail($id);
+        $category = Child_category::findOrFail($id);
         $category->update($request->all());
 //        return redirect('/admin/categories'); 
         return redirect()->back();
@@ -89,7 +89,7 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        Category::findOrFail($id)->delete();
+        Child_category::findOrFail($id)->delete();
         \Illuminate\Support\Facades\Session::flash('deleted_category', 'The category has been deleted');
         return redirect('/admin/categories');
     }

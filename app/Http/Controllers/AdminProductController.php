@@ -7,6 +7,7 @@ use App\Image;
 use App\Parent_category;
 use App\Child_category;
 use App\User;
+use App\Price_size;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -32,6 +33,7 @@ class AdminProductController extends Controller {
      */
     public function create() {
         $child_categories = Child_category::pluck('name', 'id')->all();
+        $price_size = Price_size::pluck('id')->all();
         return view('admin.products.create', compact('child_categories'));
     }
 
@@ -68,6 +70,8 @@ class AdminProductController extends Controller {
             $file->move($upload_url, $name);
 
             $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product_id]);
+            
+            $input = Price_size::created(['size','quality, price', 'quantity'=>$upload_file.$name]);
         }
 
         return redirect('/admin/products');
@@ -125,6 +129,8 @@ class AdminProductController extends Controller {
             $file->move($upload_url, $name);
 
             $image = Image::create(['link_image' => $upload_url . $name]);
+            
+             $input = Price_size::created(['size','quality, price', 'quantity'=>$upload_file.$name]);
         } else {
             
         }
