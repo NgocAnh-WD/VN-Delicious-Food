@@ -1,10 +1,5 @@
 @extends('layouts.admin')
 
-
-
-
-
-
 @section('content')
     @include('includes.tinyeditor')
 
@@ -25,7 +20,7 @@
             <div class=" form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
                     <label for="category_id">Category:</label>
                     <select class="form-control" id="category_id" name="category_id" >
-                       @foreach ($categories as $id => $name  )
+                       @foreach ($child_categories as $id => $name  )
                        <option value="{{$id}}">{{$name}}</option>
                         @endforeach   
                      </select>                
@@ -56,22 +51,10 @@
                 <input type="submit" class="btn btn-success" value="Create Product" />
             </div>
         </form>
-        
-      
-
+           
     </div>
-
 
     <div class="row">
-
-
         @include('includes.form_error')
-
-
-
     </div>
-
-
-
-
 @stop
