@@ -92,7 +92,7 @@
         @if($image_products)
         @foreach($image_products as $key => $image_product)
         <div class="col-md-3 feature-grid jewel">
-            <a href="{{ url('/products') }}"><img src="{{ asset($image_product['link_image']) }}" alt=""/>	
+            <a href="{{ url('/products') }}"><img src="{{ asset($image_product['link_image']) }}" alt="" id="image_responsive"/>	
                 <div class="arrival-info">
                     <h4>{{$image_product['product']['category'] ? $image_product['product']['category']['name'] : 'Uncategorized'}}</h4>
                     <p>{{$image_product['product']['name']}}</p>

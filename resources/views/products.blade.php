@@ -26,7 +26,7 @@
                 <div class="product-info-cust prt_name">
                     <h4>{{$image_product->name}}</h4>
                     <p>{{$image_product? $image_product->name_category : 'Uncategorized'}}</p>
-                    <span class="item_price">{{$image_product->price}}</span>								
+                    <span class="item_price">{{$image_product? $image_product->price : 'Unpriced'}}</span>								
                     <input type="text" class="item_quantity" value="1" />
                     <input type="button" class="item_add items" value="ADD">
                 </div>													
@@ -43,118 +43,54 @@
     </div>
     <div class="rsidebar span_1_of_left">
         @include('includes.categories_widget')
-<!--        <section  class="sky-form">
-            <div class="product_right">
-                <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Categories</h4>
-                <div class="tab1">
-                    <ul class="place">								
-                        <li class="sort">Fashion</li>
-                        <li class="by"><img src="images/do.png" alt=""></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <div class="single-bottom">						
-                        @if($categories)
-                        @foreach($categories as $key => $category)
-                        <a href="{{ url('pro_cate',$category->id) }}"><p>{{$category['name']}}</p></a>
-                        @endforeach
-                        @endif
-                    </div>
-                </div>						  
-                <div class="tab2">
-                    <ul class="place">								
-                        <li class="sort">Women Ethnic Wear</li>
-                        <li class="by"><img src="images/do.png" alt=""></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <div class="single-bottom">						
-                        <a href="#"><p>Sarees & More</p></a>
-                        <a href="#"><p>Salwar Suits</p></a>									
-                    </div>
-                </div>
-                <div class="tab3">
-                    <ul class="place">								
-                        <li class="sort">Personal Care</li>
-                        <li class="by"><img src="images/do.png" alt=""></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <div class="single-bottom">						
-                        <a href="#"><p>Make Up</p></a>
-                    </div>
-                </div>
-                <div class="tab4">
-                    <ul class="place">								
-                        <li class="sort">Jewellery</li>
-                        <li class="by"><img src="images/do.png" alt=""></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <div class="single-bottom">						
-                        <a href="#"><p>Fashion</p></a>
-                        <a href="#"><p>Precious</p></a>
-                        <a href="#"><p>1 Gram Gold</p></a>
-                    </div>
-                </div>
-                <div class="tab5">
-                    <ul class="place">								
-                        <li class="sort">Specials</li>
-                        <li class="by"><img src="images/do.png" alt=""></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <div class="single-bottom">						
-                        <a href="#"><p>Cakes</p></a>
-                        <a href="#"><p>Party Items</p></a>
-                        <a href="#"><p></p></a>
-                        <a href="#"><p>Relax Chairs</p></a>
-                    </div>
-                </div>
+        <!--script-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".tab1 .single-bottom").hide();
+                $(".tab2 .single-bottom").hide();
+                $(".tab3 .single-bottom").hide();
+                $(".tab4 .single-bottom").hide();
+                $(".tab5 .single-bottom").hide();
 
-                script
--->                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $(".tab1 .single-bottom").hide();
-                        $(".tab2 .single-bottom").hide();
-                        $(".tab3 .single-bottom").hide();
-                        $(".tab4 .single-bottom").hide();
-                        $(".tab5 .single-bottom").hide();
-
-                        $(".tab1 ul").click(function () {
-                            $(".tab1 .single-bottom").slideToggle(300);
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab5 .single-bottom").hide();
-                        })
-                        $(".tab2 ul").click(function () {
-                            $(".tab2 .single-bottom").slideToggle(300);
-                            $(".tab1 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab5 .single-bottom").hide();
-                        })
-                        $(".tab3 ul").click(function () {
-                            $(".tab3 .single-bottom").slideToggle(300);
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab5 .single-bottom").hide();
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab1 .single-bottom").hide();
-                        })
-                        $(".tab4 ul").click(function () {
-                            $(".tab4 .single-bottom").slideToggle(300);
-                            $(".tab5 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab1 .single-bottom").hide();
-                        })
-                        $(".tab5 ul").click(function () {
-                            $(".tab5 .single-bottom").slideToggle(300);
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab1 .single-bottom").hide();
-                        })
-                    });
-                </script><!--
-                 script 					 
-        </section>-->
+                $(".tab1 ul").click(function () {
+                    $(".tab1 .single-bottom").slideToggle(300);
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                })
+                $(".tab2 ul").click(function () {
+                    $(".tab2 .single-bottom").slideToggle(300);
+                    $(".tab1 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                })
+                $(".tab3 ul").click(function () {
+                    $(".tab3 .single-bottom").slideToggle(300);
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab1 .single-bottom").hide();
+                })
+                $(".tab4 ul").click(function () {
+                    $(".tab4 .single-bottom").slideToggle(300);
+                    $(".tab5 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab1 .single-bottom").hide();
+                })
+                $(".tab5 ul").click(function () {
+                    $(".tab5 .single-bottom").slideToggle(300);
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab1 .single-bottom").hide();
+                })
+            });
+        </script><!--
+         script 					 
+</section>-->
         <section  class="sky-form">
             <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>PRICES</h4>
             <div class="row row1 scroll-pane">

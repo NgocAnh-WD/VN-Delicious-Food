@@ -74,7 +74,6 @@ use RegistersUsers;
                     'gender' => $data['gender'],
                     'avata_image' => 'avata_image',
                     'full_name' => $data['name'],
-                    'indentifier' => '1',
                     'address' => $data['address'],
                     'role' => $data['is_active'],
                     'is_delete' => '1',

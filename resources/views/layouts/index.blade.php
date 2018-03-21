@@ -21,45 +21,45 @@
         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">
         <script>$(document).ready(function () {
-    $(".memenu").memenu();
-});</script>	
+            $(".memenu").memenu();
+            });</script>	
         <!-- /start menu -->
         <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
     </head>
     <body> 
         <!--header-->	
         <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+            <nav class="navbar navbar-default navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                        <!-- Collapsed Hamburger -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+                        <!-- Branding Image -->
+                        <a class="navbar-brand" href="{{ url('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
+                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav">
+                            &nbsp;
+                        </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
+                        <!-- Right Side Of Navbar -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- Authentication Links -->
+                            @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
+                            @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->username }} <span class="caret"></span>
@@ -68,8 +68,8 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                           onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
@@ -79,15 +79,15 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endif
-                    </ul>
+                            @endif
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}"></script>
         <div class="header-top">
             <div class="header-bottom">
                 <div class="container">			
@@ -205,7 +205,7 @@
             </div>
         </div>
         <!---->
-        
+
         <!---->
         @yield('welcome')
         <!---->
@@ -299,12 +299,12 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
     <script type="text/javascript">
-    $("#bzoom").zoom({
-        zoom_area_width: 300,
-        autoplay_interval: 3000,
-        small_thumbs: 4,
-        autoplay: false
-    });
+                                               $("#bzoom").zoom({
+                                               zoom_area_width: 300,
+                                                       autoplay_interval: 3000,
+                                                       small_thumbs: 4,
+                                                       autoplay: false
+                                               });
     </script>
     <script type="text/javascript">
 
@@ -312,14 +312,13 @@
         _gaq.push(['_setAccount', 'UA-36251023-1']);
         _gaq.push(['_setDomainName', 'jqueryscript.net']);
         _gaq.push(['_trackPageview']);
-
         (function () {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
         })();
 
     </script>

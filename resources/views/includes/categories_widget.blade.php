@@ -2,20 +2,25 @@
     <div class="product_right">
         <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Categories</h4>
         <div class="tab1">
-            <ul class="place">								
-                <li class="sort">Fashion</li>
+            @if($categories)
+            @foreach($categories as $key => $category)
+            <ul class="place">
+                 
+
                 <li class="by"><img src="images/do.png" alt=""></li>
                 <div class="clearfix"> </div>
             </ul>
             <div class="single-bottom">						
-                @if($categories)
-                @foreach($categories as $key => $category)
+                
+               
                 <a href="{{ url('pro_cate',$category->id) }}"><p>{{$category['name']}}</p></a>
-                @endforeach
-                @endif
+               
+                
             </div>
+             @endforeach
+            @endif
         </div>						  
-        <div class="tab2">
+<!--        <div class="tab2">
             <ul class="place">								
                 <li class="sort">Women Ethnic Wear</li>
                 <li class="by"><img src="images/do.png" alt=""></li>
@@ -60,7 +65,7 @@
                 <a href="#"><p></p></a>
                 <a href="#"><p>Relax Chairs</p></a>
             </div>
-        </div>
+        </div>-->
 
         <!--script-->
 <!--                <script type="text/javascript">

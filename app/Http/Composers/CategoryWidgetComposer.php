@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Composers;
-use App\Category;
+use Illuminate\Support\Facades\DB;
+use App\Child_category;
+use App\Parent_category;
 use Illuminate\Contracts\View\View;
 /* 
  * To change this license header, choose License Headers in Project Properties.
@@ -9,7 +11,7 @@ use Illuminate\Contracts\View\View;
  */
 class CategoryWidgetComposer{
     public function compose(View $view) {
-        $categories = Category::get();
+        $categories = Child_category::get();
         $view->with('categories',$categories);
     }
 }
