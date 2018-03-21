@@ -14,6 +14,6 @@ class Child_category extends Model {
     ];
     
     public function parent_category(){
-        return $this->belongsToMany('App\Parent_category');
+        return $this->belongsTo('App\Parent_category');
     }
 }

@@ -36,8 +36,7 @@ class HomeController extends Controller
     {
         $image_products = Image::limit(12)->get();
         $image_products_new = Image::limit(6)->get();
-        $categories = Child_category::get();
-        return view('home', compact('image_products','image_products_new','categories'));
+        return view('home', compact('image_products','image_products_new'));
     }
     
     public function index1(){
@@ -47,8 +46,7 @@ class HomeController extends Controller
             ->leftJoin('child_categories', 'child_categories.id', '=', 'products.category_id')
             ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','child_categories.name AS name_category')
             ->paginate(9);
-        $categories = Child_category::get();
-        return view('products', compact('image_products','categories'));
+        return view('products', compact('image_products'));
 }
     
     public function index2($id){
@@ -56,8 +54,7 @@ class HomeController extends Controller
         $image = DB::table('images')->select('id','link_image')->where('product_id',$product_detail->id)->get();
         $price_size = DB::table('price_sizes')->select('id','size','quality','price', 'quantity')->where('product_id',$product_detail->id)->get();
         $comment = Comment::where('product_id', $product_detail->id)->get();
-        $categories = Child_category::get();
-        return view('product_details', compact('product_detail', 'image', 'price_size', 'comment','categories'));
+        return view('product_details', compact('product_detail', 'image', 'price_size', 'comment'));
     }
     
     public function index3(){
@@ -75,7 +72,6 @@ class HomeController extends Controller
             ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','child_categories.name AS name_category')
             ->where('products.category_id','=',$id)
             ->paginate(9);
-        $categories = Child_category::get();
-        return view('products', compact('image_products','categories'));
+        return view('products', compact('image_products'));
     }
 }

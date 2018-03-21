@@ -6,16 +6,14 @@
             @foreach($categories as $key => $category)
             <ul class="place">
                  
-
+                <li class="sort">{{$category->name}}</li>
                 <li class="by"><img src="images/do.png" alt=""></li>
                 <div class="clearfix"> </div>
             </ul>
-            <div class="single-bottom">						
-                
-               
-                <a href="{{ url('pro_cate',$category->id) }}"><p>{{$category['name']}}</p></a>
-               
-                
+            <div class="single-bottom">
+                @foreach ($category->child_categories AS $subcate)
+                <a href="{{ url('pro_cate',$category->id) }}"><p>{{$subcate->name}}</p></a>
+                @endforeach
             </div>
              @endforeach
             @endif

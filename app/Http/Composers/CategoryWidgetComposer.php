@@ -11,7 +11,7 @@ use Illuminate\Contracts\View\View;
  */
 class CategoryWidgetComposer{
     public function compose(View $view) {
-        $categories = Child_category::get();
+        $categories = Parent_category::get();
         $view->with('categories',$categories);
     }
 }

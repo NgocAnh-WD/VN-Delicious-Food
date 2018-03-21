@@ -12,4 +12,7 @@ class Parent_category extends Model
     protected $fillable = [
         'id','name','is_delete'
     ];
+    public function child_categories() {
+        return $this->hasMany('App\Child_category', 'parent_id', 'id');
+    }
 }
