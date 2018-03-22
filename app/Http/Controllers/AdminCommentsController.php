@@ -43,7 +43,7 @@ class AdminCommentsController extends Controller {
             $input['user_id'] = $user->id;
             $comments = new Comment();
             Comment::create($input);
-            return redirect('product_details/'.$product_detail->id);
+//            return redirect('product_details/'.$product_detail->id);
         }
     }
 
