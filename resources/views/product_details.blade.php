@@ -154,74 +154,9 @@
             <div class="clearfix"></div>
         </div>
         <div class="rsidebar span_1_of_left">
-            
-            @include('includes.categories_widget')
-<!--            <section  class="sky-form">
-                <div class="product_right">
-                    <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Categories</h4>
-                    <div class="tab1">
-                        <ul class="place">								
-                            <li class="sort">Fashion</li>
-                            <li class="by"><img src="images/do.png" alt=""></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <div class="single-bottom">						
-                            <a href="#"><p>Gifts</p></a>
-                            <a href="#"><p>Flowers</p></a>
-                            <a href="#"><p>Shoes</p></a>
-                            <a href="#"><p>Suits</p></a>
-                            <a href="#"><p>Dresses</p></a>
-                        </div>
-                    </div>						  
-                    <div class="tab2">
-                        <ul class="place">								
-                            <li class="sort">Women Ethnic Wear</li>
-                            <li class="by"><img src="images/do.png" alt=""></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <div class="single-bottom">						
-                            <a href="#"><p>Sarees & More</p></a>
-                            <a href="#"><p>Salwar Suits</p></a>									
-                        </div>
-                    </div>
-                    <div class="tab3">
-                        <ul class="place">								
-                            <li class="sort">Personal Care</li>
-                            <li class="by"><img src="images/do.png" alt=""></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <div class="single-bottom">						
-                            <a href="#"><p>Make Up</p></a>
-                        </div>
-                    </div>
-                    <div class="tab4">
-                        <ul class="place">								
-                            <li class="sort">Jewellery</li>
-                            <li class="by"><img src="images/do.png" alt=""></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <div class="single-bottom">						
-                            <a href="#"><p>Fashion</p></a>
-                            <a href="#"><p>Precious</p></a>
-                            <a href="#"><p>1 Gram Gold</p></a>
-                        </div>
-                    </div>
-                    <div class="tab5">
-                        <ul class="place">								
-                            <li class="sort">Specials</li>
-                            <li class="by"><img src="images/do.png" alt=""></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        <div class="single-bottom">						
-                            <a href="#"><p>Cakes</p></a>
-                            <a href="#"><p>Party Items</p></a>
-                            <a href="#"><p></p></a>
-                            <a href="#"><p>Relax Chairs</p></a>
-                        </div>
-                    </div>-->
 
-                    <!--script-->
-                    <script>
+            @include('includes.categories_widget')
+            <script>
                         $(document).ready(function () {
                             $(".tab1 .single-bottom").hide();
                             $(".tab2 .single-bottom").hide();
@@ -265,9 +200,9 @@
                                 $(".tab1 .single-bottom").hide();
                             })
                         });
-                    </script>
-                    <!-- script -->					 
-<!--            </section>-->
+            </script>
+            <!-- script -->					 
+            <!--            </section>-->
             <script type="text/javascript" src="{{asset('js/jquery-ui.min.js')}}"></script>
             <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-ui.css')}}">
             <script type='text/javascript'>//<![CDATA[ 
@@ -282,7 +217,6 @@
                                 }
                             });
                             $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-
                         });//]]> 
             </script>
             <!---->
@@ -306,8 +240,35 @@
         <div class="arrivals">
             <div class="product-table">
                 <h3>Đánh giá của khách hàng</h3>
-                
-               
+                @if(Auth::check())
+                <div class="well">
+                    <h4>Bình luận về sản phẩm:</h4>
+                    <form action="{{ route('admin.comments.store') }}" method="POST" enctype='multipart/form-data'>
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                        <input type="hidden" name="product_id" value="{{$product_detail->id}}">
+
+                        <div class="form-group">
+                            <div class=" row {{ $errors->has('title') ? 'has-error' : '' }}">
+                                <label for="title">Title:</label>
+                                <input type="text" id="title" name="title" class="form-control" placeholder="Enter Title" value="{{ old('title') }}" required>
+                                <span class="text-danger">{{ $errors->first('title') }}</span>
+                            </div> 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Content:</label>
+                            <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
+                                <textarea name="content" class="form-control" rows="5" id="content" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
+                                <span class="text-danger">{{ $errors->first('content') }}</span>
+                            </div> 
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Comment" />
+                        </div>
+                    </form>
+                </div>
+                @endif
 
                 @if($comment)
                 @foreach($comment as $comments)
