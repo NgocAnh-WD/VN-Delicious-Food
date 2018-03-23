@@ -75,7 +75,7 @@ use RegistersUsers;
                     'avata_image' => 'avata_image',
                     'full_name' => $data['name'],
                     'address' => $data['address'],
-                    'role' => $data['is_active'],
+                    'is_active' => $data['is_active'],
                     'is_delete' => '1',
         ]);
         

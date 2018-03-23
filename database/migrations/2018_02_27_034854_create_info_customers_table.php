@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParentCategoriesTable extends Migration
+class CreateInfoCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateParentCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('parent_categories', function (Blueprint $table) {
+        Schema::create('info_customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('is_delete');
+            $table->string('full_name');
+            $table->string('address');
+            $table->string('phone');
             $table->timestamps();
+            
         });
     }
 
@@ -26,9 +28,8 @@ class CreateParentCategoriesTable extends Migration
      *
      * @return void
      */
-    
     public function down()
     {
-        Schema::dropIfExists('parent_categories');
+        Schema::dropIfExists('info_customers');
     }
 }

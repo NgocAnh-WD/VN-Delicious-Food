@@ -54,7 +54,6 @@ class AdminUserController extends Controller
             $input['role']=0;
        }
        $input['is_delete'] = 1;
-       $input['indentifier'] = 1;
        $input['date_of_birth'] = $request['date'];
        $input['full_name'] = $request['username'];
         $input['avata_image'] = $request['username'];

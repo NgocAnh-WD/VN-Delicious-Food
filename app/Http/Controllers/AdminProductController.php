@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Image;
-use App\Parent_category;
-use App\Child_category;
+use App\Category;
 use App\User;
 use App\Price_size;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +31,7 @@ class AdminProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $child_categories = Child_category::pluck('name', 'id')->all();
+        $child_categories = Category::pluck('name', 'id')->all();
         $price_size = Price_size::pluck('id')->all();
         return view('admin.products.create', compact('child_categories'));
     }
@@ -96,7 +95,7 @@ class AdminProductController extends Controller {
     public function edit($id) {
         $product = Product::findOrFail($id);
 
-        $child_categories = Child_category::pluck('name', 'id')->all();
+        $child_categories = Category::pluck('name', 'id')->all();
 
         return view('admin.products.edit', compact('product', 'child_categories'));
     }

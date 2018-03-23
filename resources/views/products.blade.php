@@ -107,7 +107,6 @@
                     </div>
                 </form>
             </div>
-            <div id="getrequest"></div>
         </section> 				 				 
         <section  class="sky-form">
             <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Price</h4>
@@ -118,143 +117,12 @@
                     </a></li>			
             </ul>
         </section>
-        <section>
-            <form id="register" action="#">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <label for="firstname"></label>
-                <input type="text" id="firstname" class="form-control">
-                <label for="lastname"></label>
-                <input type="text" id="lastname" class="form-control">
-
-                <input type="submit" value="Register" class="btn btn-primary">
-            </form>
-            <div id="postRequestData"></div>
-        </section>
-        <script type="text/javascript">
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $(document).ready(function () {
-                $('#register').submit(function () {
-                    var fname = $('#firstname').val();
-                    var lname = $('#lasttname').val();
-
-                    $.post('register', {firstname: fname, lastname: lname}, function (data) {
-                        console.log(data);
-                        $('#postRequestData').html(data);
-                    });
-                });
-            });
-        </script>
         <!---->
         <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        <script src="{{asset('js/ajaxscript.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <script type='text/javascript'>//<![CDATA[ 
-            $(document).ready(function () {
-                for (var i = 1; i < 2; i++) {
-                    var idcheckbox = 'published' + i;
-                    document.getElementById(idcheckbox).onclick = function () {
-                        var checkbox = document.getElementsByName('checkbox');
-                        var result = "";
-                        var value = checkbox[i].value;
-                        $.get('sortby', function (data) {
-                            $('#getrequest').append(data);
-                            console.log(data);
-                        });
-
-                        // Lặp qua từng checkbox để lấy giá trị
-//                                for (var i = 0; i < checkbox.length; i++) {
-//                                    if (checkbox[i].checked === true) {
-//                                        var value = checkbox[i].value;
-//                                        var url = 'http://localhost/php_project_laravel/public/sortby/';
-//                                        var _token = $("form[name='FormSortProduct']").find("input[name= '_token']").val();
-//                                        $.ajax({
-//                                            url: url + value,
-//                                            type: 'POST',
-//                                            cache: false,
-//                                            data: {"_token": _token, "value": value},
-//                                            success: function (data) {
-////                                                alert(value);
-//                                            }
-//                                        });
-//                                    }
-//                                }
-                    }
-                }
-
-                // In ra kết quả
-//                            var url = 'http://localhost/php_project_laravel/public/sortby/';
-//                            var _token = $("form[name='FormSortProduct']").find("input[name= '_token']").val();
-////                            alert(_token);
-//                           $.ajax({
-//                              url: url + result,
-//                              type: 'POST',
-//                              cache:false,
-//                              data:{"_token":_token,"price":result},
-//                              success:function(data){
-//                                  
-//                              }
-
-//                        }
-//                        document.getElementById('published2').onclick = function () {
-//                            var checkbox = document.getElementsByName('checkbox');
-//                            var result = "";
-//
-//                            // Lặp qua từng checkbox để lấy giá trị
-//                            for (var i = 0; i < checkbox.length; i++) {
-//                                if (checkbox[i].checked === true) {
-//                                    result += ' [' + checkbox[i].value + ']';
-//                                }
-//                            }
-//
-//                            // In ra kết quả
-//                            alert("Sở thích là: " + result);
-//                        }
-//                        document.getElementById('published3').onclick = function () {
-//                            var checkbox = document.getElementsByName('checkbox');
-//                            var result = "";
-//
-//                            // Lặp qua từng checkbox để lấy giá trị
-//                            for (var i = 0; i < checkbox.length; i++) {
-//                                if (checkbox[i].checked === true) {
-//                                    result += ' [' + checkbox[i].value + ']';
-//                                }
-//                            }
-//
-//                            // In ra kết quả
-//                            alert("Sở thích là: " + result);
-//                        }
-//                        document.getElementById('published4').onclick = function () {
-//                            var checkbox = document.getElementsByName('checkbox');
-//                            var result = "";
-//
-//                            // Lặp qua từng checkbox để lấy giá trị
-//                            for (var i = 0; i < checkbox.length; i++) {
-//                                if (checkbox[i].checked === true) {
-//                                    result += ' [' + checkbox[i].value + ']';
-//                                }
-//                            }
-//
-//                            // In ra kết quả
-//                            alert("Sở thích là: " + result);
-//                        }
-//                        document.getElementById('published5').onclick = function () {
-//                            var checkbox = document.getElementsByName('checkbox');
-//                            var result = "";
-//
-//                            // Lặp qua từng checkbox để lấy giá trị
-//                            for (var i = 0; i < checkbox.length; i++) {
-//                                if (checkbox[i].checked === true) {
-//                                    result += ' [' + checkbox[i].value + ']';
-//                                }
-//                            }
-//
-//                            // In ra kết quả
-//                            alert("Sở thích là: " + result);
-//                        }
-            });
+            
             $(window).load(function () {
                 $("#slider-range").slider({
                     range: true,

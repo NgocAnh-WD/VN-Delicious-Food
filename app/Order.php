@@ -13,7 +13,7 @@ class Order extends Model
         'order_date',
         'required_date',
         'note',
-        'receiver_id',
+        'info_customer_id',
         'shipped_date',
         'status',
     ];

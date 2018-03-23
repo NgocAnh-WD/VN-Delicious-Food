@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
-use App\Parent_category;
-use App\Child_category;
+use App\Category;
 use App\Product;
 use App\Image;
 use App\User;
@@ -43,8 +42,8 @@ class HomeController extends Controller
         $image_products = DB::table('products')
             ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
             ->leftJoin('images', 'products.id', '=', 'images.product_id')
-            ->leftJoin('child_categories', 'child_categories.id', '=', 'products.category_id')
-            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','child_categories.name AS name_category')
+            ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
             ->paginate(9);
         return view('products', compact('image_products'));
 }
@@ -68,8 +67,8 @@ class HomeController extends Controller
         $image_products = DB::table('products')
             ->leftJoin('price_sizes', 'products.id', '=', 'price_sizes.product_id')
             ->leftJoin('images', 'products.id', '=', 'images.product_id')
-            ->leftJoin('child_categories', 'child_categories.id', '=', 'products.category_id')
-            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','child_categories.name AS name_category')
+            ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
+            ->select('products.name', 'products.id AS product_id', 'price_sizes.price', 'images.link_image','categories.name AS name_category')
             ->where('products.category_id','=',$id)
             ->paginate(9);
         return view('products', compact('image_products'));

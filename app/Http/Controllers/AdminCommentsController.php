@@ -41,6 +41,7 @@ class AdminCommentsController extends Controller {
         $user = Auth::user();
         if ($user) {
             $input['user_id'] = $user->id;
+            $input['is_delete'] = 1;
             $comments = new Comment();
             Comment::create($input);
 //            return redirect('product_details/'.$product_detail->id);

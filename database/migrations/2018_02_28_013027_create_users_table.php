@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('address');
-            $table->integer('role');
+            $table->integer('is_active');
             $table->integer('is_delete');
             $table->timestamps();
         });

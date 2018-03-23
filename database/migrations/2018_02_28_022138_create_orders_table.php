@@ -19,14 +19,14 @@ class CreateOrdersTable extends Migration
             $table->datetime('order_date');
             $table->date('required_date');
             $table->string('note');
-            $table->integer('receiver_id')->unsigned()->index();
+            $table->integer('info_customer_id')->unsigned()->index();
             $table->date('shipped_date');
             $table->integer('status');
             $table->integer('is_delete');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('receiver_id')->references('id')->on('infor_receivers')->onDelete('cascade');
+            $table->foreign('info_customer_id')->references('id')->on('info_customers')->onDelete('cascade');
             
         });
         
