@@ -102,7 +102,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <div class="col-md-4 control-label">isActive</div>
+                            <div class="col-md-4 control-label">is_Active</div>
                             <div class="col-sm-6">
                                 <div class="form-check">
                                     <label class="form-check-label">
