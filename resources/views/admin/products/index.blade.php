@@ -19,7 +19,7 @@
              <th>Price</th>
              <th>Quantity</th>
              <th>Created at</th>
-             <th>Update</th>
+             <th>Updated at</th>
         </thead>
         
         <tbody>
@@ -30,10 +30,10 @@
                 <td><img height="50" src="{{$product->photo()? asset( $product->photo()->link_image ): 'http://placehold.it/400x400'}}" alt=""></td>
                 <td>{{$product->category ? $product->category->name : 'Uncategorized'}}</td>
                 <td>{{str_limit($product->description)}}</td>
-                <td>{{$product->price()->size}}</td>
-                <td>{{$product->price()->quality}}</td>
-                <td>{{$product->price()->price}}</td>
-                <td>{{$product->price()->quantity}}</td>
+                <td>{{$product->price() ? $product->price()->size :  'Unsized'}}</td>
+                <td>{{$product->price() ? $product->price()->quality :  'Unqualitied'}}</td>
+                <td>{{$product->price() ? $product->price()->price :  'Unpriced'}}</td>
+                <td>{{$product->price() ? $product->price()->quantity :  'Unquanti'}}</td>
                 <td>{{$product->created_at}}</td>
                 <td>{{$product->updated_at}}</td>
 
