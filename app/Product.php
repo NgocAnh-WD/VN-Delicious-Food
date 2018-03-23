@@ -28,4 +28,12 @@ class Product extends Model
     public function photo(){
         return $this->images()->get()->first();
     }
+    
+    public function price_sizes(){
+        return $this->hasMany('App\Price_size');
+    }
+    
+    public function price(){
+        return $this->price_sizes()->get()->first();
+    }
 }

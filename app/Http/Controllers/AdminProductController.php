@@ -32,7 +32,6 @@ class AdminProductController extends Controller {
      */
     public function create() {
         $child_categories = Category::pluck('name', 'id')->all();
-        $price_size = Price_size::pluck('id')->all();
         return view('admin.products.create', compact('child_categories'));
     }
 
@@ -44,12 +43,16 @@ class AdminProductController extends Controller {
      */
     public function store(Request $request) {
         $input = $request->all();
-
+        
         $product = new Product();
         $product->create($input);
 
         $product_id = DB::getPdo()->lastInsertId();
-
+        
+        
+       $price_size = new Price_size();
+       $price_size->create($input);
+       
 
         if ($file = $request->file('link_image')) {
             $year = date('Y');
@@ -70,10 +73,9 @@ class AdminProductController extends Controller {
 
             $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product_id]);
             
-            $input = Price_size::created(['size','quality, price', 'quantity'=>$upload_file.$name]);
+            
         }
-
-        return redirect('/admin/products');
+               return redirect('/admin/products');
     }
 
     /**
@@ -94,10 +96,11 @@ class AdminProductController extends Controller {
      */
     public function edit($id) {
         $product = Product::findOrFail($id);
-
         $child_categories = Category::pluck('name', 'id')->all();
 
-        return view('admin.products.edit', compact('product', 'child_categories'));
+        $price_sizes = Price_size::pluck('id')->all();
+        $child_categories = Category::pluck('name', 'id')->all();
+        return view('admin.products.edit', compact('product', 'child_categories','price_sizes'));
     }
 
     /**
@@ -109,10 +112,16 @@ class AdminProductController extends Controller {
      */
     public function update(Request $request, $id) {
         $product = Product::findOrFail($id);
-
         $input = $request->all();
 
         $product_id = $id;
+        
+       $price_size = new Price_size();
+       $price_size['size'] = $request['size'];
+       $price_size['quality'] = $request['quality'];
+       $price_size['price'] = $request['price'];
+       $price_size['quantity'] = $request['quantity'];
+       $price_size->save();
 
         if ($file = $request->file('link_image')) {
             $year = date('Y');
@@ -127,12 +136,15 @@ class AdminProductController extends Controller {
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
 
-            $image = Image::create(['link_image' => $upload_url . $name]);
+            $image = Image::create(['link_image' => $upload_url . $name,$product_id]);
             
-             $input = Price_size::created(['size','quality, price', 'quantity'=>$upload_file.$name]);
+            $price_sizes = Price_size::create(['size','quality','price','quantity', 'product_id'=>$product_id]);
+          
         } else {
             
         }
+        
+       
         $product->update($input);
         return redirect('/admin/products');
     }
