@@ -15,6 +15,14 @@
             <input type="text" id="name" name="name" class="form-control" placeholder="Enter name" value="{{ $category->name}}">
             <span class="text-danger">{{ $errors->first('name') }}</span>
 
+            <label for="parent">Chứa trong:</label>
+            <select class="form-control" id="category_id" name="parent_id" >
+                <option value="0" selected="true">--Parent Category--</option>
+                
+                <option value="{{$category->parent_id}}">{{$category->name}}</option>
+                 
+            </select>          
+
             <label for="description" style="margin-top: 20px;">Description:</label>
             <input type="text" id="description" name="description" class="form-control" placeholder="Enter description" value="{{$category->description}}">
             <span class="text-danger">{{ $errors->first('description') }}</span> 
@@ -29,6 +37,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Parent ID</th>
                         <th>Description</th>
                         <th>Created date</th> 
                         <th>Updated date</th>
@@ -39,6 +48,7 @@
                     <tr>
                         <th>{{$category->id}}</th>
                         <th>{{$category->name}}</th>
+                        <th>{{$category->parent_id}}</th>
                         <th>{{$category->description}}</th>
                         <th>{{$category->created_at}}</th>
                         <th>{{$category->updated_at}}</th>
@@ -49,7 +59,7 @@
             </table>
         </div>
     </form>
-    <div class="col-md-8" style="margin-top: 45px; margin-left: 10px;">
+    <div class="col-md-8" style="margin-top: 80px; margin-left: 10px;">
         <form action="{{ route('admin.categories.destroy',$category->id) }}" method="POST" >
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>

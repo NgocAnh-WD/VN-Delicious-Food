@@ -13,7 +13,7 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $categories = Category::all();
+        $categories = Category::where('is_delete', 0)->get();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -36,12 +36,15 @@ class AdminCategoriesController extends Controller {
 
         $this->validate($request, [
             'name' => 'required|min:3',
+            'parent_id' => 'required'
                 ], [
             'name.required' => 'Name is required.',
-            'name.min' => 'Name is very short.'
+            'name.min' => 'Name is very short.',
+            'parent_id.required' => 'Please choose Category!!'
         ]);
-//        
+//               
         $input = $request->all();
+        $input['is_delete'] = 0;
         Category::create($input);
         return redirect()->back();
     }
@@ -89,6 +92,7 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+        Category::where('parent_id',$id)->delete();
         Category::findOrFail($id)->delete();
         \Illuminate\Support\Facades\Session::flash('deleted_category', 'The category has been deleted');
         return redirect('/admin/categories');
