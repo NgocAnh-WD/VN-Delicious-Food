@@ -12,5 +12,10 @@ class Category extends Model {
     protected $fillable = [
         'parent_id','name','description','is_delete'
     ];
-    
+    public function parent() {
+        return $this->belongsTo('App\Category','parent_id','id');
+    }
+    public function children() {
+        return $this->hasMany('App\Category','parent_id','id');
+    }
 }

@@ -2,68 +2,70 @@
     <div class="product_right">
         <h4 class="m_2"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Categories</h4>
         <div class="tab1">
-            @if($categories)
             @foreach($categories as $key => $category)
             <ul class="place">
-                 
                 <li class="sort">{{$category->name}}</li>
                 <li class="by"><img src="images/do.png" alt=""></li>
                 <div class="clearfix"> </div>
+                <div class="single-bottom">
+                    @if(count($category->children))
+                    @foreach($category->children as $subcate)
+                    <a href="{{ url('pro_cate',$subcate->id) }}"><p>{{$subcate->name}}</p></a>
+                    @endforeach
+                    @endif
+                </div>
             </ul>
-            <div class="single-bottom">
-                @foreach ($category->child_categories AS $subcate)
-                <a href="{{ url('pro_cate',$category->id) }}"><p>{{$subcate->name}}</p></a>
-                @endforeach
-            </div>
-             @endforeach
-            @endif
+
+
+
+            @endforeach
         </div>						  
-<!--        <div class="tab2">
-            <ul class="place">								
-                <li class="sort">Women Ethnic Wear</li>
-                <li class="by"><img src="images/do.png" alt=""></li>
-                <div class="clearfix"> </div>
-            </ul>
-            <div class="single-bottom">						
-                <a href="#"><p>Sarees & More</p></a>
-                <a href="#"><p>Salwar Suits</p></a>									
-            </div>
-        </div>
-        <div class="tab3">
-            <ul class="place">								
-                <li class="sort">Personal Care</li>
-                <li class="by"><img src="images/do.png" alt=""></li>
-                <div class="clearfix"> </div>
-            </ul>
-            <div class="single-bottom">						
-                <a href="#"><p>Make Up</p></a>
-            </div>
-        </div>
-        <div class="tab4">
-            <ul class="place">								
-                <li class="sort">Jewellery</li>
-                <li class="by"><img src="images/do.png" alt=""></li>
-                <div class="clearfix"> </div>
-            </ul>
-            <div class="single-bottom">						
-                <a href="#"><p>Fashion</p></a>
-                <a href="#"><p>Precious</p></a>
-                <a href="#"><p>1 Gram Gold</p></a>
-            </div>
-        </div>
-        <div class="tab5">
-            <ul class="place">								
-                <li class="sort">Specials</li>
-                <li class="by"><img src="images/do.png" alt=""></li>
-                <div class="clearfix"> </div>
-            </ul>
-            <div class="single-bottom">						
-                <a href="#"><p>Cakes</p></a>
-                <a href="#"><p>Party Items</p></a>
-                <a href="#"><p></p></a>
-                <a href="#"><p>Relax Chairs</p></a>
-            </div>
-        </div>-->
+        <!--        <div class="tab2">
+                    <ul class="place">								
+                        <li class="sort">Women Ethnic Wear</li>
+                        <li class="by"><img src="images/do.png" alt=""></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <div class="single-bottom">						
+                        <a href="#"><p>Sarees & More</p></a>
+                        <a href="#"><p>Salwar Suits</p></a>									
+                    </div>
+                </div>
+                <div class="tab3">
+                    <ul class="place">								
+                        <li class="sort">Personal Care</li>
+                        <li class="by"><img src="images/do.png" alt=""></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <div class="single-bottom">						
+                        <a href="#"><p>Make Up</p></a>
+                    </div>
+                </div>
+                <div class="tab4">
+                    <ul class="place">								
+                        <li class="sort">Jewellery</li>
+                        <li class="by"><img src="images/do.png" alt=""></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <div class="single-bottom">						
+                        <a href="#"><p>Fashion</p></a>
+                        <a href="#"><p>Precious</p></a>
+                        <a href="#"><p>1 Gram Gold</p></a>
+                    </div>
+                </div>
+                <div class="tab5">
+                    <ul class="place">								
+                        <li class="sort">Specials</li>
+                        <li class="by"><img src="images/do.png" alt=""></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <div class="single-bottom">						
+                        <a href="#"><p>Cakes</p></a>
+                        <a href="#"><p>Party Items</p></a>
+                        <a href="#"><p></p></a>
+                        <a href="#"><p>Relax Chairs</p></a>
+                    </div>
+                </div>-->
 
         <!--script-->
 <!--                <script type="text/javascript">
