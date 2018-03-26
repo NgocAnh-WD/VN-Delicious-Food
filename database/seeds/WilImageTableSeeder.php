@@ -204,7 +204,6 @@ class WilImageTableSeeder extends Seeder {
                     'is_delete' => '0',
                     'created_at' => DB::raw('now()'),
                     'updated_at' => DB::raw('now()'),
-                ],[
                 ]
             ];
             DB::table('images')->insert($images);

@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
          $this->call(WliCategoryTableSeeder::class);
          $this->call(WliProductTableSeeder::class);
          $this->call(WliPriceSizeTableSeeder::class);
-         $this->call(WliImageTableSeeder::class);
-         $this->call(WliUserTableSeeder::class);
-         $this->call(WliCommentTableSeeder::class);
+         $this->call(WilImageTableSeeder::class);
+         $this->call(WilUserTableSeeder::class);
+         $this->call(WilCommentTableSeeder::class);
     }
 }
