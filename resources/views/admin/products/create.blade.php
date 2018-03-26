@@ -44,10 +44,10 @@
             
             <div class=" form-group {{ $errors->has('size') ? 'has-error' : '' }}">
                     <label for="size">Size:</label>
-                     <select id="gender" class="form-control" name="size" required>
-                                    <option value="1">L</option>
-                                    <option value="2">M</option>
-                                    <option value="3">S</option>
+                     <select id="size" class="form-control" name="size" required>
+                                    <option value="L">L</option>
+                                    <option value="M">M</option>
+                                    <option value="S">S</option>
                      </select>
                     <span class="text-danger">{{ $errors->first('size') }}</span>
             </div> 

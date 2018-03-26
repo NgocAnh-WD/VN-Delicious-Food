@@ -44,16 +44,19 @@ class AdminProductController extends Controller {
     public function store(Request $request) {
         $input = $request->all();
         
-        $product = new Product();
-        $product->create($input);
-
-        $product_id = DB::getPdo()->lastInsertId();
-        
-        
-       $price_size = new Price_size();
-       $price_size->create($input);
+//        $product = new Product();
+//        $product->create($input);
+        $product = Product::create($input);
+       $input['product_id'] = $product->id;
+       $input['size'] = $request->get('size');
+       $input['quality'] = $request->get('quality');
+       $input['price'] = $request->get('price');
+       $input['quantity'] = $request->get('quantity');
+       $input['is_delete'] = 0;
+       Price_size::create($input);
        
-
+     
+       
         if ($file = $request->file('link_image')) {
             $year = date('Y');
             $month = date('m');
@@ -71,13 +74,14 @@ class AdminProductController extends Controller {
 
             $file->move($upload_url, $name);
 
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product_id]);
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0]);
             
+           
             
         }
-               return redirect('/admin/products');
-    }
 
+               return redirect('/admin/products');
+}
     /**
      * Display the specified resource.
      *
@@ -121,6 +125,7 @@ class AdminProductController extends Controller {
        $price_size['quality'] = $request['quality'];
        $price_size['price'] = $request['price'];
        $price_size['quantity'] = $request['quantity'];
+       $price_size['product_id'] = $product_id;
        $price_size->save();
 
         if ($file = $request->file('link_image')) {
@@ -138,7 +143,7 @@ class AdminProductController extends Controller {
 
             $image = Image::create(['link_image' => $upload_url . $name,$product_id]);
             
-            $price_sizes = Price_size::create(['size','quality','price','quantity', 'product_id'=>$product_id]);
+            $price_sizes = Price_size::create(['size','quality','price','quantity', 'product_id'=>$id]);
           
         } else {
             

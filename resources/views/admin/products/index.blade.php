@@ -30,10 +30,10 @@
                 <td><img height="50" src="{{$product->photo()? asset( $product->photo()->link_image ): 'http://placehold.it/400x400'}}" alt=""></td>
                 <td>{{$product->category ? $product->category->name : 'Uncategorized'}}</td>
                 <td>{{str_limit($product->description)}}</td>
-                <td>{{$product->price() ? $product->price()->size :  'Unsized'}}</td>
-                <td>{{$product->price() ? $product->price()->quality :  'Unqualitied'}}</td>
-                <td>{{$product->price() ? $product->price()->price :  'Unpriced'}}</td>
-                <td>{{$product->price() ? $product->price()->quantity :  'Unquanti'}}</td>
+                <td>{{$product->size() ? $product->size() ->size :  'Unsized'}}</td>
+                <td>{{$product->size() ? $product->size() ->quality :  'Unqualitied'}}</td>
+                <td>{{$product->size() ? $product->size() ->price :  'Unpriced'}}</td>
+                <td>{{$product->size() ? $product->size() ->quantity :  'Unquantity'}}</td>
                 <td>{{$product->created_at}}</td>
                 <td>{{$product->updated_at}}</td>
 
