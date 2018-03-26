@@ -17,10 +17,7 @@
 
             <label for="parent">Chứa trong:</label>
             <select class="form-control" id="category_id" name="parent_id" >
-                <option value="0" selected="true">--Parent Category--</option>
-                
-                <option value="{{$category->parent_id}}">{{$category->name}}</option>
-                 
+                <option value="{{$category->parent_id}}">{{$category->name}}</option>                
             </select>          
 
             <label for="description" style="margin-top: 20px;">Description:</label>

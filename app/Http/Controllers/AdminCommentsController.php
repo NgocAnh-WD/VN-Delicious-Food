@@ -17,7 +17,7 @@ class AdminCommentsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $comments = Comment::orderBy('created_at', 'desc')->paginate(10);
+        $comments = Comment::where('parent_id',0)->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.comments.index', compact('comments'));
     }
 
@@ -41,7 +41,7 @@ class AdminCommentsController extends Controller {
         $user = Auth::user();
         if ($user) {
             $input['user_id'] = $user->id;
-            $input['is_delete'] = 1;
+            $input['is_delete'] = 0;
             $comments = new Comment();
             Comment::create($input);
 //            return redirect('product_details/'.$product_detail->id);
@@ -92,4 +92,8 @@ class AdminCommentsController extends Controller {
         return redirect('/admin/comments');
     }
 
+    public function getReplyComment($id) {
+        $comments = Comment::where('parent_id',$id)->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.comments.index', compact('comments'));
+}
 }

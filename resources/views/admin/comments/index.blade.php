@@ -13,7 +13,8 @@
                     <th>ID</th>
                     <th>User Name</th>
                     <th>Avata Image</th>
-                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Parent Comment</th>
                     <th>Title</th> 
                     <th>Content</th>
                     <th>Created_at</th>
@@ -26,7 +27,7 @@
                     <th>{{$comment->user->username}}</th>
                     <th><img height="50px" width="50px" src="{{asset( $comment->user->avata_image )}}" alt=""></th>
                     <th>{{$comment->product->name}}</th>
-                    <th>{{$comment->title}}</th>
+                    <th><a href="{{ url('/admin/comments/'.$comment->id.'/reply') }}">{{$comment->title}}</a></th>
                     <th>{{$comment->content}}</th>
                     <th>{{$comment->created_at}}</th>
                     <th>
