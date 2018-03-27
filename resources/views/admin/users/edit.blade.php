@@ -5,7 +5,7 @@
     <h1>Edit User</h1>
     
     <div class="container">
-        <form action="{{ route('admin.users.update', $users->id) }}" method="post" >
+        <form action="{{ route('admin.users.update', $users->id) }}" method="post" enctype='multipart/form-data'>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <input type="hidden" name="_method" value="PUT">
             
@@ -36,18 +36,21 @@
             
             <div class=" row  col-md-7 form-group {{ $errors->has('is_active') ? 'has-error' : '' }}">
                 <label for="is_active">Activate Account:</label>
-                <input type="checkbox" id="is_active" name="is_active" value="1" @if($users ->role ==1) checked @endif>
+                <input type="checkbox" id="is_active" name="is_active" value="1" @if($users ->is_active ==1) checked @endif>
                 <span class="text-danger">{{ $errors->first('is_active') }}</span>
             </div> 
 
             <div class="row  col-md-7 form-group {{ $errors->has('gender') ? ' has-error' : '' }}">
                 <label for="gender">Gender:</label>
                 
-                <select id="gender" class="form-control" name="gender" value="{{ $users ->gender }}">
+                <select id="gender" class="form-control" name="gender">
+<!--                    @foreach ($u as $id => $gender  )-->
+                    <!--<option value="{{$id}}"{{ $id == $users->id ? 'selected="selected"' : '' }}>{{$gender}}</option>-->
+                    <!--@endforeach-->
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
-                </select> 
+                </select>
                 <span class="text-danger">{{ $errors->first('gender') }}</span>
             </div>
 
@@ -62,6 +65,16 @@
                 <input id="phone" type="number" class="form-control" name="phone" placeholder="Your Phone" value="{{ $users ->phone }}">
                 <span class="text-danger">{{ $errors->first('phone') }}</span>
             </div>
+
+            <div class="row col-md-7 form-group">
+                <img src="{{$users->avata_image ? asset( $users->avata_image ): 'http://placehold.it/400x400'}}" height="300" alt="" class="img-responsive img-rounded">
+            </div>
+            
+            <div class="row col-md-7 form-group {{ $errors->has('avata_image') ? 'has-error' : '' }}">
+                <label for="avata_image">Thumnail:</label>
+                <input type="file" id="photo_id" name="avata_image" class="form-control" value="value="{{ $users->avata_image }}"">
+                <span class="text-danger">{{ $errors->first('avata_image') }}</span>
+            </div> 
 
             <div class=" row  col-md-7 form-group {{ $errors->has('password') ? 'has-error' : '' }}">
                 <label for="password">Password:</label>

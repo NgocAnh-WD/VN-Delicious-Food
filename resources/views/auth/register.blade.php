@@ -66,9 +66,9 @@
 
                             <div class="col-md-6">
                                 <select id="gender" class="form-control" name="gender" required>
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                    <option value="3">Other</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
                                 </select>
                                 @if ($errors->has('gender'))
                                     <span class="help-block">

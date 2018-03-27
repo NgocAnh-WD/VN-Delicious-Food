@@ -17,7 +17,7 @@
     @endif
     
     <div class="container">
-        <form action="{{ url('/admin/users') }}" method="post">
+        <form action="{{ url('/admin/users') }}" method="post" enctype='multipart/form-data'>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             
             <div class=" row col-md-7 form-group {{ $errors->has('username') ? 'has-error' : '' }}">
@@ -73,11 +73,11 @@
                 <span class="text-danger">{{ $errors->first('password') }}</span>
             </div> 
             
-<!--            <div class="  form-group {{ $errors->has('avata_image') ? 'has-error' : '' }}">
-                <label for="avata_image">Avatar:</label>
-                <input type="file"  name="avata_image" class="form-control" value="{{ old('avata_image') }}">
-                <span class="text-danger">{{ $errors->first('avata_image') }}</span>
-            </div> -->
+            <div class="row col-md-7 form-group {{ $errors->has('avatar_image') ? 'has-error' : '' }}">
+                <label for="avatar_image">Avatar:</label>
+                <input type="file" id="avata_image" name="avatar_image" class="form-control" value="{{ old('avatar_image') }}">
+                <span class="text-danger">{{ $errors->first('avatar_image') }}</span>
+            </div> 
 
             <div class="row col-md-7 form-group">
                 <input type="submit" class="btn btn-success" value="Create User" />
