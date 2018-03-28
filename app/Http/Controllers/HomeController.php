@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 <?php
 
 namespace App\Http\Controllers;

@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+
 <?php
 
 /*
@@ -25,7 +25,7 @@ Route::get('logout', function() {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index0')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/products', 'HomeController@index1')->name('products');
 Route::get('/single/{id}', 'HomeController@index2')->name('product_details');
