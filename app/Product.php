@@ -36,5 +36,9 @@ class Product extends Model
     public function size(){
         return $this->price()->get()->first();
     }
- 
+    
+      public function order()
+    {
+        return $this->belongsToMany('App\Order');
+    }
 }
