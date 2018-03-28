@@ -5,18 +5,18 @@
 
     <h1>Create Products</h1>
 
-    <div class="row">
+    <div class="container">
          
         <form action="{{ route('admin.products.store') }}" method="post" enctype='multipart/form-data'>
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
 
         
 
-            <div class=" form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                    <label for="name">Name:</label>
-                    <input type="text" id="title" name="name" class="form-control" placeholder="Enter title" value="{{ old('name') }}">
-                    <span class="text-danger">{{ $errors->first('name') }}</span>
-            </div>   
+            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter product name" value="{{ old('name') }}" required>
+                <span class="text-danger">{{ $errors->first('name') }}</span>
+            </div>    
             
             <div class=" form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
                     <label for="category_id">Category:</label>
