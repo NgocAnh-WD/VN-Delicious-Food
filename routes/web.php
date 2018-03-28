@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 
 /*
@@ -47,3 +48,7 @@ Route::post('comment', function(Request $request) {
     $comment = App\Comment::create($request->input());
     return response()->json($comment);
 });
+
+Route::get('/addtocart/{id}', 'HomeController@getAddToCart');
+Route::get('/shoppingcart', 'HomeController@getCart');
+

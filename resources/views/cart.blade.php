@@ -10,8 +10,8 @@
         <div class="col-md-9 product-price1">
             <div class="check-out">			
                 <div class=" cart-items">
-                    <h3>My Shopping Bag (2)</h3>
-                    <script>$(document).ready(function (c) {
+                    <h3>Your Shopping Cart in here ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }})</h3>
+<!--                    <script>$(document).ready(function (c) {
                             $('.close1').on('click', function (c) {
                                 $('.cart-header').fadeOut('slow', function (c) {
                                     $('.cart-header').remove();
@@ -26,38 +26,41 @@
                                 });
                             });
                         });
-                    </script>
-
-                    <div class="in-check" >
-                        <ul class="unit">
-                            <li><span>Item</span></li>
-                            <li><span>Product Name</span></li>		
-                            <li><span>Unit Price</span></li>
-                            <li><span>Stock Status</span></li>
-                            <li> </li>
-                            <div class="clearfix"> </div>
-                        </ul>
+                    </script>-->
+                    <div>
+                        <div class="row" style="font-family: 'Times New Roman'; background: #f4f4f4; font-size: 20px">
+                            <div class="col-sm-1 col-md-1 col-lg-2 col-xs-1">
+                                <span>STT</span>
+                            </div>
+                            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                                <span>Tên sản phẩm</span>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
+                                <span>Giá</span>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
+                                <span>Số lượng</span>
+                            </div>
+                            <div class="col-sm-2 col-md-1 col-lg-1 col-xs-2">
+                                <span>Xóa</span>
+                            </div>
+                        </div>
+                        @if(Session::has('cart'))
+                        @foreach($products as $product)
                         <ul class="cart-header">
-                            <div class="close1"> </div>
+                            <div class="close1" style="top: 40%"></div>
                             <li class="ring-in"><a href="single.html" ><img src="images/f1.jpg" class="img-responsive" alt=""></a>
                             </li>
-                            <li><span>Woo Dress</span></li>
+                            <li><span>{{$product['name']}}</span></li>
                             <li><span>$ 60.00</span></li>
-                            <li><span>In Stock</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">ADD TO CART</a></li>
+                            <li><span>{{ $product['qty']}}</span></li>
+                            <!--<li> <a href="single.html" class="add-cart cart-check">ADD TO CART</a></li>-->
                             <div class="clearfix"> </div>
                         </ul>
-                        <ul class=" cart-header1">
-                            <div class="close2"> </div>
-                            <li class="ring-in"><a href="single.html" ><img src="images/f2.jpg" class="img-responsive" alt=""></a>
-                            </li>
-                            <li><span>Woo Dress</span></li>
-                            <li><span>$ 60.00</span></li>
-                            <li><span>In Stock</span></li>
-                            <li> <a href="single.html" class="add-cart cart-check">ADD TO CART</a></li>
-                            <div class="clearfix"> </div>
-                        </ul>
+                        @endforeach
+                        @endif
                     </div>
+                    <div class="clearfix"></div>
                 </div>					  
             </div>
         </div>

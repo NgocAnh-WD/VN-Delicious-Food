@@ -191,10 +191,13 @@
                     </div>
                     <!---->
                     <div class="cart box_1">
-                        <a href="checkout.html">
+                        
+                        <a href="{{ url('shoppingcart') }}">
                             <h3> <div class="total">
-                                    <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span>)</div>
-                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></h3>
+                                   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Shopping Cart
+                                    <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                                </div>
+                            </h3>
                         </a>
                         <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
                         <div class="clearfix"> </div>

@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <?php
 
 namespace App\Http\Controllers;
@@ -8,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use App\Category;
 use App\Product;
 use App\Image;
+use App\Cart;
 use App\User;
+use Session;
 use App\Price_size;
 use App\Comment;
 
@@ -50,7 +53,28 @@ class HomeController extends Controller {
         $price_size = DB::table('price_sizes')->select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
         $comment = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
         return view('product_details', compact('product_detail', 'image', 'price_size', 'comment'));
+}
+    public function getAddToCart(Request $request, $id) {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        //dd($request->session()->get('cart'));
+
+        return redirect()->back();
     }
+    public function getCart() {
+        if (!Session::has('cart')) {
+            return view('shop.shopping-cart', ['products' => null]);
+        }
+        $oldCart = Session::get('cart');
+        $cart  = new Cart($oldCart);
+        return view('cart',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
+    
+    
 
     public function comment_product(Request $request) {
         $input = $request->all();

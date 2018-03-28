@@ -28,7 +28,7 @@
                     <p>{{$image_product? $image_product->name_category : 'Uncategorized'}}</p>
                     <span class="item_price">{{$image_product? $image_product->price : 'Unpriced'}}</span>								
                     <input type="text" class="item_quantity" value="1" />
-                    <input type="button" class="item_add items" value="ADD">
+                    <button class="btn btn-info" ><a href="{{ url('addtocart', ['id' => $image_product->product_id]) }}">Add to cart</a></button>
                 </div>													
                 <div class="clearfix"> </div>
             </div>
