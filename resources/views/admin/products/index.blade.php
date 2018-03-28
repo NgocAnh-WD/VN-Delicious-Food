@@ -34,8 +34,8 @@
                 <td>{{$product->size() ? $product->size() ->quality :  'Unqualitied'}}</td>
                 <td>{{$product->size() ? $product->size() ->price :  'Unpriced'}}</td>
                 <td>{{$product->size() ? $product->size() ->quantity :  'Unquantity'}}</td>
-                <td>{{$product->created_at}}</td>
-                <td>{{$product->updated_at}}</td>
+                <td>{{$product->created_at->diffForhumans()}}</td>
+                <td>{{$product->updated_at->diffForhumans()}}</td>
 
             </tr>
             @endforeach
