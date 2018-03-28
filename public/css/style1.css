@@ -207,3 +207,12 @@ textarea.form-control {
     height: 100px;
     border: 1px solid #555555;
 }
+
+summary::-webkit-details-marker {
+    display: none;
+}
+summary:before {
+    content: #8221; 
+    color: #696f7c;
+    margin-right: 5px;
+}

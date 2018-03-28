@@ -21,4 +21,7 @@ class Comment extends Model
         return $this->belongsTo('App\Product');
     }
     
+    public function children() {
+        return $this->hasMany('App\Comment','parent_id','id');
+    }
 }

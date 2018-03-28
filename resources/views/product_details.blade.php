@@ -244,7 +244,7 @@
                 <div class="well">
                     <h4>Bình luận về sản phẩm:</h4>
                     <form action="{{ route('admin.comments.store') }}" method="POST" enctype='multipart/form-data'>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                        <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}"/>
                         <input type="hidden" name="product_id" value="{{$product_detail->id}}">
 
                         <div class="form-group">
@@ -264,7 +264,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" value="Comment" />
+                            <input type="submit" id="comment" class="btn btn-primary" value="Comment" />
                         </div>
                     </form>
                 </div>
@@ -274,13 +274,10 @@
                 @foreach($comment as $comments)
                 <div class="well">
                     <div class="row">
-
                         <div class="media">
                             <div class="col-md-2">
-                                @if($comments->user)
-                                <div class="image">
-                                    <img src="{{asset($comments->user->avata_image)}}" width="70px" height="70px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
-                                </div>
+                                @if($comments->user)                               
+                                <img src="{{asset($comments->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
                                 {{$comments->user->username}}<br>
                                 @endif
                             </div>
@@ -290,10 +287,52 @@
                             </div>
                             <div class="col-md-2">
                                 <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comments->created_at}}</p>
-                            </div>
+                            </div> 
                         </div>
+                    </div>                                       
+                    @if(count($comments->children))
+                    <details close>
+                        <summary style="color: blue;">View Reply Comment</summary>  
+                        @foreach($comments->children as $replyComment)
+                        <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
+                            <div class="col-md-3">
+                                @if($replyComment->user)                          
+                                <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
+                                {{$replyComment->user->username}}<br>
+                                @endif
+                            </div>
+                            <div class="col-md-6">
+                                {{str_limit($replyComment->content, 300)}} 
+                            </div>
+                            <div class="col-md-2">
+                                <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at}}</p>
+                            </div>                                                                                
+                        </div>
+                        @endforeach
+                    @endif
+                    </details>
+                    <details close>
+                        <summary style="color: blue;">-- Reply --</summary>  
+                        <div class="well" id="repplyComment">
+                            <form action="{{ route('admin.comments.store') }}"id="comment" name="comment" method="POST" enctype='multipart/form-data'>
+                                <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}"/>
+                                <input type="hidden" name="product_id" value="{{$product_detail->id}}">
+                                <input type="hidden" name="parent_id" id="parent_id" value="{{$comments->id}}">
 
-                    </div>
+                                <div class="form-group">
+                                    <label for="content">Content:</label>
+                                    <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
+                                        <textarea name="content" class="form-control" rows="5" id="content" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
+                                        <span class="text-danger">{{ $errors->first('content') }}</span>
+                                    </div> 
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" id="comment" class="btn btn-primary" value="Comment">Comment</button>
+                                </div>
+                            </form>  
+                        </div> 
+                    </details> 
                 </div>
                 @endforeach
                 @endif
