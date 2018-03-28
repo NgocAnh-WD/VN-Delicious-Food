@@ -4,7 +4,7 @@
 
     <h1>Create Products</h1>
 
-    <div class="row">
+    <div class="container">
         <form action="{{ route('admin.products.update',$product->id) }}" method="post" enctype='multipart/form-data'>
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
            <input type="hidden" name="_method" value="PUT">
@@ -53,19 +53,19 @@
            
              <div class=" form-group {{ $errors->has('quality') ? 'has-error' : '' }}">
                     <label for="quality">Quality:</label>
-                    <input type="text" id="quality" name="quality" class="form-control" placeholder="" value="{{ $product->price()->quality }}">
+                    <input type="text" id="quality" name="quality" class="form-control" placeholder="" value="{{ $product->size()->quality }}">
                     <span class="text-danger">{{ $errors->first('quality') }}</span>
             </div>
            
             <div class=" form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                     <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" class="form-control" placeholder="" value="{{ $product->price()->price }}"/>
+                    <input type="number" id="price" name="price" class="form-control" placeholder="" value="{{ $product->size()->price }}"/>
                     <span class="text-danger">{{ $errors->first('price') }}</span>
             </div>
            
             <div class=" form-group {{ $errors->has('quantity') ? 'has-error' : '' }}">
                     <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" class="form-control" placeholder="" value="{{ $product->price()->quantity }}">
+                    <input type="number" id="quantity" name="quantity" class="form-control" placeholder="" value="{{ $product->size()->quantity }}">
                     <span class="text-danger">{{ $errors->first('quantity') }}</span>
             </div>
             
