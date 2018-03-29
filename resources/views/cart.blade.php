@@ -48,7 +48,7 @@
                         @if(Session::has('cart'))
                         @foreach($products as $product)
                         <ul class="cart-header">
-                            <div class="close1" style="top: 40%"></div>
+                            <div class="close1" style="top: 40%"onclick="close_cart({{$product['id']}})"></div>
                             <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a>
                             </li>
                             <li><span>{{$product['name']}}</span></li>
@@ -90,3 +90,4 @@
 </div>
 @endsection
 
+<script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>

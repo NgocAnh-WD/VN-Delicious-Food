@@ -61,14 +61,25 @@ class HomeController extends Controller {
     }
     public function getCart() {
         if (!Session::has('cart')) {
-            return view('shop.shopping-cart', ['products' => null]);
+            return view('cart', ['products' => null]);
         }
         $oldCart = Session::get('cart');
         $cart  = new Cart($oldCart);
         return view('cart',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
     
-    
+    public function removeItem($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
+        } else {
+            Session::forget('cart');
+        }
+        return redirect()->back();
+    }
 
     public function comment_product(Request $request) {
         $input = $request->all();
