@@ -89,14 +89,14 @@
 <div class="container">
     <h3>Featured Products</h3>
     <div class="feature-grids">
-        @if($image_products)
-        @foreach($image_products as $key => $image_product)
+        @if($products)
+        @foreach($products as $key => $product)
         <div class="col-md-3 feature-grid jewel">
-            <a href="{{ url('/products') }}"><img src="{{ asset($image_product['link_image']) }}" alt="" id="image_responsive"/>	
+            <a href="{{ url('/products') }}"><img src="{{ asset($product->thumbnail()->link_image) }}" alt="" id="image_responsive"/>	
                 <div class="arrival-info">
-                    <h4>{{$image_product['product']['category'] ? $image_product['product']['category']['name'] : 'Uncategorized'}}</h4>
-                    <p>{{$image_product['product']['name']}}</p>
-                    <span class="pric1"><del>{{$image_product['product']['name']}}</del></span>
+                    <h4>{{$product->category ? $product->category->name : 'Uncategorized'}}</h4>
+                    <p>{{$product->name}}</p>
+                    <span class="pric1"><del>{{$product->name}}</del></span>
                     <span class="disc">[12% Off]</span>
                 </div>
                 <div class="viw">

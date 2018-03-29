@@ -9,13 +9,13 @@
         </ol>
         <h2>Our Products</h2>			
         <div class="col-md-9 product-model-sec">
-            @if($image_products)
-            @foreach($image_products as $key => $image_product)
+            @if($products)
+            @foreach($products as $key => $product)
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <a href="{{ url('/single',$image_product->product_id) }}"> <div class="product-grid love-grid">
+            <a href="{{ url('/single',$product->id) }}"> <div class="product-grid love-grid">
                     <div class="more-product"><span> </span></div>						
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
-                        <img src="{{ asset($image_product->link_image) }}" class="img-responsive" alt=""/>
+                        <img src="{{ asset($product->thumbnail()->link_image) }}" class="img-responsive" alt=""/>
                         <div class="b-wrapper">
                             <h4 class="b-animate b-from-left  b-delay03">							
                                 <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
@@ -24,11 +24,11 @@
                     </div></a>						
             <div class="product-info simpleCart_shelfItem">
                 <div class="product-info-cust prt_name">
-                    <h4>{{$image_product->name}}</h4>
-                    <p>{{$image_product? $image_product->name_category : 'Uncategorized'}}</p>
-                    <span class="item_price">{{$image_product? $image_product->price : 'Unpriced'}}</span>								
+                    <h4>{{$product->name}}</h4>
+                    <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
+                    <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}</span>								
                     <input type="text" class="item_quantity" value="1" />
-                    <button class="btn btn-info" ><a href="{{ url('addtocart', ['id' => $image_product->product_id]) }}">Add to cart</a></button>
+                    <button class="btn btn-info" ><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>
                 </div>													
                 <div class="clearfix"> </div>
             </div>
@@ -37,7 +37,7 @@
         @endif
         <div class="row">
             <div class="col-lg-6 col-sm-offset-5">
-                {{ $image_products->render() }}
+                {{ $products->render() }}
             </div>
         </div>
     </div>

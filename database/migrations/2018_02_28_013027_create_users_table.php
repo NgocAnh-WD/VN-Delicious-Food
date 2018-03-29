@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('username');
             $table->string('password');
-            $table->string('avata_image');
+            $table->string('avata_image')->default(null);
             $table->string('full_name');
             $table->date('date_of_birth');
             $table->string('gender');
@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('address');
             $table->integer('is_active');
-            $table->integer('is_delete');
+            $table->integer('is_delete')->default(0);
             $table->timestamps();
         });
     }

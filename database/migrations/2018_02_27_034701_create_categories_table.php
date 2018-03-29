@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('parent_id');
             $table->string('name');
             $table->string('description');
-            $table->integer('is_delete');
+            $table->integer('is_delete')->default(0);
             $table->timestamps(); 
             
         });

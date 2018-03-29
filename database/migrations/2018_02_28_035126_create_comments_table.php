@@ -20,7 +20,7 @@ class CreateCommentsTable extends Migration
             $table->integer('parent_id');
             $table->string('title');
             $table->string('content');
-            $table->integer('is_delete');
+            $table->integer('is_delete')->default(0);
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

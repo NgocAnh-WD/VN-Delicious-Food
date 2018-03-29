@@ -11,7 +11,6 @@ class Product extends Model
 
     protected $fillable = [
            'name',
-        'photo_id',
         'category_id',
         'description',
 
@@ -25,17 +24,24 @@ class Product extends Model
     public function images() {
         return $this->hasMany('App\Image');
     }
-    public function photo(){
-        return $this->images()->get()->first();
-    }
+    public function thumbnail() {
+       return $this->images()->where([['is_thumbnail', 0],['is_delete', 0]])->get()->last();
+
+   }
+//    public function photo(){
+//        return $this->images()->get()->first();
+//    }
     
-    public function price(){
+    public function prices(){
         return $this->hasMany('App\Price_size');
     }
-    
-    public function size(){
-        return $this->price()->get()->first();
-    }
+    public function is_price() {
+       return $this->prices()->where([['is_price', 0],['is_delete', 0]])->get()->last();
+
+   }
+//    public function size(){
+//        return $this->price()->get()->first();
+//    }
     
       public function order()
     {

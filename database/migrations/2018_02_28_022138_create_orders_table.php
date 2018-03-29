@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->integer('info_customer_id')->unsigned()->index();
             $table->date('shipped_date');
             $table->integer('status');
-            $table->integer('is_delete');
+            $table->integer('is_delete')->default(0);
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

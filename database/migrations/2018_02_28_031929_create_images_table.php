@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned()->index();
             $table->string('link_image');
+            $table->integer('is_thumbnail')->default(0);
             $table->integer('is_delete');
             $table->timestamps();
             

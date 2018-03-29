@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->integer('category_id')->unsigned()->index();
             $table->string('description');
-            $table->integer('is_delete');
+            $table->integer('is_delete')->default(0);
             $table->timestamps();
             
             $table->foreign('category_id')->references('id')->on('Categories')->onDelete('cascade');
