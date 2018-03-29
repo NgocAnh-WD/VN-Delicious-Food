@@ -36,24 +36,33 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Parent ID</th>
+                        <th>Parent Category</th>
                         <th>Description</th>
                         <th>Created date</th> 
                         <th>Updated date</th>
                         <th>Action</th>
                 </thead>
                 <tbody>
-                    @foreach($categories as $category)
+                    @if($cate)
+                    @foreach($cate as $category)
                     <tr>
                         <th>{{$category->id}}</th>
                         <th>{{$category->name}}</th>
                         <th>{{$category->parent_id}}</th>
+                        <th>
+                            @if (($category->parent_id) === 0)
+                            Thư mục cha
+                            @else
+                            {{$category->parent_id}}
+                            @endif
+                        </th>
                         <th>{{$category->description}}</th>
                         <th>{{$category->created_at}}</th>
-                        <th>{{$category->updated_at}}</th>
+                        <th>{{$category->updated_at->diffForhumans()}}</th>
                         <th><a href="{{ url('admin/categories/'.$category->id.'/edit') }}">Edit</a></th>
                     </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

@@ -27,20 +27,26 @@
                     <th>{{$comment->user->username}}</th>
                     <th><img height="50px" width="50px" src="{{asset( $comment->user->avata_image )}}" alt=""></th>
                     <th>{{$comment->product->name}}</th>
+                    <th>@if (($comment->parent_id) === 0)
+                        Main Comment
+                        @else
+                        Child Comment
+                        @endif
+                    </th>
                     <th><a href="{{ url('/admin/comments/'.$comment->id.'/reply') }}">{{$comment->title}}</a></th>
                     <th>{{$comment->content}}</th>
                     <th>{{$comment->created_at}}</th>
                     <th>
-                        <form class="delete" action="{{ route('admin.comments.destroy',$comment->id) }}" method="POST">
+                        <form class="delete" id="delete" action="{{ route('admin.comments.destroy',$comment->id) }}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
                             {{ csrf_field() }}
-                            <input type="submit" value="Delete Comment">
+                            <input type="submit" class="btn btn-danger" value="Delete Comment">
                         </form>                     
-<!--                        <script>
-                            $(".delete").on("submit", function () {
+                        <script>
+                            $("#delete").on("submit", function () {
                                 return confirm("Are you sure?");
                             });
-                        </script>-->
+                        </script>
                     </th>
                 </tr>
                 @endforeach

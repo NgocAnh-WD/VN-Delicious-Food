@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Product;
-use App\User;
 use App\Comment;
 
 class AdminCommentsController extends Controller {
@@ -17,7 +14,7 @@ class AdminCommentsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $comments = Comment::where('parent_id',0)->orderBy('created_at', 'desc')->paginate(10);
+        $comments = Comment::where([['is_delete', '=', '0'], ['parent_id', '=', '0']])->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.comments.index', compact('comments'));
     }
 
@@ -86,14 +83,16 @@ class AdminCommentsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        $comments = Comment::findOrFail($id);
-        $comments->delete();
+        $comment = Comment::findOrFail($id);
+        $comment['is_delete'] = 1;
+        $comment->save();
         \Illuminate\Support\Facades\Session::flash('deleted_comment', 'The comment has been deleted');
         return redirect('/admin/comments');
     }
 
     public function getReplyComment($id) {
-        $comments = Comment::where('parent_id',$id)->orderBy('created_at', 'desc')->paginate(10);
+        $comments = Comment::where([['is_delete', '=', '0'], ['parent_id', '=', $id]])->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.comments.index', compact('comments'));
-}
+    }
+
 }

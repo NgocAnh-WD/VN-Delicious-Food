@@ -13,8 +13,9 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $categories = Category::where('is_delete', 0)->get();
-        return view('admin.categories.index', compact('categories'));
+        $categories = Category::where('parent_id', 0)->paginate(10);
+        $cate = Category::where('is_delete', '=', '0')->orderBy('id', 'desc')->paginate(10);
+        return view('admin.categories.index', compact('categories', 'cate'));
     }
 
     /**
@@ -92,10 +93,16 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        Category::where('parent_id',$id)->delete();
-        Category::findOrFail($id)->delete();
+        $category = Category::findOrFail($id);
+        $category['is_delete'] = 1;
+        $category->save;
         \Illuminate\Support\Facades\Session::flash('deleted_category', 'The category has been deleted');
         return redirect('/admin/categories');
+    }
+
+    public function getChildCategory($id) {
+        $categories = Category::where([['is_delete', '=', '0'], ['parent_id', '=', $id]])->orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.categories.index', compact('categories'));
     }
 
 }

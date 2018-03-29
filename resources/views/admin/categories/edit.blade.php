@@ -17,8 +17,10 @@
 
             <label for="parent">Chứa trong:</label>
             <select class="form-control" id="category_id" name="parent_id" >
-                <option value="{{$category->parent_id}}">{{$category->name}}</option>                
-            </select>          
+                <option value="{{$category->parent_id}}">
+                    {{$category->name}}
+                </option>                
+            </select>    
 
             <label for="description" style="margin-top: 20px;">Description:</label>
             <input type="text" id="description" name="description" class="form-control" placeholder="Enter description" value="{{$category->description}}">
@@ -39,17 +41,23 @@
                         <th>Created date</th> 
                         <th>Updated date</th>
                         <th>Action</th>
+                        <th>Updated date</th>                      
                 </thead>
                 <tbody>
-
                     <tr>
                         <th>{{$category->id}}</th>
                         <th>{{$category->name}}</th>
                         <th>{{$category->parent_id}}</th>
+                        <th>
+                            @if (($category->parent_id) === 0)
+                            Thư mục cha
+                            @else
+                            {{$category->name}}
+                            @endif
+                        </th>
                         <th>{{$category->description}}</th>
                         <th>{{$category->created_at}}</th>
-                        <th>{{$category->updated_at}}</th>
-                        <th>
+                        <th>{{$category->updated_at->diffForhumans()}}</th>
                     </tr>
 
                 </tbody>

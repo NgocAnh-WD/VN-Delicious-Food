@@ -33,6 +33,7 @@ Route::get('/pro_cate/{id}', 'HomeController@get_products_by_category')->name('p
 Route::get('/cart', 'HomeController@index3')->name('cart');
 Route::get('/admin', 'HomeController@index4')->name('admin');
 Route::get('admin/comments/{id}/reply', 'AdminCommentsController@getReplyComment');
+Route::get('admin/categories/{id}/child_categories', 'AdminCategoriesController@getChildCategory');
 Route::get('/single/{id}/comment_product', 'HomeController@comment_product')->name('comment_product');
 
 Route::resource('admin/products', 'AdminProductController', array('as' => 'admin'));

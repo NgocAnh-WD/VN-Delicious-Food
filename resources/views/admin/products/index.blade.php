@@ -1,25 +1,23 @@
 @extends('layouts.admin')
 @section('content')
 
-
-    <h1>Products</h1>
-
-
-    <table class="table">
-        
-       <thead>
-         <tr>
-             <th>Id</th>
-             <th>Name</th>
-             <th>Photo</th>
-             <th>Category</th>
-             <th>Description</th>
-             <th>Size</th>
-             <th>Quality</th>
-             <th>Price</th>
-             <th>Quantity</th>
-             <th>Created at</th>
-             <th>Updated at</th>
+<div class="container">
+    <h1 style="color: #0099CC; text-align: center; margin:20px;">Products Management</h1>
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Size</th>
+                <th>Quality</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+            </tr>
         </thead>
         
         <tbody>
