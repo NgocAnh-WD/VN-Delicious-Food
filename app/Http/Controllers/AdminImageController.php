@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
-
+use App\Image;
 class AdminImageController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class AdminImageController extends Controller
      */
     public function index()
     {
-        //
+        $images = Image::all();
+        return view('admin.images.index', compact('images'));
     }
 
     /**
@@ -68,7 +69,25 @@ class AdminImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        function removedir($dirname) {
+        if (is_dir($dirname))
+            $dir_handle = opendir($dirname);
+        if (!$dir_handle)
+            return false;
+            while ($file = readdir($dir_handle)) {
+                if ($file != "." && $file != "..") {
+                    if (!is_dir($dirname . "/" . $file))
+                        unlink($dirname . "/" . $file);
+                    else {
+                        $a = $dirname . '/' . $file;
+                        removedir($a);
+                    }
+                }
+            }
+            closedir($dir_handle);
+            rmdir($dirname);
+            return true;
+        }
     }
 
     /**

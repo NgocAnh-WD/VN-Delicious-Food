@@ -43,17 +43,29 @@
                         </button>
 
                         <!-- Branding Image -->
-                        <a class="navbar-brand" href="{{ url('/') }}">
+                        <a class="navbar-brand" href="{{ url('/home') }}">
                             {{ config('app.name', 'Laravel') }}
                         </a>
                     </div>
-
+                    
                     <div class="collapse navbar-collapse" id="app-navbar-collapse">
                         <!-- Left Side Of Navbar -->
                         <ul class="nav navbar-nav">
                             &nbsp;
                         </ul>
-
+                        
+                        <ul nav navbar-nav>
+                            <form action="{{url('/search')}}" method="get" role="search">
+                                <div class="col-md-5 input-group">
+                                    <input type="text" class="form-control" name="key_search" placeholder="Search...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </ul>
                         <!-- Right Side Of Navbar -->
                         <ul class="nav navbar-nav navbar-right">
                             <!-- Authentication Links -->
@@ -68,7 +80,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ route('logout') }}"
+                                        <a href="{{ route('logout') }}" 
                                            onclick="event.preventDefault();
                                                    document.getElementById('logout-form').submit();">
                                             Logout

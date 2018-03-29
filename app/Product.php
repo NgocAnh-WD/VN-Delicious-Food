@@ -7,15 +7,16 @@ use Illuminate\Notifications\Notifiable;
 
 class Product extends Model
 {
+    use FullTextSearch;
     use Notifiable;
-
+    protected $searchable = [
+        'name',
+    ];
+    
     protected $fillable = [
            'name',
         'category_id',
-        'description',
-
-        
-        
+        'description',   
     ];
     
     public function category() {

@@ -93,5 +93,13 @@ class HomeController extends Controller {
         $products = Product::where('category_id',$id)->paginate(9);
         return view('products', compact('products'));
     }
-
+    public function getSearch() {
+        
+        $products = Product::search($_GET['key_search'])->paginate(9);
+        $products->setPath('search?key_search='.$_GET['key_search']);
+        $key_search = $_GET['key_search'];
+//        $is_search = 1;
+        return view('products', compact('products', 'key_search'));
+    }
 }
+

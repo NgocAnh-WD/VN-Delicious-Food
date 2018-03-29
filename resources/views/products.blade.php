@@ -122,7 +122,7 @@
         <script src="{{asset('js/ajaxscript.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <script type='text/javascript'>//<![CDATA[ 
-            
+
             $(window).load(function () {
                 $("#slider-range").slider({
                     range: true,

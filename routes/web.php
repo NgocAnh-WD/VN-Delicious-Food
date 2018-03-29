@@ -52,3 +52,6 @@ Route::post('comment', function(Request $request) {
 Route::get('/addtocart/{id}', 'HomeController@getAddToCart');
 Route::get('/shoppingcart', 'HomeController@getCart');
 
+Route::get('search','HomeController@getSearch')->name('search');
+
+

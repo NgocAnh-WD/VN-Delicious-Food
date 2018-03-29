@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('product_id')->unsigned()->index();
-            $table->integer('parent_id');
+            $table->integer('parent_id')->default(null);
             $table->string('title');
             $table->string('content');
             $table->integer('is_delete')->default(0);

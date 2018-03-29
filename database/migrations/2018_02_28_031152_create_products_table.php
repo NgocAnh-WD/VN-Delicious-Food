@@ -24,6 +24,8 @@ class CreateProductsTable extends Migration
             
             $table->foreign('category_id')->references('id')->on('Categories')->onDelete('cascade');
         });
+        // Full Text Index
+        DB::statement('ALTER TABLE products ADD FULLTEXT fulltext_index (name)');
     }
 
     /**
