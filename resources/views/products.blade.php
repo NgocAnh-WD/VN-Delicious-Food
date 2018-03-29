@@ -4,13 +4,15 @@
 <div class="product-model">	 
     <div class="container">
         <ol class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{ url('/home') }}">Home</a></li>
             <li class="active">Products</li>
         </ol>
         <h2>Our Products</h2>			
         <div class="col-md-9 product-model-sec">
             @if($products)
+            <h5 style="color: red">We have {{count($products)}} product(s)</h5>
             @foreach($products as $key => $product)
+            
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <a href="{{ url('/single',$product->id) }}"> <div class="product-grid love-grid">
                     <div class="more-product"><span> </span></div>						
@@ -35,6 +37,9 @@
         </div>	
         @endforeach
         @endif
+        
+
+        
         <div class="row">
             <div class="col-lg-6 col-sm-offset-5">
                 {{ $products->render() }}
