@@ -49,12 +49,11 @@
                         @foreach($products as $product)
                         <ul class="cart-header">
                             <div class="close1" style="top: 40%"></div>
-                            <li class="ring-in"><a href="single.html" ><img src="images/f1.jpg" class="img-responsive" alt=""></a>
+                            <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a>
                             </li>
                             <li><span>{{$product['name']}}</span></li>
-                            <li><span>$ 60.00</span></li>
+                            <li><span>{{$product['price']}}</span></li>
                             <li><span>{{ $product['qty']}}</span></li>
-                            <!--<li> <a href="single.html" class="add-cart cart-check">ADD TO CART</a></li>-->
                             <div class="clearfix"> </div>
                         </ul>
                         @endforeach
