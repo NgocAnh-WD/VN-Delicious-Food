@@ -34,7 +34,11 @@
                 <input type="file" id="link_image" name="link_image" class="form-control" value="{{ old('link_image') }}">
                 <span class="text-danger">{{ $errors->first('link_image') }}</span>
            </div> 
-            
+            <div class="  form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+                <label for="image">Image:</label>
+                <input type="file" id="link_image" name="image" class="form-control" value="{{ old('image') }}">
+                <span class="text-danger">{{ $errors->first('image') }}</span>
+           </div> 
             
            <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                     <label for="body">Descriptions:</label>
@@ -73,13 +77,11 @@
             
             <div class="form-group">
                 <input type="submit" class="btn btn-success" value="Create Product" />
-            </div>
-       </form>          
+            </div>        
     </div>
     <div class="col-md-1"></div>
-    <div class="col-md-4">
-        
-    </div>
+
+ </form>  
 
     <div class="row">
         @include('includes.form_error')

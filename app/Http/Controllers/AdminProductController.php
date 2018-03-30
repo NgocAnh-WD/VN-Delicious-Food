@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class AdminProductController extends Controller {
 
@@ -20,7 +21,7 @@ class AdminProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::orderBy('created_at', 'asc')->paginate(3);
+        $products = Product::orderBy('created_at', 'DES')->paginate(3);
 
         return view('admin.products.index', compact('products'));
     }
@@ -54,9 +55,7 @@ class AdminProductController extends Controller {
        $input['quantity'] = $request->get('quantity');
        $input['is_delete'] = 0;
        Price_size::create($input);
-       
-     
-       
+      
         if ($file = $request->file('link_image')) {
             $year = date('Y');
             $month = date('m');
@@ -68,18 +67,26 @@ class AdminProductController extends Controller {
             if (!File::exists(public_path() . '/' . $upload_url)) {
                 File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
             }
-
             $name = time() . $file->getClientOriginalName();
-
-
             $file->move($upload_url, $name);
-
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0]);
-            
-           
-            
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>1]);                         
         }
+        if ($file = $request->file('image')) {
+            $year = date('Y');
+            $month = date('m');
 
+            $day = date('d');
+            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+            $upload_url = 'images/' . $sub_folder;
+
+            if (!File::exists(public_path() . '/' . $upload_url)) {
+                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+            }
+            $name = time() . $file->getClientOriginalName();
+            $file->move($upload_url, $name);
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>0]);                         
+        }
+        
                return redirect('/admin/products');
 }
     /**
