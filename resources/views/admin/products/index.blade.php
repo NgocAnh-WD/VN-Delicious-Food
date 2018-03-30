@@ -25,13 +25,13 @@
             <tr>
                 <td>{{$product->id}}</td>
                 <td><a href="{{ url('admin/products/'. $product->id.'/edit') }}">{{$product->name}}</a></td>        
-                <td><img height="50" src="{{$product->photo()? asset( $product->photo()->link_image ): 'http://placehold.it/400x400'}}" alt=""></td>
+                <td><img height="50" src="{{$product->thumbnail()? asset( $product->thumbnail()->link_image ): 'http://placehold.it/400x400'}}" alt=""></td>
                 <td>{{$product->category ? $product->category->name : 'Uncategorized'}}</td>
                 <td>{{str_limit($product->description)}}</td>
-                <td>{{$product->size() ? $product->size() ->size :  'Unsized'}}</td>
-                <td>{{$product->size() ? $product->size() ->quality :  'Unqualitied'}}</td>
-                <td>{{$product->size() ? $product->size() ->price :  'Unpriced'}}</td>
-                <td>{{$product->size() ? $product->size() ->quantity :  'Unquantity'}}</td>
+                <td>{{$product->is_price() ? $product->is_price() ->size :  'Unsized'}}</td>
+                <td>{{$product->is_price() ? $product->is_price() ->quality :  'Unqualitied'}}</td>
+                <td>{{$product->is_price() ? $product->is_price() ->price :  'Unpriced'}}</td>
+                <td>{{$product->is_price() ? $product->is_price() ->quantity :  'Unquantity'}}</td>
                 <td>{{$product->created_at->diffForhumans()}}</td>
                 <td>{{$product->updated_at->diffForhumans()}}</td>
 

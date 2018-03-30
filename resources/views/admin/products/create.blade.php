@@ -45,9 +45,9 @@
             <div class=" form-group {{ $errors->has('size') ? 'has-error' : '' }}">
                     <label for="size">Size:</label>
                      <select id="size" class="form-control" name="size" required>
-                                    <option value="L">L</option>
-                                    <option value="M">M</option>
-                                    <option value="S">S</option>
+                                    <option value="Lớn">Lớn</option>
+                                    <option value="Trung">Trung</option>
+                                    <option value="Nhỏ">Nhỏ</option>
                      </select>
                     <span class="text-danger">{{ $errors->first('size') }}</span>
             </div> 
@@ -74,8 +74,11 @@
             <div class="form-group">
                 <input type="submit" class="btn btn-success" value="Create Product" />
             </div>
-        </form>
-           
+       </form>          
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+        
     </div>
 
     <div class="row">

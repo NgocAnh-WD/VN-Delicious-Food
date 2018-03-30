@@ -25,7 +25,7 @@
             </div>  
             
             <div class="form-group " style="width:  200px">
-                <img src="{{$product->photo() ? asset( $product->photo()->link_image ): 'http://placehold.it/400x400'}}" height="300" alt="" class="img-responsive img-rounded">
+                <img src="{{$product->thumbnail() ? asset( $product->thumbnail()->link_image ): 'http://placehold.it/400x400'}}" height="300" alt="" class="img-responsive img-rounded">
             </div>
            <br>
             
@@ -44,28 +44,28 @@
               <div class=" form-group {{ $errors->has('size') ? 'has-error' : '' }}">
                     <label for="size">Size:</label>
                      <select id="size" class="form-control" name="size" required>
-                                    <option value="1">L</option>
-                                    <option value="2">M</option>
-                                    <option value="3">S</option>
+                                    <option value="Lớn">Lớn</option>
+                                    <option value="Trung">Trung</option>
+                                    <option value="Nhỏ">Nhỏ</option>
                      </select>
                     <span class="text-danger">{{ $errors->first('size') }}</span>
             </div>
            
              <div class=" form-group {{ $errors->has('quality') ? 'has-error' : '' }}">
                     <label for="quality">Quality:</label>
-                    <input type="text" id="quality" name="quality" class="form-control" placeholder="" value="{{ $product->size()->quality }}">
+                    <input type="text" id="quality" name="quality" class="form-control" placeholder="" value="{{ $product->is_price()->quality }}">
                     <span class="text-danger">{{ $errors->first('quality') }}</span>
             </div>
            
             <div class=" form-group {{ $errors->has('price') ? 'has-error' : '' }}">
                     <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" class="form-control" placeholder="" value="{{ $product->size()->price }}"/>
+                    <input type="number" id="price" name="price" class="form-control" placeholder="" value="{{ $product->is_price()->price }}"/>
                     <span class="text-danger">{{ $errors->first('price') }}</span>
             </div>
            
             <div class=" form-group {{ $errors->has('quantity') ? 'has-error' : '' }}">
                     <label for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" class="form-control" placeholder="" value="{{ $product->size()->quantity }}">
+                    <input type="number" id="quantity" name="quantity" class="form-control" placeholder="" value="{{ $product->is_price()->quantity }}">
                     <span class="text-danger">{{ $errors->first('quantity') }}</span>
             </div>
             
