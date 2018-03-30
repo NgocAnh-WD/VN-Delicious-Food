@@ -20,6 +20,9 @@ class AdminProductController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct() {
+        $this->middleware('auth');
+    }
     public function index() {
         $products = Product::orderBy('created_at', 'DES')->paginate(3);
 

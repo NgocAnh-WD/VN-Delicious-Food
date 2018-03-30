@@ -81,42 +81,25 @@
                             </a>
                         </li>
 
-                        <li class="light-blue dropdown-modal">
-                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                                <img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo" />
-                                <span class="user-info">
-                                    <small>Welcome,</small>
-                                    Admin
-                                </span>
+                        <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                </a>
 
-                                <i class="ace-icon fa fa-caret-down"></i>
-                            </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}" 
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
 
-                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-cog"></i>
-                                        Settings
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="profile.html">
-                                        <i class="ace-icon fa fa-user"></i>
-                                        Profile
-                                    </a>
-                                </li>
-
-                                <li class="divider"></li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="ace-icon fa fa-power-off"></i>
-                                        Logout
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
                     </ul>
                 </div>
             </div><!-- /.navbar-container -->
@@ -170,7 +153,7 @@ try {
 
                 <ul class="nav nav-list">
                     <li class="active">
-                        <a href="{{ url('admin/users') }}">
+                        <a href="#">
                             <i class="menu-icon fa fa-tachometer"></i>
                             <span class="menu-text"> Images </span>
                         </a>
@@ -180,10 +163,8 @@ try {
 
                     <li class="">
                         <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-desktop"></i>
-                            <span class="menu-text">
-                                Users
-                            </span>
+                            <i class="menu-icon fa fa-list"></i>
+                            <span class="menu-text"> Users </span>
 
                             <b class="arrow fa fa-angle-down"></b>
                         </a>
@@ -191,23 +172,32 @@ try {
                         <b class="arrow"></b>
 
                         <ul class="submenu">
-                            
-
                             <li class="">
-                                <a href="{{ url('admin/users/create')}}">
-                                    <i class="menu-icon fa fa-caret-right"></i>
-                                    Create User
-                                </a>
-                                <b class="arrow"></b>
-                            </li>                                                       
-
-                            <li class="">
-                                <a href="{{ url('admin/users')}}">
+                                <a href="{{ url('admin/users') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     All Users
                                 </a>
+
                                 <b class="arrow"></b>
-                            </li> 
+                            </li>
+
+                            <li class="">
+                              <a href="{{ url('admin/users/create') }}">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Create User
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                            <li class="">
+                                <a href="{{ url('admin/users/edit') }}">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Edit User
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
                         </ul>
                     </li>
 

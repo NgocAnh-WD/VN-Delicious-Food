@@ -24,7 +24,9 @@ Route::get('logout', function() {
 });
 
 Auth::routes();
-
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/products', 'HomeController@index1')->name('products');
+});
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/products', 'HomeController@index1')->name('products');
