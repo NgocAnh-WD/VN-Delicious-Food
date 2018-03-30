@@ -15,9 +15,6 @@
                     @endif
                 </div>
             </ul>
-
-
-
             @endforeach
         </div>						  
         <!--        <div class="tab2">

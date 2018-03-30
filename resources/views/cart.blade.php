@@ -11,28 +11,12 @@
             <div class="check-out">			
                 <div class=" cart-items">
                     <h3>Your Shopping Cart in here ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }})</h3>
-<!--                    <script>$(document).ready(function (c) {
-                            $('.close1').on('click', function (c) {
-                                $('.cart-header').fadeOut('slow', function (c) {
-                                    $('.cart-header').remove();
-                                });
-                            });
-                        });
-                    </script>
-                    <script>$(document).ready(function (c) {
-                            $('.close2').on('click', function (c) {
-                                $('.cart-header1').fadeOut('slow', function (c) {
-                                    $('.cart-header1').remove();
-                                });
-                            });
-                        });
-                    </script>-->
                     <div>
-                        <div class="row" style="font-family: 'Times New Roman'; background: #f4f4f4; font-size: 20px">
-                            <div class="col-sm-1 col-md-1 col-lg-2 col-xs-1">
-                                <span>STT</span>
+                        <div class="row" style="font-family: 'Times New Roman'; background: #f4f4f4; font-size: 20px; text-align: right">
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-1">
+                                <span>Ảnh</span>
                             </div>
-                            <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                            <div class="col-sm-3 col-md-3 col-lg-3 col-xs-4">
                                 <span>Tên sản phẩm</span>
                             </div>
                             <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
@@ -41,19 +25,29 @@
                             <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
                                 <span>Số lượng</span>
                             </div>
-                            <div class="col-sm-2 col-md-1 col-lg-1 col-xs-2">
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
                                 <span>Xóa</span>
                             </div>
                         </div>
                         @if(Session::has('cart'))
                         @foreach($products as $product)
                         <ul class="cart-header">
-                            <div class="close1" style="top: 40%"onclick="close_cart({{$product['id']}})"></div>
-                            <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a>
-                            </li>
+                            <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a></li>
                             <li><span>{{$product['name']}}</span></li>
-                            <li><span>{{$product['price']}}</span></li>
-                            <li><span>{{ $product['qty']}}</span></li>
+                            <li><span>{{ $product['price']}}</li>
+                            <li><div id="convert">
+                                    <div class="subtract" onclick="subtractcart({{$product['id']}},{{$product['qty']}})">
+                                        -
+                                    </div>
+                                    <div class="quantity">
+                                        {{$product['qty']}}
+                                    </div>
+                                    <div class="plus" onclick="pluscart({{$product['id']}},{{$product['qty']}})">
+                                        +
+                                    </div> 
+                                    <div class="clearfix"></div>
+                                </div></span></li>
+                                <li><div class="closecart" onclick="close_cart({{$product['id']}})"></div></li>
                             <div class="clearfix"> </div>
                         </ul>
                         @endforeach

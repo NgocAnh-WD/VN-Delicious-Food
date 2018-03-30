@@ -31,6 +31,7 @@
                     <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}</span>								
                     <input type="text" class="item_quantity" value="1" />
                     <button class="btn btn-info" ><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>
+                    <button class="btn btn-info" ><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
                 </div>													
                 <div class="clearfix"> </div>
             </div>
@@ -124,7 +125,6 @@
         </section>
         <!---->
         <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-        <script src="{{asset('js/ajaxscript.js')}}"></script>
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <script type='text/javascript'>//<![CDATA[ 
 

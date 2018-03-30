@@ -29,7 +29,7 @@ class Cart {
         $storedItem['qty'] ++;
         $storedItem['name'] = $item->name;
         $storedItem['id'] = $id;
-        $storedItem['price'] =  $item->is_price()->price;
+        $storedItem['price'] =  $item->is_price()->price*$storedItem['qty'];
         $storedItem['image'] =  $item->thumbnail()->link_image;
         $this->items[$id] = $storedItem;
         $this->totalQty++;
@@ -38,9 +38,9 @@ class Cart {
 
     public function deductByOne($id) {
         $this->items[$id]['qty'] --;
-        $this->items[$id]['price'] -= $this->items[$id]['item']['price'];
+        $this->items[$id]['price'] -= $this->items[$id]['price'];
         $this->totalQty--;
-        $this->totalPrice -= $this->items[$id]['item']['price'];
+        $this->totalPrice -= $this->items[$id]['price'];
 
         if ($this->items[$id]['qty'] <= 0) {
             unset($this->items[$id]);

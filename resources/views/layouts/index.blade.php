@@ -312,7 +312,6 @@
             </div>
         </div>		 
     </body>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
     <script type="text/javascript">
                                                $("#bzoom").zoom({
