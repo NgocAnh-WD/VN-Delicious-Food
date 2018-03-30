@@ -34,6 +34,16 @@
                 <input type="file" id="link_image" name="link_image" class="form-control" value="{{ $product->link_image }}">
                 <span class="text-danger">{{ $errors->first('link_image') }}</span>
            </div> 
+           
+            <div class="form-group " style="width:  200px">
+                <img src="{{$product->thumbnail() ? asset( $product->thumbnail()->image ): 'http://placehold.it/400x400'}}" height="300" alt="" class="img-responsive img-rounded">
+            </div>
+           
+              <div class="  form-group {{ $errors->has('image') ? 'has-error' : '' }}">
+                <label for="image">Image:</label>
+                <input type="file" id="link_image" name="image" class="form-control" value="{{ old('image') }}">
+                <span class="text-danger">{{ $errors->first('image') }}</span>
+           </div> 
                        
            <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                     <label for="body">Descriptions:</label>

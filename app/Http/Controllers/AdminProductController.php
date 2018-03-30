@@ -135,9 +135,10 @@ class AdminProductController extends Controller {
        $price_size['product_id'] = $product_id;
        $price_size->save();
 
-        if ($file = $request->file('link_image')) {
+         if ($file = $request->file('link_image')) {
             $year = date('Y');
             $month = date('m');
+
             $day = date('d');
             $sub_folder = $year . '/' . $month . '/' . $day . '/';
             $upload_url = 'images/' . $sub_folder;
@@ -147,13 +148,22 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>1]);                         
+        }
+        if ($file = $request->file('image')) {
+            $year = date('Y');
+            $month = date('m');
 
-            $image = Image::create(['link_image' => $upload_url . $name,$product_id]);
-            
-            $price_sizes = Price_size::create(['size','quality','price','quantity', 'product_id'=>$id]);
-          
-        } else {
-            
+            $day = date('d');
+            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+            $upload_url = 'images/' . $sub_folder;
+
+            if (!File::exists(public_path() . '/' . $upload_url)) {
+                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+            }
+            $name = time() . $file->getClientOriginalName();
+            $file->move($upload_url, $name);
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>0]);                         
         }
         
        
