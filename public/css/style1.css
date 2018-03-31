@@ -260,3 +260,12 @@ summary:before {
     background-color: #fff;
     transition: all .3s ease-out;
 }
+.navbar-default {
+    background-color: rgb(0, 160, 220) !important;
+}
+.navbar-nav>li>a {
+    color: #fff !important;
+}
+.navbar-default .navbar-brand {
+    color: #fff !important;
+}

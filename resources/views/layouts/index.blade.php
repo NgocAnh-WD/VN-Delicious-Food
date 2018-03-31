@@ -46,55 +46,57 @@
                         <a class="navbar-brand" href="{{ url('/home') }}">
                             {{ config('app.name', 'Laravel') }}
                         </a>
-                    </div>
-                    
-                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="nav navbar-nav">
-                            &nbsp;
-                        </ul>
-                        
-                        <ul nav navbar-nav>
-                            <form action="{{url('/search')}}" method="get" role="search">
-                                <div class="col-md-5 input-group">
-                                    <input type="text" class="form-control" name="key_search" placeholder="Search...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="submit">
-                                            <span class="glyphicon glyphicon-search"></span>
-                                        </button>
-                                    </span>
-                                </div>
-                            </form>
-                        </ul>
-                        <!-- Right Side Of Navbar -->
-                        <ul class="nav navbar-nav navbar-right">
-                            <!-- Authentication Links -->
-                            @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                            @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->username }} <span class="caret"></span>
-                                </a>
+                        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                            <!-- Left Side Of Navbar -->
+                            <ul class="nav navbar-nav">
+                                &nbsp;
+                            </ul>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}" 
-                                           onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                            <ul nav navbar-nav>
+                                <form action="{{url('/search')}}" method="get" role="search">
+                                    <div class="col-md-5 input-group" style="margin-top: 8px; ">
+                                        <input type="text" class="form-control" name="key_search" placeholder="Search...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">
+                                                <span class="glyphicon glyphicon-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </ul>
+                            <!-- Right Side Of Navbar -->
+                            <ul class="nav navbar-nav navbar-right">
+                                <!-- Authentication Links -->
+                                @if (Auth::guest())
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                                @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->username }} <span class="caret"></span>
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                            @endif
-                        </ul>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ route('logout') }}" 
+                                               onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @endif
+                            </ul>
+                        </div>
                     </div>
+<!--                    <div class="navbar-header">
+
+                    </div>-->
                 </div>
             </nav>
         </div>
@@ -203,10 +205,10 @@
                     </div>
                     <!---->
                     <div class="cart box_1">
-                        
+
                         <a href="{{ url('shoppingcart') }}">
                             <h3> <div class="total">
-                                   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Shopping Cart
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Shopping Cart
                                     <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                                 </div>
                             </h3>
@@ -314,12 +316,12 @@
     </body>
     <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
     <script type="text/javascript">
-                                               $("#bzoom").zoom({
-                                                   zoom_area_width: 300,
-                                                   autoplay_interval: 3000,
-                                                   small_thumbs: 4,
-                                                   autoplay: false
-                                               });
+                                                   $("#bzoom").zoom({
+                                                       zoom_area_width: 300,
+                                                       autoplay_interval: 3000,
+                                                       small_thumbs: 4,
+                                                       autoplay: false
+                                                   });
     </script>
     <script type="text/javascript">
 
