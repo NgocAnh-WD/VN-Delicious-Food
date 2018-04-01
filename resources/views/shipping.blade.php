@@ -7,7 +7,6 @@
             <li><a href="index.html">Home</a></li>
             <li class="active">Cart</li>
         </ol>
-        <h3>Your Shopping Cart in here ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }})</h3>
         <div class="col-md-9 product-price1">
             <div class="mod-guest-register-hd">Thông tin giao hàng</div>
             <form style="border: 1px solid #F4F4F4">
@@ -71,22 +70,24 @@
             </form>
             <div id="listHeader_1" class="list-header">
                 <div>
-                    <span class="list-header-left">1 sản phẩm</span>
+                    <span class="list-header-left">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm</span>
                     <span class="list-header-middle">GIÁ</span>
                     <span class="list-header-right">SỐ LƯỢNG</span>
                 </div>
                 <div>
+                    @if(Session::has('cart'))
+                    @foreach($products as $product)
                     <div id="item_3bd7f2b8851ed987ff8905e11de1ba99" class="cart-item">
                         <div class="cart-item-inner">
                             <div class="cart-item-left">
                                 <div class="img-wrap">
                                     <a href="#" class="automation-link-from-image-to-prod">
-                                        <img class="img" src="http://vn-live-02.slatic.net/p/3/bo-ban-lam-viec-rec-u-trang-va-ghe-eames-trang-ibie-8224-7768094-e3a30b91e016fc230c2642d40c545523-catalog.jpg" alt="item">
+                                        <img class="img" src="{{ asset($product['image']) }}" alt="item">
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <a id="automation-link-from-title-to-prod-item_3bd7f2b8851ed987ff8905e11de1ba99" href="https://www.lazada.vn/-i101173872-s101360704.html?urlFlag=true&amp;mp=1" class="automation-link-from-title-to-prod title">
-                                        dfmsklfl dnfls</a>
+                                    <a id="automation-link-from-title-to-prod-item_3bd7f2b8851ed987ff8905e11de1ba99" href="#" class="automation-link-from-title-to-prod title">
+                                        {{$product['name']}}</a>
                                     <div class="operations">
                                         <span class="automation-btn-delete">
                                             <span class="lazada lazada-ic-Delete lazada-icon icon delete">
@@ -98,15 +99,17 @@
                                 </div>
                             </div>
                             <div class="cart-item-middle">
-                                <p class="current-price">1.575.000 VND</p>
+                                <p class="current-price">{{ $product['price']}}.000VND</p>
                             </div>
                             <div class="cart-item-right">
                                 <div class="quantity1 automation-item-quantity">
-                                    <span class="item-quantity-value">1</span>
+                                    <span class="item-quantity-value">{{$product['qty']}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
 
@@ -143,7 +146,8 @@
         </div>
     </div>
 </div>		
-
+<div style="height: 30px"></div>
+<div class="clearfix"></div>
 @endsection
 
 <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
