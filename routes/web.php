@@ -56,7 +56,7 @@ Route::get('/addtocart/{id}', 'HomeController@getAddToCart');
 Route::get('product/delete/{id}', 'HomeController@removeItem');
 Route::get('product/deductbyone/{id}', 'HomeController@deductByOne');
 Route::get('/shoppingcart', 'HomeController@getCart');
-
+Route::get('/shipping', 'HomeController@Shipping');
 Route::get('search','HomeController@getSearch')->name('search');
 
 

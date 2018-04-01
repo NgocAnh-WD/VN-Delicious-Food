@@ -90,7 +90,15 @@ class HomeController extends Controller {
         }
         return redirect()->back();
     }
-
+    
+    public function Shipping(){
+        if (!Session::has('cart')) {
+            return view('cart', ['products' => null]);
+        }
+        $oldCart = Session::get('cart');
+        $cart  = new Cart($oldCart);
+        return view('shipping',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+    }
     public function comment_product(Request $request) {
         $input = $request->all();
         $user = Auth::user();

@@ -174,33 +174,33 @@
                                         <div class="col1 me-one">
                                             <h4>Style Zone</h4>
                                             <ul>
-                                                <li><a href="product.html">Men</a></li>
-                                                <li><a href="product.html">Women</a></li>
-                                                <li><a href="product.html">Brands</a></li>
-                                                <li><a href="product.html">Kids</a></li>
-                                                <li><a href="product.html">Accessories</a></li>
-                                                <li><a href="product.html">Style Videos</a></li>
+                                                <li><a href="#">Men</a></li>
+                                                <li><a href="#">Women</a></li>
+                                                <li><a href="#">Brands</a></li>
+                                                <li><a href="#">Kids</a></li>
+                                                <li><a href="#">Accessories</a></li>
+                                                <li><a href="#">Style Videos</a></li>
                                             </ul>	
                                         </div>
                                         <div class="col1 me-one">
                                             <h4>Popular Brands</h4>
                                             <ul>
-                                                <li><a href="product.html">Levis</a></li>
-                                                <li><a href="product.html">Persol</a></li>
-                                                <li><a href="product.html">Nike</a></li>
-                                                <li><a href="product.html">Edwin</a></li>
-                                                <li><a href="product.html">New Balance</a></li>
-                                                <li><a href="product.html">Jack & Jones</a></li>
-                                                <li><a href="product.html">Paul Smith</a></li>
-                                                <li><a href="product.html">Ray-Ban</a></li>
-                                                <li><a href="product.html">Wood Wood</a></li>
+                                                <li><a href="#">Levis</a></li>
+                                                <li><a href="#">Persol</a></li>
+                                                <li><a href="#">Nike</a></li>
+                                                <li><a href="#">Edwin</a></li>
+                                                <li><a href="#">New Balance</a></li>
+                                                <li><a href="#">Jack & Jones</a></li>
+                                                <li><a href="#">Paul Smith</a></li>
+                                                <li><a href="#">Ray-Ban</a></li>
+                                                <li><a href="#">Wood Wood</a></li>
                                             </ul>	
                                         </div>
                                     </div>
                                 </div>
                             </li>
                             <li class="grid"><a href="#">Typo</a></li>
-                            <li class="grid"><a href="contact.html">Contact</a></li>
+                            <li class="grid"><a href="#">Contact</a></li>
                         </ul>
                         <div class="clearfix"> </div>
                     </div>
