@@ -7,12 +7,13 @@
             <li><a href="index.html">Home</a></li>
             <li class="active">Cart</li>
         </ol>
+        <h3>Your Shopping Cart in here ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }})</h3>
         <div class="col-md-9 product-price1">
             <div class="check-out">			
                 <div class=" cart-items">
-                    <h3>Your Shopping Cart in here ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }})</h3>
+
                     <div>
-                        <div class="row" style="font-family: 'Times New Roman'; background: #f4f4f4; font-size: 20px; text-align: right">
+                        <div class="row title_cart">
                             <div class="col-sm-2 col-md-2 col-lg-2 col-xs-1">
                                 <span>Ảnh</span>
                             </div>
@@ -34,7 +35,7 @@
                         <ul class="cart-header">
                             <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a></li>
                             <li><span>{{$product['name']}}</span></li>
-                            <li><span>{{ $product['price']}}</li>
+                            <li><span class="price_product">{{ $product['price']}}.000VND</span></li>
                             <li><div id="convert">
                                     <div class="subtract" onclick="subtractcart({{$product['id']}},{{$product['qty']}})">
                                         -
@@ -46,8 +47,8 @@
                                         +
                                     </div> 
                                     <div class="clearfix"></div>
-                                </div></span></li>
-                                <li><div class="closecart" onclick="close_cart({{$product['id']}})"></div></li>
+                                </div></li>
+                            <li><div class="closecart" onclick="close_cart({{$product['id']}})"></div></li>
                             <div class="clearfix"> </div>
                         </ul>
                         @endforeach
@@ -58,30 +59,58 @@
             </div>
         </div>
         <div class="col-md-3 cart-total">
-            <a class="continue" href="#">Continue to basket</a>
-            <div class="price-details">
-                <h3>Price Details</h3>
-                <span>Total</span>
-                <span class="total">350.00</span>
-                <span>Discount</span>
-                <span class="total">---</span>
-                <span>Delivery Charges</span>
-                <span class="total">100.00</span>
-                <div class="clearfix"></div>				 
-            </div>	
-            <h4 class="last-price">TOTAL</h4>
-            <span class="total final">450.00</span>
-            <div class="clearfix"></div>
-            <a class="order" href="#">Place Order</a>
-            <div class="total-item">
-                <h3>OPTIONS</h3>
-                <h4>COUPONS</h4>
-                <a class="cpns" href="#">Apply Coupons</a>
-                <p><a href="#">Log In</a> to use accounts - linked coupons</p>
+            <div class="box-style2">
+                <div class="information_order">Thông tin đơn hàng</div>                
             </div>
+            <div class="box-style">
+                <span>Tạm tính ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm)</span>
+                <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->totalPrice : '' }}.000</strong>
+            </div>
+            <div class="box-style3">
+                <span>Vận chuyển:</span>
+                <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->shipping : '' }}.000</strong>
+            </div>
+            <div class="box-style1">
+                <div class="total2 clearfix">
+                    <span class="text-label">Tổng cộng:</span>
+                    <div class="amount1">
+                        <p><strong class="total_strong2">{{ Session::has('cart') ? Session::get('cart')->totaltong : '' }}.000 VNĐ</strong></p>
+                        <p class="text-right1">
+                            <small>(Đã bao gồm VAT)</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-large btn-block btn-danger btn-checkout payment_button">
+                Tiến hành đặt hàng
+            </button>
+            <button type="button" class="btn btn-large btn-block btn-yellow btn-checkout" id="btn-send-gift" >Quay về Home</button>
+<!--            <div class="box-style1">
+                <div class="review-wrap">
+                    <p class="rating">
+                        <span class="rating-content">
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="star"></i>
+                            <i class="star"></i>
+                            <i class="star"></i>
+                            <span style="width:83%">
+                                <i class="star"></i>
+                                <i class="star"></i>
+                                <i class="star"></i>
+                                <i class="star"></i>
+                                <i class="star"></i>
+                            </span>
+                        </span>
+                    </p>
+                    <p class="review">(Đánh giá sp)</p>
+                </div>
+            </div>-->
+            <div class="clearfix"></div>
         </div>
     </div>
-</div>
+</div>		
+
 @endsection
 
 <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>

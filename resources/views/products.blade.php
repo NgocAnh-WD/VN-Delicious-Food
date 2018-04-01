@@ -30,10 +30,10 @@
                     <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
                     <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}</span>								
                     <input type="text" class="item_quantity" value="1" />
-                    <button class="btn btn-info" ><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>
-                    <button class="btn btn-info" ><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
+                    <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>
+                    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2"></div>
+                    <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
                 </div>													
-                <div class="clearfix"> </div>
             </div>
         </div>	
         @endforeach

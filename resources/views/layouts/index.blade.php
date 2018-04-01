@@ -61,6 +61,7 @@
                                                 <span class="glyphicon glyphicon-search"></span>
                                             </button>
                                         </span>
+                                        <div class="clearfix"></div>
                                     </div>
                                 </form>
                             </ul>
