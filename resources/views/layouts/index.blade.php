@@ -70,32 +70,33 @@
                                 </form>
                             </ul>
                             <!-- Right Side Of Navbar -->
-                         <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->username }} <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                            <ul class="nav navbar-nav navbar-right">
+                                <!-- Authentication Links -->
+                                @if (Auth::guest())
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                                @else
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        {{ Auth::user()->username }} <span class="caret"></span>
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ route('logout') }}" 
+                                               onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                                Logout
+                                            </a>
+
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                {{ csrf_field() }}
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @endif
+                            </ul>
                         </div>
                     </div>
 <!--                    <div class="navbar-header">
@@ -123,14 +124,14 @@
                                         <div class="col1 me-one">
                                             <h4>Products</h4>
                                             <ul>
-                                                <li><a href="{{asset('/products')}}">Trà sữa</a></li>
-                                                <li><a href="{{asset('/products')}}">Sinh tố</a></li>
-                                                <li><a href="{{asset('/products')}}">Chè</a></li>
-                                                <li><a href="{{asset('/products')}}">Gà rán</a></li>
-                                                <li><a href="{{asset('/products')}}">Lẩu hải sản</a></li>
-                                                <li><a href="{{asset('/products')}}">Mỳ cay</a></li>
-                                                <li><a href="{{asset('/products')}}">Bánh tráng trộn</a></li>
-                                                <li><a href="{{asset('/products')}}">Nem rán</a></li>
+                                                <li><a href="{{asset('/products')}}">TrÃ  sá»¯a</a></li>
+                                                <li><a href="{{asset('/products')}}">Sinh tá»‘</a></li>
+                                                <li><a href="{{asset('/products')}}">ChÃ¨</a></li>
+                                                <li><a href="{{asset('/products')}}">GÃ  rÃ¡n</a></li>
+                                                <li><a href="{{asset('/products')}}">Láº©u háº£i sáº£n</a></li>
+                                                <li><a href="{{asset('/products')}}">Má»³ cay</a></li>
+                                                <li><a href="{{asset('/products')}}">BÃ¡nh trÃ¡ng trá»™n</a></li>
+                                                <li><a href="{{asset('/products')}}">Nem rÃ¡n</a></li>
                                             </ul>
                                         </div>
                                         <div class="col1 me-one">
@@ -314,14 +315,10 @@
         <!---->
         <div class="copywrite">
             <div class="container">
-                <p>Copyright © 2015 Wedding Store. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                <p>Copyright Â© 2015 Wedding Store. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
             </div>
         </div>		 
     </body>
-<<<<<<< Updated upstream
-=======
-   
->>>>>>> Stashed changes
     <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
     <script type="text/javascript">
                                                    $("#bzoom").zoom({
