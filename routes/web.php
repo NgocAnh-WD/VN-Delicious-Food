@@ -13,7 +13,7 @@
  */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
 
@@ -25,7 +25,7 @@ Route::post('/login', 'LoginController@showLogin');
 Route::post('/login', 'LoginController@processLogin');
 Route::get('logout', function() {
     Auth::logout(); // logout user
-    return Redirect::to('/');
+    return Redirect::to('/welcome');
 });
 
 Auth::routes();
