@@ -39,15 +39,13 @@
                         <th>Parent ID</th>
                         <th>Description</th>
                         <th>Created date</th> 
-                        <th>Updated date</th>
-                        <th>Action</th>
-                        <th>Updated date</th>                      
+                        <th>Updated date</th>   
+                    </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th>{{$category->id}}</th>
                         <th>{{$category->name}}</th>
-                        <th>{{$category->parent_id}}</th>
                         <th>
                             @if (($category->parent_id) === 0)
                             Thư mục cha
@@ -70,7 +68,6 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
             <div class="form-group">
                 <input type="submit" class="btn btn-danger" value="Delete Category" />
-
             </div>
         </form>
     </div>

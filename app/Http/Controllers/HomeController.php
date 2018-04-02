@@ -4,18 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use App\Category;
 use App\Product;
 use App\Image;
 use App\Cart;
-use App\User;
 use Session;
-use App\Price_size;
 use App\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
-
     /**
      * Create a new controller instance.
      *
@@ -37,17 +33,18 @@ class HomeController extends Controller {
     }
 
     public function index1() {
-        $products = Product::orderBy('id','asc')->paginate(9);
+        $products = Product::orderBy('id', 'asc')->paginate(9);
         return view('products', compact('products'));
     }
 
     public function index2($id) {
         $product_detail = DB::table('products')->where('id', $id)->first();
         $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
-        $price_size = DB::table('price_sizes')->select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id],['is_price',1]])->get();
+        $price_size = DB::table('price_sizes')->select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 1]])->get();
         $comment = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
         return view('product_details', compact('product_detail', 'image', 'price_size', 'comment'));
-}
+    }
+
     public function getAddToCart(Request $request, $id) {
         $product = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -59,14 +56,16 @@ class HomeController extends Controller {
 
         return redirect()->back();
     }
+
     public function getCart() {
         if (!Session::has('cart')) {
             return view('cart', ['products' => null]);
         }
         $oldCart = Session::get('cart');
-        $cart  = new Cart($oldCart);
-        return view('cart',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+        $cart = new Cart($oldCart);
+        return view('cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
+
     public function deductByOne($id) {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
@@ -78,7 +77,8 @@ class HomeController extends Controller {
 //        }
         return redirect()->back();
     }
-    public function removeItem($id){
+
+    public function removeItem($id) {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->removeItem($id);
@@ -90,23 +90,27 @@ class HomeController extends Controller {
         }
         return redirect()->back();
     }
-    
-    public function Shipping(){
+
+    public function Shipping() {
         if (!Session::has('cart')) {
             return view('cart', ['products' => null]);
         }
         $oldCart = Session::get('cart');
-        $cart  = new Cart($oldCart);
-        return view('shipping',['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
+        $cart = new Cart($oldCart);
+        return view('shipping', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
+
     public function comment_product(Request $request) {
         $input = $request->all();
         $user = Auth::user();
         if ($user) {
-            $input['user_id'] = $user->id;
-            $input['is_delete'] = 0;
-            $comments = new Comment();
-            Comment::create($input);
+            $comment = new Comment();
+            $comment->user_id = $user->id;
+            $comment->product_id = $request->get('product_id');
+            $comment->title = $request->get('title');
+            $comment->content = $request->get('content');
+            $comment->save();
+            return $comment;
         }
     }
 
@@ -119,16 +123,16 @@ class HomeController extends Controller {
     }
 
     public function get_products_by_category($id) {
-        $products = Product::where('category_id',$id)->paginate(9);
+        $products = Product::where('category_id', $id)->paginate(9);
         return view('products', compact('products'));
     }
+
     public function getSearch() {
-        
+
         $products = Product::search($_GET['key_search'])->paginate(9);
-        $products->setPath('search?key_search='.$_GET['key_search']);
+        $products->setPath('search?key_search=' . $_GET['key_search']);
         $key_search = $_GET['key_search'];
-//        $is_search = 1;
         return view('products', compact('products', 'key_search'));
     }
-}
 
+}

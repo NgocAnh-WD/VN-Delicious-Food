@@ -48,7 +48,6 @@
                     <tr>
                         <th>{{$category->id}}</th>
                         <th>{{$category->name}}</th>
-                        <th>{{$category->parent_id}}</th>
                         <th>
                             @if (($category->parent_id) === 0)
                             Thư mục cha
@@ -57,7 +56,7 @@
                             @endif
                         </th>
                         <th>{{$category->description}}</th>
-                        <th>{{$category->created_at}}</th>
+                        <th>{{$category->created_at->diffForhumans()}}</th>
                         <th>{{$category->updated_at->diffForhumans()}}</th>
                         <th><a href="{{ url('admin/categories/'.$category->id.'/edit') }}">Edit</a></th>
                     </tr>

@@ -16,6 +16,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+//Route::post('single/comment_product2', function () {
+//    return array();
+//});
+
 Route::post('/login', 'LoginController@showLogin');
 Route::post('/login', 'LoginController@processLogin');
 Route::get('logout', function() {
@@ -36,7 +41,7 @@ Route::get('/cart', 'HomeController@index3')->name('cart');
 Route::get('/admin', 'HomeController@index4')->name('admin');
 Route::get('admin/comments/{id}/reply', 'AdminCommentsController@getReplyComment');
 Route::get('admin/categories/{id}/child_categories', 'AdminCategoriesController@getChildCategory');
-Route::get('/single/{id}/comment_product', 'HomeController@comment_product')->name('comment_product');
+Route::post('single/comment_product2', 'HomeController@comment_product')->name('comment_product2');
 
 Route::resource('admin/products', 'AdminProductController', array('as' => 'admin'));
 Route::resource('admin/categories', 'AdminCategoriesController', array('as' => 'admin'));
