@@ -84,7 +84,9 @@
             <button type="button" class="btn btn-large btn-block btn-danger btn-checkout payment_button">
                 <a href="{{url('shipping')}}" class="payment_button_a">Tiến hành đặt hàng</a>
             </button>
-            <button type="button" class="btn btn-large btn-block btn-yellow btn-checkout" id="btn-send-gift" >Quay về Home</button>
+            <button type="button" class="btn btn-large btn-block btn-yellow btn-checkout" id="btn-send-gift" >
+                <a href="{{url('products')}}" class="continue_button_a">Tiếp tục mua hàng</a>
+            </button>
 <!--            <div class="box-style1">
                 <div class="review-wrap">
                     <p class="rating">

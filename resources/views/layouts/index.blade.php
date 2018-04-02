@@ -14,20 +14,20 @@
         <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <!--        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
-       
+
 <!--        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
         <!-- start menu -->
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <!-- start menu -->
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
-        
+
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">
-         
-         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
-        
+
+        <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
+
         <script>$(document).ready(function () {
-   // $(".memenu").memenu();
-});</script>	
+            // $(".memenu").memenu();
+            });</script>	
         <!-- /start menu -->
         <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
     </head>
@@ -85,7 +85,7 @@
                                         <li>
                                             <a href="{{ route('logout') }}" 
                                                onclick="event.preventDefault();
-                                                       document.getElementById('logout-form').submit();">
+                                                   document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
 
@@ -99,9 +99,9 @@
                             </ul>
                         </div>
                     </div>
-<!--                    <div class="navbar-header">
-
-                    </div>-->
+                    <!--                    <div class="navbar-header">
+                    
+                                        </div>-->
                 </div>
             </nav>
         </div>
@@ -148,15 +148,15 @@
                                         <div class="col1 me-one">
                                             <h4>Popular Brands</h4>
                                             <ul>
-                                                <li><a href="product.html">Levis</a></li>
-                                                <li><a href="product.html">Persol</a></li>
-                                                <li><a href="product.html">Nike</a></li>
-                                                <li><a href="product.html">Edwin</a></li>
-                                                <li><a href="product.html">New Balance</a></li>
-                                                <li><a href="product.html">Jack & Jones</a></li>
-                                                <li><a href="product.html">Paul Smith</a></li>
-                                                <li><a href="product.html">Ray-Ban</a></li>
-                                                <li><a href="product.html">Wood Wood</a></li>
+                                                <li><a href="#">Levis</a></li>
+                                                <li><a href="#">Persol</a></li>
+                                                <li><a href="#">Nike</a></li>
+                                                <li><a href="#">Edwin</a></li>
+                                                <li><a href="#">New Balance</a></li>
+                                                <li><a href="#">Jack & Jones</a></li>
+                                                <li><a href="#">Paul Smith</a></li>
+                                                <li><a href="#">Ray-Ban</a></li>
+                                                <li><a href="#">Wood Wood</a></li>
                                             </ul>	
                                         </div>
                                     </div>
@@ -269,7 +269,7 @@
                         <h4>About Us</h4>
                         <ul>
                             <li><a href="#">Who We Are</a></li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">Contact Us</a></li>
                             <li><a href="#">Our Sites</a></li>
                             <li><a href="#">In The News</a></li>
                             <li><a href="#">Team</a></li>
@@ -290,7 +290,7 @@
                     <div class="col-md-3 ftr-grid">
                         <h4>Your account</h4>
                         <ul>
-                            <li><a href="account.html">Your Account</a></li>
+                            <li><a href="#">Your Account</a></li>
                             <li><a href="#">Personal Information</a></li>
                             <li><a href="#">Addresses</a></li>
                             <li><a href="#">Discount</a></li>
@@ -322,11 +322,11 @@
     <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
     <script type="text/javascript">
                                                    $("#bzoom").zoom({
-                                                       zoom_area_width: 300,
-                                                       autoplay_interval: 3000,
-                                                       small_thumbs: 4,
-                                                       autoplay: false
+                                                   zoom_area_width: 300,
+                                                           autoplay_interval: 3000,
+                                                           small_thumbs: 4,
+                                                           autoplay: false
                                                    });
     </script>
-   
+
 </html>

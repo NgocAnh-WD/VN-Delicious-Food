@@ -115,7 +115,7 @@
 
 @section('slide1')
 <div class="container">	
-    <h3>New Arrivals</h3>
+    <h3 style="text-align: center">New Arrivals</h3>
     <div class="arrival-grids">			 
         <ul id="flexiselDemo1">
             @if($image_products_new)

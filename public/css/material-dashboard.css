@@ -1,4 +1,4 @@
-g/*!
+/*!
 
  =========================================================
  * Material Dashboard - v1.2.0
@@ -397,11 +397,6 @@ Copyright (c) 2015 Daniel Eden
     -ms-overflow-style: none;
 }
 
-@supports (-ms-overflow-style: none) {
-    .ps-container {
-        overflow: auto !important;
-    }
-}
 
 @media screen and (-ms-high-contrast: active),
 (-ms-high-contrast: none) {
@@ -812,7 +807,7 @@ h2.title {
     margin: 10px 10px;
     color: #FFFFFF;
     line-height: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .sidebar .logo .simple-text,
@@ -2431,13 +2426,13 @@ h6,
 .h2,
 .h3,
 .h4 {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     line-height: 1.5em;
 }
 
 .serif-font {
-    font-family: "Roboto Slab", "Times New Roman", serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .page-header {

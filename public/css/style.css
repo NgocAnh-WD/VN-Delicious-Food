@@ -6,7 +6,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 body{
     background:#fff;
-    font-family: 'Lato', sans-serif;
 }
 body a{
     transition: 0.5s all;
@@ -15,19 +14,6 @@ body a{
     -moz-transition: 0.5s all;
     -ms-transition: 0.5s all;
 }
-@font-face {
-    font-family: 'JosefinSans-Regular';
-    src: url(../fonts/JosefinSans-Regular.ttf) format('truetype');
-}
-@font-face {
-    font-family: 'JosefinSans-Bold';
-    src: url(../fonts/JosefinSans-Bold.ttf) format('truetype');
-}
-@font-face {
-    font-family: 'JosefinSans-Light';
-    src: url(../fonts/JosefinSans-Light.ttf) format('truetype');
-}
-
 ul{
     padding: 0;
     margin: 0;
@@ -183,7 +169,6 @@ h1.b1,h2.b2,h3.b3 {
 }
 .logo  a h1{
     color:#333;
-    font-family: 'JosefinSans-Bold';	
     font-size: 2.55em;
     font-weight: 100;
 }
@@ -217,12 +202,11 @@ h1.b1,h2.b2,h3.b3 {
 .welcome-left h2{
     font-size:3em;
     color:#00a0dc;
-    font-family: 'JosefinSans-Bold';
 }
 .welcome-right h3{
     font-size:1.5em;
     margin-bottom:0.5em;
-    font-family: 'JosefinSans-Bold';
+    
 }
 .welcome-right p{
     color:#999;
@@ -338,7 +322,6 @@ figure.effect-bubba:hover p {
 .content-grid h3{
     margin-top:0.8em;
     font-size:1.8em;
-    font-family: 'JosefinSans-Light';
 }
 .bride-grids img{
     width:100%;
@@ -351,7 +334,6 @@ figure.effect-bubba:hover p {
     color:#00a0dc;
     font-size:2.3em;
     text-align:center;
-    font-family: 'JosefinSans-Bold';
 }
 .arrival-grids{
     margin-top:2em;
@@ -362,7 +344,6 @@ figure.effect-bubba:hover p {
 .arrival-info h4{
     color:#caccce;
     font-size:0.9em;
-    font-family: 'JosefinSans-Bold';
     text-transform:uppercase;
 }
 .arrival-info p{
@@ -490,7 +471,6 @@ li.nbs-flexisel-item a:hover{
 .shpng-grid h3{
     font-size:2em;
     text-transform:uppercase;
-    font-family: 'JosefinSans-Bold';
     color:#333;
 }
 .shpng-grid:nth-child(2){
@@ -501,7 +481,6 @@ li.nbs-flexisel-item a:hover{
     color:rgba(189, 0, 0, 0.8);
     font-size: 1.6em;
     text-transform:uppercase;
-    font-family: 'JosefinSans-Light';
     padding-top:5px;
 }
 .feature-grid{
@@ -854,7 +833,6 @@ span.amount {
 }
 .product-model h2,h2.top,.contact h3{
     font-size: 2.2em;
-    font-family: 'JosefinSans-Bold';
     color: #333;
     text-align:center;
 }
@@ -889,7 +867,6 @@ ul.dropdown-menu1 li a:hover{
     height: 18px;
     background: url(../images/star.png) 0 -3px;
     float:left;
-    font-family: FontAwesome;
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
@@ -933,7 +910,6 @@ ul.dropdown-menu1 li a:hover{
 }
 .prdt-cost ul li{
     display:block;
-    font-family: 'Arimo', sans-serif;
     font-size:0.8em;
     padding:2px;
     color:#999;
@@ -988,7 +964,6 @@ ul.dropdown-menu1 li a:hover{
     color: #333;
     font-size: 1.35em;
     margin-top:2em;
-    font-family: 'JosefinSans-Bold';
 }
 p.prod-desc {
     color: #999;
@@ -1009,7 +984,6 @@ p.prod-desc {
 .single-right h3,.product-table h3{
     font-size:1.5em;
     color:#333;
-    font-family: 'JosefinSans-Bold';
     margin-bottom:1em;
 }
 .sofaset-info {
@@ -1022,7 +996,6 @@ p.prod-desc {
     border-bottom: 1px solid rgb(236, 236, 236);
     margin-bottom: 1em;
     background: #F3F3F3;
-    font-family: 'JosefinSans-Bold';
 }
 .sofaset-info ul{
     padding-left:2em;
@@ -1042,7 +1015,6 @@ p.prod-desc {
     padding:8px 15px;
     margin-top:0.5em;
     font-size:1.3em;
-    font-family: 'JosefinSans-Bold';
 }
 .table-bordered > tbody > tr > td{
     width:50%;
@@ -1065,13 +1037,11 @@ p.prod-desc {
 }
 .login_sec h2{
     font-size: 2.3em;
-    font-family: 'JosefinSans-Bold';
     color: #333;
 }
 .login-right h3{
     text-transform: uppercase;
     font-size: 1.4em;
-    font-family: 'Aladin', cursive;
     letter-spacing: 2px;
     color: #333;
     margin-bottom:0.5em;
@@ -1175,7 +1145,6 @@ a.acount-btn {
     color: #333;
     text-transform:capitalize;
     margin-bottom: 4%;
-    font-family: 'JosefinSans-Bold';
     font-weight:300;
 }
 .reg_fb {

@@ -1,3 +1,7 @@
+body{
+   font-family: 'Open Sans', sans-serif;;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{font-family: 'Open Sans', sans-serif;}
 .clearfix { zoom: 1; }
 
 .clearfix:after {
@@ -270,7 +274,8 @@ summary:before {
     color: #fff;
     text-decoration: none !important;
 }
-.payment_button_a{color: #fff; text-decoration: none;}
+.payment_button_a,.continue_button_a{color: #fff; text-decoration: none;}
+.continue_button_a:hover{color: #333; text-decoration: none;}
 .title_cart{
     margin: 0px !important;
     padding: 0px !important;
