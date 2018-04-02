@@ -8,11 +8,17 @@
             <li class="active">Cart</li>
         </ol>
         <div class="col-md-9 product-price1">
-            <div class="mod-guest-register-hd">Thông tin giao hàng</div>
+            <div class="mod-guest-register-hd">
+                <div class="mod-guest-register-hd-right">
+                    Phương thức thanh toán khi giao hàng
+                </div>
+            </div>
+            @if (Auth::guest())
             <form style="border: 1px solid #F4F4F4">
                 <div class="mod-address-form mod-vn">
                     <div class="mod-address-form-bd">
                         <div class="mod-address-form-left">
+                            <div class="title_address">NHẬP ĐỊA CHỈ NGƯỜI NHẬN</div>
                             <div class="mod-input mod-input-email">
                                 <label>Địa chỉ email</label>
                                 <input type="text" placeholder="Vui lòng nhập email của bạn" data-meta="Field" value="">
@@ -30,44 +36,65 @@
                                 <b></b><span></span>
                             </div>
                             <div class="mod-input mod-input-taxId">
-                                <label>Mã số thuế</label>
-                                <input type="text" placeholder="Nhập mã số thuế của bạn" data-meta="Field" value="">
+                                <label>Địa chỉ người nhận</label>
+                                <input type="text" placeholder="Nhập địa chỉ người nhận của bạn" data-meta="Field" value="">
                                 <b></b><span></span>
                             </div>
                             <div class="mod-address-form-action">
-                                <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
+                                <div class="button_address_left">
+                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
+                                </div>
+                                <div class="button_address_right">
+                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
+                                </div>                                
                             </div>
                         </div> 
-                        <div class="mod-address-form-left">
-                            <div class="mod-input mod-input-email">
-                                <label>Địa chỉ email</label>
-                                <input type="text" placeholder="Vui lòng nhập email của bạn" data-meta="Field" value="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input mod-input-name">
-                                <label>Tên</label>
-                                <input type="text" placeholder="Họ Tên" data-meta="Field" value="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input floating error mod-input-phone">
-                                <label>Số điện thoại</label>
-                                <input type="number" placeholder="Xin vui lòng điền số điện thoại của bạn" data-meta="Field">
-                                <div class="mod-input-close-icon"></div>
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input mod-input-taxId">
-                                <label>Mã số thuế</label>
-                                <input type="text" placeholder="Nhập mã số thuế của bạn" data-meta="Field" value="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-address-form-action">
-                                <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="clearfix"></div>
             </form>
+            @else
+            <form style="border: 1px solid #F4F4F4">
+                <div class="mod-address-form mod-vn">
+                    <div class="mod-address-form-bd">
+                        <div class="mod-address-form-left">
+                            <div class="title_address">NHẬP ĐỊA CHỈ NGƯỜI NHẬN</div>
+                            <div class="mod-input mod-input-email">
+                                <label>Địa chỉ email</label>
+                                <input type="text" placeholder="Vui lòng nhập email của bạn" data-meta="Field" value="{{ Auth::user()->email }}" disabled="">
+                                <b></b><span></span>
+                            </div>
+                            <div class="mod-input mod-input-name">
+                                <label>Tên</label>
+                                <input type="text" placeholder="Họ Tên" data-meta="Field" value="{{ Auth::user()->full_name }}"disabled="">
+                                <b></b><span></span>
+                            </div>
+                            <div class="mod-input floating error mod-input-phone">
+                                <label>Số điện thoại</label>
+                                <input type="number" placeholder="Xin vui lòng điền số điện thoại của bạn" data-meta="Field" value="{{ Auth::user()->phone }}" disabled="">
+                                <div class="mod-input-close-icon"></div>
+                                <b></b><span></span>
+                            </div>
+                            <div class="mod-input mod-input-taxId">
+                                <label>Địa chỉ người nhận</label>
+                                <input type="text" placeholder="Nhập địa chỉ người nhận của bạn" data-meta="Field" value="{{ Auth::user()->address }}">
+                                <b></b><span></span>
+                                <label style="color: #0000F0">Bạn có thể thay đổi địa chỉ giao hàng</label>
+                            </div>
+                            <div class="mod-address-form-action">
+                                <div class="button_address_left">
+                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
+                                </div>
+                                <div class="button_address_right">
+                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
+                                </div>                                
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </form>
+            @endif
             <div id="listHeader_1" class="list-header">
                 <div>
                     <span class="list-header-left">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm</span>
@@ -141,7 +168,10 @@
             <div class="to_pay_btn1">
                 <button type="button" class="next-btn next-btn-primary next-btn-large checkout-order-total-button" disabled="">TIẾN HÀNH THANH TOÁN</button>
             </div>
-            <div class="checkout-login-btn"><button type="button" class="next-btn next-btn-secondary next-btn-large checkout-order-total-button">ĐĂNG NHẬP ĐỂ THANH TOÁN</button></div>
+            <div class="checkout-login-btn">
+                <button type="button" class="next-btn next-btn-secondary next-btn-large checkout-order-total-button">
+                    <a href="{{ route('login') }}">ĐĂNG NHẬP ĐỂ THANH TOÁN</a>                    
+                </button></div>
             <div class="clearfix"></div>
         </div>
     </div>

@@ -438,14 +438,19 @@ ul.cart-header li .price_product {
     background-color: #fff;
     padding: 38px;
 }
-.mod-address-form-left, .mod-address-form-right {
-    width: 49%;
+.mod-address-form-left{
+    width: 98%;
     float: left;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding-right: 30px;
 }
-.mod-address-form-right {display: none;}
+.title_address{text-align: center;font-size: 19px;padding: 17px 0px;}
+.button_address_right,.button_address_left{
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 15px;
+}
 .mod-address-form .mod-input {
     width: 100%;
 }
@@ -531,7 +536,10 @@ ul.cart-header li .price_product {
 }
 .checkout-order-total-button:hover{
     background-color: #f57224;
+}
+.checkout-order-total-button>a:hover{
     color: #fff !important;
+    text-decoration: none;
 }
 .list-header {
     width: 100%;
