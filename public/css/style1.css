@@ -327,10 +327,17 @@ ul.cart-header li .price_product {
 .payment_button{
     margin: 20px 0px;
     background-color: f57224;
+    padding: 10px;
 }
 #btn-send-gift{
    background-color: #00afef; 
    margin-bottom: 15px;
+   padding: 10px;
+   color: #fff;
+}
+.payment_button>a:hover{
+    text-decoration: none;
+    color: #fff;
 }
 /*.rating{
     padding: 11px 0 0;
@@ -402,6 +409,10 @@ ul.cart-header li .price_product {
     background-color: #fff;
     border-color: #f57224;
 }
+.billaddress, .newaddress{
+    display: inline-block;
+    width: 49%;
+}
 .mod-guest-register-hd {
     font-size: 18px;
     color: #212121;
@@ -409,26 +420,45 @@ ul.cart-header li .price_product {
     padding: 25px 38px 15px 30px;
     background-color: #f4f4f4;
 }
+.mod-guest-register-hd-left{
+    display: inline-block;
+    width: 49%;
+}
+.mod-guest-register-hd-right{
+    display: inline-block;
+    width: 49%;
+    color: #fe3834;
+}
 .mod-address-form {
     background-color: #fff;
     padding: 38px;
 }
-.mod-address-form-left {
+.mod-address-form-left, .mod-address-form-right {
     width: 49%;
     float: left;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding-right: 30px;
 }
+.mod-address-form-right {display: none;}
 .mod-address-form .mod-input {
     width: 100%;
 }
-.mod-input {
+.mod-input,.mod-input1 {
     position: relative;
 }
 .mod-input label {
     font-size: 12px;
     height: 15px;
+    line-height: 15px;
+    overflow: hidden;
+    color: #424242;
+    display: block;
+    margin-bottom: 5px;
+}
+.mod-input1 label {
+    font-size: 19px;
+    height: 23px;
     line-height: 15px;
     overflow: hidden;
     color: #424242;
@@ -447,7 +477,18 @@ ul.cart-header li .price_product {
     margin-bottom: 2px;
     outline: none;
 }
-.mod-input span {
+.mod-input1 input {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 5%;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    line-height: 38px \0;
+    padding: 0 35px 0 10px;
+    margin-bottom: 2px;
+    outline: none;
+}
+.mod-input span,.mod-input1 span {
     min-height: 10px;
     line-height: 10px;
     font-size: 12px;
@@ -462,6 +503,7 @@ ul.cart-header li .price_product {
 }
 .mod-address-form .mod-address-form-btn1 {
     background-color: #30c743;
+    margin-top: 20px;
     border-color: #30c743;
 }
 .mod-address-form-action button {
