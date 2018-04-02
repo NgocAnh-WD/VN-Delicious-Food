@@ -1,6 +1,4 @@
 @extends('layouts.index')
-
-
 @section('welcome')
 <div class="banner">
     <div class="container">
@@ -9,7 +7,7 @@
 <div class="welcome">
     <div class="container">
         <div class="col-md-3 welcome-left">
-            <h2>Welcome to our site</h2>
+            <h2>Welcome to our restaurant</h2>
         </div>
         <div class="col-md-9 welcome-right">
             <h3>Proin ornare massa eu enim pretium efficitur.</h3>
@@ -28,56 +26,56 @@
         <div class="col-md-4 bride-grid">
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
-                    <img src="images/b1.jpg" alt=""/>
+                    <img src="images/d3.jpg" alt=""/>
                     <figcaption>
                         <h4>Nullam molestie </h4>
                         <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>
-                <h3>Wedding Dresses</h3>
+                <h3 style="text-align: center;">Sweet's Food</h3>
             </div>
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
-                    <img src="images/b2.jpg" alt=""/>
+                    <img src="images/d2.jpg" alt=""/>
                     <figcaption>
                         <h4>Nullam molestie </h4>
                         <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
-                <h3>BridalParty & Dresses</h3>
+                <h3 style="text-align: center;">France's Food</h3>
             </div>
         </div>
         <div class="col-md-4 bride-grid">
             <div class="content-grid l-grids">
-                <img src="images/brid.jpg" alt=""/>
+                <img src="images/d7.jpg" alt="Image" style="width: 350px; height: 550px;"/>
 
-                <h3>Bridesmaid Dresses</h3>
+                <h3 style="text-align: center;">Ice-cream Delicious</h3>
             </div>
         </div>
         <div class="col-md-4 bride-grid">
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
-                    <img src="images/b3.jpg" alt=""/>
+                    <img src="images/d6.jpg" alt="Image" style="height: 252.93px;"/>
                     <figcaption>
-                        <h4>Nullam molestie </h4>
+                        <h4>Nullam molestie</h4>
                         <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
-                <h3>Wedding</h3>
+                <h3 style="text-align: center;">Vegetables & Fruit</h3>
             </div>
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
-                    <img src="images/b4.jpg" alt=""/>
+                    <img src="images/d5.jpg" alt="Image" style="height: 214.38px;"/>
                     <figcaption>
                         <h4>Nullam molestie </h4>
                         <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>
-                <h3>Most Beautiful</h3>
+                <h3 style="text-align: center;">Most Beautiful</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -115,7 +113,7 @@
 
 @section('slide1')
 <div class="container">	
-    <h3 style="text-align: center">New Arrivals</h3>
+    <h3>New Arrivals</h3>
     <div class="arrival-grids">			 
         <ul id="flexiselDemo1">
             @if($image_products_new)

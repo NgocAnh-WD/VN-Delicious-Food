@@ -23,10 +23,10 @@ $("#reply").click(function (e) {
             console.log(data);
 
             var reply = '<div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">'
-                    +'<div class="col-md-3">'+'<img src="http://localhost/php_project_laravel/public/'
+                    +'<div class="col-md-3">'+'<img src="http://localhost/group_food/public/'
                     +$('#avata_image1').attr("value")+'" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">'
                     +$('#username1').attr("value")+'<br>'+'</div>'+'<div class="col-md-7">'+data.content+'</div>'+'<div class="col-md-3">'+'<p>'
-                    +'<span class="glyphicon glyphicon-time">'+'</span>'+'Posted:'+data.created_at +'</p>'+ '</div>'+'</div>'+'</div>'+'</div>';
+                    +'<span class="glyphicon glyphicon-time">'+'</span>'+'Posted:'+diffForHumans(data.created_at)+'</p>'+ '</div>'+'</div>'+'</div>'+'</div>';
             $('#show_reply').append(reply);
         },
         error: function (data) {

@@ -21,11 +21,11 @@ $("#comment-btn").click(function (e) {
             alert('Thank for feedback!!');
             console.log(data);
 
-            var comment = '<div class="well">'+'<div class="media">' + '<div class="col-md-2">' +  '<img src="http://localhost/php_project_laravel/public/'
+            var comment = '<div class="well">'+'<div class="media">' + '<div class="col-md-2">' +  '<img src="http://localhost/group_food/public/'
                     +$('#avata_image').attr("value")+'" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">'
                     +$('#username').attr("value")+'<br>'+'</div>'+'<div class="col-md-7">'+'<h4 class="media-heading">'
-                    +'<a href="http://localhost/php_project_laravel/public/single/'+data.product_id+'"style="color: black;">'+data.title+'</a>'+'</h4>'
-                    +data.content+'</div>'+'<div class="col-md-3">'+'<p>'+'<span class="glyphicon glyphicon-time">'+'</span>'+'Posted:'+data.created_at
+                    +'<a href="http://localhost/group_food/public/single/'+data.product_id+'"style="color: black;">'+data.title+'</a>'+'</h4>'
+                    +data.content+'</div>'+'<div class="col-md-3">'+'<p>'+'<span class="glyphicon glyphicon-time">'+'</span>'+'Posted:'+diffForHumans(data.created_at)
                     +'</p>'+ '</div>'+'</div>'+'</div>'+'</div>';
             $('#show_comment').append(comment);
         },

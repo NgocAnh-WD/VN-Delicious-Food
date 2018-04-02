@@ -260,6 +260,7 @@
                     @endforeach
                     @endif
                 </div>
+                <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
             </div>
         </div>	 
     </div>
