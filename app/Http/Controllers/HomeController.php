@@ -114,6 +114,21 @@ class HomeController extends Controller {
         }
     }
 
+        
+    public function reply_product(Request $request) {
+        $input = $request->all();
+        $user = Auth::user();
+        if ($user) {
+            $reply = new Comment();
+            $reply->user_id = $user->id;
+            $reply->parent_id = $request->get('parent_id');
+            $reply->product_id = $request->get('product_id');
+            $reply->content = $request->get('content');
+            $reply->save();
+            return $reply;
+        }
+    }
+
     public function index3() {
         return view('cart');
     }

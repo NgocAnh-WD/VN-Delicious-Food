@@ -117,8 +117,6 @@
                     })
                 });
             </script>
-            <!-- script -->					 
-            <!--            </section>-->
             <script type="text/javascript" src="{{asset('js/jquery-ui.min.js')}}"></script>
             <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-ui.css')}}">
             <script type='text/javascript'>//<![CDATA[ 
@@ -169,7 +167,7 @@
                         <div class="form-group">
                             <div class=" row {{ $errors->has('title') ? 'has-error' : '' }}">
                                 <label for="title">Title:</label>
-                                <input type="text" id="title" name="title" class="form-control" placeholder="Enter Title" value="{{ old('title') }}" required>
+                                <input type="text" id="title" name="title" class="form-control" placeholder="Enter Title">
                                 <span class="text-danger">{{ $errors->first('title') }}</span>
                             </div> 
                         </div>
@@ -177,7 +175,7 @@
                         <div class="form-group">
                             <label for="title">Content:</label>
                             <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
-                                <textarea name="content" class="form-control" rows="5" id="content" placeholder="Enter Content" value="{{ old('content') }}"></textarea>
+                                <textarea name="content" class="form-control" rows="5" id="content" placeholder="Enter Content"></textarea>
                                 <span class="text-danger">{{ $errors->first('content') }}</span>
                             </div> 
                         </div>
@@ -214,31 +212,33 @@
                         <details close>
                             <summary style="color: blue;">View Reply Comment</summary>  
                             @foreach($comments->children as $replyComment)
-                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
-                                <div class="col-md-3">
-                                    @if($replyComment->user)                          
-                                    <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
-                                    {{$replyComment->user->username}}<br>
-                                    @endif
+                            <div id="show_reply">
+                                <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
+                                    <div class="col-md-3">
+                                        @if($replyComment->user)                          
+                                        <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
+                                        {{$replyComment->user->username}}<br>
+                                        @endif
+                                    </div>
+                                    <div class="col-md-6">
+                                        {{str_limit($replyComment->content, 300)}} 
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
+                                    </div>                                                                                
                                 </div>
-                                <div class="col-md-6">
-                                    {{str_limit($replyComment->content, 300)}} 
-                                </div>
-                                <div class="col-md-3">
-                                    <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
-                                </div>                                                                                
                             </div>
                             @endforeach
                             @endif
                         </details>
-
+                        @if(Auth::check())
                         <details close>
                             <summary style="color: blue;">-- Reply --</summary>  
                             <div class="well">
                                 <form id="replyComment" name="comment" method="POST" enctype='multipart/form-data'>
                                     <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
                                     <input type="hidden" id="pro_id" name="product_id" value="{{$product_detail->id}}">
-                                    <input type="hidden" id="parent_id" name="parent_id" id="parent_id" value="{{$comments->id}}">
+                                    <input type="hidden" id="parent_id" name="parent_id" value="{{$comments->id}}">
 
                                     <div class="form-group">
                                         <label for="content">Content:</label>
@@ -249,12 +249,13 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <button id="reply" class="btn btn-primary" value="Comment">Comment</button>
+                                        <button id="reply" class="btn btn-primary" value="Reply">Reply</button>
                                     </div>
                                 </form>  
                                 <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
                             </div> 
                         </details> 
+                        @endif
                     </div>
                     @endforeach
                     @endif
