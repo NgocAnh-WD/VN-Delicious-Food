@@ -66,3 +66,10 @@ Route::get('/shipping', 'HomeController@Shipping');
 Route::get('search','HomeController@getSearch')->name('search');
 Route::post('/searchprice', 'HomeController@searchprice');
 
+Route::group(['middleware' => ['adminLogin']], function () {
+    Route::resource('admin/users','AdminUserController', array('as' =>'admin'));
+    Route::resource('admin/categories','AdminCategoriesController', array('as' =>'admin'));
+    Route::resource('admin/products','AdminProductController', array('as' =>'admin'));
+    Route::resource('admin/comments','AdminCommentsController', array('as' =>'admin'));
+});
+

@@ -14,11 +14,10 @@ public function handle($request, Closure $next)
 if(Auth::check())
 {
     $user = Auth::user();
-    if($user->role == 1){
-        return $next($request);
-   
+    if(Auth::user()->role == 1){
+        return redirect('/admin');
     }else{
-        return redirect('/');
+       return $next($request); 
     }
 }
 }
