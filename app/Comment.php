@@ -4,9 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-
-class Comment extends Model {
-
+class Comment extends Model
+{
     use Notifiable;
 
     protected $fillable = [
@@ -24,5 +23,4 @@ class Comment extends Model {
     public function children() {
         return $this->hasMany('App\Comment', 'parent_id', 'id', ['is_delete', '=', '0']);
     }
-
 }

@@ -4,26 +4,25 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePriceSizesTable extends Migration
+class CreateOrderDetailsTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
+   public function up()
     {
-        Schema::create('price_sizes', function (Blueprint $table) {
+        Schema::create('orderdetails', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('order_id')->unsigned()->index();
             $table->integer('product_id')->unsigned()->index();
+            $table->integer('quantity_pro');
             $table->string('size');
-            $table->string('quality');
-            $table->decimal('price', 15, 2);
-            $table->integer('quantity');
-            $table->integer('is_price')->default(0);
-            $table->integer('is_delete')->default(0);
+            $table->float('discount', 8, 3);
             $table->timestamps();
             
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
         
@@ -36,6 +35,6 @@ class CreatePriceSizesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('price_sizes');
+        Schema::dropIfExists('orderdetails');
     }
 }

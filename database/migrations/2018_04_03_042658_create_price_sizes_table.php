@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderDetailsTable extends Migration
+class CreatePriceSizesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::create('price_sizes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id')->unsigned()->index();
             $table->integer('product_id')->unsigned()->index();
-            $table->integer('quantity_pro');
             $table->string('size');
-            $table->float('discount', 8, 2);
+            $table->string('quality');
+            $table->decimal('price', 15, 3);
+            $table->integer('quantity');
+            $table->integer('is_price')->default(0);
+            $table->integer('is_delete')->default(0);
             $table->timestamps();
             
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
-        
+        // Full Text Index
+//        DB::statement('ALTER TABLE price_sizes ADD FULLTEXT fulltext_index (price)');
     }
 
     /**
@@ -35,6 +37,6 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_details');
+        Schema::dropIfExists('price_sizes');
     }
 }

@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-
-class Order_detail extends Model
+class OrderDetail extends Model
 {
     use Notifiable;
 
@@ -20,5 +19,4 @@ class Order_detail extends Model
     public function product(){
         return $this->belongsToMany('App\Product');
     }
-    
 }

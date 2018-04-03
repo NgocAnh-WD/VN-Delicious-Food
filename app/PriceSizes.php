@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-
-class Price_size extends Model
+class PriceSizes extends Model
 {
     use Notifiable;
-
+    
     protected $fillable = [
         'product_id','size', 'quality', 'price', 'quantity', 'is_delete','is_price',
     ];
@@ -16,5 +15,4 @@ class Price_size extends Model
     public function product() {
         return $this->belongsTo('App\Product');
     }
-    
 }

@@ -8,6 +8,7 @@ use App\Product;
 use App\Image;
 use App\Cart;
 use Session;
+use App\PriceSizes;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +41,7 @@ class HomeController extends Controller {
     public function index2($id) {
         $product_detail = DB::table('products')->where('id', $id)->first();
         $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
-        $price_size = DB::table('price_sizes')->select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 1]])->get();
+        $price_size = DB::table('pricesizes')->select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 1]])->get();
         $comment = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
         return view('product_details', compact('product_detail', 'image', 'price_size', 'comment'));
     }
@@ -143,11 +144,24 @@ class HomeController extends Controller {
     }
 
     public function getSearch() {
-
         $products = Product::search($_GET['key_search'])->paginate(9);
         $products->setPath('search?key_search=' . $_GET['key_search']);
         $key_search = $_GET['key_search'];
-        return view('products', compact('products', 'key_search'));
+        return view('products', compact('products', 'key_search')); 
     }
-
+    
+//    public function searchprice()
+//    {
+//        $price = \Input::get('categories');
+//        echo $price;
+//        $price = (int) $price;
+//        
+//        if($price<50)
+//        {
+//            $products = \Price_size::where('price', $price)->get();
+//        }else {
+//            $products = \Price_size::where('price', $price)->get();
+//    }
+//        return \View::make('products')->with('products', $products); 
+//    }
 }

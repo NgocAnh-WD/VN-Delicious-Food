@@ -15,18 +15,16 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
             $table->datetime('order_date');
             $table->date('required_date');
             $table->string('note');
-            $table->integer('info_customer_id')->unsigned()->index();
+            $table->integer('customer_id')->unsigned()->index();
             $table->date('shipped_date');
             $table->integer('status');
             $table->integer('is_delete')->default(0);
             $table->timestamps();
             
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('info_customer_id')->references('id')->on('info_customers')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             
         });
         

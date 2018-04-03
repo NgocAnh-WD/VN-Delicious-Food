@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('Categories', function (Blueprint $table) {
+        
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id');
             $table->string('name');
+            $table->integer('category_id')->unsigned()->index();
             $table->string('description');
             $table->integer('is_delete')->default(0);
-            $table->timestamps(); 
+            $table->timestamps();
             
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
+        // Full Text Index
+        DB::statement('ALTER TABLE products ADD FULLTEXT fulltext_index (name)');
     }
 
     /**
@@ -31,6 +35,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Categories');
+        Schema::dropIfExists('products');
     }
 }

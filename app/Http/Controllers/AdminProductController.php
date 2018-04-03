@@ -6,7 +6,7 @@ use App\Product;
 use App\Image;
 use App\Category;
 use App\User;
-use App\Price_size;
+use App\PriceSize;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -57,7 +57,7 @@ class AdminProductController extends Controller {
        $input['price'] = $request->get('price');
        $input['quantity'] = $request->get('quantity');
        $input['is_delete'] = 0;
-       Price_size::create($input);
+       PriceSize::create($input);
       
         if ($file = $request->file('link_image')) {
             $year = date('Y');
@@ -112,7 +112,7 @@ class AdminProductController extends Controller {
         $product = Product::findOrFail($id);
         $child_categories = Category::pluck('name', 'id')->all();
 
-        $price_sizes = Price_size::pluck('id')->all();
+        $price_sizes = PriceSize::pluck('id')->all();
         $child_categories = Category::pluck('name', 'id')->all();
         return view('admin.products.edit', compact('product', 'child_categories','price_sizes'));
     }
@@ -130,7 +130,7 @@ class AdminProductController extends Controller {
 
         $product_id = $id;
         
-       $price_size = new Price_size();
+       $price_size = new PriceSize();
        $price_size['size'] = $request['size'];
        $price_size['quality'] = $request['quality'];
        $price_size['price'] = $request['price'];
