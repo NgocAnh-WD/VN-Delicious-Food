@@ -9,7 +9,7 @@
         </ol>
         <h2>Our Products</h2>			
         <div class="col-md-9 product-model-sec">
-            @if($products)
+            @if(isset($products))
             <h5 style="color: red">We have {{count($products)}} product(s)</h5>
             @foreach($products as $key => $product)
             
@@ -38,8 +38,6 @@
         </div>	
         @endforeach
         @endif
-        
-
         
         <div class="row">
             <div class="col-lg-6 col-sm-offset-5">
@@ -103,27 +101,31 @@
                 <form method="POST" name="FormSortProduct" action="">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     <div class="col col-4">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published1" value="100" ><i></i>10.000-100.000 (VND)</label>
-                    </div>
-                    <div class="col col-4">                    
-                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published2" value="200"><i></i>109.000-199.000 (VND)</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published3" value="400"><i></i>200.000-399.000 (VND)</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published4" value="500"><i></i>400.000-499.000 (VND)</label>
-                        <label class="checkbox"><input type="checkbox" name="checkbox" id="published5" value="501"><i></i>Over 500.000 (VND)</label>
+                        <div class="category">
+                            <label class="checkbox"><input type="checkbox" name="price[]" id="published1" value="20" ><i></i>1.000-19.000 (VND)</label>
+                        </div>
+                        
+                        <div class="category">
+                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published2" value="30"><i></i>20.000-29.000 (VND)</label>
+                        </div>
+                        
+                        <div class="category">
+                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published3" value="40"><i></i>30.000-39.000 (VND)</label>
+                        </div>
+                        
+                        <div class="category">
+                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published4" value="50"><i></i>40.000-49.000 (VND)</label>
+                        </div>
+                        
+                        <div class="category">
+                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published5" value="50"><i></i>Over 50.000 (VND)</label>
+                        </div>
                     </div>
                 </form>
             </div>
-        </section> 				 				 
-        <section  class="sky-form">
-            <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>Price</h4>
-            <ul class="dropdown-menu1">
-                <li><a href="">								               
-                        <div id="slider-range"></div>							
-                        <input type="text" id="amount" style="border: 0; font-weight: NORMAL;   font-family: 'Arimo', sans-serif;" />
-                    </a></li>			
-            </ul>
         </section>
         <!---->
+        <script type="text/javascript" src="js/search.js"></script>
         <script type="text/javascript" src="js/jquery-ui.min.js"></script>
         <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
         <script type='text/javascript'>//<![CDATA[ 

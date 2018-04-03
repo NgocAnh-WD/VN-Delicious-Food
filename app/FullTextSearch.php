@@ -32,7 +32,7 @@ trait FullTextSearch {
              * applying + operator (required word) only big words
              * because smaller ones are not indexed by mysql
              */
-            if (strlen($word) >= 3) {
+            if (strlen($word) >= 1) {
                 $words[$key] = '+' . $word . '*';
             }
         }
@@ -51,7 +51,7 @@ trait FullTextSearch {
      */
     public function scopeSearch($query, $term) {
         $columns = implode(',', $this->searchable);
-
+        
         $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
 
         return $query;

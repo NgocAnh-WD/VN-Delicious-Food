@@ -26,7 +26,7 @@ class Product extends Model
         return $this->hasMany('App\Image');
     }
     public function thumbnail() {
-       return $this->images()->where([['is_thumbnail', 1],['is_delete', 0]])->get()->last();
+       return $this->images()->where([['is_thumbnail', 0],['is_delete', 0]])->get()->last();
    }
 //    public function photo(){
 //        return $this->images()->get()->first();

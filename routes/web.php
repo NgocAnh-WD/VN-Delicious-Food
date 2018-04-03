@@ -64,5 +64,5 @@ Route::get('product/deductbyone/{id}', 'HomeController@deductByOne');
 Route::get('/shoppingcart', 'HomeController@getCart');
 Route::get('/shipping', 'HomeController@Shipping');
 Route::get('search','HomeController@getSearch')->name('search');
-
+Route::post('/searchprice', 'HomeController@searchprice');
 
