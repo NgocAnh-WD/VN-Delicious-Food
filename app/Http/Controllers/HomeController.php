@@ -155,6 +155,9 @@ class HomeController extends Controller {
     }
 
     public function searchprice(Request $request) {
+        $id = $_GET['id'];
+        $test = new TestModel();
+        $result = $test->getData($id);
 //        $input = $request->all();
 //        $products = Product::limit(12)->get();
 //        $products->id = $request->id;
