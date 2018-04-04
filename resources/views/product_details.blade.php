@@ -188,31 +188,31 @@
                 </div>
                 @endif
                 <div id="show_comment">
-                    @if($comment)
-                    @foreach($comment as $comments)
+                    @if($comments)
+                    @foreach($comments as $comment)
                     <div class="well" >
                         <div class="row">
                             <div class="media">
                                 <div class="col-md-2">
-                                    @if($comments->user)                               
-                                    <img src="{{asset($comments->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
-                                    {{$comments->user->username}}<br>
+                                    @if($comment->user)                               
+                                    <img src="{{asset($comment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%;">
+                                    {{$comment->user->username}}<br>
                                     @endif
                                 </div>
                                 <div class="col-md-7">
-                                    <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comments->title}}</a></h4>
-                                    {{str_limit($comments->content, 300)}} 
+                                    <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comment->title}}</a></h4>
+                                    {{str_limit($comment->content, 300)}} 
                                 </div>
                                 <div class="col-md-3">
-                                    <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comments->created_at->diffForhumans()}}</p>
+                                    <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comment->created_at->diffForhumans()}}</p>
                                 </div> 
                             </div>
                         </div>                                       
-                        @if(count($comments->children))
+                        @if(count($comment->children))
                         <details close>
-                            <summary style="color: blue;">View Reply Comment</summary>  
-                            @foreach($comments->children as $replyComment)
-                            <div id="show_reply">
+                            <summary style="color: blue;">View Reply Comment</summary>
+                            @foreach($comment->children as $replyComment)
+                            <div id="show_reply_{{$comment->id}}">
                                 <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
                                     <div class="col-md-3">
                                         @if($replyComment->user)                          
@@ -235,21 +235,24 @@
                         <details close>
                             <summary style="color: blue;">-- Reply --</summary>  
                             <div class="well">
-                                <form id="replyComment" name="comment" method="POST" enctype='multipart/form-data'>
+                                <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
                                     <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
-                                    <input type="hidden" id="pro_id_{{$comments->id}}" name="product_id" value="{{$product_detail->id}}">
-                                    <input type="hidden" id="parent_id_{{$comments->id}}" name="parent_id" value="{{$comments->id}}">
+                                    <input type="hidden" id="pro_id_{{$comment->id}}" name="product_id" value="{{$product_detail->id}}">
+                                    <input type="hidden" id="parent_id_{{$comment->id}}" name="parent_id" value="{{$comment->id}}">
+                                    <input type="hidden" id="user_id" value="{{Auth::check() ? Auth::user()->id : 0}}"/>
+                                    <input type="hidden" id="avata_image1" value="{{Auth::check() ? Auth::user()->avata_image : ""}}"/>
+                                    <input type="hidden" id="username1" value="{{Auth::check()?Auth::user()->username :""}}"/>
 
                                     <div class="form-group">
                                         <label for="content">Content:</label>
                                         <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
-                                            <textarea id="reply_content_{{$comments->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
+                                            <textarea id="reply_content_{{$comment->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
                                             <span class="text-danger">{{ $errors->first('content') }}</span>
                                         </div> 
                                     </div>
 
                                     <div class="form-group">
-                                        <button class="btn btn-primary reply" data-id="{{$comments->id}}" value="Reply">Reply</button>
+                                        <button class="btn btn-primary reply" data-id="{{$comment->id}}" value="Reply">Reply</button>
                                     </div>
                                 </form>  
                                 <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>

@@ -3,11 +3,8 @@
     <head>
         <title>Food Store</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="{{asset('js/jquery.min.js')}}"></script>
-        <!-- Custom Theme files -->
-        <!--theme-style-->
+<!--        <script src="{{asset('js/jquery.min.js')}}"></script>-->
         <link href="{{asset('css/style.css')}}" rel="stylesheet">	
-        <!--//theme-style-->
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,16 +12,11 @@
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <!--        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
 
-<!--        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
-        <!-- start menu -->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
-        <!-- start menu -->
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
-
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">
-
         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
-
         <script>$(document).ready(function () {
             // $(".memenu").memenu();
             });</script>	
@@ -99,23 +91,15 @@
                             </ul>
                         </div>
                     </div>
-                    <!--                    <div class="navbar-header">
-                    
-                                        </div>-->
                 </div>
             </nav>
         </div>
-
-        <!-- Scripts -->
-<!--        <script src="{{ asset('js/app.js') }}"></script>-->
         <div class="header-top">
             <div class="header-bottom">
                 <div class="container">			
                     <div class="logo">
                         <a href="{{asset('/products')}}"><h1>Food Store</h1></a>
                     </div>
-                    <!---->
-
                     <div class="top-nav">
                         <ul class="memenu skyblue"><li class="active"><a href="{{asset('/home')}}">Home</a></li>
                             <li class="grid"><a href="{{asset('/products')}}">Products</a>
