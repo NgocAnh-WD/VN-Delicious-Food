@@ -438,8 +438,8 @@ ul.cart-header li .price_product {
     background-color: #fff;
     padding: 38px;
 }
-.mod-address-form-left{
-    width: 98%;
+.mod-address-form-left,.mod-address-form-right{
+    width: 49%;
     float: left;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -448,7 +448,7 @@ ul.cart-header li .price_product {
 .title_address{text-align: center;font-size: 19px;padding: 17px 0px;}
 .button_address_right,.button_address_left{
     display: inline-block;
-    width: 49%;
+    width: 100%;
     margin-bottom: 15px;
 }
 .mod-address-form .mod-input {
