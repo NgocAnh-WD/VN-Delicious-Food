@@ -237,19 +237,19 @@
                             <div class="well">
                                 <form id="replyComment" name="comment" method="POST" enctype='multipart/form-data'>
                                     <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
-                                    <input type="hidden" id="pro_id" name="product_id" value="{{$product_detail->id}}">
-                                    <input type="hidden" id="parent_id" name="parent_id" value="{{$comments->id}}">
+                                    <input type="hidden" id="pro_id_{{$comments->id}}" name="product_id" value="{{$product_detail->id}}">
+                                    <input type="hidden" id="parent_id_{{$comments->id}}" name="parent_id" value="{{$comments->id}}">
 
                                     <div class="form-group">
                                         <label for="content">Content:</label>
                                         <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
-                                            <textarea id="reply_content" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
+                                            <textarea id="reply_content_{{$comments->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
                                             <span class="text-danger">{{ $errors->first('content') }}</span>
                                         </div> 
                                     </div>
 
                                     <div class="form-group">
-                                        <button id="reply" class="btn btn-primary" value="Reply">Reply</button>
+                                        <button class="btn btn-primary reply" data-id="{{$comments->id}}" value="Reply">Reply</button>
                                     </div>
                                 </form>  
                                 <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>

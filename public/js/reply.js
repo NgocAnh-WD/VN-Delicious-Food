@@ -1,4 +1,5 @@
-$("#reply").click(function (e) {
+$(".reply").click(function (e) {
+    var comment_id = $(this).data('id');
     e.preventDefault();
     $.ajaxSetup({
         headers: {
@@ -7,9 +8,10 @@ $("#reply").click(function (e) {
     });
 
     var dataReply = {
-        content: $('#reply_content').val(),
-        product_id: $('#pro_id').val(),
-        parent_id: $('#parent_id').val()
+        title: 's',
+        content: $('#reply_content_' + comment_id).val(),
+        product_id: $('#pro_id_' + comment_id).val(),
+        parent_id: $('#parent_id_' + comment_id).val()
     }
 
     console.log(dataReply);

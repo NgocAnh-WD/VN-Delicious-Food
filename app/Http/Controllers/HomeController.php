@@ -122,6 +122,7 @@ class HomeController extends Controller {
         if ($user) {
             $reply = new Comment();
             $reply->user_id = $user->id;
+            $reply->title = $request->get('title');
             $reply->parent_id = $request->get('parent_id');
             $reply->product_id = $request->get('product_id');
             $reply->content = $request->get('content');
