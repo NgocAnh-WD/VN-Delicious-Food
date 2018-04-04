@@ -28,13 +28,13 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::limit(12)->get();
-        $image_products_new = Image::limit(6)->get();
-        return view('home', compact('products', 'image_products_new'));
+        $products = Product::where('is_delete', '=','0')->orderBy('created_at', 'desc')->limit(12)->get();
+        $products_new = Product::where('is_delete', '=','0')->orderBy('created_at', 'desc')->limit(6)->get();
+        return view('home', compact('products', 'products_new'));
     }
 
     public function index1() {
-        $products = Product::orderBy('id', 'asc')->paginate(9);
+        $products = Product::where('is_delete', '=','0')->orderBy('created_at', 'desc')->paginate(9);
         return view('products', compact('products'));
     }
 

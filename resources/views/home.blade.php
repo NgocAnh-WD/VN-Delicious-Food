@@ -90,7 +90,7 @@
         @if($products)
         @foreach($products as $key => $product)
         <div class="col-md-3 feature-grid jewel">
-            <a href="{{ url('/products') }}"><img src="{{asset($product->thumbnail()->link_image)}}" alt="" id="image_responsive"/>	
+            <a href="{{url('/products')}}"><img src="{{asset($product->thumbnail()->link_image)}}" style="width: 275px; height:250px;"/>	
                 <div class="arrival-info">
                     <h4>{{$product->category ? $product->category->name : 'Uncategorized'}}</h4>
                     <p>{{$product->name}}</p>
@@ -116,14 +116,14 @@
     <h3>New Arrivals</h3>
     <div class="arrival-grids">			 
         <ul id="flexiselDemo1">
-            @if($image_products_new)
-            @foreach($image_products_new as $key => $image_product_new)
+            @if($products_new)
+            @foreach($products_new as $key => $product_new)
             <li>
-                <a href="{{ url('/products') }}"><img src="{{ asset($image_product_new['link_image']) }}" alt=""/>
+                <a href="{{ url('/products') }}"><img src="{{asset($product_new->thumbnail()->link_image)}}" style="height:240px;" alt=""/>
                     <div class="arrival-info">
-                        <h4>{{$image_product_new['product']['category'] ? $image_product_new['product']['category']['name'] : 'Uncategorized'}}</h4>
-                        <p>{{$image_product_new['product']['name']}}</p>
-                        <span class="pric1"><del>{{$image_product_new['product']['name']}}</del></span>
+                        <h4>{{$product_new->category ? $product_new->category->name : 'Uncategorized'}}</h4>
+                        <p>{{$product_new->name}}</p>
+                        <span class="pric1"><del>{{$product_new->name}}</del></span>
                         <span class="disc">[10% Off]</span>
                     </div>
                     <div class="viw">
@@ -177,9 +177,9 @@
 
                 <div class="panel-body">
                     @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     You are logged in!
