@@ -14,131 +14,161 @@
                 </div>
             </div>
             @if (Auth::guest())
-            <form style="border: 1px solid #F4F4F4">
-                <div class="mod-address-form mod-vn">
-                    <div class="mod-address-form-bd">
-                        <div class="mod-address-form-left">
-                            <div class="title_address">NHẬP ĐỊA CHỈ NGƯỜI NHẬN</div>
-                            <div class="mod-input mod-input-email">
-                                <label>Địa chỉ email</label>
-                                <input type="text" placeholder="Vui lòng nhập email của bạn" data-meta="Field" value="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input mod-input-name">
-                                <label>Tên</label>
-                                <input type="text" placeholder="Họ Tên" data-meta="Field" value="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input floating error mod-input-phone">
-                                <label>Số điện thoại</label>
-                                <input type="number" placeholder="Xin vui lòng điền số điện thoại của bạn" data-meta="Field">
-                                <div class="mod-input-close-icon"></div>
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input mod-input-taxId">
-                                <label>Địa chỉ người nhận</label>
-                                <input type="text" placeholder="Nhập địa chỉ người nhận của bạn" data-meta="Field" value="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-address-form-action">
-                                <div class="button_address_left">
-                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
+                    <form action="{{route('orders.store')}}" style="border: 1px solid #F4F4F4" method="post">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    <div class="mod-address-form mod-vn">
+                        <div class="mod-address-form-bd">
+                            <div class="title_address">NHẬP ĐỊA CHỈ NGƯỜI NHẬN</div>                            
+                            <div class="mod-address-form-left">
+                                <div class="mod-input mod-input-email">
+                                    <label>Địa chỉ email</label>
+                                    <input type="email" name="email" placeholder="Vui lòng nhập email của bạn" data-meta="Field" value="{{ old('email') }}">
+                                    <b></b><span></span>
+                                    <label style="color: #CA5952" >{{ $errors->has('email') ? 'Vui lòng nhập email người nhận.' : '' }} </label>
                                 </div>
-                                <div class="button_address_right">
-                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
-                                </div>                                
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </form>
-            @else
-            <form style="border: 1px solid #F4F4F4">
-                <div class="mod-address-form mod-vn">
-                    <div class="mod-address-form-bd">
-                        <div class="mod-address-form-left">
-                            <div class="title_address">NHẬP ĐỊA CHỈ NGƯỜI NHẬN</div>
-                            <div class="mod-input mod-input-email">
-                                <label>Địa chỉ email</label>
-                                <input type="text" placeholder="Vui lòng nhập email của bạn" data-meta="Field" value="{{ Auth::user()->email }}" disabled="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input mod-input-name">
-                                <label>Tên</label>
-                                <input type="text" placeholder="Họ Tên" data-meta="Field" value="{{ Auth::user()->full_name }}"disabled="">
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input floating error mod-input-phone">
-                                <label>Số điện thoại</label>
-                                <input type="number" placeholder="Xin vui lòng điền số điện thoại của bạn" data-meta="Field" value="{{ Auth::user()->phone }}" disabled="">
-                                <div class="mod-input-close-icon"></div>
-                                <b></b><span></span>
-                            </div>
-                            <div class="mod-input mod-input-taxId">
-                                <label>Địa chỉ người nhận</label>
-                                <input type="text" placeholder="Nhập địa chỉ người nhận của bạn" data-meta="Field" value="{{ Auth::user()->address }}">
-                                <b></b><span></span>
-                                <label style="color: #0000F0">Bạn có thể thay đổi địa chỉ giao hàng</label>
-                            </div>
-                            <div class="mod-address-form-action">
-                                <div class="button_address_left">
-                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
+                                <div class="mod-input mod-input-name">
+                                    <label>Tên</label>
+                                    <input type="text" name="name" placeholder="Họ Tên" data-meta="Field" value="{{ old('name') }}">
+                                    <b></b><span></span>
+                                    <label style="color: #CA5952" >{{ $errors->has('name') ? 'Vui lòng nhập name người nhận.' : '' }} </label>
                                 </div>
-                                <div class="button_address_right">
-                                    <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
-                                </div>                                
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </form>
-            @endif
-            <div id="listHeader_1" class="list-header">
-                <div>
-                    <span class="list-header-left">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm</span>
-                    <span class="list-header-middle">GIÁ</span>
-                    <span class="list-header-right">SỐ LƯỢNG</span>
-                </div>
-                <div>
-                    @if(Session::has('cart'))
-                    @foreach($products as $product)
-                    <div id="item_3bd7f2b8851ed987ff8905e11de1ba99" class="cart-item">
-                        <div class="cart-item-inner">
-                            <div class="cart-item-left">
-                                <div class="img-wrap">
-                                    <a href="#" class="automation-link-from-image-to-prod">
-                                        <img class="img" src="{{ asset($product['image']) }}" alt="item">
-                                    </a>
+                                <div class="mod-input floating error mod-input-phone">
+                                    <label>Số điện thoại</label>
+                                    <input type="number" name="phone" placeholder="Xin vui lòng điền số điện thoại của bạn" data-meta="Field" value="{{ old('phone') }}">
+                                    <div class="mod-input-close-icon"></div>
+                                    <b></b><span></span>
+                                    <label style="color: #CA5952" >{{ $errors->has('phone') ? 'Vui lòng kiểm tra số điện thoại người nhận.' : '' }} </label>
                                 </div>
-                                <div class="content">
-                                    <a id="automation-link-from-title-to-prod-item_3bd7f2b8851ed987ff8905e11de1ba99" href="#" class="automation-link-from-title-to-prod title">
-                                        {{$product['name']}}</a>
-                                    <div class="operations">
-                                        <span class="automation-btn-delete">
-                                            <span class="lazada lazada-ic-Delete lazada-icon icon delete">
-
-                                            </span>
-
-                                        </span>
+                                <div class="mod-input mod-input-taxId">
+                                    <label>Địa chỉ người nhận</label>
+                                    <input type="text" placeholder="Nhập địa chỉ người nhận của bạn" data-meta="Field" value="">
+                                    <b></b><span></span>
+                                </div>
+                                <div class="mod-address-form-action">
+                                    <div class="button_address_left">
+                                        <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
                                     </div>
+                                    <!--                                <div class="button_address_right">
+                                                                        <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
+                                                                    </div>                                -->
                                 </div>
-                            </div>
-                            <div class="cart-item-middle">
-                                <p class="current-price">{{ $product['price']}}.000VND</p>
-                            </div>
-                            <div class="cart-item-right">
-                                <div class="quantity1 automation-item-quantity">
-                                    <span class="item-quantity-value">{{$product['qty']}}</span>
+                            </div> 
+                            <div class="mod-address-form-right">
+                                <div class="mod-input mod-input-email">
+                                    <label>Nhập địa chỉ tỉnh thành phố</label>
+                                    <input type="text" name="city" placeholder="Vui lòng nhập địa chỉ của bạn" data-meta="Field" value="{{ old('city') }}">
+                                    <b></b><span></span>
+                                    <label style="color: #CA5952" >{{ $errors->has('city') ? 'Vui lòng nhập city người nhận.' : '' }} </label>
+                                </div>
+                                <div class="mod-input mod-input-email">
+                                    <label>Nhập địa chỉ quận huyện</label>
+                                    <input type="text" name="district" placeholder="Vui lòng nhập địa chỉ của bạn" data-meta="Field" value="{{ old('district') }}">
+                                    <b></b><span></span>
+                                    <label style="color: #CA5952" >{{ $errors->has('district') ? 'Vui lòng nhập district người nhận.' : '' }} </label>
+                                </div>
+                                <div class="mod-input mod-input-email">
+                                    <label>Nhập địa chỉ xã phường</label>
+                                    <input type="text" name="ward" placeholder="Vui lòng nhập địa chỉ của bạn" data-meta="Field" value="{{ old('ward') }}">
+                                    <b></b><span></span>
+                                    <label style="color: #CA5952" >{{ $errors->has('ward') ? 'Vui lòng nhập ward người nhận.' : '' }} </label>
+                                </div>
+                                <div class="mod-input mod-input-email">
+                                    <label>Nhập địa chỉ thôn xóm ấp</label>
+                                    <input type="text" name="hamlet" placeholder="Vui lòng nhập địa chỉ của bạn" data-meta="Field" value="{{ old('hamlet') }}">
+                                    <b></b><span></span>
+                                    <label style="color: #CA5952" >{{ $errors->has('hamlet') ? 'Vui lòng nhập hamlet người nhận.' : '' }} </label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                    @endif
+                    <div class="clearfix"></div>
+                </form>
+                @else
+                <form style="border: 1px solid #F4F4F4">
+                    <div class="mod-address-form mod-vn">
+                        <div class="mod-address-form-bd">
+                            <div class="mod-address-form-left">
+                                <div class="title_address">NHẬP ĐỊA CHỈ NGƯỜI NHẬN</div>
+                                <div class="mod-input mod-input-email">
+                                    <label>Địa chỉ email</label>
+                                    <input type="text" placeholder="Vui lòng nhập email của bạn" data-meta="Field" value="{{ Auth::user()->email }}" disabled="">
+                                    <b></b><span></span>
+                                </div>
+                                <div class="mod-input mod-input-name">
+                                    <label>Tên</label>
+                                    <input type="text" placeholder="Họ Tên" data-meta="Field" value="{{ Auth::user()->full_name }}"disabled="">
+                                    <b></b><span></span>
+                                </div>
+                                <div class="mod-input floating error mod-input-phone">
+                                    <label>Số điện thoại</label>
+                                    <input type="number" placeholder="Xin vui lòng điền số điện thoại của bạn" data-meta="Field" value="{{ Auth::user()->phone }}" disabled="">
+                                    <div class="mod-input-close-icon"></div>
+                                    <b></b><span></span>
+                                </div>
+                                <div class="mod-input mod-input-taxId">
+                                    <label>Địa chỉ người nhận</label>
+                                    <input type="text" placeholder="Nhập địa chỉ người nhận của bạn" data-meta="Field" value="{{ Auth::user()->address }}">
+                                    <b></b><span></span>
+                                    <label style="color: #0000F0">Bạn có thể thay đổi địa chỉ giao hàng</label>
+                                </div>
+                                <div class="mod-address-form-action">
+                                    <div class="button_address_left">
+                                        <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
+                                    </div>
+                                    <div class="button_address_right">
+                                        <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
+                                    </div>                                
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+                @endif
+                <div id="listHeader_1" class="list-header">
+                    <div>
+                        <span class="list-header-left">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm</span>
+                        <span class="list-header-middle">GIÁ</span>
+                        <span class="list-header-right">SỐ LƯỢNG</span>
+                    </div>
+                    <div>
+                        @if(Session::has('cart'))
+                        @foreach($products as $product)
+                        <div id="item_3bd7f2b8851ed987ff8905e11de1ba99" class="cart-item">
+                            <div class="cart-item-inner">
+                                <div class="cart-item-left">
+                                    <div class="img-wrap">
+                                        <a href="#" class="automation-link-from-image-to-prod">
+                                            <img class="img" src="{{ asset($product['image']) }}" alt="item">
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <a id="automation-link-from-title-to-prod-item_3bd7f2b8851ed987ff8905e11de1ba99" href="#" class="automation-link-from-title-to-prod title">
+                                            {{$product['name']}}</a>
+                                        <div class="operations">
+                                            <span class="automation-btn-delete">
+                                                <span class="lazada lazada-ic-Delete lazada-icon icon delete">
+
+                                                </span>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart-item-middle">
+                                    <p class="current-price">{{ $product['price']}}.000VND</p>
+                                </div>
+                                <div class="cart-item-right">
+                                    <div class="quantity1 automation-item-quantity">
+                                        <span class="item-quantity-value">{{$product['qty']}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
                 </div>
-            </div>
 
         </div>
         <div class="col-md-3 cart-total">
