@@ -4,35 +4,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta charset="utf-8" />
         <title>Admin Page</title>
-
         <meta name="description" content="overview &amp; stats" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
-        <!-- bootstrap & fontawesome -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('css/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
-
-        <!-- page specific plugin styles -->
-
-        <!-- text fonts -->
         <link rel="stylesheet" href="{{asset('css/fonts.googleapis.com.css')}}" />
-
-        <!-- ace styles -->
         <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
-
-        <!--[if lte IE 9]>
-                <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
-        <![endif]-->
         <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
         <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
-
-        <!--[if lte IE 9]>
-          <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-        <![endif]-->
-
-        <!-- inline styles related to this page -->
-
-        <!-- ace settings handler -->
         <script src="{{asset('js/ace-extra.min.js')}}"></script>       
     </head>
 
@@ -82,24 +61,24 @@
                         </li>
 
                         <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user() }} <span class="caret"></span>
-                                </a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->username }} <span class="caret"></span>
+                            </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}" 
-                                           onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('logout') }}" 
+                                       onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div><!-- /.navbar-container -->
@@ -107,10 +86,10 @@
 
         <div class="main-container ace-save-state" id="main-container">
             <script type="text/javascript">
-try {
-    ace.settings.loadState('main-container')
-} catch (e) {
-}
+                try {
+                    ace.settings.loadState('main-container')
+                } catch (e) {
+                }
             </script>
 
             <div id="sidebar" class="sidebar responsive                    ace-save-state">
@@ -182,7 +161,7 @@ try {
                             </li>
 
                             <li class="">
-                              <a href="{{ url('admin/users/create') }}">
+                                <a href="{{ url('admin/users/create') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Create User
                                 </a>
@@ -222,7 +201,7 @@ try {
                             </li>
 
                             <li class="">
-                              <a href="{{ url('admin/products/create') }}">
+                                <a href="{{ url('admin/products/create') }}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Create Product
                                 </a>
