@@ -151,6 +151,11 @@ class HomeController extends Controller {
         return view('products', compact('products', 'key_search')); 
     }
     
+    public function profile() {
+        return view('/profile');
+    }
+
+
 //    public function searchprice()
 //    {
 //        $price = \Input::get('categories');
