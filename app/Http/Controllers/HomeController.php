@@ -115,7 +115,6 @@ class HomeController extends Controller {
         }
     }
 
-        
     public function reply_product(Request $request) {
         $input = $request->all();
         $user = Auth::user();
@@ -148,26 +147,22 @@ class HomeController extends Controller {
         $products = Product::search($_GET['key_search'])->paginate(9);
         $products->setPath('search?key_search=' . $_GET['key_search']);
         $key_search = $_GET['key_search'];
-        return view('products', compact('products', 'key_search')); 
+        return view('products', compact('products', 'key_search'));
     }
-    
+
     public function profile() {
         return view('/profile');
     }
 
+    public function searchprice(Request $request) {
+//        $input = $request->all();
+//        $products = Product::limit(12)->get();
+//        $products->id = $request->id;
+//        $products->name = $request->get('product_id');
+//        $products->title = $request->get('title');
+//        $products->content = $request->get('content');
+//        $comment->save();
+        return response()->json(['message' => 'successful']);
+    }
 
-//    public function searchprice()
-//    {
-//        $price = \Input::get('categories');
-//        echo $price;
-//        $price = (int) $price;
-//        
-//        if($price<50)
-//        {
-//            $products = \Price_size::where('price', $price)->get();
-//        }else {
-//            $products = \Price_size::where('price', $price)->get();
-//    }
-//        return \View::make('products')->with('products', $products); 
-//    }
 }
