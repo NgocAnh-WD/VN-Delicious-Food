@@ -12,12 +12,12 @@
             @if(isset($products))
             <h5 style="color: red">We have {{count($products)}} product(s)</h5>
             @foreach($products as $key => $product)
-            
+
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <a href="{{ url('/single',$product->id) }}"> <div class="product-grid love-grid">
                     <div class="more-product"><span> </span></div>						
                     <div class="product-img b-link-stripe b-animate-go  thickbox">
-                        <img src="{{ asset($product->thumbnail()->link_image) }}" class="img-responsive" alt=""/>
+                        <img src="{{ asset($product->thumbnail()->link_image) }}" style="height:220px;"/>
                         <div class="b-wrapper">
                             <h4 class="b-animate b-from-left  b-delay03">							
                                 <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
@@ -25,20 +25,22 @@
                         </div>
                     </div></a>						
             <div class="product-info simpleCart_shelfItem">
-                <div class="product-info-cust prt_name">
+                <div class="product-info-cust prt_name" style="text-align: center;">
                     <h4>{{$product->name}}</h4>
                     <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
                     <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}</span>								
-                    <input type="text" class="item_quantity" value="1" />
-                    <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>
-                    <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2"></div>
-                    <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
+                    <input type="text" class="item_quantity" value="1" style="margin: auto;"/>
+                    <div id="style" style="margin-top: 10px;">
+                        <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>
+                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2"></div>
+                        <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
+                    </div>
                 </div>													
             </div>
         </div>	
         @endforeach
         @endif
-        
+
         <div class="row">
             <div class="col-lg-6 col-sm-offset-5">
                 {{ $products->render() }}

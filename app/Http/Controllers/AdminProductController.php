@@ -6,7 +6,7 @@ use App\Product;
 use App\Image;
 use App\Category;
 use App\User;
-use App\PriceSize;
+use App\PriceSizes;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -20,12 +20,12 @@ class AdminProductController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-        public function __construct() {
+    public function __construct() {
         $this->middleware('auth');
     }
+
     public function index() {
         $products = Product::orderBy('created_at', 'DES')->paginate(3);
-
         return view('admin.products.index', compact('products'));
     }
 
@@ -47,18 +47,18 @@ class AdminProductController extends Controller {
      */
     public function store(Request $request) {
         $input = $request->all();
-        
+
 //        $product = new Product();
 //        $product->create($input);
         $product = Product::create($input);
-       $input['product_id'] = $product->id;
-       $input['size'] = $request->get('size');
-       $input['quality'] = $request->get('quality');
-       $input['price'] = $request->get('price');
-       $input['quantity'] = $request->get('quantity');
-       $input['is_delete'] = 0;
-       PriceSize::create($input);
-      
+        $input['product_id'] = $product->id;
+        $input['size'] = $request->get('size');
+        $input['quality'] = $request->get('quality');
+        $input['price'] = $request->get('price');
+        $input['quantity'] = $request->get('quantity');
+        $input['is_delete'] = 0;
+        PriceSizes::create($input);
+
         if ($file = $request->file('link_image')) {
             $year = date('Y');
             $month = date('m');
@@ -72,7 +72,7 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>1]);                         
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
         }
         if ($file = $request->file('image')) {
             $year = date('Y');
@@ -87,11 +87,12 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>0]);                         
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
         }
-        
-               return redirect('/admin/products');
-}
+
+        return redirect('/admin/products');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -111,10 +112,9 @@ class AdminProductController extends Controller {
     public function edit($id) {
         $product = Product::findOrFail($id);
         $child_categories = Category::pluck('name', 'id')->all();
-
-        $price_sizes = PriceSize::pluck('id')->all();
-        $child_categories = Category::pluck('name', 'id')->all();
-        return view('admin.products.edit', compact('product', 'child_categories','price_sizes'));
+        $image = Image::where('product_id', $id)->get()->all();
+        $price_sizes = PriceSizes::pluck('id')->all();
+        return view('admin.products.edit', compact('product', 'child_categories', 'price_sizes'));
     }
 
     /**
@@ -129,16 +129,16 @@ class AdminProductController extends Controller {
         $input = $request->all();
 
         $product_id = $id;
-        
-       $price_size = new PriceSize();
-       $price_size['size'] = $request['size'];
-       $price_size['quality'] = $request['quality'];
-       $price_size['price'] = $request['price'];
-       $price_size['quantity'] = $request['quantity'];
-       $price_size['product_id'] = $product_id;
-       $price_size->save();
 
-         if ($file = $request->file('link_image')) {
+        $price_size = new PriceSizes();
+        $price_size['size'] = $request['size'];
+        $price_size['quality'] = $request['quality'];
+        $price_size['price'] = $request['price'];
+        $price_size['quantity'] = $request['quantity'];
+        $price_size['product_id'] = $product_id;
+        $price_size->save();
+
+        if ($file = $request->file('link_image')) {
             $year = date('Y');
             $month = date('m');
 
@@ -151,7 +151,7 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>1]);                         
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
         }
         if ($file = $request->file('image')) {
             $year = date('Y');
@@ -166,10 +166,10 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id,'is_delete' => 0,'is_thumbnail'=>0]);                         
+            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
         }
-        
-       
+
+
         $product->update($input);
         return redirect('/admin/products');
     }

@@ -29,6 +29,10 @@ use Notifiable;
     public function thumbnail() {
         return $this->images()->where([['is_thumbnail', 1], ['is_delete', 0]])->get()->last();
     }
+    
+    public function image() {
+        return $this->images()->where([['is_thumbnail',0],['is_delete',0]])->get()->last(); 
+    }
 
 //    public function photo(){
 //        return $this->images()->get()->first();
