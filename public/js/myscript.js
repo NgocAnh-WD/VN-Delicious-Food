@@ -12,11 +12,26 @@ $(document).on('click', '.cart', function () {
         data: {id: product_id}
 
     })
-    .done(function(data) {
-     //var ob = JSON.parse(JSON.strigify)
-     $('.badge').html(data['quantyti']);
-  });
+            .done(function (data) {
+                //var ob = JSON.parse(JSON.strigify)
+                $('.badge').html(data['quantyti']);
+            });
 
+});
+$(document).on('click', '.closecart', function () {
+    var product_id = $(this).val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    $.ajax({
+        type: "get",
+        url: getSitePublicUrl() + '/product/delete/' + product_id,
+        dataType: "json",
+        data: {id: product_id}
+
+    })
 });
 function close_cart(id) {
     var url = getSitePublicUrl() + '/product/delete' + '/' + id;

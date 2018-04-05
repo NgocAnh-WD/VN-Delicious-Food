@@ -48,7 +48,7 @@
                                     </div> 
                                     <div class="clearfix"></div>
                                 </div></li>
-                            <li><div class="closecart" onclick="close_cart({{$product['id']}})"></div></li>
+                                <li><button class="closecart" value="{{$product['id']}}"></button></li>
                             <div class="clearfix"> </div>
                         </ul>
                         @endforeach
