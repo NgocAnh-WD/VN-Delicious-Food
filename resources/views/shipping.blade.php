@@ -1,5 +1,6 @@
 @extends('layouts.index')
 
+
 @section('container')
 <div class="checkout">	 
     <div class="container">	
