@@ -53,9 +53,10 @@ class HomeController extends Controller {
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
+        $qtny = Session::get('cart') ? Session::get('cart')->totalQty : 0;
         //dd($request->session()->get('cart'));
-
-        return redirect()->back();
+        return response()->json(['quantyti'=> $qtny]);
+//        return redirect()->back();
     }
 
     public function getCart() {

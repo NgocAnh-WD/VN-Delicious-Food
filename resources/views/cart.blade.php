@@ -115,4 +115,3 @@
 
 @endsection
 
-<script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
