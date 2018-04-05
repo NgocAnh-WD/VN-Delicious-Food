@@ -64,6 +64,7 @@ Route::get('product/deductbyone/{id}', 'HomeController@deductByOne');
 Route::get('/shoppingcart', 'HomeController@getCart');
 Route::get('/shipping', 'HomeController@Shipping');
 Route::get('search','HomeController@getSearch')->name('search');
+Route::get('/search-price','HomeController@searchprice')->name('searchprice');
 Route::post('/searchprice', 'HomeController@searchprice');
 
 Route::group(['middleware' => ['adminLogin']], function () {

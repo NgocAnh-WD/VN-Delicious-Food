@@ -15,8 +15,10 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
-        <link href="{{asset('css/style1.css')}}" rel="stylesheet">
+        <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
+        <link href="{{asset('css/searchPrice.css')}}" rel="stylesheet">
         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
+        <script type="text/javascript" src="{{asset('js/searchPrice.js')}}"></script>
         <script>$(document).ready(function () {
             // $(".memenu").memenu();
             });</script>	
@@ -51,9 +53,9 @@
                             <ul nav navbar-nav>
                                 <form action="{{url('/search')}}" method="get" role="search">
                                     <div class="col-md-5 input-group" style="margin-top: 8px; ">
-                                        <input type="text" class="form-control" name="key_search" placeholder="Search...">
+                                        <input type="text" class="form-control" name="key_search" id="key_search_button" placeholder="Search...">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit">
+                                            <button class="btn btn-default" type="submit" onclick="click_search()">
                                                 <span class="glyphicon glyphicon-search"></span>
                                             </button>
                                         </span>

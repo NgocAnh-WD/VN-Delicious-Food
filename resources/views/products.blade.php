@@ -103,25 +103,30 @@
                 <form method="POST" name="FormSortProduct" action="">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                     <div class="col col-4">
-                        <div class="category">
-                            <label class="checkbox"><input type="checkbox" name="price[]" id="published1" value="20" ><i></i>1.000-19.000 (VND)</label>
-                        </div>
+
+                        <select id="select-price">
+                            <option value="">Select price</option>
+                            <option value="1000,19000">1.000 - 19.000(VND)</option>
+                            <option value="20000,29000">20.000 - 29.000 (VND)</option>
+                            <option value="30000,39000">30.000 - 39.000 (VND)</option>
+                            <option value="40000,49000">40.000 - 49.000 (VND)</option>
+                            <option value="50000">Over 50.000 (VND)</option>
+                        </select>
 
                         <div class="category">
-                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published2" value="30"><i></i>20.000-29.000 (VND)</label>
+                            <input class="p-size"  type="checkbox" name="size[]" value="s" id="size-1">
+                            <label for="size-1" class='cat-check'>Size S</label>
+                        </div>
+                        <div class="category">
+                            <input class="p-size" type="checkbox" name="size[]" value="m" id="size-2">
+                            <label for="size-2" class='cat-check'>Size M</label>
+                        </div>
+                        <div class="category">
+                            <input class="p-size"  type="checkbox" name="size[]" value="l" id="size-3">
+                            <label for="size-3" class='cat-check'>Size L</label>
                         </div>
 
-                        <div class="category">
-                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published3" value="40"><i></i>30.000-39.000 (VND)</label>
-                        </div>
-
-                        <div class="category">
-                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published4" value="50"><i></i>40.000-49.000 (VND)</label>
-                        </div>
-
-                        <div class="category">
-                            <label class="checkbox" ><input type="checkbox" name="price[]" id="published5" value="50"><i></i>Over 50.000 (VND)</label>
-                        </div>
+                        <button type="button" id="search-product">Search</button>
                     </div>
                 </form>
             </div>
