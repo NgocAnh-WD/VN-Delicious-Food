@@ -74,8 +74,8 @@
                 User Profile Page
                 <div class="space-4"></div>
                 <small>                 
-                    @if(Session::has('update_user'))
-                    <p class="bg-danger">{{session('update_user') }}</p>
+                    @if(Session::has('update_profile'))
+                    <p class="bg-danger">{{session('update_profile') }}</p>
                     @endif
                 </small>
             </h1>
@@ -220,13 +220,11 @@
 
                                 <div class="center">
                                     <div class="row  col-md-7 form-group">
-                                        <input type="submit" class="btn btn-success" value="Edit User" />
+                                        <input type="submit" class="btn btn-success" value="Save" />
                                     </div>
-                                    <button type="button" class="btn btn-sm btn-primary btn-white btn-round">
-                                        <i class="ace-icon fa fa-rss bigger-150 middle orange2"></i>
-                                        <span class="bigger-110">Cancle</span>
-                                        <i class="icon-on-right ace-icon fa fa-arrow-right"></i>
-                                    </button>
+                                   <div class="row  col-md-5 form-group">
+                                        <input type="submit" class="btn btn-success" value="Cancle" />
+                                    </div>
                                 </div>
                             </div>
                         </div>

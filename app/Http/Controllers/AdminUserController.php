@@ -141,7 +141,7 @@ class AdminUserController extends Controller {
         $input = $request->all();
         $user_id = $id;
         $input['date_of_birth'] = $request['date'];
-
+        
         if (trim($request->password) == '') {
             $input = $request->except('password');
         } else {

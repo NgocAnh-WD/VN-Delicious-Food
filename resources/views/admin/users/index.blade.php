@@ -28,6 +28,7 @@
             <th>Gender</th>
             <th>Birthday</th>
             <th>Address</th>
+            <th>Role</th>
             <th>Created</th>
             <th>Updated</th>
         </tr>
@@ -47,6 +48,7 @@
             <td>{{$user->gender}}</td>
             <td>{{$user->date_of_birth}}</td>
             <td>{{$user->address}}</td>
+            <td>{{$user->role}}</td>
             <td>{{$user->created_at}}</td>
             <td>{{$user->updated_at}}</td>
         </tr>
