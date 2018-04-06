@@ -37,7 +37,7 @@ $(document).ready(function () {
 //        });
     });
     
-    alert(sizes);
+//    alert(sizes);
     
     function searchAjax(data) {
      

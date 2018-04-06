@@ -32,7 +32,7 @@
                         <input type="text" class="item_quantity" value="1" style="margin: auto;"/>
                         <div id="style" style="margin-top: 10px;">
                             <!--<button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>-->
-                            <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info cart" id="cart" value="{{$product->id}}">Add to cart</button>
+                            <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info cart" value="{{$product->id}}">Add to cart</button>
                             <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2"></div>
                             <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
                         </div>

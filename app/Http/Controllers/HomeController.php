@@ -54,11 +54,8 @@ class HomeController extends Controller {
         $cart = new Cart($oldCart);
         $cart->add($product, $product->id);
 
-        $request->session()->put('cart', $cart);
-        $qtny = Session::get('cart') ? Session::get('cart')->totalQty : 0;
-        //dd($request->session()->get('cart'));
-        return response()->json(['quantyti' => $qtny]);
-//        return redirect()->back();
+        $request->session()->put('cart', $cart);   
+        return response()->json(['quantyti'=> Session::get('cart')->totalQty,'shipping'=> Session::get('cart')->shipping,'totalprice'=> Session::get('cart')->totalPrice,'totaltong'=> Session::get('cart')->totaltong, 'qty'=>Session::get('cart')->items[$id]['qty'], 'price'=>Session::get('cart')->items[$id]['price']]);
     }
 
     public function getCart() {
@@ -74,12 +71,12 @@ class HomeController extends Controller {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->deductByOne($id);
-//        if (count($cart->items) > 0) {
+       if (count($cart->items) > 0) {
         Session::put('cart', $cart);
-//        } else {
-//            Session::forget('cart');
-//        }
-        return redirect()->back();
+        } else {
+            Session::forget('cart');
+        }
+        return response()->json(['quantyti'=> Session::get('cart')->totalQty, 'qty'=>Session::get('cart')->items[$id]['qty'], 'price'=>Session::get('cart')->items[$id]['price'],'shipping'=> Session::get('cart')->shipping,'totaltong'=> Session::get('cart')->totaltong, 'totalprice'=> Session::get('cart')->totalPrice]);
     }
 
     public function removeItem($id) {
@@ -88,11 +85,15 @@ class HomeController extends Controller {
         $cart->removeItem($id);
 
         if (count($cart->items) > 0) {
-            Session::put('cart', $cart);
+            $data = Session::put('cart', $cart);
         } else {
-            Session::forget('cart');
+            $data = Session::forget('cart');
         }
-        return redirect()->back();
+        $quantity = Session::has('cart') ? Session::get('cart')->totalQty : 0;
+        $shipping = Session::has('cart') ? Session::get('cart')->shipping : 0;
+        $totalprice = Session::has('cart') ? Session::get('cart')->totalPrice : 0;
+        $totaltong = Session::has('cart') ? Session::get('cart')->totaltong : 0;        
+        return response()->json(['html'=> $data,'quantity' => $quantity, 'shipping'=> $shipping,'totalprice' => $totalprice, 'totaltong' => $totaltong]);
     }
 
     public function Shipping() {

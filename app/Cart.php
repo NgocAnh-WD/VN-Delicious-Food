@@ -67,6 +67,14 @@ class Cart {
     public function removeItem($id) {
         $this->totalQty -= $this->items[$id]['qty'];
         $this->totalPrice -= $this->items[$id]['price'];
+        if($this->totalPrice>=50&& $this->totalPrice<100){
+            $this->shipping = $this->totalPrice*0.15;
+        } else if($this->totalPrice>=100){
+            $this->shipping = $this->totalPrice*0.1;
+        } else {
+            $this->shipping = $this->totalPrice*0.2;
+        }
+        $this->totaltong = $this->shipping+ $this->totalPrice;
         unset($this->items[$id]);
     }
 

@@ -7,7 +7,7 @@
             <li><a href="index.html">Home</a></li>
             <li class="active">Cart</li>
         </ol>
-        <h3>Your Shopping Cart in here ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }})</h3>
+        <h3>Your Shopping Cart in here (<span class="count_cart">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>)</h3>
         <div class="col-md-9 product-price1">
             <div class="check-out">			
                 <div class=" cart-items">
@@ -31,27 +31,25 @@
                             </div>
                         </div>
                         @if(Session::has('cart'))
-                        @foreach($products as $product)
-                        <ul class="cart-header">
-                            <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a></li>
-                            <li><span>{{$product['name']}}</span></li>
-                            <li><span class="price_product">{{ $product['price']}}.000VND</span></li>
-                            <li><div id="convert">
-                                    <div class="subtract" onclick="subtractcart({{$product['id']}},{{$product['qty']}})">
-                                        -
-                                    </div>
-                                    <div class="quantity">
-                                        {{$product['qty']}}
-                                    </div>
-                                    <div class="plus" onclick="pluscart({{$product['id']}},{{$product['qty']}})">
-                                        +
-                                    </div> 
-                                    <div class="clearfix"></div>
-                                </div></li>
+                        <div class="result_delete">
+                            @foreach($products as $product)
+                            <ul class="cart-header" id="cart-header{{$product['id']}}">
+                                <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a></li>
+                                <li><span>{{$product['name']}}</span></li>
+                                <li><span class="price_product" style="display: inline-block; margin-top: 0px !important "><span class="price_update" id="price_update{{$product['id']}}" style="display: inline-block">{{ $product['price']}}</span>.000VNĐ</span></li>
+                                <li><div id="convert">
+                                        <button class="subtract" id="button_{{$product['id']}}" value="{{$product['id']}}">-</button>
+                                        <div class="quantity" id="quantity{{$product['id']}}">
+                                            {{$product['qty']}}
+                                        </div>
+                                        <button class="plus" value="{{$product['id']}}">+</button>
+                                        <div class="clearfix"></div>
+                                    </div></li>
                                 <li><button class="closecart" value="{{$product['id']}}"></button></li>
-                            <div class="clearfix"> </div>
-                        </ul>
-                        @endforeach
+                                <div class="clearfix"> </div>
+                            </ul>
+                            @endforeach
+                        </div>
                         @endif
                     </div>
                     <div class="clearfix"></div>
@@ -63,18 +61,18 @@
                 <div class="information_order">Thông tin đơn hàng</div>                
             </div>
             <div class="box-style">
-                <span>Tạm tính ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm)</span>
-                <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->totalPrice : '' }}.000</strong>
+                <span>Tạm tính (<span class="count_cart">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span> sản phẩm)</span>
+                <strong class="total_strong"><span class="totalprice">{{ Session::has('cart') ? Session::get('cart')->totalPrice : '' }}</span>.000</strong>
             </div>
             <div class="box-style3">
                 <span>Vận chuyển:</span>
-                <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->shipping : '' }}.000</strong>
+                <strong class="total_strong"><span class="shipping">{{ Session::has('cart') ? Session::get('cart')->shipping : '' }}</span>.000</strong>
             </div>
             <div class="box-style1">
                 <div class="total2 clearfix">
                     <span class="text-label">Tổng cộng:</span>
                     <div class="amount1">
-                        <p><strong class="total_strong2">{{ Session::has('cart') ? Session::get('cart')->totaltong : '' }}.000 VNĐ</strong></p>
+                        <p><strong class="total_strong2"><span class="totaltong">{{ Session::has('cart') ? Session::get('cart')->totaltong : '' }}</span>.000 VNĐ</strong></p>
                         <p class="text-right1">
                             <small>(Đã bao gồm VAT)</small>
                         </p>
@@ -87,27 +85,27 @@
             <button type="button" class="btn btn-large btn-block btn-yellow btn-checkout" id="btn-send-gift" >
                 <a href="{{url('products')}}" class="continue_button_a">Tiếp tục mua hàng</a>
             </button>
-<!--            <div class="box-style1">
-                <div class="review-wrap">
-                    <p class="rating">
-                        <span class="rating-content">
-                            <i class="far fa-star"></i>
-                            <i class="far fa-star"></i>
-                            <i class="star"></i>
-                            <i class="star"></i>
-                            <i class="star"></i>
-                            <span style="width:83%">
-                                <i class="star"></i>
-                                <i class="star"></i>
-                                <i class="star"></i>
-                                <i class="star"></i>
-                                <i class="star"></i>
-                            </span>
-                        </span>
-                    </p>
-                    <p class="review">(Đánh giá sp)</p>
-                </div>
-            </div>-->
+            <!--            <div class="box-style1">
+                            <div class="review-wrap">
+                                <p class="rating">
+                                    <span class="rating-content">
+                                        <i class="far fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <i class="star"></i>
+                                        <i class="star"></i>
+                                        <i class="star"></i>
+                                        <span style="width:83%">
+                                            <i class="star"></i>
+                                            <i class="star"></i>
+                                            <i class="star"></i>
+                                            <i class="star"></i>
+                                            <i class="star"></i>
+                                        </span>
+                                    </span>
+                                </p>
+                                <p class="review">(Đánh giá sp)</p>
+                            </div>
+                        </div>-->
             <div class="clearfix"></div>
         </div>
     </div>
