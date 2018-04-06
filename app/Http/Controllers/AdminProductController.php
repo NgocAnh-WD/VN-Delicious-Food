@@ -72,7 +72,7 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
+            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
         }
         if ($file = $request->file('image')) {
             $year = date('Y');
@@ -87,7 +87,7 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
+            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
         }
 
         return redirect('/admin/products');
@@ -112,7 +112,7 @@ class AdminProductController extends Controller {
     public function edit($id) {
         $product = Product::findOrFail($id);
         $child_categories = Category::pluck('name', 'id')->all();
-        $image = Image::where('product_id', $id)->get()->all();
+        $images = Image::pluck('id')->all();
         $price_sizes = PriceSizes::pluck('id')->all();
         return view('admin.products.edit', compact('product', 'child_categories', 'price_sizes'));
     }
@@ -151,7 +151,7 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
+            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
         }
         if ($file = $request->file('image')) {
             $year = date('Y');
@@ -166,7 +166,7 @@ class AdminProductController extends Controller {
             }
             $name = time() . $file->getClientOriginalName();
             $file->move($upload_url, $name);
-            $image = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
+            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
         }
 
 
@@ -187,4 +187,8 @@ class AdminProductController extends Controller {
         return redirect('/admin/products');
     }
 
+    public function getImage($id){
+        $images = Image::select('id', 'link_image')->where('product_id',$id)->get();
+        return view('/admin/products', compact('images'));
+    }
 }
