@@ -16,7 +16,7 @@
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
-        <!--<link href="{{asset('css/searchPrice.css')}}" rel="stylesheet">-->
+
         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/searchPrice.js')}}"></script>

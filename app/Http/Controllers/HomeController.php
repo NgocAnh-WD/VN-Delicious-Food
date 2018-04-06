@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Product;
@@ -28,13 +30,13 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::where('is_delete', '=','0')->orderBy('created_at', 'desc')->limit(12)->get();
-        $products_new = Product::where('is_delete', '=','0')->orderBy('created_at', 'desc')->limit(6)->get();
+        $products = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(12)->get();
+        $products_new = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(6)->get();
         return view('home', compact('products', 'products_new'));
     }
 
     public function index1() {
-        $products = Product::where('is_delete', '=','0')->orderBy('created_at', 'desc')->paginate(9);
+        $products = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->paginate(9);
         return view('products', compact('products'));
     }
 
@@ -55,7 +57,7 @@ class HomeController extends Controller {
         $request->session()->put('cart', $cart);
         $qtny = Session::get('cart') ? Session::get('cart')->totalQty : 0;
         //dd($request->session()->get('cart'));
-        return response()->json(['quantyti'=> $qtny]);
+        return response()->json(['quantyti' => $qtny]);
 //        return redirect()->back();
     }
 
@@ -156,17 +158,32 @@ class HomeController extends Controller {
     }
 
     public function searchprice(Request $request) {
-        $id = $_GET['id'];
-        $test = new TestModel();
-        $result = $test->getData($id);
-//        $input = $request->all();
-//        $products = Product::limit(12)->get();
-//        $products->id = $request->id;
-//        $products->name = $request->get('product_id');
-//        $products->title = $request->get('title');
-//        $products->content = $request->get('content');
-//        $comment->save();
-        return response()->json(['message' => 'successful']);
+
+        $input = $request->all();
+        $size_query = isset($input['sizes']) ? $input['sizes'] : array(); //kierm tra size co ton tai hay khong
+        $priceFrom = $input['priceFrom'];
+        $priceTo = $input['priceTo'];
+        $name = $input['name'];
+        $product=array();
+        $query = DB::table('price_sizes')->whereBetween('price', [$priceFrom, $priceTo]); //select gia tu A den B
+// Kiem tra size trong DB
+//        var_dump($query);
+//        foreach ($query->product_id as $id){
+//            array_push($product,DB::table('products')->where('id',$id));
+//        }
+//        var_dump($product);
+//        $id =DB::table('products')->$query->product_id;
+        if (count($size_query) > 0) {
+            $query->whereIn('size', $size_query);
+        }
+        $first = $query->get();
+
+//        $id_product=$first->product_id;
+//        $products=Product::with('price_sizes')->where('product.id','=','price_size'+'.'+$id_product);
+
+        return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
+
+        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
     }
 
 }

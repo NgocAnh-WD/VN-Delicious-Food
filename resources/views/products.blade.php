@@ -108,11 +108,11 @@
 
                         <select id="select-price">
                             <option value="">Select price</option>
-                            <option value="1000,19000">1.000 - 19.000(VND)</option>
-                            <option value="20000,29000">20.000 - 29.000 (VND)</option>
-                            <option value="30000,39000">30.000 - 39.000 (VND)</option>
-                            <option value="40000,49000">40.000 - 49.000 (VND)</option>
-                            <option value="50000">Over 50.000 (VND)</option>
+                            <option value="1,19">1.000 - 19.000(VND)</option>
+                            <option value="20,29">20.000 - 29.000 (VND)</option>
+                            <option value="30,39">30.000 - 39.000 (VND)</option>
+                            <option value="40,49">40.000 - 49.000 (VND)</option>
+                            <option value="50, 1000">Over 50.000 (VND)</option>
                         </select>
 
                         <div class="category">

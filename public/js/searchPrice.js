@@ -21,31 +21,35 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('#_token1').val()
             }
         });
-        var data = {
-            priceFrom: $('#select-price').val(),
-            priceTo: $('#select-price').val(),
-            size1: $('#size-1').val(),
-            size2: $('#size-2').val(),
-            size3: $('#size-3').val()
-        }
+//        var data = {
+//            priceFrom: $('#select-price').val(),
+//            priceTo: $('#select-price').val(),
+//            size: $('[name=size]').val(),
+//        }
         e.preventDefault();
-        sizes = [];
-        $('.p-size:checked').each(function (e) {
-
-            var size = $(this).val();
-            if (sizes.indexOf(size) === -1) {
-                sizes.push(size);
-            }
-        });
+//        sizes = [];
+//        $('name=size:checked').each(function (e) {
+//
+//            var size = $(this).val();
+//            if (sizes.indexOf(size) === -1) {
+//                sizes.push(size);
+//            }
+//        });
     });
+    
+    alert(sizes);
+    
     function searchAjax(data) {
      
         $.ajax({
             type: "GET",
             url: "search-price",
             data: data,
-            success: function (server_response) {
-                console.log(server_response);
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+               
+                //$("#tenID").html(data.tenID);
             }
         });
     }
@@ -54,14 +58,25 @@ $(document).ready(function () {
         var url_string = window.location.href; //window.location.href
         var url = new URL(url_string);
         var c = url.searchParams.get("key_search");
+        sizes = [];
+        $('.p-size:checked').each(function (e) {
+            
+            
+            
+            var size = $(this).val();
+//            if (sizes.indexOf(size) === -1) {
+                sizes.push(size);
+//            }
+        });
+       // alert(sizes);
         var data = {
             priceFrom: priceFrom,
             priceTo: priceTo,
-            sizes: sizes.join(','),
+            sizes: sizes,
             name: c,
         };
         searchAjax(data);
-        alert(JSON.stringify(data));
+       alert(JSON.stringify(data));
 
     });
 
