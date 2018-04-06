@@ -99,10 +99,4 @@ class AdminCategoriesController extends Controller {
         \Illuminate\Support\Facades\Session::flash('deleted_category', 'The category has been deleted');
         return redirect('/admin/categories');
     }
-
-    public function getParentName($id) {
-        $categories = Category::where([['is_delete', '=', '0'], ['parent_id', '=', $id], ['id', '=', $id]])->get();
-        return view('admin.categories.index', compact('categories'));
-    }
-
 }

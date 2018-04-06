@@ -52,7 +52,7 @@
                             @if (($category->parent_id) == 0)
                             Thư mục cha
                             @else
-                            {{$category->parent_id}}            
+                            {{$category->parent ? $category->parent ->name : 'Uncategorized'}}         
                             @endif
                         </th>
                         <th>{{$category->description}}</th>
