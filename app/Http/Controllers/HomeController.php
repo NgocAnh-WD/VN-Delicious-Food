@@ -54,8 +54,8 @@ class HomeController extends Controller {
         $cart = new Cart($oldCart);
         $cart->add($product, $product->id);
 
-        $request->session()->put('cart', $cart);   
-        return response()->json(['quantyti'=> Session::get('cart')->totalQty,'shipping'=> Session::get('cart')->shipping,'totalprice'=> Session::get('cart')->totalPrice,'totaltong'=> Session::get('cart')->totaltong, 'qty'=>Session::get('cart')->items[$id]['qty'], 'price'=>Session::get('cart')->items[$id]['price']]);
+        $request->session()->put('cart', $cart);
+        return response()->json(['quantyti' => Session::get('cart')->totalQty, 'shipping' => Session::get('cart')->shipping, 'totalprice' => Session::get('cart')->totalPrice, 'totaltong' => Session::get('cart')->totaltong, 'qty' => Session::get('cart')->items[$id]['qty'], 'price' => Session::get('cart')->items[$id]['price']]);
     }
 
     public function getCart() {
@@ -67,16 +67,57 @@ class HomeController extends Controller {
         return view('cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
+    public function getCheckout() {
+        if (!Session::has('cart')) {
+            return view('shop.shopping-cart', ['products' => null]);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        $total = $cart->totalPrice;
+        return view('shop.check', ['total' => $total]);
+    }
+
+    public function postCheckout(Request $request) {
+        if (!Session::has('cart')) {
+            return redirect()->route('product.shoppingcart');
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        Stripe::setApiKey('sk_test_FqmN8OQbuxmJdDFsLYSaTWEp');
+        try {
+            $charges = Charge::create(array(
+                        "amount" => $cart->totalPrice * 100,
+                        "currency" => "usd",
+                        "source" => $request->input('stripeToken'),
+                        "description" => "Test Charges"
+            ));
+            $order = new Order();
+            $order->cart = serialize($cart);
+            $order->address = $request->input('address');
+            $order->name = $request->input('name');
+            $order->payment_id = $charges->id;
+
+            Auth::user()->orders()->save($order);
+        } catch (\Exception $e) {
+            return redirect()->route('checkout')->with('error', $e->getMessage());
+        }
+
+        Session::forget('cart');
+
+        return redirect()->route('product.index')->with('success', 'Successfully purchased products!');
+    }
+
     public function deductByOne($id) {
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $cart->deductByOne($id);
-       if (count($cart->items) > 0) {
-        Session::put('cart', $cart);
+        if (count($cart->items) > 0) {
+            Session::put('cart', $cart);
         } else {
             Session::forget('cart');
         }
-        return response()->json(['quantyti'=> Session::get('cart')->totalQty, 'qty'=>Session::get('cart')->items[$id]['qty'], 'price'=>Session::get('cart')->items[$id]['price'],'shipping'=> Session::get('cart')->shipping,'totaltong'=> Session::get('cart')->totaltong, 'totalprice'=> Session::get('cart')->totalPrice]);
+        return response()->json(['quantyti' => Session::get('cart')->totalQty, 'qty' => Session::get('cart')->items[$id]['qty'], 'price' => Session::get('cart')->items[$id]['price'], 'shipping' => Session::get('cart')->shipping, 'totaltong' => Session::get('cart')->totaltong, 'totalprice' => Session::get('cart')->totalPrice]);
     }
 
     public function removeItem($id) {
@@ -92,8 +133,8 @@ class HomeController extends Controller {
         $quantity = Session::has('cart') ? Session::get('cart')->totalQty : 0;
         $shipping = Session::has('cart') ? Session::get('cart')->shipping : 0;
         $totalprice = Session::has('cart') ? Session::get('cart')->totalPrice : 0;
-        $totaltong = Session::has('cart') ? Session::get('cart')->totaltong : 0;        
-        return response()->json(['html'=> $data,'quantity' => $quantity, 'shipping'=> $shipping,'totalprice' => $totalprice, 'totaltong' => $totaltong]);
+        $totaltong = Session::has('cart') ? Session::get('cart')->totaltong : 0;
+        return response()->json(['html' => $data, 'quantity' => $quantity, 'shipping' => $shipping, 'totalprice' => $totalprice, 'totaltong' => $totaltong]);
     }
 
     public function Shipping() {
@@ -165,7 +206,7 @@ class HomeController extends Controller {
         $priceFrom = $input['priceFrom'];
         $priceTo = $input['priceTo'];
         $name = $input['name'];
-        $product=array();
+        $product = array();
         $query = DB::table('price_sizes')->whereBetween('price', [$priceFrom, $priceTo]); //select gia tu A den B
 // Kiem tra size trong DB
 //        var_dump($query);
