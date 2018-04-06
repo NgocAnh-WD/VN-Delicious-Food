@@ -49,10 +49,10 @@
                         <th>{{$category->id}}</th>
                         <th>{{$category->name}}</th>
                         <th>
-                            @if (($category->parent_id) === 0)
+                            @if (($category->parent_id) == 0)
                             Thư mục cha
                             @else
-                            {{$category->parent_id}}
+                            {{$category->parent_id}}            
                             @endif
                         </th>
                         <th>{{$category->description}}</th>
@@ -64,6 +64,11 @@
                     @endif
                 </tbody>
             </table>
+            <div class="row">
+                <div class="col-lg-6 col-sm-offset-5">
+                    {{ $cate->render() }}
+                </div>
+            </div>
         </div>
     </form>
 </div>

@@ -7,16 +7,17 @@
         <ol class="breadcrumb">
             <li><a href="{{asset('/home')}}">Home</a></li>
             <li class="active"><a href="{{asset('/products')}}">Products</a></li>
+            <li class="active"><a>Product Details</a></li>
         </ol>
         <!-- start content -->	
         <div class="col-md-9 det">
             <div class="single_left">
-                <div class="bzoom_wrap">
+                <div class="data-thumb">
                     <ul id="bzoom">
-                        @foreach($image as $images)
+                        @foreach($images as $image)
                         <li>
-                            <img class="bzoom_thumb_image" src="{{asset($images->link_image)}}" style="width: 250px; height: 350px;"/>
-                            <img class="bzoom_big_image" src="{{asset($images->link_image)}}"/>
+                            <img class="bzoom_thumb_image" src="{{asset($image->link_image)}}"/>
+                            <img class="bzoom_big_image" src="{{asset($image->link_image)}}"/>
                         </li>
                         @endforeach
                     </ul>
@@ -35,11 +36,11 @@
                                 <td><p>Quantity</p></td>
                                 <td><p>Action</p></td>
                             </tr>
-                            @foreach($price_size as $price_sizes)
+                            @foreach($price_sizes as $price_size)
                             <tr>
-                                <td><p>{{$price_sizes->size}}</p></td>
-                                <td><p>{{$price_sizes->price}}</p></td>
-                                <td><p>{{$price_sizes->quantity}}</p></td>
+                                <td><p>{{$price_size->size}}</p></td>
+                                <td><p>{{$price_size->price}}</p></td>
+                                <td><p>{{$price_size->quantity}}</p></td>
                                 <td>
                                     <button type="submit" class="btn btn-success" style="margin-top: 20px;">
                                         <span>

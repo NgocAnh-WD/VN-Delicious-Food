@@ -39,11 +39,11 @@ class HomeController extends Controller {
     }
 
     public function index2($id) {
-        $product_detail = DB::table('products')->where('id', $id)->first();
-        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
-        $price_size = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->get();
+        $product_detail = Product::where('id', $id)->first();
+        $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
+        $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->get();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
-        return view('product_details', compact('product_detail', 'image', 'price_size', 'comments'));
+        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments'));
     }
 
     public function getAddToCart(Request $request, $id) {

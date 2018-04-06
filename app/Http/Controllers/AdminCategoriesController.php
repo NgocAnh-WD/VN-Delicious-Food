@@ -13,7 +13,7 @@ class AdminCategoriesController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $categories = Category::where('parent_id', 0)->paginate(10);
+        $categories = Category::where('parent_id', 0)->get();
         $cate = Category::where('is_delete', '=', '0')->orderBy('id', 'desc')->paginate(10);
         return view('admin.categories.index', compact('categories', 'cate'));
     }
@@ -82,8 +82,8 @@ class AdminCategoriesController extends Controller {
 
         $category = Category::findOrFail($id);
         $category->update($request->all());
-//        return redirect('/admin/categories'); 
-        return redirect()->back();
+        return redirect('/admin/categories'); 
+//        return redirect()->back();
     }
 
     /**
@@ -100,8 +100,8 @@ class AdminCategoriesController extends Controller {
         return redirect('/admin/categories');
     }
 
-    public function getChildCategory($id) {
-        $categories = Category::where([['is_delete', '=', '0'], ['parent_id', '=', $id]])->orderBy('created_at', 'desc')->paginate(10);
+    public function getParentName($id) {
+        $categories = Category::where([['is_delete', '=', '0'], ['parent_id', '=', $id], ['id', '=', $id]])->get();
         return view('admin.categories.index', compact('categories'));
     }
 

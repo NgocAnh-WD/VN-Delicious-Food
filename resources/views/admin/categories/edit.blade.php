@@ -16,10 +16,13 @@
             <span class="text-danger">{{ $errors->first('name') }}</span>
 
             <label for="parent">Chứa trong:</label>
-            <select class="form-control" id="category_id" name="parent_id" >
-                <option value="{{$category->parent_id}}">
-                    {{$category->name}}
-                </option>                
+            <select class="form-control" id="category_id" name="parent_id" >               
+                @foreach ($category->category_parent() AS $cate)
+                <option value="{{$cate->id}}">{{$cate->name}}</option> 
+                @endforeach
+                @foreach ($category->category_pa() AS $cate_pa)
+                <option value="{{$cate_pa->id}}">{{$cate_pa->name}}</option> 
+                @endforeach
             </select>    
 
             <label for="description" style="margin-top: 20px;">Description:</label>
@@ -47,11 +50,9 @@
                         <th>{{$category->id}}</th>
                         <th>{{$category->name}}</th>
                         <th>
-                            @if (($category->parent_id) === 0)
-                            Thư mục cha
-                            @else
-                            {{$category->name}}
-                            @endif
+                            @foreach ($category->category_parent() AS $cate)
+                            {{$cate->name}}
+                            @endforeach
                         </th>
                         <th>{{$category->description}}</th>
                         <th>{{$category->created_at}}</th>
