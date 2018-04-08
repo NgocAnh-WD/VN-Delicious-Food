@@ -196,17 +196,15 @@
                         <div class="clearfix"> </div>
                     </div>
                     <!---->
-                    <div class="cart box_1">
+                    <div class="cart box_1 test">
 
                         <a href="{{ url('shoppingcart') }}">
                             <h3> <div class="total">
-                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Shopping Cart
-                                    <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"><span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></span>
+                                    <div class="clearfix"></div>
                                 </div>
                             </h3>
                         </a>
-                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                        <div class="clearfix"> </div>
                     </div>
                     <div class="clearfix"> </div>
                     <!---->			 
