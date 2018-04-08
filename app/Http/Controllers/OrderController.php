@@ -7,6 +7,8 @@ use App\Customer;
 use App\Order;
 use Session;
 use App\Cart;
+use App\OrderDetail;
+
 class OrderController extends Controller {
 
     /**
@@ -56,32 +58,43 @@ class OrderController extends Controller {
         $input['full_name'] = $request['name'];
         $input['address'] = $request['hamlet'] . '-' . $request['ward'] . '-' . $request['district'] . '-' . $request['city'];
         $input['phone'] = $request['phone'];
-//        $customer = Customer::create($input);
+        $customer = Customer::create($input);
 //        if ($customer) {
-            $year = date('Y');
-            $month = date('m');
-            $day = date('d');
-            $hour = date('H');
-            $min = date('i');
-            $second = date('s');
-            $now = $year . '/' . $month . '/' . $day . '/' . $hour . '/' . $min . '/' . $second;
-            $input['order_date'] = $now;
-            $input['required_date'] = $now;
-            $input['note'] = 'Bình thường';
-//            $input['customer_id'] = $customer->id;
-            $input['shipped_date'] = $now;
-            $input['status'] = 0;
-            $input['is_delete'] = 0;
-//            $order = Order::create($input);
-//            if($order!= null){
+        $year = date('Y');
+        $month = date('m');
+        $day = date('d');
+        $hour = date('H');
+        $min = date('i');
+        $second = date('s');
+        $now = $year . '/' . $month . '/' . $day . '/' . $hour . '/' . $min . '/' . $second;
+        $input['order_date'] = $now;
+        $input['required_date'] = $now;
+        $input['note'] = 'Bình thường';
+        $input['customer_id'] = $customer->id;
+        $input['shipped_date'] = $now;
+        $input['status'] = 0;
+        $input['is_delete'] = 0;
+        $order = Order::create($input);
+        if ($order != null) {
 //                $input_order['order_id'] = $order->id;
-                $oldCart = Session::get('cart');
 //                var_dump($oldCart->items); $oldCart->items;
-         $temp[]=$oldCart->items;
-         foreach ($temp as $key => $value) {
-             var_dump($key);
-         }
-//            }
+            $items = Session::get('cart')->items;
+
+            foreach ($items as $item) {
+                $input['order_id'] = $order->id;
+                $input['product_id'] = $item['id'];
+                $input['quantity_pro'] = $item['qty'];
+                $input['size'] = $item['size'];
+                $input['discount'] = 0;
+                $orderdetail = OrderDetail::create($input);
+//           $orderItem->order_id = 1;
+//            var_dump($item['id']);
+//            $orderItem->save();
+//
+//            CartItem::destroy($item->id);
+            }
+            Session::forget('cart');
+        }
 //        }
     }
 

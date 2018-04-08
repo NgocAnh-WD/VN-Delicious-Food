@@ -7,19 +7,23 @@ class Cart {
     public $items;
     public $totalQty = 0;
     public $totalPrice = 0;
+    public $shipping = 0;
+    public $totaltong = 0;
 
     public function __construct($oldCart) {
         if ($oldCart) {
             $this->items = $oldCart->items;
             $this->totalQty = $oldCart->totalQty;
             $this->totalPrice = $oldCart->totalPrice;
+            $this->shipping = $oldCart->shipping;
+            $this->totaltong = $oldCart->totaltong;
         } else {
             $this->items = null;
         }
     }
 
     public function add($item, $id) {
-        $storedItem = ['qty' => 0, 'name' => $item->name,'id'=>$id, 'price' => $item->is_price()->price, 'image' => $item->thumbnail()->link_image,'item' => $item];
+        $storedItem = ['qty' => 0, 'name' => $item->name,'id'=>$id, 'price' => $item->is_price()->price, 'image' => $item->thumbnail()->link_image,'size' => $item->is_price()->size,'item' => $item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -32,6 +36,7 @@ class Cart {
         $storedItem['price'] =  $item->is_price()->price*$storedItem['qty'];
         $storedItem['price_goc'] =  $item->is_price()->price;
         $storedItem['image'] =  $item->thumbnail()->link_image;
+        $storedItem['size'] =  $item->is_price()->size;
         $this->items[$id] = $storedItem;
         $this->totalQty++;
         $this->totalPrice += $item->is_price()->price;

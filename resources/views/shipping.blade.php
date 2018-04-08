@@ -15,7 +15,7 @@
                 </div>
             </div>
             @if (Auth::guest())
-            <form action="{{route('orders.store')}}" style="border: 1px solid #F4F4F4" method="post">
+            <form action="{{route('orders.store')}}" style="border: 1px solid #F4F4F4" method="post" id="checkout-form">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
                 <div class="mod-address-form mod-vn">
                     <div class="mod-address-form-bd">
