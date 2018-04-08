@@ -32,10 +32,8 @@
                 <div class="product-info-cust prt_name" style="text-align: center;">
                     <h4>{{$product->name}}</h4>
                     <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
-                    <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}</span>								
-                    <input type="text" class="item_quantity" value="1" style="margin: auto;"/>
+                    <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}VNĐ</span>								
                     <div id="style" style="margin-top: 10px;">
-                        <!--<button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('addtocart', ['id' => $product->id]) }}">Add to cart</a></button>-->
                         <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info cart" value="{{$product->id}}">Add to cart</button>
                         <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2"></div>
                         <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
@@ -48,7 +46,7 @@
         @endif
 
         <div class="row">
-            <div class="col-lg-6 col-sm-offset-5">
+            <div class="col-lg-6 col-sm-offset-5" style="text-align: left">
                 {{ $products->render() }}
             </div>
         </div>

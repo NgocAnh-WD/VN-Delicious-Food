@@ -677,3 +677,15 @@ ul.cart-header li .price_product {
     line-height: 28px;
     color: #212121;
 }
+.cart-empty-text {
+    color: #757575;
+    font-size: 14px;
+    line-height: 21px;
+    margin-bottom: 27px;
+    text-align: center;
+}
+.cart_empty_button{text-align: center}
+.cart-empty-button:hover{
+    background-color: #f57224;
+}
+.cart-empty-button>a:hover{color: #fff !important;}

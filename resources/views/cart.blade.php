@@ -7,6 +7,7 @@
             <li><a href="index.html">Home</a></li>
             <li class="active">Cart</li>
         </ol>
+        @if(Session::has('cart'))
         <h3>Your Shopping Cart in here (<span class="count_cart">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>)</h3>
         <div class="col-md-9 product-price1">
             <div class="check-out">			
@@ -85,29 +86,12 @@
             <button type="button" class="btn btn-large btn-block btn-yellow btn-checkout" id="btn-send-gift" >
                 <a href="{{url('products')}}" class="continue_button_a">Tiếp tục mua hàng</a>
             </button>
-            <!--            <div class="box-style1">
-                            <div class="review-wrap">
-                                <p class="rating">
-                                    <span class="rating-content">
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="star"></i>
-                                        <i class="star"></i>
-                                        <i class="star"></i>
-                                        <span style="width:83%">
-                                            <i class="star"></i>
-                                            <i class="star"></i>
-                                            <i class="star"></i>
-                                            <i class="star"></i>
-                                            <i class="star"></i>
-                                        </span>
-                                    </span>
-                                </p>
-                                <p class="review">(Đánh giá sp)</p>
-                            </div>
-                        </div>-->
             <div class="clearfix"></div>
         </div>
+        @else
+        <div class="cart-empty-text">Không có sản phẩm nào trong giỏ hàng</div>
+        <div class="cart_empty_button"><button type="button" class="next-btn next-btn-secondary next-btn-large cart-empty-button"><a href="{{url('products')}}">TIẾP TỤC MUA SẮM</a></button></div>
+        @endif
     </div>
 </div>		
 

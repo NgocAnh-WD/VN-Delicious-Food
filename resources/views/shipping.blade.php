@@ -345,12 +345,4 @@
     });
 </script>
 @endsection
-<!--<div class="mod-address-form-action">
-    <div class="button_address_left">
-        <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large mod-address-form-btn">LƯU DỮ LIỆU</button>
-    </div>
-    <div class="button_address_right">
-        <button tabindex="8" type="submit" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1">TIẾP TỤC MUA HÀNG</button>
-    </div>                                
-</div>-->
 <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
