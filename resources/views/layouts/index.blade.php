@@ -1,3 +1,4 @@
+</html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,9 +11,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<!--        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
-
-        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+        <link rel="stylesheet" href="{{asset('css/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/fonts.googleapis.com.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
+        <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
+        <script src="{{asset('js/ace-extra.min.js')}}"></script>   
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
@@ -26,6 +30,14 @@
             GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
             alert( GlobleVariable.app_url);
             </script>	
+        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+        <link href="{{asset('css/style1.css')}}" rel="stylesheet">
+
+        <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
+
+        <script>$(document).ready(function () {
+    // $(".memenu").memenu();
+});</script>	
         <!-- /start menu -->
         <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
     </head>
@@ -57,9 +69,9 @@
                             <ul nav navbar-nav>
                                 <form action="{{url('/search')}}" method="get" role="search">
                                     <div class="col-md-5 input-group" style="margin-top: 8px; ">
-                                        <input type="text" class="form-control" name="key_search" id="key_search_button" placeholder="Search...">
+                                        <input type="text" class="form-control" name="key_search" placeholder="Search...">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit" onclick="click_search()">
+                                            <button class="btn btn-default" type="submit">
                                                 <span class="glyphicon glyphicon-search"></span>
                                             </button>
                                         </span>
@@ -75,7 +87,7 @@
                                 <li><a href="{{ route('register') }}">Register</a></li>
                                 @else
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    <a href="{{asset('/profile')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                         {{ Auth::user()->username }} <span class="caret"></span>
                                     </a>
 
@@ -83,7 +95,7 @@
                                         <li>
                                             <a href="{{ route('logout') }}" 
                                                onclick="event.preventDefault();
-                                                   document.getElementById('logout-form').submit();">
+                                                       document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
 
@@ -97,15 +109,23 @@
                             </ul>
                         </div>
                     </div>
+                    <!--                    <div class="navbar-header">
+                    
+                                        </div>-->
                 </div>
             </nav>
         </div>
+
+        <!-- Scripts -->
+<!--        <script src="{{ asset('js/app.js') }}"></script>-->
         <div class="header-top">
             <div class="header-bottom">
                 <div class="container">			
                     <div class="logo">
                         <a href="{{asset('/products')}}"><h1>Food Store</h1></a>
                     </div>
+                    <!---->
+
                     <div class="top-nav">
                         <ul class="memenu skyblue"><li class="active"><a href="{{asset('/home')}}">Home</a></li>
                             <li class="grid"><a href="{{asset('/products')}}">Products</a>
@@ -310,11 +330,12 @@
     <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
     <script type="text/javascript">
                                                    $("#bzoom").zoom({
-                                                   zoom_area_width: 300,
-                                                           autoplay_interval: 3000,
-                                                           small_thumbs: 4,
-                                                           autoplay: false
+                                                       zoom_area_width: 300,
+                                                       autoplay_interval: 3000,
+                                                       small_thumbs: 4,
+                                                       autoplay: false
                                                    });
     </script>
 
 </html>
+

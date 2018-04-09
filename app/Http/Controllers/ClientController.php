@@ -123,10 +123,10 @@ class ClientController extends Controller
         }
 
         $user->update($input);
-        \Illuminate\Support\Facades\Session::flash('update_user', 'The user has been updated');
+        \Illuminate\Support\Facades\Session::flash('update_profile', 'Your profile has been updated');
         return redirect('/profile');
     }
-
+    
     public function destroy($id)
     {
        

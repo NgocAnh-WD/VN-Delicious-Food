@@ -199,6 +199,7 @@
                                     <div class="profile-info-row {{ $errors->has('gender') ? 'has-error' : '' }}">
                                         <div class="profile-info-name"> Gender </div>
                                         <select id="gender" class="form-control" name="gender">
+                                            <option value="">{{Auth::user()->gender}}</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="Other">Other</option>

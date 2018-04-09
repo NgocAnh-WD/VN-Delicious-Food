@@ -98,6 +98,10 @@ class AdminImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $images = Image::findOrFail($id);
+           Storage::delete($images->file);
+            $images->delete();
+
+        \Illuminate\Support\Facades\Session::flash('deleted_image','The image has been deleted');
     }
 }

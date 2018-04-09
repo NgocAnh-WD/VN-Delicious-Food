@@ -43,6 +43,7 @@ Route::get('admin/comments/{id}/reply', 'AdminCommentsController@getReplyComment
 Route::get('admin/categories/{id}/child_categories', 'AdminCategoriesController@getChildCategory');
 Route::post('single/comment_product2', 'HomeController@comment_product')->name('comment_product2');
 Route::post('single/reply_product', 'HomeController@reply_product')->name('reply_product');
+Route::post('/delete','HomeController@delete_image')->name('delete_image');
 Route::resource('/profile','ClientController');
 Route::resource('admin/products', 'AdminProductController', array('as' => 'admin'));
 Route::resource('admin/categories', 'AdminCategoriesController', array('as' => 'admin'));

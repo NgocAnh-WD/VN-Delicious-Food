@@ -42,10 +42,13 @@
         <div class="row">
             @foreach ($product->image() AS $img)
             <div class="col-md-3">
-                <div class="form-group" style="width: 200px">           
+                <div class="form-group" style="width: 200px">
+                    <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}"/>
+                    <input type="hidden" id="image_id" value="{{$img->id}}">
+                    <input type="hidden" id="product_id" value="{{$product->id}}">
                     <img style="width: 300px; height: 250px" src="{{$img->link_image ? asset ($img->link_image ): 'http://placehold.it/400x400'}}" height="300" class="img-responsive img-rounded">
                     <div class="space-4"></div>
-                    <input type="submit" class="btn btn-success" value="Delete" />                   
+                    <button id="image_delete" class="btn btn-success" value="">Delete</button>                   
                 </div> 
             </div>
             @endforeach
@@ -68,6 +71,7 @@
         <div class=" form-group {{ $errors->has('size') ? 'has-error' : '' }}">
             <label for="size">Size:</label>
             <select id="size" class="form-control" name="size" required>
+                <option value="{{$product->is_price()->size}}">{{$product->is_price()->size}}</option>
                 <option value="Lớn">Lớn</option>
                 <option value="Trung">Trung</option>
                 <option value="Nhỏ">Nhỏ</option>

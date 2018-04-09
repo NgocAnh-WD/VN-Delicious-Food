@@ -12,7 +12,7 @@
                 <tr>
                     <th>ID</th>
                     <th>User Name</th>
-                    <th>Avata Image</th>
+                    <th>Avatar Image</th>
                     <th>Product Name</th>
                     <th>Parent Comment</th>
                     <th>Title</th> 

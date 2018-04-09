@@ -159,6 +159,16 @@ class HomeController extends Controller {
             return $comment;
         }
     }
+    
+    public function delete_image() {
+        $photos = Photo::findOrFail($id);
+        Storage::delete($photos->file);
+        $photos->delete();
+        
+        \Illuminate\Support\Facades\Session::flash('deleted_photo', 'The photo has been deleted');
+        
+        return redirect('');
+    }
 
     public function reply_product(Request $request) {
         $input = $request->all();
