@@ -10,41 +10,39 @@
         <h2>Our Products</h2>			
         <div class="col-md-9 product-model-sec" id="product-container">
             @if(isset($products))
-                @if (session('order'))
-                <div class="alert alert-success">
-                    {{ session('order') }}
-                </div>
-                @endif
-                
-                @foreach($products as $key => $product)
-                <div id="test"> </div>
-                <a href="{{ url('/single',$product->id) }}"> 
-                    <div class="product-grid love-grid">
-                        <div class="more-product"><span> </span></div>						
-                        <div class="product-img b-link-stripe b-animate-go  thickbox">
-                            <img src="{{ asset($product->thumbnail()->link_image) }}" style="height:220px;"/>
-                            <div class="b-wrapper">
-                                <h4 class="b-animate b-from-left  b-delay03">							
-                                    <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
-                                </h4>
-                            </div>
+            @if (session('order'))
+            <div class="alert alert-success">
+                {{ session('order') }}
+            </div>
+            @endif
+            @foreach($products as $key => $product)
+
+            <a href="{{ url('/single',$product->id) }}"> 
+                <div class="product-grid love-grid">
+                    <div class="more-product"><span> </span></div>						
+                    <div class="product-img b-link-stripe b-animate-go  thickbox">
+                        <img src="{{ asset($product->thumbnail()->link_image) }}" style="height:220px;"/>
+                        <div class="b-wrapper">
+                            <h4 class="b-animate b-from-left  b-delay03">							
+                                <button class="btns"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>Quick View</button>
+                            </h4>
                         </div>
+                    </div></a>						
+            <div class="product-info simpleCart_shelfItem">
+                <div class="product-info-cust prt_name" style="text-align: center;">
+                    <h4>{{$product->name}}</h4>
+                    <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
+                    <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}VNĐ</span>								
+                    <div id="style" style="margin-top: 10px;">
+                        <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info cart" value="{{$product->id}}">Add to cart</button>
+                        <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2"></div>
+                        <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
                     </div>
-                </a>
-                
-                <div class="product-info simpleCart_shelfItem">
-                    <div class="product-info-cust prt_name" style="text-align: center;">
-                        <h4>{{$product->name}}</h4>
-                        <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
-                        <span class="item_price">{{$product? $product->is_price()->price : 'Unpriced'}}VNĐ</span>								
-                        <div id="style" style="margin-top: 10px;">
-                            <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info cart" value="{{$product->id}}">Add to cart</button>
-                            <div class="col-lg-2 col-md-2 col-xs-2 col-sm-2"></div>
-                            <button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info"><a href="{{ url('single', ['id' => $product->id]) }}">View detail</a></button>
-                        </div>
-                    </div>													
-                </div>
-            @endforeach
+                </div>													
+            </div>
+        </div>	
+
+        @endforeach
         @endif
 
         <div class="row">
@@ -190,7 +188,6 @@
             </div>
         </section>			
     </div>				 
-</div>
 </div>
 </div>
 @endsection

@@ -26,10 +26,7 @@
                             </div>
                             <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3">
                                 <span>Số lượng</span>
-                            </div>
-                            <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2">
-                                <span>Xóa</span>
-                            </div>
+                            </div>                          
                         </div>
                         @if(Session::has('cart'))
                         <div class="result_delete">

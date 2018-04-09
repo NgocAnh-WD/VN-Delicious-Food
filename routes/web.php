@@ -75,15 +75,3 @@ Route::group(['middleware' => ['adminLogin']], function () {
     Route::resource('admin/products','AdminProductController', array('as' =>'admin'));
     Route::resource('admin/comments','AdminCommentsController', array('as' =>'admin'));
 });
-
-//Route::group(['middleware' => 'auth'], function () {
-//    Route::get('/checkout', [
-//        'uses' => 'ProductController@getCheckout',
-//        'as' => 'checkout'
-//    ]);
-//
-//    Route::post('/checkout', [
-//        'uses' => 'ProductController@postCheckout',
-//        'as' => 'checkout'
-//    ]);
-//});

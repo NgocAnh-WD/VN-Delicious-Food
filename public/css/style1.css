@@ -1,6 +1,17 @@
 body{
     font-family: 'Open Sans', sans-serif;;
 }
+.account{
+    display: inline-block;
+    float: right;    
+}
+.account>ul>li>a{
+    background-color: rgb(0, 160, 220) !important;
+    box-shadow: 0 4px 4px -4px #9B9B9B;
+    /* padding: 5px; */
+    border-radius: 2px;
+}
+.account>ul>li>a:hover{color: #fff}
 .test{
     padding: 15px 0;
     position: fixed;

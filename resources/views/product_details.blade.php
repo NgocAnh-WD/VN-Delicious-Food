@@ -118,21 +118,14 @@
                     })
                 });
             </script>
-            <script type="text/javascript" src="{{asset('js/jquery-ui.min.js')}}"></script>
-            <link rel="stylesheet" type="text/css" href="{{asset('css/jquery-ui.css')}}">
-            <script type='text/javascript'>//<![CDATA[ 
-                $(window).load(function () {
-                    $("#slider-range").slider({
-                        range: true,
-                        min: 0,
-                        max: 400000,
-                        values: [8500, 350000],
-                        slide: function (event, ui) {
-                            $("#amount").val("$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ]);
-                        }
-                    });
-                    $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
-                });//]]> 
+            <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
+            <script type="text/javascript">
+                        $("#bzoom").zoom({
+                            zoom_area_width: 300,
+                            autoplay_interval: 3000,
+                            small_thumbs: 4,
+                            autoplay: false
+                        });
             </script>
             <!---->
             <section  class="sky-form">

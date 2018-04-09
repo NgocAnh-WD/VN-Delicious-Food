@@ -1,4 +1,3 @@
-</html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,12 +10,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-        <link rel="stylesheet" href="{{asset('css/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('css/fonts.googleapis.com.css')}}" />
-        <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
-        <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
-        <script src="{{asset('js/ace-extra.min.js')}}"></script>   
+<!--        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
+
+        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
@@ -28,16 +24,7 @@
             
             var GlobleVariable = [];
             GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
-            alert( GlobleVariable.app_url);
             </script>	
-        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
-        <link href="{{asset('css/style1.css')}}" rel="stylesheet">
-
-        <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
-
-        <script>$(document).ready(function () {
-    // $(".memenu").memenu();
-});</script>	
         <!-- /start menu -->
         <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
     </head>
@@ -69,9 +56,9 @@
                             <ul nav navbar-nav>
                                 <form action="{{url('/search')}}" method="get" role="search">
                                     <div class="col-md-5 input-group" style="margin-top: 8px; ">
-                                        <input type="text" class="form-control" name="key_search" placeholder="Search...">
+                                        <input type="text" class="form-control" name="key_search" id="key_search_button" placeholder="Search...">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit">
+                                            <button class="btn btn-default" type="submit" onclick="click_search()">
                                                 <span class="glyphicon glyphicon-search"></span>
                                             </button>
                                         </span>
@@ -80,53 +67,19 @@
                                 </form>
                             </ul>
                             <!-- Right Side Of Navbar -->
-                            <ul class="nav navbar-nav navbar-right">
-                                <!-- Authentication Links -->
-                                @if (Auth::guest())
-                                <li><a href="{{ route('login') }}">Login</a></li>
-                                <li><a href="{{ route('register') }}">Register</a></li>
-                                @else
-                                <li class="dropdown">
-                                    <a href="{{asset('/profile')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        {{ Auth::user()->username }} <span class="caret"></span>
-                                    </a>
 
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="{{ route('logout') }}" 
-                                               onclick="event.preventDefault();
-                                                       document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>
-                                @endif
-                            </ul>
                         </div>
                     </div>
-                    <!--                    <div class="navbar-header">
-                    
-                                        </div>-->
                 </div>
             </nav>
         </div>
-
-        <!-- Scripts -->
-<!--        <script src="{{ asset('js/app.js') }}"></script>-->
         <div class="header-top">
             <div class="header-bottom">
                 <div class="container">			
                     <div class="logo">
                         <a href="{{asset('/products')}}"><h1>Food Store</h1></a>
                     </div>
-                    <!---->
-
-                    <div class="top-nav">
+                    <div class="top-nav" style="width: 100% !important">
                         <ul class="memenu skyblue"><li class="active"><a href="{{asset('/home')}}">Home</a></li>
                             <li class="grid"><a href="{{asset('/products')}}">Products</a>
                                 <div class="mepanel">
@@ -215,7 +168,39 @@
                             </li>
                             <li class="grid"><a href="#">Typo</a></li>
                             <li class="grid"><a href="#">Contact</a></li>
+                            <!-- Authentication Links -->
+                            <div class="account">
+                                <ul class="memenu skyblue">
+                                    @if (Auth::guest())
+
+                                    <li><a href="{{ route('login') }}">Login</a></li>
+                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                    @else
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            {{ Auth::user()->username }} <span class="caret"></span>
+                                        </a>
+
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="{{ route('logout') }}" 
+                                                   onclick="event.preventDefault();
+                                                       document.getElementById('logout-form').submit();">
+                                                    Logout
+                                                </a>
+
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    {{ csrf_field() }}
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </div>
                         </ul>
+                        
+
                         <div class="clearfix"> </div>
                     </div>
                     <!---->
@@ -327,15 +312,39 @@
             </div>
         </div>		 
     </body>
-    <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
-    <script type="text/javascript">
-                                                   $("#bzoom").zoom({
-                                                       zoom_area_width: 300,
-                                                       autoplay_interval: 3000,
-                                                       small_thumbs: 4,
-                                                       autoplay: false
-                                                   });
-    </script>
-
+    <div class="panel panel-primary">
+        <button id="btn_add" name="btn_add" class="btn btn-default pull-right">Add New Product</button>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Product</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group error">
+                            <label for="inputName" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control has-error" id="name" name="name" placeholder="Product Name" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputDetail" class="col-sm-3 control-label">Details</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="details" name="details" placeholder="details" value="">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+                    <input type="hidden" id="product_id" name="product_id" value="0">
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </html>
-
