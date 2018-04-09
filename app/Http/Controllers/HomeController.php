@@ -203,29 +203,32 @@ class HomeController extends Controller {
 
         $input = $request->all();
         $size_query = isset($input['sizes']) ? $input['sizes'] : array(); //kierm tra size co ton tai hay khong
+        
         $priceFrom = $input['priceFrom'];
         $priceTo = $input['priceTo'];
         $name = $input['name'];
         $product = array();
-        $query = DB::table('price_sizes')->whereBetween('price', [$priceFrom, $priceTo]); //select gia tu A den B
-// Kiem tra size trong DB
-//        var_dump($query);
-//        foreach ($query->product_id as $id){
-//            array_push($product,DB::table('products')->where('id',$id));
-//        }
-//        var_dump($product);
-//        $id =DB::table('products')->$query->product_id;
+        $query = DB::table('products')
+                ->leftJoin('price_sizes', 'price_sizes.product_id', '=', 'products.id')
+                ->join('categories', 'categories.id', '=', 'products.category_id')
+                ->join('images', 'images.product_id', '=', 'products.id')
+                ->where('images.is_thumbnail','1')
+                ->whereBetween('price', [$priceFrom, $priceTo])//select gia tu A den B
+                ->select('products.name AS product_name','products.id AS product_id', 'categories.name', 'price_sizes.price', 'price_sizes.size','images.link_image');
+
+        // Kiem tra size trong DB
         if (count($size_query) > 0) {
             $query->whereIn('size', $size_query);
         }
         $first = $query->get();
+        
+       // var_dump($first);
 
-//        $id_product=$first->product_id;
-//        $products=Product::with('price_sizes')->where('product.id','=','price_size'+'.'+$id_product);
-
+        $products=Product::with('price_sizes')->where(['product.id','=','price_size.product_id'],['name','like','%'.$name.'%']);
+//        var_dump($products);
         return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
-
-        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
+//        return redirect()->back();
+//        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
     }
 
 }

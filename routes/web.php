@@ -66,7 +66,7 @@ Route::get('/shipping', 'HomeController@Shipping');
 Route::get('search','HomeController@getSearch')->name('search'); //search by name product
 
 Route::get('/search-price','HomeController@searchprice')->name('searchprice'); //search by price, size...
-Route::post('/searchprice', 'HomeController@searchprice');
+//Route::post('/searchprice', 'HomeController@searchprice');
 
 Route::group(['middleware' => ['adminLogin']], function () {
     Route::resource('admin/users','AdminUserController', array('as' =>'admin'));

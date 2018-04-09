@@ -20,9 +20,12 @@
         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/searchPrice.js')}}"></script>
-        <script>$(document).ready(function () {
-            // $(".memenu").memenu();
-            });</script>	
+        <script>
+            
+            var GlobleVariable = [];
+            GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
+            alert( GlobleVariable.app_url);
+            </script>	
         <!-- /start menu -->
         <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
     </head>
