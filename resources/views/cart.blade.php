@@ -32,7 +32,7 @@
                         <div class="result_delete">
                             @foreach($products as $product)
                             <ul class="cart-header" id="cart-header{{$product['id']}}">
-                                <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" alt=""></a></li>
+                                <li class="ring-in"><a href="#" ><img src="{{ asset($product['image']) }}" class="img-responsive" style="height: 130px; width: 120px;" alt=""></a></li>
                                 <li><span>{{$product['name']}}</span></li>
                                 <li><span class="price_product" style="display: inline-block; margin-top: 0px !important "><span class="price_update" id="price_update{{$product['id']}}" style="display: inline-block">{{ $product['price']}}</span>.000VNĐ</span></li>
                                 <li><div id="convert">

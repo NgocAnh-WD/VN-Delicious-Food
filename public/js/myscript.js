@@ -67,12 +67,6 @@ $(document).on('click', '.plus', function () {
 
     })
 });
-const $buttons = $("button[id*='button_']");
-
-//On click
-$buttons.click(function () {
-    $(this).prop('disabled', true); //disable
-});
 $(document).on('click', '.subtract', function () {
     var product_id = $(this).val();
     $.ajaxSetup({
@@ -99,13 +93,6 @@ $(document).on('click', '.subtract', function () {
         },
 //
     })
-    var plus = '#quantity' + product_id;
-    var temp = parseInt($(plus).text());
-    if (temp <= 2) {
-        $('.subtract').on('click', function () {
-            $(this).prop("disabled", true);
-        });
-    }
 });
 
 function getSitePublicUrl() {
