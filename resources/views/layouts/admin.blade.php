@@ -6,13 +6,18 @@
         <title>Admin Page</title>
         <meta name="description" content="overview &amp; stats" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
-        <link rel="stylesheet" href="{{asset('css/font-awesome/4.5.0/css/font-awesome.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('css/fonts.googleapis.com.css')}}" />
         <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
         <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
         <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
-        <script src="{{asset('js/ace-extra.min.js')}}"></script>       
+        <!--<script src="{{asset('js/ace-extra.min.js')}}"></script>-->
+        <script>
+
+            var GlobleVariable = [];
+            GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
+        </script>	
+        <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
     </head>
 
     <body class="no-skin">
@@ -62,14 +67,14 @@
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user() }} <span class="caret"></span>
+                                {{ Auth::user()->username }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
                                     <a href="{{ route('logout') }}" 
                                        onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
+                document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
 

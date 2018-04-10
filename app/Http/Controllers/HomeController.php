@@ -12,6 +12,7 @@ use App\Cart;
 use Session;
 use App\PriceSizes;
 use App\Comment;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -136,6 +137,22 @@ class HomeController extends Controller {
         $totaltong = Session::has('cart') ? Session::get('cart')->totaltong : 0;
         return response()->json(['html' => $data, 'quantity' => $quantity, 'shipping' => $shipping, 'totalprice' => $totalprice, 'totaltong' => $totaltong]);
     }
+    
+    public function del_img($id) {
+        $image = Image::findOrFail($id);
+        $product_id = $image->product_id;
+//        $UpdateImage = Image::where('id', '=',  $id)->first();
+//        $UpdateImage->is_delete = 1;       
+//        $UpdateImage->save();
+          $deleteImg = Image::where('id','=',$id)->first();
+          $deleteImg->delete($id);
+          $deleteImg = $image->delete();
+//        $deleteImg = Image::where('id','=',$id)->first();
+//        Storage::delete($deleteImg->file);
+//        $deleteImg->delete();
+        $images = Image::where([['product_id','=', $product_id],['is_thumbnail','=',0],['is_delete','=',0]])->get();
+        return response()->json(['image'=>$image,'images'=>$images]);
+    }
 
     public function Shipping() {
         if (!Session::has('cart')) {
@@ -160,16 +177,6 @@ class HomeController extends Controller {
         }
     }
     
-    public function delete_image() {
-        $photos = Photo::findOrFail($id);
-        Storage::delete($photos->file);
-        $photos->delete();
-        
-        \Illuminate\Support\Facades\Session::flash('deleted_photo', 'The photo has been deleted');
-        
-        return redirect('');
-    }
-
     public function reply_product(Request $request) {
         $input = $request->all();
         $user = Auth::user();

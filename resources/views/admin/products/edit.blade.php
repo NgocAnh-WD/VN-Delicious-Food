@@ -39,27 +39,28 @@
         <div class="space-4"></div>
         <div class="space-4"></div>
         
-        <div class="row">
+        <div class="row" id="show_image_delete">
             @foreach ($product->image() AS $img)
             <div class="col-md-3">
                 <div class="form-group" style="width: 200px">
                     <input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}"/>
                     <input type="hidden" id="image_id" value="{{$img->id}}">
                     <input type="hidden" id="product_id" value="{{$product->id}}">
+                    <input type="hidden" name="_method" value="delete">
                     <img style="width: 300px; height: 250px" src="{{$img->link_image ? asset ($img->link_image ): 'http://placehold.it/400x400'}}" height="300" class="img-responsive img-rounded">
-                    <div class="space-4"></div>
-                    <button id="image_delete" class="btn btn-success" value="">Delete</button>                   
-                </div> 
-            </div>
+                    <div class="space-4"></div>    
+                    <button type="button" class="" id="image_delete{{$img->id}}" value="{{$img->id}}" onclick="deleteImages({{$img->id}})">Delete</button>    
+                </div>                   
+            </div>             
             @endforeach
-        </div>
+        </div>      
         
         <div class="  form-group {{ $errors->has('image') ? 'has-error' : '' }}">
             <label for="image">Image:</label>
             <input type="file" id="link_image" name="image" class="form-control" value="{{ old('image') }}">
             <span class="text-danger">{{ $errors->first('image') }}</span>
         </div>
-
+        
         <div class="space-4"></div>
 
         <div class=" form-group {{ $errors->has('description') ? 'has-error' : '' }}">
@@ -98,7 +99,7 @@
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-success" value="Save" />
+            <input type="submit" id="submit" class="btn btn-success" value="Save" />
         </div>
     </form>
 </div>
