@@ -79,52 +79,6 @@
                 </div>
                 <div class="clearfix"></div>
 
-
-                <div id="listHeader_1" class="list-header">
-                    <div>
-                        <span class="list-header-left">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm</span>
-                        <span class="list-header-middle">GIÁ</span>
-                        <span class="list-header-right">SỐ LƯỢNG</span>
-                    </div>
-                    <div>
-                        @if(Session::has('cart'))
-                        @foreach($products as $product)
-                        <div id="item_3bd7f2b8851ed987ff8905e11de1ba99" class="cart-item">
-                            <div class="cart-item-inner">
-                                <div class="cart-item-left">
-                                    <div class="img-wrap">
-                                        <a href="#" class="automation-link-from-image-to-prod">
-                                            <img class="img" src="{{ asset($product['image']) }}" alt="item">
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <a id="automation-link-from-title-to-prod-item_3bd7f2b8851ed987ff8905e11de1ba99" href="#" class="automation-link-from-title-to-prod title">
-                                            {{$product['name']}}</a>
-                                        <div class="operations">
-                                            <span class="automation-btn-delete">
-                                                <span class="lazada lazada-ic-Delete lazada-icon icon delete">
-
-                                                </span>
-
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cart-item-middle">
-                                    <p class="current-price">{{ $product['price']}}.000VND</p>
-                                </div>
-                                <div class="cart-item-right">
-                                    <div class="quantity1 automation-item-quantity">
-                                        <span class="item-quantity-value">{{$product['qty']}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        @endif
-                    </div>
-                </div>
-
             </div>
             <div class="col-md-3 cart-total">
                 <div class="to_pay_btn">
@@ -137,7 +91,7 @@
                 </div>
                 <div class="box-style3">
                     <span>Vận chuyển:</span>
-                    <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->shipping : '' }}.000</strong>
+                    <strong class="total_strong">Miễn phí</strong>
                 </div>
                 <div class="box-style1">
                     <div class="total2 clearfix">
@@ -165,6 +119,7 @@
                 <div class="clearfix"></div>
             </div>
         </form>
+        <div class="clearfix"></div>
         @else
         <form action="{{route('orders.store')}}" style="border: 1px solid #F4F4F4" method="post" id="checkout-form">
             <div class="col-md-9 product-price1">
@@ -240,53 +195,6 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-
-
-                <div id="listHeader_1" class="list-header">
-                    <div>
-                        <span class="list-header-left">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm</span>
-                        <span class="list-header-middle">GIÁ</span>
-                        <span class="list-header-right">SỐ LƯỢNG</span>
-                    </div>
-                    <div>
-                        @if(Session::has('cart'))
-                        @foreach($products as $product)
-                        <div id="item_3bd7f2b8851ed987ff8905e11de1ba99" class="cart-item">
-                            <div class="cart-item-inner">
-                                <div class="cart-item-left">
-                                    <div class="img-wrap">
-                                        <a href="#" class="automation-link-from-image-to-prod">
-                                            <img class="img" src="{{ asset($product['image']) }}" alt="item">
-                                        </a>
-                                    </div>
-                                    <div class="content">
-                                        <a id="automation-link-from-title-to-prod-item_3bd7f2b8851ed987ff8905e11de1ba99" href="#" class="automation-link-from-title-to-prod title">
-                                            {{$product['name']}}</a>
-                                        <div class="operations">
-                                            <span class="automation-btn-delete">
-                                                <span class="lazada lazada-ic-Delete lazada-icon icon delete">
-
-                                                </span>
-
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cart-item-middle">
-                                    <p class="current-price">{{ $product['price']}}.000VND</p>
-                                </div>
-                                <div class="cart-item-right">
-                                    <div class="quantity1 automation-item-quantity">
-                                        <span class="item-quantity-value">{{$product['qty']}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        @endif
-                    </div>
-                </div>
-
             </div>
             <div class="col-md-3 cart-total">
                 <div class="to_pay_btn">
@@ -299,7 +207,7 @@
                 </div>
                 <div class="box-style3">
                     <span>Vận chuyển:</span>
-                    <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->shipping : '' }}.000</strong>
+                    <strong class="total_strong">Miễn phí</strong>
                 </div>
                 <div class="box-style1">
                     <div class="total2 clearfix">
@@ -328,10 +236,54 @@
             </div>
         </form>
         @endif
+        <div style="width: 66.67%;padding-left: 38px;">
+            <div>
+                <span class="list-header-left">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm</span>
+                <span class="list-header-middle">GIÁ</span>
+                <span class="list-header-right">SỐ LƯỢNG</span>
+            </div>
+            <div>
+                @if(Session::has('cart'))
+                @foreach($products as $product)
+                <div id="item_3bd7f2b8851ed987ff8905e11de1ba99" class="cart-item">
+                    <div class="cart-item-inner">
+                        <div class="cart-item-left">
+                            <div class="img-wrap">
+                                <a href="#" class="automation-link-from-image-to-prod">
+                                    <img class="img" src="{{ asset($product['image']) }}" alt="item">
+                                </a>
+                            </div>
+                            <div class="content">
+                                <a id="automation-link-from-title-to-prod-item_3bd7f2b8851ed987ff8905e11de1ba99" href="#" class="automation-link-from-title-to-prod title">
+                                    {{$product['name']}}</a>
+                                <div class="operations">
+                                    <span class="automation-btn-delete">
+                                        <span class="lazada lazada-ic-Delete lazada-icon icon delete">
+
+                                        </span>
+
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-middle">
+                            <p class="current-price">{{ $product['price']}}.000VND</p>
+                        </div>
+                        <div class="cart-item-right">
+                            <div class="quantity1 automation-item-quantity">
+                                <span class="item-quantity-value">{{$product['qty']}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+        </div>
     </div>
-</div>		
+
+</div>	
 <div style="height: 30px"></div>
-<div class="clearfix"></div>
 <script type="text/javascript">
     $(document).ready(function () {
         if ($('.myCheckbox').is(':checked')) {

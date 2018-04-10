@@ -15,7 +15,6 @@ class Cart {
             $this->items = $oldCart->items;
             $this->totalQty = $oldCart->totalQty;
             $this->totalPrice = $oldCart->totalPrice;
-            $this->shipping = $oldCart->shipping;
             $this->totaltong = $oldCart->totaltong;
         } else {
             $this->items = null;
@@ -23,7 +22,7 @@ class Cart {
     }
 
     public function add($item, $id) {
-        $storedItem = ['qty' => 0, 'name' => $item->name,'id'=>$id, 'price' => $item->is_price()->price, 'image' => $item->thumbnail()->link_image,'size' => $item->is_price()->size,'item' => $item];
+        $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $item->is_price()->price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'item' => $item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -33,37 +32,24 @@ class Cart {
         $storedItem['qty'] ++;
         $storedItem['name'] = $item->name;
         $storedItem['id'] = $id;
-        $storedItem['price'] =  $item->is_price()->price*$storedItem['qty'];
-        $storedItem['price_goc'] =  $item->is_price()->price;
-        $storedItem['image'] =  $item->thumbnail()->link_image;
-        $storedItem['size'] =  $item->is_price()->size;
+        $storedItem['price'] = $item->is_price()->price * $storedItem['qty'];
+        $storedItem['price_goc'] = $item->is_price()->price;
+        $storedItem['image'] = $item->thumbnail()->link_image;
+        $storedItem['size'] = $item->is_price()->size;
         $this->items[$id] = $storedItem;
         $this->totalQty++;
         $this->totalPrice += $item->is_price()->price;
-        if($this->totalPrice>=50&& $this->totalPrice<100){
-            $this->shipping = $this->totalPrice*0.15;
-        } else if($this->totalPrice>=100){
-            $this->shipping = $this->totalPrice*0.1;
-        } else {
-            $this->shipping = $this->totalPrice*0.2;
-        }
-        $this->totaltong = $this->shipping+ $this->totalPrice;
-        
+        $this->totaltong =  $this->totalPrice;
     }
 
     public function deductByOne($id) {
-        $this->items[$id]['qty']--;
-        $this->items[$id]['price'] -= $this->items[$id]['price_goc'];
-        $this->totalQty--;
-        $this->totalPrice -= $this->items[$id]['price_goc'];
-        if($this->totalPrice>=50&& $this->totalPrice<100){
-            $this->shipping = $this->totalPrice*0.15;
-        } else if($this->totalPrice>=100){
-            $this->shipping = $this->totalPrice*0.1;
-        } else {
-            $this->shipping = $this->totalPrice*0.2;
-        }
-        $this->totaltong = $this->shipping+ $this->totalPrice;
+//        if ($this->items[$id]['qty']<=1) {
+            $this->items[$id]['qty'] --;
+            $this->items[$id]['price'] -= $this->items[$id]['price_goc'];
+            $this->totalQty--;
+            $this->totalPrice -= $this->items[$id]['price_goc'];
+            $this->totaltong = $this->totalPrice;
+//        }        
         if ($this->items[$id]['qty'] <= 0) {
             unset($this->items[$id]);
         }
@@ -72,14 +58,7 @@ class Cart {
     public function removeItem($id) {
         $this->totalQty -= $this->items[$id]['qty'];
         $this->totalPrice -= $this->items[$id]['price'];
-        if($this->totalPrice>=50&& $this->totalPrice<100){
-            $this->shipping = $this->totalPrice*0.15;
-        } else if($this->totalPrice>=100){
-            $this->shipping = $this->totalPrice*0.1;
-        } else {
-            $this->shipping = $this->totalPrice*0.2;
-        }
-        $this->totaltong = $this->shipping+ $this->totalPrice;
+        $this->totaltong = $this->totalPrice;
         unset($this->items[$id]);
     }
 

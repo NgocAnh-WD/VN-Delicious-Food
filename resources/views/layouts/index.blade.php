@@ -235,6 +235,7 @@
             @yield('slide1')
         </div>
         <!---->
+        <div class="clearfix"></div>
         <div class="shoping">
             <div class="container">
                 <div class="shpng-grids">

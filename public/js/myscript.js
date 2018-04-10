@@ -69,7 +69,6 @@ $(document).on('click', '.closecart', function () {
             $('.count_cart').html(data.quantity);
             $('.totalprice').html(data.totalprice);
             $('.totaltong').html(data.totaltong);
-            $('.shipping').html(data.shipping);
         },
     })
 });
@@ -95,7 +94,6 @@ $(document).on('click', '.plus', function () {
             $('.count_cart').html(data.quantyti);
             $('.totalprice').html(data.totalprice);
             $('.totaltong').html(data.totaltong);
-            $('.shipping').html(data.shipping);
         },
     })
 });
@@ -121,7 +119,6 @@ $(document).on('click', '.subtract', function () {
             $('.count_cart').html(data.quantyti);
             $('.totalprice').html(data.totalprice);
             $('.totaltong').html(data.totaltong);
-            $('.shipping').html(data.shipping);
         },
 //
     })

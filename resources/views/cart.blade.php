@@ -50,7 +50,7 @@
                         </div>
                         @endif
                     </div>
-                    <div class="clearfix"></div>
+<!--                    <div class="clearfix"></div>-->
                 </div>					  
             </div>
         </div>
@@ -64,7 +64,7 @@
             </div>
             <div class="box-style3">
                 <span>Vận chuyển:</span>
-                <strong class="total_strong"><span class="shipping">{{ Session::has('cart') ? Session::get('cart')->shipping : '' }}</span>.000</strong>
+                <strong class="total_strong"><span>Miễn phí</span></strong>
             </div>
             <div class="box-style1">
                 <div class="total2 clearfix">
@@ -91,6 +91,6 @@
         @endif
     </div>
 </div>		
-
+<div class="clearfix"></div>
 @endsection
 
