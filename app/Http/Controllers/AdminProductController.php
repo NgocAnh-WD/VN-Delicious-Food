@@ -35,7 +35,7 @@ class AdminProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $child_categories = Category::pluck('name', 'id')->all();
+        $child_categories = Category::where('parent_id', '!=', 0)->get();
         return view('admin.products.create', compact('child_categories'));
     }
 
@@ -46,51 +46,115 @@ class AdminProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $input = $request->all();
+        $this->validate($request, [
+            'name' => 'required|min:2',
+            'link_image' => 'required',
+            'description' => 'required',
+            'quality' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+                ], [
+            'name.required' => 'Vui lòng nhập tên sản phẩm.',
+            'link_image.required' => 'Vui lòng chọn ảnh chính.',
+            'description.required' => 'Vui lòng mô tả chi tiết.',
+            'quality.required' => 'Vui lòng kiểm tra dữ liệu.',
+            'quantity.required' => 'Vui lòng kiểm tra dữ liệu.',
+            'price.required' => 'Vui lòng kiểm tra dữ liệu.'
+        ]);
+        DB::beginTransaction();
+        try {
+            $input = $request->all();
+            $input['name'] = $request->get('name');
+            $input['category_id'] = $request->get('category_id');
+            $input['description'] = $request->get('description');
+            $input['is_delete'] = 0;
+            $product = Product::create($input);
+            if($product != null){
+                $input['product_id'] = $product->id;
+                $input['size'] = $request->get('size');
+                $input['quality'] = $request->get('quality');
+                $input['quantity'] = $request->get('quantity');
+                $input['price'] = $request->get('price');
+                $input['is_price'] = 0;
+                $price_size = PriceSizes::create($input);
+                if ($file = $request->file('link_image')) {
+                    $year = date('Y');
+                    $month = date('m');
 
-//        $product = new Product();
-//        $product->create($input);
-        $product = Product::create($input);
-        $input['product_id'] = $product->id;
-        $input['size'] = $request->get('size');
-        $input['quality'] = $request->get('quality');
-        $input['price'] = $request->get('price');
-        $input['quantity'] = $request->get('quantity');
-        $input['is_delete'] = 0;
-        PriceSizes::create($input);
+                    $day = date('d');
+                    $sub_folder = $year . '/' . $month . '/' . $day . '/';
+                    $upload_url = 'images/' . $sub_folder;
 
-        if ($file = $request->file('link_image')) {
-            $year = date('Y');
-            $month = date('m');
+                    if (!File::exists(public_path() . '/' . $upload_url)) {
+                        File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+                    }
+                    $name = time() . $file->getClientOriginalName();
+                    $file->move($upload_url, $name);
+                    $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
+                }
+                if ($file = $request->file('image')) {
+                    $year = date('Y');
+                    $month = date('m');
 
-            $day = date('d');
-            $sub_folder = $year . '/' . $month . '/' . $day . '/';
-            $upload_url = 'images/' . $sub_folder;
+                    $day = date('d');
+                    $sub_folder = $year . '/' . $month . '/' . $day . '/';
+                    $upload_url = 'images/' . $sub_folder;
 
-            if (!File::exists(public_path() . '/' . $upload_url)) {
-                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+                    if (!File::exists(public_path() . '/' . $upload_url)) {
+                        File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+                    }
+                    $name = time() . $file->getClientOriginalName();
+                    $file->move($upload_url, $name);
+                    $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
+                }
             }
-            $name = time() . $file->getClientOriginalName();
-            $file->move($upload_url, $name);
-            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
+            DB::commit();
+        } catch (Exception $ex) {
+            
         }
-        if ($file = $request->file('image')) {
-            $year = date('Y');
-            $month = date('m');
-
-            $day = date('d');
-            $sub_folder = $year . '/' . $month . '/' . $day . '/';
-            $upload_url = 'images/' . $sub_folder;
-
-            if (!File::exists(public_path() . '/' . $upload_url)) {
-                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
-            }
-            $name = time() . $file->getClientOriginalName();
-            $file->move($upload_url, $name);
-            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
-        }
-
-        return redirect('/admin/products');
+        return redirect('/admin/products')->with('create_product', 'Bạn đã thêm sản phẩm thành công');
+//        $input = $request->all();
+//        $product = Product::create($input);
+//        $input['product_id'] = $product->id;
+//        $input['size'] = $request->get('size');
+//        $input['quality'] = $request->get('quality');
+//        $input['price'] = $request->get('price');
+//        $input['quantity'] = $request->get('quantity');
+//        $input['is_delete'] = 0;
+//        PriceSizes::create($input);
+//
+//        if ($file = $request->file('link_image')) {
+//            $year = date('Y');
+//            $month = date('m');
+//
+//            $day = date('d');
+//            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+//            $upload_url = 'images/' . $sub_folder;
+//
+//            if (!File::exists(public_path() . '/' . $upload_url)) {
+//                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+//            }
+//            $name = time() . $file->getClientOriginalName();
+//            $file->move($upload_url, $name);
+//            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
+//        }
+//        if ($file = $request->file('image')) {
+//            $year = date('Y');
+//            $month = date('m');
+//
+//            $day = date('d');
+//            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+//            $upload_url = 'images/' . $sub_folder;
+//
+//            if (!File::exists(public_path() . '/' . $upload_url)) {
+//                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+//            }
+//            $name = time() . $file->getClientOriginalName();
+//            $file->move($upload_url, $name);
+//            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
+//        }
+//
+//        return redirect('/admin/products');
     }
 
     /**
@@ -187,8 +251,9 @@ class AdminProductController extends Controller {
         return redirect('/admin/products');
     }
 
-    public function getImage($id){
-        $images = Image::select('id', 'link_image')->where('product_id',$id)->get();
+    public function getImage($id) {
+        $images = Image::select('id', 'link_image')->where('product_id', $id)->get();
         return view('/admin/products', compact('images'));
     }
+
 }
