@@ -51,7 +51,7 @@ class WilImageTableSeeder extends Seeder {
                     'product_id' => '6',
                     'link_image' => 'images/2018/03/06/muc kho nuong.jpg',
                     'is_delete' => '0',
-                    'is_thumbnail' => '0',
+                    'is_thumbnail' => '1',
                     'created_at' => DB::raw('now()'),
                     'updated_at' => DB::raw('now()'),
                 ],[
