@@ -222,9 +222,9 @@
                                     </div>                                                                                
                                 </div>
                             </div>
-                            @endforeach
-                            @endif
+                            @endforeach                           
                         </details>
+                        @endif
                         @if(Auth::check())
                         <details close>
                             <summary style="color: blue;">-- Reply --</summary>  

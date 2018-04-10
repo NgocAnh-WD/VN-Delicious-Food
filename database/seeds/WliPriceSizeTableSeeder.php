@@ -14,7 +14,7 @@ class WliPriceSizeTableSeeder extends Seeder {
             $price_sizes = [
                     [
                     'product_id' => '1',
-                    'size' => 'Nhỏ',
+                    'size' => 'Small',
                     'quality' => 'Bình thường',
                     'price' => '10',
                     'quantity' => '20',
@@ -24,7 +24,7 @@ class WliPriceSizeTableSeeder extends Seeder {
                     'updated_at' => DB::raw('now()'),
                 ],[
                     'product_id' => '1',
-                    'size' => 'Trung',
+                    'size' => 'Medium',
                     'quality' => 'Bình thường',
                     'price' => '12',
                     'quantity' => '20',
@@ -34,7 +34,7 @@ class WliPriceSizeTableSeeder extends Seeder {
                     'updated_at' => DB::raw('now()'),
                 ], [
                     'product_id' => '1',
-                    'size' => 'Lớn',
+                    'size' => 'Big',
                     'quality' => 'Bình thường',
                     'price' => '15',
                     'quantity' => '20',
