@@ -26,7 +26,7 @@
         <div class="col-md-4 bride-grid">
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
-                    <img src="images/d2.jpg" alt=""/>
+                    <img src="images/d3.jpg" alt=""/>
                     <figcaption>
                         <h4>Nullam molestie </h4>
                         <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
@@ -37,7 +37,7 @@
             </div>
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
-                    <img src="images/d3.jpg" alt=""/>
+                    <img src="images/d2.jpg" alt=""/>
                     <figcaption>
                         <h4>Nullam molestie </h4>
                         <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
@@ -84,19 +84,47 @@
 @endsection
 
 @section('container')
-<div class="featured">
-    <div class="container">
-        <h3>Featured Products</h3>
-        <div class="feature-grids">
-            @if($products)
-            @foreach($products as $key =>$product)
-            <div class="col-md-3 feature-grid jewel">
-                <a href="{{url('/products')}}"><img src="{{asset($product->thumbnail()->link_image)}}" style="width: 295px; height:250px;"/>	
+<div class="container">
+    <h3>Featured Products</h3>
+    <div class="feature-grids">
+        @if($products)
+        @foreach($products as $key => $product)
+        <div class="col-md-3 feature-grid jewel">
+            <a href="{{url('/products')}}"><img src="{{asset($product->thumbnail()->link_image)}}" style="width: 275px; height:250px;"/>	
+                <div class="arrival-info">
+                    <h4>{{$product->category ? $product->category->name : 'Uncategorized'}}</h4>
+                    <p>{{$product->name}}</p>
+                    <span class="pric1"><del>{{$product->name}}</del></span>
+                    <span class="disc">[12% Off]</span>
+                </div>
+                <div class="viw">
+                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
+                </div>
+                <div class="shrt">
+                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
+                </div></a>
+        </div>
+        @endforeach
+        @endif
+        <div class="clearfix"></div>
+    </div>
+</div>
+@endsection
+
+@section('slide1')
+<div class="container">	
+    <h3>New Arrivals</h3>
+    <div class="arrival-grids">			 
+        <ul id="flexiselDemo1">
+            @if($products_new)
+            @foreach($products_new as $key => $product_new)
+            <li>
+                <a href="{{ url('/products') }}"><img src="{{asset($product_new->thumbnail()->link_image)}}" style="height:240px;" alt=""/>
                     <div class="arrival-info">
-                        <h4>{{$product->category ? $product->category->name : 'Uncategorized'}}</h4>
-                        <p>{{$product->name}}</p>
-                        <span class="pric1"><del>{{$product->name}}</del></span>
-                        <span class="disc">[12% Off]</span>
+                        <h4>{{$product_new->category ? $product_new->category->name : 'Uncategorized'}}</h4>
+                        <p>{{$product_new->name}}</p>
+                        <span class="pric1"><del>{{$product_new->name}}</del></span>
+                        <span class="disc">[10% Off]</span>
                     </div>
                     <div class="viw">
                         <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
@@ -104,14 +132,41 @@
                     <div class="shrt">
                         <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
                     </div></a>
-            </div>
+            </li>
             @endforeach
             @endif
-            <div class="clearfix"></div>
-        </div>
+        </ul>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 4,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript" src="js/jquery.flexisel.js"></script>			 
     </div>
 </div>
 @endsection
+
 
 @section('content')
 <div class="container">

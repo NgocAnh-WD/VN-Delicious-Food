@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -11,11 +12,8 @@ use App\Cart;
 use Session;
 use App\PriceSizes;
 use App\Comment;
-<<<<<<< HEAD
-=======
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
->>>>>>> 91e797cd91619e6883f9c27e4d9e59b483753f11
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -41,8 +39,7 @@ class HomeController extends Controller {
 
     public function index1() {
         $products = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->paginate(9);
-        $products_new = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(6)->get();
-        return view('products', compact('products','products_new'));
+        return view('products', compact('products'));
     }
 
     public function index2($id) {
@@ -50,8 +47,7 @@ class HomeController extends Controller {
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
         $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->get();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
-        $products_new = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(6)->get();
-        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'products_new'));
+        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments'));
     }
 
     public function getAddToCart(Request $request, $id) {
@@ -233,8 +229,7 @@ class HomeController extends Controller {
                 ->leftJoin('price_sizes', 'price_sizes.product_id', '=', 'products.id')
                 ->join('categories', 'categories.id', '=', 'products.category_id')
                 ->join('images', 'images.product_id', '=', 'products.id')
-                ->where('images.is_thumbnail','1')
-                ->where('products.name','like','%'.$name.'%')
+                ->where('images.is_thumbnail', '1')
                 ->whereBetween('price', [$priceFrom, $priceTo])//select gia tu A den B
                 ->select('products.name AS product_name', 'products.id AS product_id', 'categories.name', 'price_sizes.price', 'price_sizes.size', 'images.link_image');
 
@@ -244,7 +239,9 @@ class HomeController extends Controller {
         }
         $first = $query->get();
 
-//        $products=Product::with('price_sizes')->where(['product.id','=','price_size.product_id'],['name','like','%'.$name.'%']);
+        // var_dump($first);
+
+        $products = Product::with('price_sizes')->where(['product.id', '=', 'price_size.product_id'], ['name', 'like', '%' . $name . '%']);
 //        var_dump($products);
         return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
 //        return redirect()->back();
