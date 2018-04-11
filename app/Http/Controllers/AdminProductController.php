@@ -25,7 +25,7 @@ class AdminProductController extends Controller {
     }
 
     public function index() {
-        $products = Product::orderBy('created_at', 'DES')->paginate(3);
+        $products = Product::orderBy('created_at', 'desc')->paginate(3);
         return view('admin.products.index', compact('products'));
     }
 
@@ -69,7 +69,7 @@ class AdminProductController extends Controller {
             $input['description'] = $request->get('description');
             $input['is_delete'] = 0;
             $product = Product::create($input);
-            if($product != null){
+            if ($product != null) {
                 $input['product_id'] = $product->id;
                 $input['size'] = $request->get('size');
                 $input['quality'] = $request->get('quality');
@@ -175,7 +175,7 @@ class AdminProductController extends Controller {
      */
     public function edit($id) {
         $product = Product::findOrFail($id);
-        $child_categories = Category::pluck('name', 'id')->all();
+        $child_categories = Category::where('parent_id', '!=', 0)->pluck('name', 'id');
         $images = Image::pluck('id')->all();
         $price_sizes = PriceSizes::pluck('id')->all();
         return view('admin.products.edit', compact('product', 'child_categories', 'price_sizes'));
@@ -191,16 +191,28 @@ class AdminProductController extends Controller {
     public function update(Request $request, $id) {
         $product = Product::findOrFail($id);
         $input = $request->all();
-
-        $product_id = $id;
-
-        $price_size = new PriceSizes();
-        $price_size['size'] = $request['size'];
-        $price_size['quality'] = $request['quality'];
-        $price_size['price'] = $request['price'];
-        $price_size['quantity'] = $request['quantity'];
-        $price_size['product_id'] = $product_id;
-        $price_size->save();
+        DB::beginTransaction();
+        try {
+            $size = $request->get('size');
+            $select_price = PriceSizes::where([['product_id', '=', $product->id], ['size', '=', $size]])->first();
+            if (!$select_price) {
+                DB::table('price_sizes')->insert(
+                        ['product_id' => $product->id,
+                            'size' => $size,
+                            'quality' => $request->get('quality'),
+                            'price' => $request->get('price'),
+                            'quantity' => $request->get('quantity'),
+                            'is_delete' => '0',
+                            'is_price' => '1',
+                            'created_at' => DB::raw('now()'),
+                            'updated_at' => DB::raw('now()'),
+                        ]
+                );
+            } else {
+                $price_size = PriceSizes::where([['product_id', '=', $product->id], ['size', '=', $size]])
+                        ->update(['quality' => $request->get('quality'), 'price' => $request->get('price'), 'quantity' => $request->get('quantity')]);
+            }
+            $update_product = Product::where('id', '=', $product->id)->update(['name' => $request->get('name'), 'category_id' => $request->get('category_id')]);
 
         if ($file = $request->file('link_image')) {
             $year = date('Y');
@@ -232,9 +244,44 @@ class AdminProductController extends Controller {
             $file->move($upload_url, $name);
             $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
         }
-
-
-        $product->update($input);
+            DB::commit();
+        } catch (Exception $ex) {
+            
+        }
+//
+//        if ($file = $request->file('link_image')) {
+//            $year = date('Y');
+//            $month = date('m');
+//
+//            $day = date('d');
+//            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+//            $upload_url = 'images/' . $sub_folder;
+//
+//            if (!File::exists(public_path() . '/' . $upload_url)) {
+//                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+//            }
+//            $name = time() . $file->getClientOriginalName();
+//            $file->move($upload_url, $name);
+//            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 1]);
+//        }
+//        if ($file = $request->file('image')) {
+//            $year = date('Y');
+//            $month = date('m');
+//
+//            $day = date('d');
+//            $sub_folder = $year . '/' . $month . '/' . $day . '/';
+//            $upload_url = 'images/' . $sub_folder;
+//
+//            if (!File::exists(public_path() . '/' . $upload_url)) {
+//                File::makeDirectory(public_path() . '/' . $upload_url, 0777, true);
+//            }
+//            $name = time() . $file->getClientOriginalName();
+//            $file->move($upload_url, $name);
+//            $images = Image::create(['link_image' => $upload_url . $name, 'product_id' => $product->id, 'is_delete' => 0, 'is_thumbnail' => 0]);
+//        }
+//
+//
+//        $product->update($input);
         return redirect('/admin/products');
     }
 
@@ -245,15 +292,14 @@ class AdminProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        $products = Product::findOrFail($id);
-        $products->delete();
-        \Illuminate\Support\Facades\Session::flash('delete_product', 'The product has been deleted');
-        return redirect('/admin/products');
+//        $products = Product::findOrFail($id);
+//        $products->delete();
+//        \Illuminate\Support\Facades\Session::flash('delete_product', 'The product has been deleted');
+//        return redirect('/admin/products');
     }
 
-    public function getImage($id) {
-        $images = Image::select('id', 'link_image')->where('product_id', $id)->get();
-        return view('/admin/products', compact('images'));
-    }
-
+//    public function getImage($id) {
+//        $images = Image::select('id', 'link_image')->where('product_id', $id)->get();
+//        return view('/admin/products', compact('images'));
+//    }
 }

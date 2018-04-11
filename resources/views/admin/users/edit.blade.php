@@ -44,12 +44,12 @@
                 <label for="gender">Gender:</label>
                 
                 <select id="gender" class="form-control" name="gender">
-<!--                    @foreach ($u as $id => $gender  )-->
-                    <!--<option value="{{$id}}"{{ $id == $users->id ? 'selected="selected"' : '' }}>{{$gender}}</option>-->
-                    <!--@endforeach-->
-                    <option value="Male">Male</option>
+                    @foreach ($u as $id => $gender  )
+                    <option value="{{$id}}"{{ $id == $users->id ? 'selected="selected"' : '' }}>{{$gender}}</option>
+                    @endforeach
+<!--                    <option value="Male">Male</option>
                     <option value="Female">Female</option>
-                    <option value="Other">Other</option>
+                    <option value="Other">Other</option>-->
                 </select>
                 <span class="text-danger">{{ $errors->first('gender') }}</span>
             </div>
