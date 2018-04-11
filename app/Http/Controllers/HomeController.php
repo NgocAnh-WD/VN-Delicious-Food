@@ -13,6 +13,7 @@ use Session;
 use App\PriceSizes;
 use App\Comment;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -137,20 +138,20 @@ class HomeController extends Controller {
         $totaltong = Session::has('cart') ? Session::get('cart')->totaltong : 0;
         return response()->json(['html' => $data, 'quantity' => $quantity, 'shipping' => $shipping, 'totalprice' => $totalprice, 'totaltong' => $totaltong]);
     }
-    
+
     public function del_img($id) {
         $images = Image::findOrFail($id);
         $image_id = $images->id;
-//        $UpdateImage = Image::where('id', '=',  $id)->first();
-//        $UpdateImage->is_delete = 1;       
-//        $UpdateImage->save();
-          $deleteImg = Image::where('id','=',$id)->first();
-          $deleteImg->delete($id);
-//        $deleteImg = Image::where('id','=',$id)->first();
-//        Storage::delete($deleteImg->file);
-//        $deleteImg->delete();
-        $images = Image::where([['id','=', $image_id],['is_thumbnail','=',0],['is_delete','=',0]])->get();
-        return response()->json(['image'=>$image,'images'=>$images]);
+        $image_product_id = $images->product_id;
+        $image_link = $images->link_image;
+        $deleteImg = Image::where('id', '=', $image_id)->delete();
+        if (File::exists($image_link)) {
+            File::delete($image_link);
+        }
+//        Storage::delete($images->link_image);
+
+        $show_images = Image::where([['product_id', '=', $image_product_id], ['is_thumbnail', '=', 0], ['is_delete', '=', 0]])->get();
+        return response()->json(['images' => $show_images]);
     }
 
     public function Shipping() {
@@ -175,7 +176,7 @@ class HomeController extends Controller {
             return $comment;
         }
     }
-    
+
     public function reply_product(Request $request) {
         $input = $request->all();
         $user = Auth::user();
@@ -219,7 +220,7 @@ class HomeController extends Controller {
 
         $input = $request->all();
         $size_query = isset($input['sizes']) ? $input['sizes'] : array(); //kierm tra size co ton tai hay khong
-        
+
         $priceFrom = $input['priceFrom'];
         $priceTo = $input['priceTo'];
         $name = $input['name'];
@@ -228,19 +229,19 @@ class HomeController extends Controller {
                 ->leftJoin('price_sizes', 'price_sizes.product_id', '=', 'products.id')
                 ->join('categories', 'categories.id', '=', 'products.category_id')
                 ->join('images', 'images.product_id', '=', 'products.id')
-                ->where('images.is_thumbnail','1')
+                ->where('images.is_thumbnail', '1')
                 ->whereBetween('price', [$priceFrom, $priceTo])//select gia tu A den B
-                ->select('products.name AS product_name','products.id AS product_id', 'categories.name', 'price_sizes.price', 'price_sizes.size','images.link_image');
+                ->select('products.name AS product_name', 'products.id AS product_id', 'categories.name', 'price_sizes.price', 'price_sizes.size', 'images.link_image');
 
         // Kiem tra size trong DB
         if (count($size_query) > 0) {
             $query->whereIn('size', $size_query);
         }
         $first = $query->get();
-        
-       // var_dump($first);
 
-        $products=Product::with('price_sizes')->where(['product.id','=','price_size.product_id'],['name','like','%'.$name.'%']);
+        // var_dump($first);
+
+        $products = Product::with('price_sizes')->where(['product.id', '=', 'price_size.product_id'], ['name', 'like', '%' . $name . '%']);
 //        var_dump($products);
         return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
 //        return redirect()->back();
