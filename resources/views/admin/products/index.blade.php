@@ -3,6 +3,16 @@
 
 <div class="container">
     <h1 style="color: #0099CC; text-align: center; margin:20px;">Products Management</h1>
+    @if (session('create_product'))
+    <div class="alert alert-success">
+        {{ session('create_product') }}
+    </div>
+    @endif
+    @if (session('update_product'))
+    <div class="alert alert-success">
+        {{ session('update_product') }}
+    </div>
+    @endif
     <table class="table"> 
         <thead>
             <tr>
@@ -19,7 +29,7 @@
                 <th>Updated at</th>
             </tr>
         </thead>
-        
+
         <tbody>
             @foreach($products as $product)
             <tr>
@@ -37,20 +47,20 @@
 
             </tr>
             @endforeach
-            
-            
-         
+
+
+
         </tbody>
-     </table>
+    </table>
 
 
-      <div class="row">
+    <div class="row">
         <div class="col-lg-6 col-sm-offset-5">
             {{ $products->render() }}
         </div>
-        
+
     </div>
 
 
 
-@stop
+    @stop

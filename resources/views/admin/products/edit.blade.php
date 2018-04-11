@@ -70,9 +70,10 @@
         <div class=" form-group {{ $errors->has('size') ? 'has-error' : '' }}">
             <label for="size">Size:</label>
             <select id="size" class="form-control" name="size" required>
-                <option value="l">Lớn</option>
-                <option value="m">Trung</option>
-                <option value="s">Nhỏ</option>
+                <option hidden="" value="{{$price_sizes->size}}">{{$price_sizes->size}}</option>
+                <option value="l">l</option>
+                <option value="m">m</option>
+                <option value="s">s</option>
             </select>
             <span class="text-danger">{{ $errors->first('size') }}</span>
         </div>
