@@ -1,17 +1,17 @@
 body{
     font-family: 'Open Sans', sans-serif;;
 }
-.account{
+/*.account{
     display: inline-block;
     float: right;    
 }
 .account>ul>li>a{
     background-color: rgb(0, 160, 220) !important;
     box-shadow: 0 4px 4px -4px #9B9B9B;
-    /* padding: 5px; */
+     padding: 5px; 
     border-radius: 2px;
 }
-.account>ul>li>a:hover{color: #fff}
+.account>ul>li>a:hover{color: #fff}*/
 .test{
     padding: 15px 0;
     position: fixed;
@@ -20,6 +20,47 @@ body{
     transform: translateX(0) translateY(0) translateZ(0) rotateX(0) rotateY(0) rotateZ(0);
     top: 33%;
 }
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    margin-left: 50px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
 .glyphicon-shopping-cart{
     font-size: 30px;
     background-color: #003e52;

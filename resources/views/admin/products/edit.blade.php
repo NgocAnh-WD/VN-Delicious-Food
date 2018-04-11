@@ -72,7 +72,7 @@
         <div class=" form-group {{ $errors->has('size') ? 'has-error' : '' }}">
             <label for="size">Size:</label>
             <select id="size" class="form-control" name="size" required>
-                <option value="{{$product->is_price()->size}}">{{$product->is_price()->size}}</option>
+                <option hidden="" value="{{$product->is_price()->size}}">{{$product->is_price()->size}}</option>
                 <option value="Lớn">Lớn</option>
                 <option value="Trung">Trung</option>
                 <option value="Nhỏ">Nhỏ</option>

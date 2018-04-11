@@ -139,18 +139,18 @@ class HomeController extends Controller {
     }
     
     public function del_img($id) {
-        $image = Image::findOrFail($id);
-        $product_id = $image->product_id;
+        $images = Image::findOrFail($id);
+        $image_id = $images->id;
 //        $UpdateImage = Image::where('id', '=',  $id)->first();
 //        $UpdateImage->is_delete = 1;       
 //        $UpdateImage->save();
-          $deleteImg = Image::where('id','=',$id)->first();
-          $deleteImg->delete($id);
-          $deleteImg = $image->delete();
+          $deleteImg = Image::where('id','=',$image_id)->first();
+          $deleteImg->delete($image_id);
+          $deleteImg = $images->delete();
 //        $deleteImg = Image::where('id','=',$id)->first();
 //        Storage::delete($deleteImg->file);
 //        $deleteImg->delete();
-        $images = Image::where([['product_id','=', $product_id],['is_thumbnail','=',0],['is_delete','=',0]])->get();
+        $images = Image::where([['id','=', $image_id],['is_thumbnail','=',0],['is_delete','=',0]])->get();
         return response()->json(['image'=>$image,'images'=>$images]);
     }
 

@@ -6,6 +6,7 @@
         <title>Admin Page</title>
         <meta name="description" content="overview &amp; stats" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
         <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
@@ -66,6 +67,7 @@
                         </li>
 
                         <li class="dropdown">
+                            
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->username }} <span class="caret"></span>
                             </a>

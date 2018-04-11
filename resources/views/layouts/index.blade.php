@@ -16,6 +16,7 @@
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
+        <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
 
         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
@@ -25,8 +26,7 @@
             var GlobleVariable = [];
             GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
             </script>	
-        <!-- /start menu -->
-        <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
+        <!-- /start menu -->      
     </head>
     <body> 
         <!--header-->	
@@ -166,37 +166,21 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="grid"><a href="#">Typo</a></li>
                             <li class="grid"><a href="#">Contact</a></li>
-                            <!-- Authentication Links -->
-                            <div class="account">
-                                <ul class="memenu skyblue">
-                                    @if (Auth::guest())
-
-                                    <li><a href="{{ route('login') }}">Login</a></li>
-                                    <li><a href="{{ route('register') }}">Register</a></li>
-                                    @else
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                            {{ Auth::user()->username }} <span class="caret"></span>
-                                        </a>
-
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="{{ route('logout') }}" 
-                                                   onclick="event.preventDefault();
-                                                       document.getElementById('logout-form').submit();">
-                                                    Logout
-                                                </a>
-
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <!-- Authentication Links -->                                                 
+                            <div class="dropdown">
+                                <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
+                                <div class="dropdown-content">
+                                    <a href="{{ route('logout')}}"
+                                         onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                        Logout                                       
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     {{ csrf_field() }}
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    @endif
-                                </ul>
+                                    </form>
+                                    <a href="{{asset('/profile')}}">View profile</a>
+                                </div>
                             </div>
                         </ul>
                         
