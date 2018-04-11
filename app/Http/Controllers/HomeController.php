@@ -144,9 +144,8 @@ class HomeController extends Controller {
 //        $UpdateImage = Image::where('id', '=',  $id)->first();
 //        $UpdateImage->is_delete = 1;       
 //        $UpdateImage->save();
-          $deleteImg = Image::where('id','=',$image_id)->first();
-          $deleteImg->delete($image_id);
-          $deleteImg = $images->delete();
+          $deleteImg = Image::where('id','=',$id)->first();
+          $deleteImg->delete($id);
 //        $deleteImg = Image::where('id','=',$id)->first();
 //        Storage::delete($deleteImg->file);
 //        $deleteImg->delete();
