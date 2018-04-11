@@ -3,16 +3,14 @@
     <head>
         <title>Food Store</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="{{asset('js/jquery.min.js')}}"></script>
+        <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link href="{{asset('css/style.css')}}" rel="stylesheet">	
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<!--        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
-
-        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
@@ -22,11 +20,12 @@
         <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/searchPrice.js')}}"></script>
         <script>
-            
-            var GlobleVariable = [];
-            GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
-            </script>	
-        <!-- /start menu -->      
+
+var GlobleVariable = [];
+GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
+        </script>	    
+        <!-- /start menu -->
+        <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
     </head>
     <body> 
         <!--header-->	
@@ -66,7 +65,6 @@
                                     </div>
                                 </form>
                             </ul>
-                            <!-- Right Side Of Navbar -->
 
                         </div>
                     </div>
@@ -166,24 +164,20 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="grid"><a href="#">Contact</a></li>
-                            <!-- Authentication Links -->                                                 
+                            <li class="grid"><a href="#">Contact</a></li>                                               
                             <div class="dropdown">
                                 <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
                                 <div class="dropdown-content">
                                     <a href="{{ route('logout')}}"
-                                         onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                       onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
                                         Logout                                       
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    {{ csrf_field() }}
-                                    </form>
-                                    <a href="{{asset('/profile')}}">View profile</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">                      
                                 </div>
                             </div>
                         </ul>
-                        
+
 
                         <div class="clearfix"> </div>
                     </div>
@@ -210,13 +204,63 @@
         @yield('welcome')
         <!---->
         @yield('ads')
-        <!---->
-        <div class="featured">
-            @yield('container')
-        </div>
-        <!---->
+
+        @yield('container')
+
         <div class="arrivals">
-            @yield('slide1')
+            <div class="container">	
+                <h3>New Products</h3>
+                <div class="arrival-grids">			 
+                    <ul id="flexiselDemo1">
+                        @if($products_new)
+                        @foreach($products_new as $key => $product_new)
+                        <li>
+                            <a href="{{ url('/products') }}"><img src="{{asset($product_new->thumbnail()->link_image)}}" style="height:240px;" alt=""/>
+                                <div class="arrival-info">
+                                    <h4>{{$product_new->category ? $product_new->category->name : 'Uncategorized'}}</h4>
+                                    <p>{{$product_new->name}}</p>
+                                    <span class="pric1"><del>{{$product_new->name}}</del></span>
+                                    <span class="disc">[10% Off]</span>
+                                </div>
+                                <div class="viw">
+                                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
+                                </div>
+                                <div class="shrt">
+                                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
+                                </div></a>
+                        </li>
+                        @endforeach
+                        @endif
+                    </ul>
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#flexiselDemo1").flexisel({
+                                visibleItems: 4,
+                                animationSpeed: 1000,
+                                autoPlay: true,
+                                autoPlaySpeed: 3000,
+                                pauseOnHover: true,
+                                enableResponsiveBreakpoints: true,
+                                responsiveBreakpoints: {
+                                    portrait: {
+                                        changePoint: 480,
+                                        visibleItems: 1
+                                    },
+                                    landscape: {
+                                        changePoint: 640,
+                                        visibleItems: 2
+                                    },
+                                    tablet: {
+                                        changePoint: 768,
+                                        visibleItems: 3
+                                    }
+                                }
+                            });
+                        });
+                    </script>
+
+                </div>
+            </div>
         </div>
         <!---->
         <div class="clearfix"></div>
@@ -293,7 +337,7 @@
         <!---->
         <div class="copywrite">
             <div class="container">
-                <p>Copyright Â© 2015 Wedding Store. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                <p>Copyright Â© 2018 Food Store. Passerelles Numeriques | Design by <a href="#">4DOGS</a></p>
             </div>
         </div>		 
     </body>
@@ -331,5 +375,6 @@
             </div>
         </div>
     </div>
-    
+    <script type="text/javascript" src="js/jquery.flexisel.js"></script>	
+
 </html>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -12,7 +11,6 @@ use App\Cart;
 use Session;
 use App\PriceSizes;
 use App\Comment;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller {
@@ -38,7 +36,8 @@ class HomeController extends Controller {
 
     public function index1() {
         $products = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->paginate(9);
-        return view('products', compact('products'));
+        $products_new = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(6)->get();
+        return view('products', compact('products','products_new'));
     }
 
     public function index2($id) {
@@ -46,7 +45,8 @@ class HomeController extends Controller {
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
         $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->get();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
-        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments'));
+        $products_new = Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(6)->get();
+        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'products_new'));
     }
 
     public function getAddToCart(Request $request, $id) {
