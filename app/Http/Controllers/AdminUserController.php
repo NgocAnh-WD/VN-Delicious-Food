@@ -124,9 +124,9 @@ class AdminUserController extends Controller {
     public function edit($id) {
         $user = User::findOrFail($id);
         $u = User::pluck('gender', 'id')->all();
-
+        $gender = User::where('id',$id)->first();
         $images = User::pluck('avata_image')->all();
-        return view('admin.users.edit', ['users' => $user], ['u' => $u], ['images' => $images]);
+        return view('admin.users.edit', ['users' => $user],['gender' => $gender], ['u' => $u], ['images' => $images]);
     }
 
     /**

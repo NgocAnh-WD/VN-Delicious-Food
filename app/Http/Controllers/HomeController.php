@@ -229,7 +229,8 @@ class HomeController extends Controller {
                 ->leftJoin('price_sizes', 'price_sizes.product_id', '=', 'products.id')
                 ->join('categories', 'categories.id', '=', 'products.category_id')
                 ->join('images', 'images.product_id', '=', 'products.id')
-                ->where('images.is_thumbnail', '1')
+                ->where('images.is_thumbnail','1')
+                ->where('products.name','like','%'.$name.'%')
                 ->whereBetween('price', [$priceFrom, $priceTo])//select gia tu A den B
                 ->select('products.name AS product_name', 'products.id AS product_id', 'categories.name', 'price_sizes.price', 'price_sizes.size', 'images.link_image');
 
@@ -239,9 +240,7 @@ class HomeController extends Controller {
         }
         $first = $query->get();
 
-        // var_dump($first);
-
-        $products = Product::with('price_sizes')->where(['product.id', '=', 'price_size.product_id'], ['name', 'like', '%' . $name . '%']);
+//        $products=Product::with('price_sizes')->where(['product.id','=','price_size.product_id'],['name','like','%'.$name.'%']);
 //        var_dump($products);
         return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
 //        return redirect()->back();
