@@ -137,7 +137,7 @@
             @endif
         </ul>
         <script type="text/javascript">
-            $(window).load(function () {
+                $(function () {
                 $("#flexiselDemo1").flexisel({
                     visibleItems: 4,
                     animationSpeed: 1000,

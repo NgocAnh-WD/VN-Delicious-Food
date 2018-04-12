@@ -3,7 +3,7 @@
     <head>
         <title>Food Store</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="{{asset('js/jquery.min.js')}}"></script>
+<!--        <script src="{{asset('js/jquery.min.js')}}"></script>-->
         <link href="{{asset('css/style.css')}}" rel="stylesheet">	
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,8 @@
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <!--        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
 
-        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
@@ -22,10 +23,10 @@
         <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/searchPrice.js')}}"></script>
         <script>
-            
-            var GlobleVariable = [];
-            GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
-            </script>	
+
+var GlobleVariable = [];
+GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
+        </script>	
         <!-- /start menu -->      
     </head>
     <body> 
@@ -172,18 +173,18 @@
                                 <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
                                 <div class="dropdown-content">
                                     <a href="{{ route('logout')}}"
-                                         onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                       onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
                                         Logout                                       
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    {{ csrf_field() }}
+                                        {{ csrf_field() }}
                                     </form>
                                     <a href="{{asset('/profile')}}">View profile</a>
                                 </div>
                             </div>
                         </ul>
-                        
+
 
                         <div class="clearfix"> </div>
                     </div>
@@ -293,43 +294,9 @@
         <!---->
         <div class="copywrite">
             <div class="container">
-                <p>Copyright Â© 2015 Wedding Store. All Rights Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+                <p>Copyright Â© 2015 Wedding Store. All Rights Reserved | Design by <a href="#">4 DOGS</a></p>
             </div>
         </div>		 
     </body>
-    <div class="panel panel-primary">
-        <button id="btn_add" name="btn_add" class="btn btn-default pull-right">Add New Product</button>
-    </div>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Product</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group error">
-                            <label for="inputName" class="col-sm-3 control-label">Name</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control has-error" id="name" name="name" placeholder="Product Name" value="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDetail" class="col-sm-3 control-label">Details</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="details" name="details" placeholder="details" value="">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-                    <input type="hidden" id="product_id" name="product_id" value="0">
-                </div>
-            </div>
-        </div>
-    </div>
-    
+
 </html>
