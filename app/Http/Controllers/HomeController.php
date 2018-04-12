@@ -45,9 +45,10 @@ class HomeController extends Controller {
     public function index2($id) {
         $product_detail = Product::where('id', $id)->first();
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
-        $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->get();
+        $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
+        $sizes = PriceSizes::select('quality', 'price', 'quantity')->where([['product_id', $product_detail->id],['is_price',0]])->first();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
-        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments'));
+        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments','sizes'));
     }
 
     public function getAddToCart(Request $request, $id) {
@@ -248,5 +249,11 @@ class HomeController extends Controller {
 //        return redirect()->back();
 //        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
     }
-
+    
+    public function getSizeProduct(Request $request) {
+        $id = $request->id;
+        $size = $request->size;
+        $sizes = PriceSizes::select('price', 'quantity')->where([['product_id', $id],['size',$size]])->first();
+        return response()->json(['size' =>$sizes]);
+    }
 }

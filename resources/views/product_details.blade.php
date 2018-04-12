@@ -3,7 +3,7 @@
 @section('container')
 <div class="featured">
     <div class="single-sec">
-        <div class="container">
+        <div class="container" style="width: 1310px;">
             <ol class="breadcrumb">
                 <li><a href="{{asset('/home')}}">Home</a></li>
                 <li class="active"><a href="{{asset('/products')}}">Products</a></li>
@@ -31,31 +31,30 @@
                         <table class="table table-bordered">
                             <tbody>
                                 <tr>
-                                    <td><p>Size</p></td>
-                                    <td><p>Price</p></td>
-                                    <td><p>Quantity</p></td>
-                                    <td><p>Action</p></td>
+                                    <td style="width: 15%"><p>Size</p></td>
+                                    <td style="width: 15%"><p>Price</p></td>
+                                    <td style="width: 15%"><p>Quantity</p></td>
+                                    <td style="width: 55%"><p>Action</p></td>
                                 </tr>
-                                @foreach($price_sizes as $price_size)
                                 <tr>
-                                    <td><p>{{$price_size->size}}</p></td>
-                                    <td><p>{{$price_size->price}}</p></td>
-                                    <td><p>{{$price_size->quantity}}</p></td>
-                                    <td>
+                                    <td style="width: 15%">
+                                        <select id="price_size" class="form-control" name="price_size" onchange="sizeAjax({{$product_detail->id}})">
+                                            @foreach($price_sizes as $price_size)
+                                            <option value="{{$price_size->size}}">{{$price_size->size}}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td style="width: 25%"><p id="show_price">{{$sizes->price}}</p></td>
+                                    <td style="width: 15%"><p id="show_quantity">{{$sizes->quantity}}</p></td>
+                                    <td style="width: 55%">
                                         <button type="submit" class="btn btn-success" style="margin-top: 20px;">
                                             <span>
                                                 <a href="{{asset('/cart')}}" style="color:#FFF">Add Product</a>
                                             </span>
                                         </button>
-                                        <button type="submit" class="btn btn-success" style="margin-top: 20px;">
-                                            <span>
-                                                <a href="#" style="color:#FFF">Buy Now</a>
-                                            </span>
-                                        </button>
                                     </td>
-                                </tr>														
+                                </tr>
                             </tbody>
-                            @endforeach
                         </table>
                     </div>
                     <div class="single-bottom1">
@@ -152,7 +151,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#description">Giới thiệu món</a></li>
                     <li><a data-toggle="tab" href="#menu">Menu cửa hàng</a></li>
-<!--                    <li><a data-toggle="tab" href="#vote">Đánh giá sản phẩm</a></li>-->
+                    <!--                    <li><a data-toggle="tab" href="#vote">Đánh giá sản phẩm</a></li>-->
                     <li><a data-toggle="tab" href="#think">Bình luận của khách hàng</a></li>  
                 </ul>
 
@@ -163,10 +162,10 @@
                             <h4 style="font-size: 16px;">Nguyên liệu:</h4>
                         </div>
                     </div>
-<!--                    <div id="vote" class="tab-pane fade">
-                        <h3>Menu 1</h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>-->
+                    <!--                    <div id="vote" class="tab-pane fade">
+                                            <h3>Menu 1</h3>
+                                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        </div>-->
                     <div id="think" class="tab-pane fade">
                         <div class="arrivals">                  
                             @if(Auth::check())

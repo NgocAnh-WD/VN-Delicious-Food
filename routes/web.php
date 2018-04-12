@@ -59,6 +59,7 @@ Route::post('comment', function(Request $request) {
     return response()->json($comment);
 });
 
+Route::get('/getsize', 'HomeController@getSizeProduct');
 Route::get('/addtocart/{id}', 'HomeController@getAddToCart');
 Route::get('product/delete/{id}', 'HomeController@removeItem');
 Route::get('product/deductbyone/{id}', 'HomeController@deductByOne');
