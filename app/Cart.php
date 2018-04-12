@@ -21,6 +21,27 @@ class Cart {
         }
     }
 
+    public function priceadd($item, $id, $price) {
+        $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'item' => $item];
+
+        if ($this->items) {
+            if (array_key_exists($id, $this->items)) {
+                $storedItem = $this->items[$id];
+            }
+        }
+        $storedItem['qty'] ++;
+        $storedItem['name'] = $item->name;
+        $storedItem['id'] = $id;
+        $storedItem['price'] = $price * $storedItem['qty'];
+        $storedItem['price_goc'] = $price;
+        $storedItem['image'] = $item->thumbnail()->link_image;
+        $storedItem['size'] = $item->is_price()->size;
+        $this->items[$id] = $storedItem;
+        $this->totalQty++;
+        $this->totalPrice += $price;
+        $this->totaltong =  $this->totalPrice;
+    }
+    
     public function add($item, $id) {
         $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $item->is_price()->price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'item' => $item];
 

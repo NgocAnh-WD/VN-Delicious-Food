@@ -44,13 +44,14 @@
                                             @endforeach
                                         </select>
                                     </td>
-                                    <td style="width: 25%"><p id="show_price">{{$sizes->price}}</p></td>
+                                    <td style="width: 25%">
+                                        <p id="show_price">{{$sizes->price}}</p>
+                                        <input type="hidden" class="hidden_price" value="{{$sizes->price}}">
+                                    </td>
                                     <td style="width: 15%"><p id="show_quantity">{{$sizes->quantity}}</p></td>
                                     <td style="width: 55%">
-                                        <button type="submit" class="btn btn-success" style="margin-top: 20px;">
-                                            <span>
-                                                <a href="{{asset('/cart')}}" style="color:#FFF">Add Product</a>
-                                            </span>
+                                        <button type="submit" class="btn btn-success price_cart" value="{{$product_detail->id}}" style="margin-top: 20px;">
+                                            Thêm vào giỏ hàng
                                         </button>
                                     </td>
                                 </tr>

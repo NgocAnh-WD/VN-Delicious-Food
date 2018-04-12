@@ -46,9 +46,22 @@ class HomeController extends Controller {
         $product_detail = Product::where('id', $id)->first();
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
         $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
-        $sizes = PriceSizes::select('quality', 'price', 'quantity')->where([['product_id', $product_detail->id],['is_price',0]])->first();
+        $sizes = PriceSizes::select('quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
-        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments','sizes'));
+        return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'sizes'));
+    }
+
+    public function getSizeAddtoCart(Request $request) {
+        $id = $request->id;
+        $price = $request->price;
+        
+        $product = Product::find($id);
+//        $price = $request->price;
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->priceadd($product, $product->id,$price);
+        $request->session()->put('cart', $cart);
+        return response()->json(['quantyti' => Session::get('cart')->totalQty]);
     }
 
     public function getAddToCart(Request $request, $id) {
@@ -58,6 +71,7 @@ class HomeController extends Controller {
         $cart->add($product, $product->id);
 
         $request->session()->put('cart', $cart);
+        
         return response()->json(['quantyti' => Session::get('cart')->totalQty, 'shipping' => Session::get('cart')->shipping, 'totalprice' => Session::get('cart')->totalPrice, 'totaltong' => Session::get('cart')->totaltong, 'qty' => Session::get('cart')->items[$id]['qty'], 'price' => Session::get('cart')->items[$id]['price']]);
     }
 
@@ -242,18 +256,18 @@ class HomeController extends Controller {
         $first = $query->get();
 
         // var_dump($first);
-
 //        $products = Product::with('price_sizes')->where(['product.id', '=', 'price_size.product_id'], ['name', 'like', '%' . $name . '%']);
 //        var_dump($products);
         return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
 //        return redirect()->back();
 //        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
     }
-    
+
     public function getSizeProduct(Request $request) {
         $id = $request->id;
         $size = $request->size;
-        $sizes = PriceSizes::select('price', 'quantity')->where([['product_id', $id],['size',$size]])->first();
-        return response()->json(['size' =>$sizes]);
+        $sizes = PriceSizes::select('price', 'quantity')->where([['product_id', $id], ['size', $size]])->first();
+        return response()->json(['size' => $sizes]);
     }
+
 }

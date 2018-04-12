@@ -48,9 +48,31 @@ function sizeAjax(id_product) {
         success: function (data) {
             $('#show_price').html(data.size.price);
             $('#show_quantity').html(data.size.quantity);
+            $('#hidden_price').html(data.size.price);            
         }
     })
 }
+
+$(document).on('click', '.price_cart', function () {
+    var product_id = $(this).val();
+    var price = $('#show_price').text();
+    price = parseInt(price);
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    })
+    $.ajax({
+        type: "get",
+        url: GlobleVariable.app_url + '/addtocart',
+        dataType: "json",
+        data: {id: product_id,price:price},
+        success: function (data) {
+            $('.badge').html(data['quantyti']);
+        }
+    })
+
+});
 $(document).on('click', '.cart', function () {
     var product_id = $(this).val();
     $.ajaxSetup({

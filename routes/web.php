@@ -60,6 +60,7 @@ Route::post('comment', function(Request $request) {
 });
 
 Route::get('/getsize', 'HomeController@getSizeProduct');
+Route::get('/addtocart', 'HomeController@getSizeAddtoCart');
 Route::get('/addtocart/{id}', 'HomeController@getAddToCart');
 Route::get('product/delete/{id}', 'HomeController@removeItem');
 Route::get('product/deductbyone/{id}', 'HomeController@deductByOne');
