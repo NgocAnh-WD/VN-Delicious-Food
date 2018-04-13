@@ -54,7 +54,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                 &nbsp;
                             </ul>
                             <!-- search -->
-                            <ul nav navbar-nav>
+                            <!--                            <ul nav navbar-nav>
                                 <form action="{{url('/search')}}" method="get" role="search">
                                     <div class="col-md-5 input-group" style="margin-top: 8px; ">
                                         <input type="text" class="form-control" name="key_search" id="key_search_button" placeholder="Search...">
@@ -66,7 +66,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                         <div class="clearfix"></div>
                                     </div>
                                 </form>
-                            </ul>
+                                                        </ul>-->
 
                             <ul class="nav navbar-nav navbar-right">
                                 <!-- Authentication Links -->
@@ -193,7 +193,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                 </div>
                             </li>
                             <li class="grid"><a href="#">Contact</a></li>
-<!--                            <li>
+                            <li>
                                 <div class="search">
                                     <input class="search_box" type="checkbox" id="search_box">
                                     <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
@@ -204,7 +204,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                         </form>
                                     </div>
                                 </div>
-                            </li>-->
+                            </li>
                             <!-- Authentication Links -->                           
                         </ul>
 
