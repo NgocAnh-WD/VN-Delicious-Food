@@ -256,14 +256,14 @@
                                         <summary style="color: blue;">View Reply Comment</summary>
                                         @foreach($comment->children as $replyComment)
                                         <div id="show_reply_{{$comment->id}}">
-                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
+                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px; background-color:  #FFF;">
                                                 <div class="col-md-3">
                                                     @if($replyComment->user)                          
                                                     <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
                                                     {{$replyComment->user->username}}<br>
                                                     @endif
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6" >
                                                     {{str_limit($replyComment->content, 300)}} 
                                                 </div>
                                                 <div class="col-md-3">
