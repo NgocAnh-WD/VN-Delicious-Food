@@ -217,38 +217,9 @@
                                             <div class="col-md-7">
                                                 <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comment->title}}</a></h4>
                                                 {{str_limit($comment->content, 300)}} 
-                                            </div>
-                                            <div class="col-md-3">
-                                                <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comment->created_at->diffForhumans()}}</p>
-                                            </div> 
-                                        </div>
-                                    </div>                                       
-                                    @if(count($comment->children))
+                                                @if(Auth::check())
                                     <details close>
-                                        <summary style="color: blue;">View Reply Comment</summary>
-                                        @foreach($comment->children as $replyComment)
-                                        <div id="show_reply_{{$comment->id}}">
-                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
-                                                <div class="col-md-3">
-                                                    @if($replyComment->user)                          
-                                                    <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
-                                                    {{$replyComment->user->username}}<br>
-                                                    @endif
-                                                </div>
-                                                <div class="col-md-6">
-                                                    {{str_limit($replyComment->content, 300)}} 
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
-                                                </div>                                                                                
-                                            </div>
-                                        </div>
-                                        @endforeach                           
-                                    </details>
-                                    @endif
-                                    @if(Auth::check())
-                                    <details close>
-                                        <summary style="color: blue;">-- Reply --</summary>  
+                                        <summary style="color: blue;">Reply</summary>  
                                         <div class="well">
                                             <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
                                                 <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
@@ -274,6 +245,35 @@
                                         </div> 
                                     </details> 
                                     @endif
+                                            </div>                                           
+                                            <div class="col-md-3">
+                                                <p><span class="glyphicon glyphicon-time"></span>{{$comment->created_at->diffForhumans()}}</p>
+                                            </div> 
+                                        </div>
+                                    </div>                                       
+                                    @if(count($comment->children))
+                                    <details close>
+                                        <summary style="color: blue;">View Reply Comment</summary>
+                                        @foreach($comment->children as $replyComment)
+                                        <div id="show_reply_{{$comment->id}}">
+                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
+                                                <div class="col-md-3">
+                                                    @if($replyComment->user)                          
+                                                    <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
+                                                    {{$replyComment->user->username}}<br>
+                                                    @endif
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{str_limit($replyComment->content, 300)}} 
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <p><span class="glyphicon glyphicon-time"></span>{{$replyComment->created_at->diffForhumans()}}</p>
+                                                </div>                                                                                
+                                            </div>
+                                        </div>
+                                        @endforeach                           
+                                    </details>
+                                    @endif                                   
                                 </div>
                                 @endforeach
                                 @endif
