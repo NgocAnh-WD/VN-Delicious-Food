@@ -40,7 +40,9 @@
                                     <td style="width: 15%">
                                         <select id="price_size" class="form-control" name="price_size" onchange="sizeAjax({{$product_detail->id}})">
                                             @foreach($price_sizes as $price_size)
-                                            <option value="{{$price_size->size}}">{{$price_size->size}}</option>
+                                            <option value="{{$price_size->size}}" {{ $price_size->size == $sizes->size ? 'selected="selected"' : '' }}>
+                                                {{$price_size->size}}
+                                            </option>
                                             @endforeach
                                         </select>
                                     </td>

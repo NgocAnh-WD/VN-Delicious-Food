@@ -46,7 +46,7 @@ class HomeController extends Controller {
         $product_detail = Product::where('id', $id)->first();
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
         $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
-        $sizes = PriceSizes::select('quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
+        $sizes = PriceSizes::select('size','quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
         return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'sizes'));
     }
@@ -205,14 +205,6 @@ class HomeController extends Controller {
             $reply->save();
             return $reply;
         }
-    }
-
-    public function index3() {
-        return view('cart');
-    }
-
-    public function index4() {
-        return view('layouts/admin');
     }
 
     public function get_products_by_category($id) {
