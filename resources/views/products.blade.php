@@ -50,7 +50,7 @@
                 {{ $products->render() }}
             </div>
         </div>
-    </div>
+    </div>       
     <div class="rsidebar span_1_of_left">
         @include('includes.categories_widget')
         <!--script-->
@@ -109,7 +109,7 @@
                     <div class="col col-4">
 
                         <select id="select-price">
-                            <option value="">Select price</option>
+                            <option value="">-- Select price --</option>
                             <option value="1,19">1.000 - 19.000(VND)</option>
                             <option value="20,29">20.000 - 29.000 (VND)</option>
                             <option value="30,39">30.000 - 39.000 (VND)</option>
@@ -118,19 +118,22 @@
                         </select>
 
                         <div class="category">
-                            <input class="p-size"  type="checkbox" name="size[]" value="s" id="size-1">
-                            <label for="size-1" class='cat-check'>Size S</label>
+                            <label for="size-1" class='cat-check'>
+                                <input class="p-size"  type="checkbox" name="size[]" value="s" id="size-1">
+                                Size S</label>
                         </div>
                         <div class="category">
-                            <input class="p-size" type="checkbox" name="size[]" value="m" id="size-2">
-                            <label for="size-2" class='cat-check'>Size M</label>
+                            <label for="size-2" class='cat-check'>
+                                <input class="p-size" type="checkbox" name="size[]" value="m" id="size-2">
+                                Size M</label>
                         </div>
                         <div class="category">
-                            <input class="p-size"  type="checkbox" name="size[]" value="l" id="size-3">
-                            <label for="size-3" class='cat-check'>Size L</label>
+                            <label for="size-3" class='cat-check'>
+                                <input class="p-size"  type="checkbox" name="size[]" value="l" id="size-3">
+                                Size L</label>
                         </div>
 
-                        <button type="button" id="search-product">Search</button>
+                        <button style="background: blue; color: white" type="button" id="search-product">Search</button>
                     </div>
                 </form>
             </div>

@@ -13,12 +13,12 @@ var price = $(this).val();
         var exPrice = price.split(',');
         priceFrom = exPrice[0];
         priceTo = exPrice[1];
-});
+        });
         $('.p-size').on('change', function (e) {
 $.ajaxSetup({
 headers: {
 'X-CSRF-TOKEN': $('#_token1').val()
-}
+        }
 });
         e.preventDefault();
 //        sizes = [];
@@ -29,7 +29,7 @@ headers: {
 //                sizes.push(size);
 //            }
 //        });
-});
+        });
 //    alert(sizes);
 
         function searchAjax(data) {
@@ -42,10 +42,10 @@ headers: {
                 success: function (data) {
                 console.log(data);
                         var $products = data.product;
-                        var comment = "";
+                        var search = "";
                         for (var i = 0; i < $products.length; i++) {
                 var $product = $products[i];
-                        comment += '<a href="http://foodstore/single/' + $product.product_id + ' ">'
+                        search += '<a href="http://foodstore/single/' + $product.product_id + ' ">'
                         + '<div class="product-grid love-grid">'
                         + '<div class="more-product">' + '<span> </span>' + '</div>'
                         + '<div class="product-img b-link-stripe b-animate-go  thickbox">'
@@ -66,53 +66,53 @@ headers: {
                         + '<div id="style" style="margin-top: 10px;">'
                         + '<button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info cart" value="' + $product.product_id + '">Add to cart</button>'
                         + '<div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">' + '</div>'
-                        + '<button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info">' + '<a href="http://foodstore/single/' + $product.product_id + ' ">View Detail</a>'+'</button>'
+                        + '<button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info">' + '<a href="http://foodstore/single/' + $product.product_id + ' ">View Detail</a>' + '</button>'
                         + "</div>"
                         + "</div>"
                         + "</div>"
                         + "</div>";
                 };
-                        $('#product-container').html(comment);
+                        $('#product-container').html(search);
                 }
 
 
-                //$products.each(function ($product) {
+        //$products.each(function ($product) {
 
 
 
 
 
 
-                // }
-                });
-                }
+        // }
+        });
+        }
 
-                $('#search-product').click(function () {
-                var url_string = window.location.href; //window.location.href
-                        var url = new URL(url_string);
-                        var c = url.searchParams.get("key_search");
-                        sizes = [];
-                        $('.p-size:checked').each(function (e) {
+$('#search-product').click(function () {
+var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var c = url.searchParams.get("key_search");
+        sizes = [];
+        $('.p-size:checked').each(function (e) {
 
-                var size = $(this).val();
+var size = $(this).val();
 //            if (sizes.indexOf(size) === -1) {
-                        sizes.push(size);
+        sizes.push(size);
 //            }
-                });
-                        // alert(sizes);
-                        var data = {
-                        priceFrom: priceFrom,
-                                priceTo: priceTo,
-                                sizes: sizes,
-                                name: c,
-                        };
-                        searchAjax(data);
-                        alert(JSON.stringify(data));
-                });
+});
+        // alert(sizes);
+        var data = {
+        priceFrom: priceFrom,
+                priceTo: priceTo,
+                sizes: sizes,
+                name: c,
+        };
+        searchAjax(data);
+        alert(JSON.stringify(data));
+});
 //    $('#key_search').click(function () {
 //        searchAjax(data);
 ////        alert($('#search').val()+ $('#key_search').val());
 //        alert($('#key_search_button').val());
 //    });
 
-                        });
+});

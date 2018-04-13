@@ -215,6 +215,7 @@ class HomeController extends Controller {
     public function getSearch() {
         $products = Product::search($_GET['key_search'])->paginate(9);
         $products->setPath('search?key_search=' . $_GET['key_search']);
+        
         $key_search = $_GET['key_search'];
         return view('products', compact('products', 'key_search'));
     }
@@ -247,12 +248,8 @@ class HomeController extends Controller {
         }
         $first = $query->get();
 
-        // var_dump($first);
-//        $products = Product::with('price_sizes')->where(['product.id', '=', 'price_size.product_id'], ['name', 'like', '%' . $name . '%']);
-//        var_dump($products);
         return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
 //        return redirect()->back();
-//        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
     }
 
     public function getSizeProduct(Request $request) {
