@@ -87,7 +87,7 @@
                 <div class="section_heading">Thông tin đơn hàng</div>                
                 <div class="box-style">
                     <span>Tạm tính ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm)</span>
-                    <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->totalPrice : '' }}.000</strong>
+                    <strong class="total_strong">{{ Session::has('cart') ? number_format(Session::get('cart')->totalPrice, 3, ',', '.') : '' }}VNĐ</strong>
                 </div>
                 <div class="box-style3">
                     <span>Vận chuyển:</span>
@@ -97,7 +97,7 @@
                     <div class="total2 clearfix">
                         <span class="text-label">Tổng cộng:</span>
                         <div class="amount1">
-                            <p><strong class="total_strong2">{{ Session::has('cart') ? Session::get('cart')->totaltong : '' }}.000 VNĐ</strong></p>
+                            <p><strong class="total_strong2">{{ Session::has('cart') ? number_format(Session::get('cart')->totaltong, 3, ',', '.') : '' }} VNĐ</strong></p>
                             <p class="text-right1">
                                 <small>(Đã bao gồm VAT)</small>
                             </p>
@@ -203,7 +203,7 @@
                 <div class="section_heading">Thông tin đơn hàng</div>                
                 <div class="box-style">
                     <span>Tạm tính ({{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} sản phẩm)</span>
-                    <strong class="total_strong">{{ Session::has('cart') ? Session::get('cart')->totalPrice : '' }}.000</strong>
+                    <strong class="total_strong">{{ Session::has('cart') ? number_format(Session::get('cart')->totalPrice, 3, ',', '.') : '' }}VNĐ</strong>
                 </div>
                 <div class="box-style3">
                     <span>Vận chuyển:</span>
@@ -213,7 +213,7 @@
                     <div class="total2 clearfix">
                         <span class="text-label">Tổng cộng:</span>
                         <div class="amount1">
-                            <p><strong class="total_strong2">{{ Session::has('cart') ? Session::get('cart')->totaltong : '' }}.000 VNĐ</strong></p>
+                            <p><strong class="total_strong2">{{ Session::has('cart') ? number_format(Session::get('cart')->totaltong, 3, ',', '.') : '' }} VNĐ</strong></p>
                             <p class="text-right1">
                                 <small>(Đã bao gồm VAT)</small>
                             </p>
@@ -267,7 +267,7 @@
                             </div>
                         </div>
                         <div class="cart-item-middle">
-                            <p class="current-price">{{ $product['price']}}.000VND</p>
+                            <p class="current-price">{{ number_format($product['price'], 3, ',', '.')}} VNĐ</p>
                         </div>
                         <div class="cart-item-right">
                             <div class="quantity1 automation-item-quantity">
