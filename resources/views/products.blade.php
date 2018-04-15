@@ -49,15 +49,40 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <div class="rsidebar span_1_of_left">
             @include('includes.categories_widget')
             <!--script-->
             <script type="text/javascript">
                 $(document).ready(function () {
+=======
+    </div>       
+    <div class="rsidebar span_1_of_left">
+        @include('includes.categories_widget')
+        <!--script-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".tab1 .single-bottom").hide();
+                $(".tab2 .single-bottom").hide();
+                $(".tab3 .single-bottom").hide();
+                $(".tab4 .single-bottom").hide();
+                $(".tab5 .single-bottom").hide();
+
+                $(".tab1 ul").click(function () {
+                    $(".tab1 .single-bottom").slideToggle(300);
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                })
+                $(".tab2 ul").click(function () {
+                    $(".tab2 .single-bottom").slideToggle(300);
+>>>>>>> origin/master
                     $(".tab1 .single-bottom").hide();
                     $(".tab2 .single-bottom").hide();
                     $(".tab3 .single-bottom").hide();
                     $(".tab4 .single-bottom").hide();
+<<<<<<< HEAD
                     $(".tab5 .single-bottom").hide();
 
                     $(".tab1 ul").click(function () {
@@ -114,6 +139,58 @@
                                 <option value="40,49">40.000 - 49.000 (VND)</option>
                                 <option value="50, 1000">Over 50.000 (VND)</option>
                             </select>
+=======
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab1 .single-bottom").hide();
+                })
+            });
+        </script><!--
+         script 					 
+</section>-->
+        <section  class="sky-form">
+            <h4><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>PRICES</h4>
+            <div class="row row1 scroll-pane">
+                <form method="POST" name="FormSortProduct" action="">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    <div class="col col-4">
+
+                        <select id="select-price">
+                            <option value="">-- Select price --</option>
+                            <option value="1,19">1.000 - 19.000(VND)</option>
+                            <option value="20,29">20.000 - 29.000 (VND)</option>
+                            <option value="30,39">30.000 - 39.000 (VND)</option>
+                            <option value="40,49">40.000 - 49.000 (VND)</option>
+                            <option value="50, 1000">Over 50.000 (VND)</option>
+                        </select>
+
+                        <div class="category">
+                            <label for="size-1" class='cat-check'>
+                                <input class="p-size"  type="checkbox" name="size[]" value="s" id="size-1">
+                                Size S</label>
+                        </div>
+                        <div class="category">
+                            <label for="size-2" class='cat-check'>
+                                <input class="p-size" type="checkbox" name="size[]" value="m" id="size-2">
+                                Size M</label>
+                        </div>
+                        <div class="category">
+                            <label for="size-3" class='cat-check'>
+                                <input class="p-size"  type="checkbox" name="size[]" value="l" id="size-3">
+                                Size L</label>
+                        </div>
+
+                        <button style="background: blue; color: white" type="button" id="search-product">Search</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <!---->
+        <script type="text/javascript" src="js/search.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+        <script type='text/javascript'>//<![CDATA[ 
+>>>>>>> origin/master
 
                             <div class="category">
                                 <input class="p-size"  type="checkbox" name="size[]" value="s" id="size-1">

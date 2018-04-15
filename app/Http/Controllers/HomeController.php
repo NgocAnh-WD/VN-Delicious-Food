@@ -46,8 +46,13 @@ class HomeController extends Controller {
         $product_detail = Product::where('id', $id)->first();
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
         $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
+<<<<<<< HEAD
         $sizes = PriceSizes::select('quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->orderBy('created_at', 'desc')->paginate(9);
+=======
+        $sizes = PriceSizes::select('size','quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
+        $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
+>>>>>>> origin/master
         return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'sizes'));
     }
 
@@ -207,14 +212,6 @@ class HomeController extends Controller {
         }
     }
 
-    public function index3() {
-        return view('cart');
-    }
-
-    public function index4() {
-        return view('layouts/admin');
-    }
-
     public function get_products_by_category($id) {
         $products = Product::where('category_id', $id)->paginate(9);
         return view('products', compact('products'));
@@ -223,6 +220,7 @@ class HomeController extends Controller {
     public function getSearch() {
         $products = Product::search($_GET['key_search'])->paginate(9);
         $products->setPath('search?key_search=' . $_GET['key_search']);
+        
         $key_search = $_GET['key_search'];
         return view('products', compact('products', 'key_search'));
     }
@@ -255,12 +253,8 @@ class HomeController extends Controller {
         }
         $first = $query->get();
 
-        // var_dump($first);
-//        $products = Product::with('price_sizes')->where(['product.id', '=', 'price_size.product_id'], ['name', 'like', '%' . $name . '%']);
-//        var_dump($products);
         return response()->json(['product' => $first, 'message' => $query->toSql(), 'bindind' => $query->getBindings()]);
 //        return redirect()->back();
-//        $image = DB::table('images')->select('id', 'link_image')->where('product_id', $product_detail->id)->get();
     }
 
     public function getSizeProduct(Request $request) {

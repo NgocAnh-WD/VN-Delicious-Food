@@ -1,3 +1,25 @@
+function number_format(number, decimals, decPoint, thousandsSep){
+	decimals = decimals || 0;
+	number = parseFloat(number);
+
+	if(!decPoint || !thousandsSep){
+		decPoint = '.';
+		thousandsSep = ',';
+	}
+
+	var roundedNumber = Math.round( Math.abs( number ) * ('1e' + decimals) ) + '';
+	var numbersString = decimals ? roundedNumber.slice(0, decimals * -1) : roundedNumber;
+	var decimalsString = decimals ? roundedNumber.slice(decimals * -1) : '';
+	var formattedNumber = "";
+
+	while(numbersString.length > 3){
+		formattedNumber += thousandsSep + numbersString.slice(-3)
+		numbersString = numbersString.slice(0,-3);
+	}
+
+	return (number < 0 ? '-' : '') + numbersString + formattedNumber + (decimalsString ? (decPoint + decimalsString) : '');
+}
+
 function deleteImages(id_imge) {
     var image = 'image_delete' + id_imge;
     $.ajaxSetup({
@@ -56,7 +78,7 @@ function sizeAjax(id_product) {
 $(document).on('click', '.price_cart', function () {
     var product_id = $(this).val();
     var price = $('#show_price').text();
-    price = parseInt(price);
+    price = parseFloat(price);
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -110,8 +132,8 @@ $(document).on('click', '.closecart', function () {
                 $(temp).html(data.html);
                 $('.badge').html(data.quantity);
                 $('.count_cart').html(data.quantity);
-                $('.totalprice').html(data.totalprice);
-                $('.totaltong').html(data.totaltong);
+                $('.totalprice').html(number_format(data.totalprice, 3, '.', ',' ));
+                $('.totaltong').html(number_format(data.totaltong, 3, '.', ',' ));
             },
         })
     } else {
@@ -134,12 +156,11 @@ $(document).on('click', '.plus', function () {
             var plus = '#quantity' + product_id;
             var price = '#price_update' + product_id;
             $(plus).html(data.qty);
-            $(price).html(data.price);
-
+            $(price).html(number_format(data.price, 3, '.', ',' ));
             $('.badge').html(data.quantyti);
             $('.count_cart').html(data.quantyti);
-            $('.totalprice').html(data.totalprice);
-            $('.totaltong').html(data.totaltong);
+            $('.totalprice').html(number_format(data.totalprice, 3, '.', ',' ));
+            $('.totaltong').html(number_format(data.totaltong, 3, '.', ',' ));
         },
     })
 });
@@ -162,12 +183,12 @@ $(document).on('click', '.subtract', function () {
                 var plus = '#quantity' + product_id;
                 var price = '#price_update' + product_id;
                 $(plus).html(data.qty);
-                $(price).html(data.price);
+                $(price).html(number_format(data.price, 3, '.', ',' ));
 //                
                 $('.badge').html(data.quantyti);
                 $('.count_cart').html(data.quantyti);
-                $('.totalprice').html(data.totalprice);
-                $('.totaltong').html(data.totaltong);
+                $('.totalprice').html(number_format(data.totalprice, 3, '.', ',' ));
+                $('.totaltong').html(number_format(data.totaltong, 3, '.', ',' ));
             },
 //
         })

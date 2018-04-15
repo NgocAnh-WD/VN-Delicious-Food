@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head> 
         <title>Food Store</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!--        <script src="{{asset('js/jquery.min.js')}}"></script>-->
@@ -18,7 +18,7 @@
         <link href="{{asset('css/memenu.css')}}" rel="stylesheet" type="text/css" media="all" />
         <link href="{{asset('css/style1.css')}}" rel="stylesheet">        
         <link href="{{asset('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
-
+        <link href="{{asset('css/search_name_product.css')}}" rel="stylesheet">
         <script type="text/javascript" src="{{asset('js/memenu.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
         <script type="text/javascript" src="{{asset('js/searchPrice.js')}}"></script>
@@ -53,8 +53,8 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                             <ul class="nav navbar-nav">
                                 &nbsp;
                             </ul>
-
-                            <ul nav navbar-nav>
+                            <!-- search -->
+                            <!--                            <ul nav navbar-nav>
                                 <form action="{{url('/search')}}" method="get" role="search">
                                     <div class="col-md-5 input-group" style="margin-top: 8px; ">
                                         <input type="text" class="form-control" name="key_search" id="key_search_button" placeholder="Search...">
@@ -66,6 +66,29 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                         <div class="clearfix"></div>
                                     </div>
                                 </form>
+                                                        </ul>-->
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <!-- Authentication Links -->
+                                @guest
+                                <li><a href="{{ route('login') }}"><b>Login</b></a></li>
+                                <li><a href="{{ route('register') }}"><b>Register</b></a></li>
+                                @else
+                                <li class="dropdown">
+                                    <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
+                                    <div class="dropdown-content">
+                                        <a href="{{ route('logout')}}"
+                                           onclick="event.preventDefault();
+                                                   document.getElementById('logout-form').submit();">
+                                            Logout                                       
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                        <a href="{{asset('/profile')}}">View profile</a>
+                                    </div>
+                                </li>
+                                @endguest
                             </ul>
                             <!-- Right Side Of Navbar -->
 
@@ -96,7 +119,9 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                                 <li><a href="{{asset('/products')}}">Má»³ cay</a></li>
                                                 <li><a href="{{asset('/products')}}">BÃ¡nh trÃ¡ng trá»™n</a></li>
                                                 <li><a href="{{asset('/products')}}">Nem rÃ¡n</a></li>
+
                                             </ul>
+
                                         </div>
                                         <div class="col1 me-one">
                                             <h4>Price - Size</h4>
@@ -168,6 +193,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                 </div>
                             </li>
                             <li class="grid"><a href="#">Contact</a></li>
+<<<<<<< HEAD
                             <ul class="nav navbar-nav navbar-right">
 <<<<<<< Updated upstream
                                 <!-- Authentication Links -->
@@ -193,14 +219,28 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
+=======
+                            <li>
+                                <div class="search">
+                                    <input class="search_box" type="checkbox" id="search_box">
+                                    <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+                                    <div class="search_form">
+                                        <form action="{{url('/search')}}" method="GET" role="search">
+                                            <input type="text" name="key_search" id="key_search_button" placeholder="Search..."">
+                                            <input type="submit" value="Search">
+>>>>>>> origin/master
                                         </form>
-                                        <a href="{{asset('/profile')}}">View profile</a>
                                     </div>
+<<<<<<< HEAD
                                 </li>
                                 @endguest
                             </ul>
+=======
+                                </div>
+                            </li>
+                            <!-- Authentication Links -->                           
+>>>>>>> origin/master
                         </ul>
-
 
                         <div class="clearfix"> </div>
                     </div>
