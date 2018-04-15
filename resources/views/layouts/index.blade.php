@@ -170,13 +170,13 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                             <li class="grid"><a href="#">Contact</a></li>
                             <!-- Authentication Links -->
                             <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                               <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
+                                <!-- Authentication Links -->
+                                @guest
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="{{ route('register') }}">Register</a></li>
+                                @else
+                                <li class="dropdown">
+                                    <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
                                     <div class="dropdown-content">
                                         <a href="{{ route('logout')}}"
                                            onclick="event.preventDefault();
@@ -188,9 +188,9 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                         </form>
                                         <a href="{{asset('/profile')}}">View profile</a>
                                     </div>
-                            </li>
-                        @endguest
-                    </ul>
+                                </li>
+                                @endguest
+                            </ul>
                         </ul>
 
 
