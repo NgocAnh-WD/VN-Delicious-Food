@@ -2,7 +2,7 @@ function diffForHumans(unixTime, ms) {
   
   // Adjust for milliseconds
   ms = ms || false;
-  unixTime = (ms) ? unixTime * 1000 : unixTime;
+  unixTime = '2018-04-11 19:43:50';
 
   var d = new Date();
   var diff = Math.abs(d.getTime() - unixTime);

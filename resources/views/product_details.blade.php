@@ -75,56 +75,55 @@
                 @include('includes.categories_widget')
                 <script>
                     $(document).ready(function () {
-                        $(".tab1 .single-bottom").hide();
-                        $(".tab2 .single-bottom").hide();
-                        $(".tab3 .single-bottom").hide();
-                        $(".tab4 .single-bottom").hide();
-                        $(".tab5 .single-bottom").hide();
-
-                        $(".tab1 ul").click(function () {
-                            $(".tab1 .single-bottom").slideToggle(300);
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab5 .single-bottom").hide();
-                        })
-                        $(".tab2 ul").click(function () {
-                            $(".tab2 .single-bottom").slideToggle(300);
-                            $(".tab1 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab5 .single-bottom").hide();
-                        })
-                        $(".tab3 ul").click(function () {
-                            $(".tab3 .single-bottom").slideToggle(300);
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab5 .single-bottom").hide();
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab1 .single-bottom").hide();
-                        })
-                        $(".tab4 ul").click(function () {
-                            $(".tab4 .single-bottom").slideToggle(300);
-                            $(".tab5 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab1 .single-bottom").hide();
-                        })
-                        $(".tab5 ul").click(function () {
-                            $(".tab5 .single-bottom").slideToggle(300);
-                            $(".tab4 .single-bottom").hide();
-                            $(".tab3 .single-bottom").hide();
-                            $(".tab2 .single-bottom").hide();
-                            $(".tab1 .single-bottom").hide();
-                        })
+                    $(".tab1 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                    $(".tab1 ul").click(function () {
+                    $(".tab1 .single-bottom").slideToggle(300);
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                    })
+                            $(".tab2 ul").click(function () {
+                    $(".tab2 .single-bottom").slideToggle(300);
+                    $(".tab1 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                    })
+                            $(".tab3 ul").click(function () {
+                    $(".tab3 .single-bottom").slideToggle(300);
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab5 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab1 .single-bottom").hide();
+                    })
+                            $(".tab4 ul").click(function () {
+                    $(".tab4 .single-bottom").slideToggle(300);
+                    $(".tab5 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab1 .single-bottom").hide();
+                    })
+                            $(".tab5 ul").click(function () {
+                    $(".tab5 .single-bottom").slideToggle(300);
+                    $(".tab4 .single-bottom").hide();
+                    $(".tab3 .single-bottom").hide();
+                    $(".tab2 .single-bottom").hide();
+                    $(".tab1 .single-bottom").hide();
+                    })
                     });
                 </script>
                 <script type="text/javascript" src="{{asset('js/jqzoom.js')}}"></script>
                 <script type="text/javascript">
                     $("#bzoom").zoom({
-                        zoom_area_width: 300,
-                        autoplay_interval: 3000,
-                        small_thumbs: 4,
-                        autoplay: false
+                    zoom_area_width: 300,
+                            autoplay_interval: 3000,
+                            small_thumbs: 4,
+                            autoplay: false
                     });
                 </script>
                 <!---->
@@ -222,12 +221,15 @@
                                                 <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comment->created_at->diffForhumans()}}</p>
                                             </div> 
                                         </div>
-                                    </div>                                       
-                                    @if(count($comment->children))
-                                    <details close>
-                                        <summary style="color: blue;">View Reply Comment</summary>
-                                        @foreach($comment->children as $replyComment)
-                                        <div id="show_reply_{{$comment->id}}">
+                                    </div>  
+
+                                    
+                                        
+                                        <div id="show_reply_{{$comment->id}}"></div>
+                                        @if(count($comment->children))
+                                        <details close>
+                                            <summary style="color: blue;">View More Reply</summary> 
+                                            @foreach($comment->children as $replyComment)
                                             <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
                                                 <div class="col-md-3">
                                                     @if($replyComment->user)                          
@@ -242,10 +244,11 @@
                                                     <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
                                                 </div>                                                                                
                                             </div>
-                                        </div>
-                                        @endforeach                           
-                                    </details>
-                                    @endif
+                                            @endforeach 
+                                        </details>
+                                        @endif
+                                    
+
                                     @if(Auth::check())
                                     <details close>
                                         <summary style="color: blue;">-- Reply --</summary>  
@@ -277,6 +280,11 @@
                                 </div>
                                 @endforeach
                                 @endif
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-offset-5">
+                                        {{ $comments->render() }}
+                                    </div>
+                                </div>
                             </div>
                             <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                         </div>

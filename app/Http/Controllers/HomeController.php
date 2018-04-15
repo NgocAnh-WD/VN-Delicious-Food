@@ -47,7 +47,7 @@ class HomeController extends Controller {
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
         $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
         $sizes = PriceSizes::select('quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
-        $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
+        $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->orderBy('created_at', 'desc')->paginate(9);
         return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'sizes'));
     }
 
