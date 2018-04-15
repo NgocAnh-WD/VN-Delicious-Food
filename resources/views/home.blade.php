@@ -98,10 +98,10 @@
                     <span class="disc">[12% Off]</span>
                 </div>
                 <div class="viw">
-                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
+                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
                 </div>
                 <div class="shrt">
-                    <a href="{{ url('single', ['id' => $product->id]) }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>View Detail</a>
+                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
                 </div></a>
         </div>
         @endforeach
@@ -127,17 +127,17 @@
                         <span class="disc">[10% Off]</span>
                     </div>
                     <div class="viw">
-                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
+                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
                     </div>
                     <div class="shrt">
-                        <a href="{{ url('single', ['id' => $product_new->id]) }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>View Detail</a>
+                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
                     </div></a>
             </li>
             @endforeach
             @endif
         </ul>
         <script type="text/javascript">
-            $(function () {
+                $(function () {
                 $("#flexiselDemo1").flexisel({
                     visibleItems: 4,
                     animationSpeed: 1000,

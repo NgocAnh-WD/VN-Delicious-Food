@@ -46,25 +46,20 @@ class HomeController extends Controller {
         $product_detail = Product::where('id', $id)->first();
         $images = Image::select('id', 'link_image')->where('product_id', $product_detail->id)->get();
         $price_sizes = PriceSizes::select('id', 'size', 'quality', 'price', 'quantity')->where('product_id', $product_detail->id)->get();
-<<<<<<< HEAD
-        $sizes = PriceSizes::select('quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
-        $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->orderBy('created_at', 'desc')->paginate(9);
-=======
         $sizes = PriceSizes::select('size','quality', 'price', 'quantity')->where([['product_id', $product_detail->id], ['is_price', 0]])->first();
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->get();
->>>>>>> origin/master
         return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'sizes'));
     }
 
     public function getSizeAddtoCart(Request $request) {
         $id = $request->id;
         $price = $request->price;
-        
+        $quantity = $request->quantity;
         $product = Product::find($id);
 //        $price = $request->price;
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->priceadd($product, $product->id,$price);
+        $cart->priceadd($product, $product->id, $price, $quantity);
         $request->session()->put('cart', $cart);
         return response()->json(['quantyti' => Session::get('cart')->totalQty]);
     }

@@ -223,11 +223,7 @@
                 <div class="to_pay_btn1">
                     <input type="submit" class="next-btn next-btn-primary next-btn-large checkout-order-total-button" value="TIẾN HÀNH THANH TOÁN">
                 </div>
-                <div class="checkout-login-btn">
-                    <button type="button" class="next-btn next-btn-secondary next-btn-large checkout-order-total-button">
-                        <a href="{{ route('login') }}">ĐĂNG NHẬP ĐỂ THANH TOÁN</a>                    
-                    </button></div>
-                <div class="mod-address-form-action">
+             <div class="mod-address-form-action">
                     <div class="button_address_left" >
                         <button tabindex="8" type="button" class="next-btn next-btn-primary next-btn-large1 mod-address-form-btn1" style="background-color: #28ab51; margin-top: 10px"><a href="{{ url('products') }}" class="continue_a">TIẾP TỤC MUA HÀNG</a></button>
                     </div>

@@ -25,50 +25,44 @@
                 </div>
                 <div class="single-right">
                     <h3>{{$product_detail ->name}}</h3>
-                    <h4 style=" font-size: 16px;">ID Sản phẩm: {{$product_detail->id}}</h4>
+                    <h4 style=" font-size: 16px;">Mã sản phẩm: {{$product_detail->id}}</h4>
                     <div class="item-sec">
                         <h4>Chi tiết sản phẩm</h4>
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 15%"><p>Size</p></td>
-                                    <td style="width: 15%"><p>Price</p></td>
-                                    <td style="width: 15%"><p>Quantity</p></td>
-                                    <td style="width: 55%"><p>Action</p></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%">
-                                        <select id="price_size" class="form-control" name="price_size" onchange="sizeAjax({{$product_detail->id}})">
-                                            @foreach($price_sizes as $price_size)
-                                            <option value="{{$price_size->size}}" {{ $price_size->size == $sizes->size ? 'selected="selected"' : '' }}>
-                                                {{$price_size->size}}
-                                            </option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td style="width: 25%">
-                                        <p id="show_price">{{$sizes->price}}</p>
-                                        <input type="hidden" class="hidden_price" value="{{$sizes->price}}">
-                                    </td>
-                                    <td style="width: 15%"><p id="show_quantity">{{$sizes->quantity}}</p></td>
-                                    <td style="width: 55%">
-                                        <button type="submit" class="btn btn-success price_cart" value="{{$product_detail->id}}" style="margin-top: 20px;">
-                                            Thêm vào giỏ hàng
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="single-bottom1">
-                        <h6>Details</h6>
-                        <p class="prod-desc">{{$product_detail->description}}</p>
+                        <div style="padding: 16px 0 10px 0">
+                            <p id="show_price" style="color: #f57224; font-size: 30px">{{$sizes->price}}</p>
+                        </div>                        
+                        <div class="pdp-mod-product-info-section pdp-mod-promotion-tags">
+                            <h6 class="section-title">Giảm giá</h6>
+                            <div class="section-content">
+                                0%
+
+                            </div>
+                        </div>
+                        <div class="pdp-mod-product-info-section pdp-mod-promotion-tags">
+                            <h6 class="section-title" style="margin-top: 5px">Kích thước</h6>
+                            <div class="section-content">
+                                <select id="price_size" class="form-control" name="price_size" onchange="sizeAjax({{$product_detail->id}})">
+                                    @foreach($price_sizes as $price_size)
+                                    <option value="{{$price_size->size}}" {{ $price_size->size == $sizes->size ? 'selected="selected"' : '' }}>
+                                        {{$price_size->size}}
+                                    </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div style="padding-bottom: 15px; margin-top: 5px">
+                            <div style="display: inline-block;width: 92px">Số lượng</div>
+                            <button class="subtract1" id="" value="">-</button>
+                            <div class="quantity1" id="quantity1">
+                                1
+                            </div>
+                            <button class="plus1" value="">+</button>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="to_pay_btn1">
+                            <button type="submit" class="next-btn next-btn-primary next-btn-large checkout-order-total-button price_cart" style="background-color: #F57224" value="{{$product_detail->id}}">THÊM VÀO GIỎ HÀNG</button>
+                        </div>
                     </div>	
-                    <button type="submit" class="btn btn-danger" style="margin-top: 20px;">
-                        <span>
-                            <a href="{{asset('/products')}}" style="color:#FFF">Back to Home</a>
-                        </span>
-                    </button>
                 </div>
                 <div class="clearfix"></div>      		           
             </div>
@@ -218,71 +212,34 @@
                                             <div class="col-md-7">
                                                 <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comment->title}}</a></h4>
                                                 {{str_limit($comment->content, 300)}} 
-<<<<<<< HEAD
-                                            </div>
-                                            <div class="col-md-3">
-                                                <p><span class="glyphicon glyphicon-time"></span> Posted: {{$comment->created_at->diffForhumans()}}</p>
-                                            </div> 
-                                        </div>
-                                    </div>  
-
-                                    
-                                        
-                                        <div id="show_reply_{{$comment->id}}"></div>
-                                        @if(count($comment->children))
-                                        <details close>
-                                            <summary style="color: blue;">View More Reply</summary> 
-                                            @foreach($comment->children as $replyComment)
-                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px;">
-                                                <div class="col-md-3">
-                                                    @if($replyComment->user)                          
-                                                    <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
-                                                    {{$replyComment->user->username}}<br>
-                                                    @endif
-                                                </div>
-                                                <div class="col-md-6">
-                                                    {{str_limit($replyComment->content, 300)}} 
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
-                                                </div>                                                                                
-                                            </div>
-                                            @endforeach 
-                                        </details>
-                                        @endif
-                                    
-
-                                    @if(Auth::check())
-=======
                                                 @if(Auth::check())
->>>>>>> origin/master
-                                    <details close>
-                                        <summary style="color: blue;">Reply</summary>  
-                                        <div class="well">
-                                            <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
-                                                <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
-                                                <input type="hidden" id="pro_id_{{$comment->id}}" name="product_id" value="{{$product_detail->id}}">
-                                                <input type="hidden" id="parent_id_{{$comment->id}}" name="parent_id" value="{{$comment->id}}">
-                                                <input type="hidden" id="user_id" value="{{Auth::check() ? Auth::user()->id : 0}}"/>
-                                                <input type="hidden" id="avata_image1" value="{{Auth::check() ? Auth::user()->avata_image : ""}}"/>
-                                                <input type="hidden" id="username1" value="{{Auth::check()?Auth::user()->username :""}}"/>
+                                                <details close>
+                                                    <summary style="color: blue;">Reply</summary>  
+                                                    <div class="well">
+                                                        <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
+                                                            <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
+                                                            <input type="hidden" id="pro_id_{{$comment->id}}" name="product_id" value="{{$product_detail->id}}">
+                                                            <input type="hidden" id="parent_id_{{$comment->id}}" name="parent_id" value="{{$comment->id}}">
+                                                            <input type="hidden" id="user_id" value="{{Auth::check() ? Auth::user()->id : 0}}"/>
+                                                            <input type="hidden" id="avata_image1" value="{{Auth::check() ? Auth::user()->avata_image : ""}}"/>
+                                                            <input type="hidden" id="username1" value="{{Auth::check()?Auth::user()->username :""}}"/>
 
-                                                <div class="form-group">
-                                                    <label for="content">Content:</label>
-                                                    <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
-                                                        <textarea id="reply_content_{{$comment->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
-                                                        <span class="text-danger">{{ $errors->first('content') }}</span>
+                                                            <div class="form-group">
+                                                                <label for="content">Content:</label>
+                                                                <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
+                                                                    <textarea id="reply_content_{{$comment->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
+                                                                    <span class="text-danger">{{ $errors->first('content') }}</span>
+                                                                </div> 
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <button class="btn btn-primary reply" data-id="{{$comment->id}}" value="Reply">Reply</button>
+                                                            </div>
+                                                        </form>  
+                                                        <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
                                                     </div> 
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <button class="btn btn-primary reply" data-id="{{$comment->id}}" value="Reply">Reply</button>
-                                                </div>
-                                            </form>  
-                                            <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
-                                        </div> 
-                                    </details> 
-                                    @endif
+                                                </details> 
+                                                @endif
                                             </div>                                           
                                             <div class="col-md-3">
                                                 <p><span class="glyphicon glyphicon-time"></span>{{$comment->created_at->diffForhumans()}}</p>
@@ -315,11 +272,6 @@
                                 </div>
                                 @endforeach
                                 @endif
-                                <div class="row">
-                                    <div class="col-lg-6 col-sm-offset-5">
-                                        {{ $comments->render() }}
-                                    </div>
-                                </div>
                             </div>
                             <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                         </div>

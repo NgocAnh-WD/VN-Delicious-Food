@@ -21,7 +21,7 @@ class Cart {
         }
     }
 
-    public function priceadd($item, $id, $price) {
+    public function priceadd($item, $id, $price, $quantity) {
         $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'item' => $item];
 
         if ($this->items) {
@@ -29,7 +29,7 @@ class Cart {
                 $storedItem = $this->items[$id];
             }
         }
-        $storedItem['qty'] ++;
+        $storedItem['qty']  += $quantity;
         $storedItem['name'] = $item->name;
         $storedItem['id'] = $id;
         $storedItem['price'] = $price * $storedItem['qty'];
@@ -37,8 +37,8 @@ class Cart {
         $storedItem['image'] = $item->thumbnail()->link_image;
         $storedItem['size'] = $item->is_price()->size;
         $this->items[$id] = $storedItem;
-        $this->totalQty++;
-        $this->totalPrice += $price;
+        $this->totalQty+= $quantity;
+        $this->totalPrice += $price*$quantity;
         $this->totaltong =  $this->totalPrice;
     }
     

@@ -16,6 +16,7 @@ Route::get('', function () {
     $products = App\Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(12)->get();
     $products_new = App\Product::where('is_delete', '=', '0')->orderBy('created_at', 'desc')->limit(6)->get();
     return view('home', compact('products', 'products_new'));
+    return view('home');
 });
 
 
