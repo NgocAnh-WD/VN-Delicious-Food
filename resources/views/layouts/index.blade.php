@@ -2,6 +2,7 @@
 <html>
     <head> 
         <title>Food Store</title>
+        <link rel="shortcut icon" href="images/img/food.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!--        <script src="{{asset('js/jquery.min.js')}}"></script>-->
         <link href="{{asset('css/style.css')}}" rel="stylesheet">	
@@ -36,10 +37,10 @@
                 <div class="container">			
                     <div class="top-nav" style="width: 100% !important">
                         <div class="logo" style="display: inline-block">
-                            <a href="{{asset('/products')}}"><h1>Food Store</h1></a>
+                            <a href="{{asset('/products')}}"><h1>4 Dogs</h1></a>
                         </div>
                         <ul class="memenu skyblue" style="display: inline-block"><li class="active"><a href="{{asset('/home')}}">Home</a></li>
-                            <li class="grid"><a href="{{asset('/products')}}">Our Foods</a>
+                            <li  class="grid"><a href="{{asset('/products')}}" >Our Food</a>
 
                             </li>
                             <li>
