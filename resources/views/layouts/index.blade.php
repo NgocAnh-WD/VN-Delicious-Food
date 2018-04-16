@@ -42,6 +42,18 @@
                             <li class="grid"><a href="{{asset('/products')}}">Our Foods</a>
 
                             </li>
+                            <li>
+                                <div class="search">
+                                    <input class="search_box" type="checkbox" id="search_box">
+                                    <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+                                    <div class="search_form">
+                                        <form action="{{url('/search')}}" method="GET" role="search">
+                                            <input type="text" name="key_search" id="key_search_button" placeholder="Search..."">
+                                            <input type="submit" value="Search">
+                                        </form>
+                                    </div>
+                                </div>
+                            </li> 
                             @guest
                             <li class="grid"><a href="{{ route('login') }}"><b>Login/Register</b></a></li>
                             @else
@@ -59,19 +71,7 @@
                                     <a href="{{asset('/profile')}}">View profile</a>
                                 </div>
                             </li>
-                            @endguest
-                            <li>
-                                <div class="search">
-                                    <input class="search_box" type="checkbox" id="search_box">
-                                    <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-                                    <div class="search_form">
-                                        <form action="{{url('/search')}}" method="GET" role="search">
-                                            <input type="text" name="key_search" id="key_search_button" placeholder="Search..."">
-                                            <input type="submit" value="Search">
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>                            
+                            @endguest                           
                             <!-- Authentication Links -->                           
                         </ul>
                         <div class="clearfix"> </div>

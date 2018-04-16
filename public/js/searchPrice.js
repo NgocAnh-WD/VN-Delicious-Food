@@ -1,9 +1,3 @@
-//var name = "";
-//function click_search() {
-//    name = $('#key_search_button').val();
-//
-//}
-//alert(name);
 $(document).ready(function () {
 var priceFrom = "";
         var priceTo = "";
@@ -21,16 +15,7 @@ headers: {
         }
 });
         e.preventDefault();
-//        sizes = [];
-//        $('name=size:checked').each(function (e) {
-//
-//            var size = $(this).val();
-//            if (sizes.indexOf(size) === -1) {
-//                sizes.push(size);
-//            }
-//        });
         });
-//    alert(sizes);
 
         function searchAjax(data) {
 
@@ -64,9 +49,7 @@ headers: {
                         + "<p>" + $product.name + "</p>"
                         + '<span class="item_price">' + $product.price + 'VNĐ</span>'
                         + '<div id="style" style="margin-top: 10px;">'
-                        + '<button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info cart" value="' + $product.product_id + '">Add to cart</button>'
-                        + '<div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">' + '</div>'
-                        + '<button class="col-lg-5 col-md-5 col-xs-5 col-sm-5 btn btn-info">' + '<a href="http://foodstore/single/' + $product.product_id + ' ">View Detail</a>' + '</button>'
+                        + '<div class="col-lg-2 col-md-2 col-xs-2 col-sm-2">' + '</div>'                        
                         + "</div>"
                         + "</div>"
                         + "</div>"
@@ -74,16 +57,6 @@ headers: {
                 };
                         $('#product-container').html(search);
                 }
-
-
-        //$products.each(function ($product) {
-
-
-
-
-
-
-        // }
         });
         }
 
@@ -95,11 +68,8 @@ var url_string = window.location.href; //window.location.href
         $('.p-size:checked').each(function (e) {
 
 var size = $(this).val();
-//            if (sizes.indexOf(size) === -1) {
         sizes.push(size);
-//            }
 });
-        // alert(sizes);
         var data = {
         priceFrom: priceFrom,
                 priceTo: priceTo,
@@ -107,12 +77,6 @@ var size = $(this).val();
                 name: c,
         };
         searchAjax(data);
-        alert(JSON.stringify(data));
 });
-//    $('#key_search').click(function () {
-//        searchAjax(data);
-////        alert($('#search').val()+ $('#key_search').val());
-//        alert($('#key_search_button').val());
-//    });
 
 });
