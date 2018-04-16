@@ -8,8 +8,7 @@
                 <li><a href="{{asset('/home')}}">Home</a></li>
                 <li class="active"><a href="{{asset('/products')}}">Products</a></li>
                 <li class="active"><a>Product Details</a></li>
-            </ol>
-            <!-- start content -->	
+            </ol>	
             <div class="col-md-9 det">
                 <div class="single_left">
                     <div class="data-thumb">
@@ -211,69 +210,74 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <h4 class="media-heading"><a href="{{ url('product_details/'. $product_detail->id) }}" style="color: black;">{{$comment->title}}</a></h4>
-                                                {{str_limit($comment->content, 300)}} 
-                                                @if(Auth::check())
-                                                <details close>
-                                                    <summary style="color: blue;">Reply</summary>  
-                                                    <div class="well">
-                                                        <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
-                                                            <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
-                                                            <input type="hidden" id="pro_id_{{$comment->id}}" name="product_id" value="{{$product_detail->id}}">
-                                                            <input type="hidden" id="parent_id_{{$comment->id}}" name="parent_id" value="{{$comment->id}}">
-                                                            <input type="hidden" id="user_id" value="{{Auth::check() ? Auth::user()->id : 0}}"/>
-                                                            <input type="hidden" id="avata_image1" value="{{Auth::check() ? Auth::user()->avata_image : ""}}"/>
-                                                            <input type="hidden" id="username1" value="{{Auth::check()?Auth::user()->username :""}}"/>
-
-                                                            <div class="form-group">
-                                                                <label for="content">Content:</label>
-                                                                <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
-                                                                    <textarea id="reply_content_{{$comment->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
-                                                                    <span class="text-danger">{{ $errors->first('content') }}</span>
-                                                                </div> 
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <button class="btn btn-primary reply" data-id="{{$comment->id}}" value="Reply">Reply</button>
-                                                            </div>
-                                                        </form>  
-                                                        <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
-                                                    </div> 
-                                                </details> 
-                                                @endif
+                                                {{str_limit($comment->content, 300)}} <br>
                                             </div>                                           
                                             <div class="col-md-3">
                                                 <p><span class="glyphicon glyphicon-time"></span>{{$comment->created_at->diffForhumans()}}</p>
-                                            </div> 
-                                        </div>
-                                    </div>                                       
-                                    @if(count($comment->children))
-                                    <details close>
-                                        <summary style="color: blue;">View Reply Comment</summary>
-                                        @foreach($comment->children as $replyComment)
-                                        <div id="show_reply_{{$comment->id}}">
-                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 50px; margin-right: 50px; background-color:  #FFF;">
-                                                <div class="col-md-3">
-                                                    @if($replyComment->user)                          
-                                                    <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
-                                                    {{$replyComment->user->username}}<br>
-                                                    @endif
-                                                </div>
-                                                <div class="col-md-6" >
-                                                    {{str_limit($replyComment->content, 300)}} 
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p><span class="glyphicon glyphicon-time"></span>{{$replyComment->created_at->diffForhumans()}}</p>
-                                                </div>                                                                                
                                             </div>
+
+                                            <div id="show_reply_{{$comment->id}}" style="margin-top: 35px;"></div>
+                                            @if(count($comment->children))
+                                            <button type="button" class="showMorePro btn btn-link" data-toggle="collapse" data-target="#showMoreReply_{{$comment->id}}">
+                                                <span class="glyphicon glyphicon-collapse-down"></span>View More Reply
+                                            </button>
+                                            <div id="showMoreReply_{{$comment->id}}" class="collapse" data-id="{{$comment->id}}">
+                                                @foreach($comment->children as $replyComment)
+                                                <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 150px; margin-right: 150px;">
+                                                    <div class="col-md-3">
+                                                        @if($replyComment->user)                          
+                                                        <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
+                                                        {{$replyComment->user->username}}<br>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        {{str_limit($replyComment->content, 300)}} 
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
+                                                    </div>                                                                                
+                                                </div>
+                                                @endforeach 
+                                            </div>
+                                            @endif
                                         </div>
-                                        @endforeach                           
-                                    </details>
-                                    @endif                                   
+                                    </div>
+                                    @if(Auth::check())
+                                    <div class="button">
+                                        <button type="button" data-id="{{$comment->id}}" class="replyPro btn btn-primary" data-toggle="collapse" data-target="#replyForProduct">
+                                            <span class="glyphicon glyphicon-collapse-down"></span>Write Reply
+                                        </button>
+                                    </div>
+                                    <div class="well collapse" id="replyForProduct">
+                                        <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
+                                            <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
+                                            <input type="hidden" id="pro_id_{{$comment->id}}" name="product_id" value="{{$product_detail->id}}">
+                                            <input type="hidden" id="parent_id_{{$comment->id}}" name="parent_id" value="{{$comment->id}}">
+                                            <input type="hidden" id="user_id" value="{{Auth::check() ? Auth::user()->id : 0}}"/>
+                                            <input type="hidden" id="avata_image1" value="{{Auth::check() ? Auth::user()->avata_image : ""}}"/>
+                                            <input type="hidden" id="username1" value="{{Auth::check()?Auth::user()->username :""}}"/>
+
+                                            <div class="form-group">
+                                                <label for="content">Content:</label>
+                                                <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
+                                                    <textarea id="reply_content_{{$comment->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
+                                                    <span class="text-danger">{{ $errors->first('content') }}</span>
+                                                </div>                                           
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button class="btn btn-primary reply" data-id="{{$comment->id}}" value="Reply">Reply</button>
+                                            </div>
+                                        </form>  
+                                        <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
+                                    </div> 
+                                    </details> 
+                                    @endif
                                 </div>
                                 @endforeach
                                 @endif
+                                <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                             </div>
-                            <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                         </div>
                     </div>
                     <div id="menu" class="tab-pane fade">
@@ -377,4 +381,26 @@
         </div>
     </div>
 </div>
+<script>
+                $(document).ready(function(){
+                $("#replyForProduct").on("hide.bs.collapse", function(){
+                $(".replyPro").html('<span class="glyphicon glyphicon-collapse-down"></span> Write Reply');
+                });
+                $("#replyForProduct").on("show.bs.collapse", function(){
+                $(".replyPro").html('<span class="glyphicon glyphicon-collapse-up"></span> Close Reply');
+                });
+                });
+</script>
+
+<script>
+    $(document).ready(function(){
+    var comment_id = document.getElementById("parent_id_{{$comment->id}}");
+    $('#showMoreReply_' + comment_id).on("hide.bs.collapse", function(){
+    $(".showMorePro").html('<span class="glyphicon glyphicon-collapse-down"></span>View More Reply');
+    });
+    $('#showMoreReply_' + comment_id).on("show.bs.collapse", function(){
+    $(".showMorePro").html('<span class="glyphicon glyphicon-collapse-up"></span>Hide Reply');
+    });
+    });
+</script>
 @endsection
