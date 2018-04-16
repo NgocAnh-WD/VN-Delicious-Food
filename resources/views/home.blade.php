@@ -90,7 +90,7 @@
         @if($products)
         @foreach($products as $key => $product)
         <div class="col-md-3 feature-grid jewel">
-            <a href="{{url('/products')}}"><img src="{{asset($product->thumbnail()->link_image)}}" style="width: 275px; height:250px;"/>	
+            <a href="{{url('/products')}}"><img src="{{asset($product->thumbnail()->link_image)}}" style="width: 255px; height:250px;"/>	
                 <div class="arrival-info">
                     <h4>{{$product->category ? $product->category->name : 'Uncategorized'}}</h4>
                     <p>{{$product->name}}</p>
@@ -98,10 +98,10 @@
                     <span class="disc">[12% Off]</span>
                 </div>
                 <div class="viw">
-                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
+                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
                 </div>
                 <div class="shrt">
-                    <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
+                    <a href="{{ url('/single',$product->id) }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Product Detail</a>
                 </div></a>
         </div>
         @endforeach
@@ -127,10 +127,10 @@
                         <span class="disc">[10% Off]</span>
                     </div>
                     <div class="viw">
-                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Quick View</a>
+                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
                     </div>
                     <div class="shrt">
-                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Shortlist</a>
+                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Product Detail</a>
                     </div></a>
             </li>
             @endforeach
