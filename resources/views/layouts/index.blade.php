@@ -57,7 +57,7 @@
                             @guest
                             <li class="grid"><a href="{{ route('login') }}"><b>Login/Register</b></a></li>
                             @else
-                            <li class="dropdown">
+                            <li class="dropdown" style="float: right; margin-top: 30px">
                                 <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
                                 <div class="dropdown-content">
                                     <a href="{{ route('logout')}}"
