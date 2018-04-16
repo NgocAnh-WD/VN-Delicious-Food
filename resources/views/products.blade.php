@@ -105,24 +105,25 @@
                                 <option value="40,49">40.000 - 49.000 (VND)</option>
                                 <option value="50, 1000">Over 50.000 (VND)</option>
                             </select>
+                            <div style="margin-top: 12px" class="hr">
+                                <div class="category">
+                                    <label for="size-1" class='cat-check'>
+                                        <input class="p-size"  type="checkbox" name="size[]" value="s" id="size-1">
+                                        Size S</label>
+                                </div>
+                                <div class="category">
+                                    <label for="size-2" class='cat-check'>
+                                        <input class="p-size" type="checkbox" name="size[]" value="m" id="size-2">
+                                        Size M</label>
+                                </div>
+                                <div class="category">
+                                    <label for="size-3" class='cat-check'>
+                                        <input class="p-size"  type="checkbox" name="size[]" value="l" id="size-3">
+                                        Size L</label>
+                                </div>
 
-                            <div class="category">
-                                <label for="size-1" class='cat-check'>
-                                    <input class="p-size"  type="checkbox" name="size[]" value="s" id="size-1">
-                                    Size S</label>
+                                <button style="background: #00a0dc; color: white; margin-top: 7px" type="button" id="search-product">Search</button>
                             </div>
-                            <div class="category">
-                                <label for="size-2" class='cat-check'>
-                                    <input class="p-size" type="checkbox" name="size[]" value="m" id="size-2">
-                                    Size M</label>
-                            </div>
-                            <div class="category">
-                                <label for="size-3" class='cat-check'>
-                                    <input class="p-size"  type="checkbox" name="size[]" value="l" id="size-3">
-                                    Size L</label>
-                            </div>
-
-                            <button style="background: blue; color: white" type="button" id="search-product">Search</button>
                         </div>
                     </form>
                 </div>
