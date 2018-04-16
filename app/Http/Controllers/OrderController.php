@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Auth;
 use App\Customer;
+use App\PriceSizes;
 use App\Order;
 use Session;
 use App\Cart;
@@ -86,6 +87,9 @@ class OrderController extends Controller {
                                 $input['size'] = $item['size'];
                                 $input['discount'] = 0;
                                 $orderdetail = OrderDetail::create($input);
+                                $product = PriceSizes::where([['product_id', '=', $item['id']], ['size', $item['size']]])->first();
+                                $product->quantity -= $item['qty'];
+                                $product->save();
                             }
                             Session::forget('cart');
                         }
@@ -134,6 +138,9 @@ class OrderController extends Controller {
                                 $input['size'] = $item['size'];
                                 $input['discount'] = 0;
                                 $orderdetail = OrderDetail::create($input);
+                                $product = PriceSizes::where([['product_id', '=', $item['id']], ['size', $item['size']]])->first();
+                                $product->quantity -= $item['qty'];
+                                $product->save();
                             }
                             Session::forget('cart');
                         }
@@ -198,6 +205,9 @@ class OrderController extends Controller {
                             $input['size'] = $item['size'];
                             $input['discount'] = 0;
                             $orderdetail = OrderDetail::create($input);
+                            $product = PriceSizes::where([['product_id', '=', $item['id']], ['size', $item['size']]])->first();
+                            $product->quantity -= $item['qty'];
+                            $product->save();
                         }
                         Session::forget('cart');
                     }
