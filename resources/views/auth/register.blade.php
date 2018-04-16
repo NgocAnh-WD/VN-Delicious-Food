@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <div class="col-md-4 control-label">is_Active</div>
                             <div class="col-sm-6">
                                 <div class="form-check">
@@ -110,7 +110,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

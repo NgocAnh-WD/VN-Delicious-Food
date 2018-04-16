@@ -46,9 +46,10 @@
                         </div>
 
                         <div class="hr"></div>
+                       
                         <div class="foot-lnk">
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                Forgot Your Password?
+                            <a class="btn btn-link" href="{{ url('/home') }}">
+                                Back home
                             </a>
                         </div>
                     </form>
@@ -129,7 +130,7 @@
                             <input id="address" type="text" class="input" name="address" placeholder="Your Address" required>
                         </div>
 
-                        <div class="group">
+<!--                        <div class="group">
                             <div class="label">is_Active</div>
                             <div class="form-check">
                                 <label class="form-check-label">
@@ -137,7 +138,7 @@
                                 </label>
                             </div>
                         </div>
-                        
+                        -->
 <!--                        <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">Register</button>
                             </div>-->

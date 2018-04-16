@@ -77,6 +77,7 @@ var size = $(this).val();
                 name: c,
         };
         searchAjax(data);
+//        alert(JSON.stringify(data));
 });
 
 });
