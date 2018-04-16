@@ -150,7 +150,7 @@
             </script>
             <section  class="sky-form">
                 <div class="qc">
-                    <h4 class="title">Đơn hàng của bạn sẽ được bảo quản như thế nào?</h4>
+                    <h4 class="title" style="font-weight: bold">Đơn hàng của bạn sẽ được bảo quản như thế nào?</h4>
                     <p class="font15">4 DOGS Food Store sẽ bảo quản đơn hàng của bạn bằng túi & thùng để chống nắng mưa, giữ nhiệt... trên đường đi một cách tốt nhất. Đem đến cho bạn một món ăn nóng hổi y như vừa mới nấu xong vậy.</p>
                     <img src="{{asset('images/ship.jpg')}}" alt="food preservation" data-change-lang style="margin-top: 10px; width: 200px; height: 200px;"/>
                 </div>
