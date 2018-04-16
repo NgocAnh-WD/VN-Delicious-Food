@@ -7,7 +7,7 @@
 <div class="welcome">
     <div class="container">
         <div class="col-md-3 welcome-left">
-            <h2>Welcome to our restaurant</h2>
+            <h2>Welcome to 4 Dogs Restaurant</h2>
         </div>
         <div class="col-md-9 welcome-right">
             <h3>Proin ornare massa eu enim pretium efficitur.</h3>
@@ -94,8 +94,8 @@
                 <div class="arrival-info">
                     <h4>{{$product->category ? $product->category->name : 'Uncategorized'}}</h4>
                     <p>{{$product->name}}</p>
-                    <span class="pric1"><del>{{$product->name}}</del></span>
-                    <span class="disc">[12% Off]</span>
+                    <!--<span class="pric1"><del>{{$product->name}}</del></span>-->
+                    <!--<span class="disc">[12% Off]</span>-->
                 </div>
                 <div class="viw">
                     <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
