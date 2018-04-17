@@ -9,7 +9,7 @@
             <li class="active">Cart</li>
         </ol>
         @if (Auth::guest())
-        <form action="{{route('orders.store')}}" style="border: 1px solid #F4F4F4" method="post" id="checkout-form">
+        <form action="{{url('/admin/orders')}}" style="border: 1px solid #F4F4F4" method="post" id="checkout-form">
             <div class="col-md-9 product-price1">
                 <div class="mod-guest-register-hd">
                     <div class="mod-guest-register-hd-right">
@@ -121,7 +121,7 @@
         </form>
         <div class="clearfix"></div>
         @else
-        <form action="{{route('orders.store')}}" style="border: 1px solid #F4F4F4" method="post" id="checkout-form">
+        <form action="{{url('/admin/orders')}}" style="border: 1px solid #F4F4F4" method="post" id="checkout-form">
             <div class="col-md-9 product-price1">
                 <div class="mod-guest-register-hd">
                     <div class="mod-guest-register-hd-right">

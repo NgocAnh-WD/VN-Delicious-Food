@@ -244,8 +244,10 @@ class OrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $detail = OrderDetail::where("order_id",$id)->orderBy('created_at', 'asc')->paginate(4);
-        return view('admin.orders.edit', compact('detail'));
+        $order = Order::where('id',$id)->orderBy('created_at', 'asc')->first();
+        $details = OrderDetail::where('order_id',$id)->get();
+//        $customer = Customer::where('id',$order->customer_id)->get();
+        return view('admin.orders.edit', ['order' => $order,'details' => $details]);
     }
 
     /**

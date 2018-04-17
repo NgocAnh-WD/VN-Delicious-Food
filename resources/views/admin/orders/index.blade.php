@@ -24,7 +24,7 @@
                 <td>{{$order->note}}</td>
                 <td><a href="{{url('admin/orders/'. $order->id.'/edit') }}">{{$order->customer ? $order->customer->full_name : 'Uncategorized'}}</a></td>
                 <td>{{$order->shipped_date}}</td>
-                <td>{{$order->status}}</td>
+                <td>{{$order->status?'Đã giao':'Đang chờ giao'}}</td>
                 <td>{{$order->created_at->diffForhumans()}}</td>
                 <td>{{$order->updated_at->diffForhumans()}}</td>
                 

@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
         <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
         <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
+        <link href="{{asset('css/style1.css')}}" rel="stylesheet">
         <!--<script src="{{asset('js/ace-extra.min.js')}}"></script>-->
         <script>
 

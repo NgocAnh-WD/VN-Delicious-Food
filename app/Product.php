@@ -50,8 +50,8 @@ use Notifiable;
 //        return $this->price()->get()->first();
 //    }
 
-    public function order() {
-        return $this->belongsToMany('App\Order');
+    public function order_details() {
+        return $this->hasMany('App\OrderDetail','product_id','id');
     }
 
 }

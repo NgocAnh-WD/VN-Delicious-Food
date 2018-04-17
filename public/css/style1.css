@@ -793,3 +793,26 @@ ul.cart-header li .price_product {
     background-color: #fff;
     transition: all .3s ease-out;
 }
+
+.content_order{
+    padding-left: 60px;
+}
+.panel{text-align: center;padding: 5px}
+.information_h3{text-align: center;padding: 5px}
+
+.list-customer-left {
+    display: inline-block;
+    width: 23%;
+    line-height: 40px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.list-customer-middle {
+    display: inline-block;
+    width: 69%;
+    line-height: 40px;
+    text-align: left;
+    color: #F44336;
+    text-transform: uppercase;
+}
+.content_product{padding-right: 30px}
