@@ -27,6 +27,7 @@ var GlobleVariable = [];
 GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         </script>	
         <!-- /start menu -->      
+  
     </head>
     <body> 
         <!--header-->	
