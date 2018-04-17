@@ -70,6 +70,7 @@
                                         {{ csrf_field() }}
                                     </form>
                                     <a href="{{asset('/profile')}}">View profile</a>
+                                    <a href="{{asset('/profile')}}">View Orders</a>
                                 </div>
                             </li>
                             @endguest                           
