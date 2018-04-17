@@ -144,6 +144,8 @@ $(document).on('click', '.closecart', function () {
 });
 $(document).on('click', '.plus', function () {
     var product_id = $(this).val();
+    var gia = '#price_goc'+product_id;
+    var price = $(gia).val();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -153,7 +155,7 @@ $(document).on('click', '.plus', function () {
         type: "get",
         url: GlobleVariable.app_url + '/addtocart/' + product_id,
         dataType: "json",
-        data: {id: product_id},
+        data: {id: product_id, price:price},
         success: function (data) { // What to do if we succeed
             var plus = '#quantity' + product_id;
             var price = '#price_update' + product_id;

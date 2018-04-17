@@ -28,7 +28,8 @@
                     <div class="item-sec">
                         <h4>Chi tiết sản phẩm</h4>
                         <div style="padding: 16px 0 10px 0">
-                            <p id="show_price" style="color: #f57224; font-size: 30px">{{$sizes->price}}</p>
+                            <p id="show_price" style="color: #f57224; font-size: 30px; display: inline-block">{{$sizes->price}}</p>
+                            <p style="color: #f57224; font-size: 30px; display: inline-block">VNĐ</p>
                         </div>                        
                         <div class="pdp-mod-product-info-section pdp-mod-promotion-tags">
                             <h6 class="section-title">Giảm giá</h6>

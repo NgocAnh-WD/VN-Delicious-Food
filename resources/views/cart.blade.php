@@ -40,6 +40,7 @@
                                 <li><span style="display: inline-block">{{ number_format($product['price_goc'], 3, ',', '.')}}VNĐ</span></li>
                                 <li><div id="convert">
                                         <button class="subtract" id="button_{{$product['id']}}" value="{{$product['id']}}">-</button>
+                                        <input type="hidden" id="price_goc{{$product['id']}}" value="{{$product['price_goc']}}">
                                         <div class="quantity" id="quantity{{$product['id']}}">
                                             {{$product['qty']}}
                                         </div>
