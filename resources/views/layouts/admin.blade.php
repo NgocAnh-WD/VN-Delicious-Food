@@ -9,14 +9,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
+        <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" /> 
         <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
         <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
         <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
         <!--<script src="{{asset('js/ace-extra.min.js')}}"></script>-->
         <script>
 
-            var GlobleVariable = [];
-            GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
+var GlobleVariable = [];
+GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         </script>	
         <script type="text/javascript" src="{{asset('js/myscript.js')}}"></script>
     </head>
@@ -65,13 +70,12 @@
                                 <span class="badge badge-success">0</span>
                             </a>
                         </li>
-
-                      <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
+                        <ul class="nav navbar-nav navbar-right">
+                            <!-- Authentication Links -->
+                            @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
+                            @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->username }} <span class="caret"></span>
@@ -80,8 +84,8 @@
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
                                         <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                           onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
@@ -91,8 +95,8 @@
                                     </li>
                                 </ul>
                             </li>
-                        @endguest
-                    </ul>
+                            @endguest
+                        </ul>
                     </ul>
                 </div>
             </div><!-- /.navbar-container -->
@@ -290,7 +294,7 @@
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="#">
+                                <a href="{{url('admin/orders')}}">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     All Orders
                                 </a>

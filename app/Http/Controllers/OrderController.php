@@ -19,8 +19,13 @@ class OrderController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
-//
+        $orders = Order::orderBy('created_at', 'desc')->paginate(3);
+        return view('admin.orders.index', compact('orders'));
     }
 
     /**
@@ -239,7 +244,8 @@ class OrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-//
+        $detail = OrderDetail::where("order_id",$id)->orderBy('created_at', 'asc')->paginate(4);
+        return view('admin.orders.edit', compact('detail'));
     }
 
     /**
@@ -262,5 +268,12 @@ class OrderController extends Controller {
     public function destroy($id) {
 //
     }
+    
+    public function getDetailByOrderID($id){
+        $detail = OrderDetail::where("order_id",$id)->orderBy('created_at', 'asc')->paginate(4);
+        return view('admin.orders.detail', compact('detail'));
+    }
+ 
+    
 
 }

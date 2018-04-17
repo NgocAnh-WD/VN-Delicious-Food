@@ -16,8 +16,26 @@ class Order extends Model
         'customer_id',
         'shipped_date',
         'status',
+        'product_id',
     ];
-    public function order_details(){
-        return $this->belongsTo('App\OrderDetail');
+    public function customer(){
+        return $this->belongsTo('App\Customer');
     }
+
+    public function products() {
+        return $this->hasMany('App\Product','product_id','id','name');
+    }
+    
+    public function product(){
+        return $this->products()->get()->all();
+    }
+   
+    public function order_detail(){
+        return $this->hasMany('App\OrderDetail','order_id','id');
+    }
+    
+    public function is_detail(){
+        return $this->order_detail()->get()->all();
+    }     
+    
 }

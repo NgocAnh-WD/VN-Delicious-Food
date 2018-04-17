@@ -4,12 +4,12 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Order_id</th>
-                <th>Customer</th>
-                <th>Product_id</th>
-                <th>Quantity_pro</th>
-                <th>Size</th>
-                <th>Discount</th>
+                <th>Order_date</th>
+                <th>Required_date</th>
+                <th>Note</th>
+                <th>Customer_id</th>
+                <th>Shipped_date</th>
+                <th>Status</th>
                 <th>Created_at</th>
                 <th>Updated_at</th>
             </tr>
@@ -19,14 +19,14 @@
             @foreach($orders as $order)
             <tr>
                 <td>{{$order->id}}</td>
-                <td>{{$order->is_detail() ? $order->is_detail() ->order_id :  'Unsized'}}</td>
-                <td>{{$order->customer ? $order->customer->full_name : 'Uncategorized'}}</td>
-                <td>{{$order->product ? $order->product->id :  'Unsized'}}</td>
-                <td>{{$order->is_detail() ? $order->is_detail() ->quantity_pro :  'Unsized'}}</td>
-                <td>{{$order->is_detail() ? $order->is_detail() ->size :  'Unsized'}}</td>
-                <td>{{$order->is_detail() ? $order->is_detail() ->discount :  'Unsized'}}</td>
-                <td></td>
-                <td></td>
+                <td>{{$order->order_date}}</td>
+                <td>{{$order->required_date}}</td>
+                <td>{{$order->note}}</td>
+                <td><a href="{{url('admin/orders/'. $order->id.'/edit') }}">{{$order->customer ? $order->customer->full_name : 'Uncategorized'}}</a></td>
+                <td>{{$order->shipped_date}}</td>
+                <td>{{$order->status}}</td>
+                <td>{{$order->created_at->diffForhumans()}}</td>
+                <td>{{$order->updated_at->diffForhumans()}}</td>
                 
                 
             </tr>
