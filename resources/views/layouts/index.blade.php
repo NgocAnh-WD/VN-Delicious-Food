@@ -11,8 +11,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Wedding Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
               Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<!--        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>-->
-
         <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="{{asset('js/simpleCart.min.js')}}"></script>
@@ -25,8 +23,8 @@
         <script type="text/javascript" src="{{asset('js/searchPrice.js')}}"></script>
         <script>
 
-            var GlobleVariable = [];
-            GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
+var GlobleVariable = [];
+GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         </script>	
         <!-- /start menu -->      
     </head>
@@ -39,153 +37,157 @@
                         <div class="logo" style="display: inline-block">
                             <a href="{{asset('/products')}}"><h1>4 Dogs</h1></a>
                         </div>
-                        <ul class="memenu skyblue" style="display: inline-block"><li class="active"><a href="{{asset('/home')}}">Home</a></li>
-                            <li  class="grid"><a href="{{asset('/products')}}" >Our Food</a>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <ul class="memenu skyblue" style="display: inline-block"><li class="active"><a href="{{asset('/home')}}">Home</a></li>
+                        <li  class="grid"><a href="{{asset('/products')}}" >Our Food</a>
 
-                            </li>
-                            <li>
-                                <div class="search">
-                                    <input class="search_box" type="checkbox" id="search_box">
-                                    <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-                                    <div class="search_form">
-                                        <form action="{{url('/search')}}" method="GET" role="search">
-                                            <input type="text" name="key_search" id="key_search_button" placeholder="Search..."">
-                                            <input type="submit" value="Search">
-                                        </form>
-                                    </div>
-                                </div>
-                            </li> 
-                            @guest
-                            <li class="grid"><a href="{{ route('login') }}"><b>Login/Register</b></a></li>
-                            @else
-                            <li class="dropdown" style="float: right; margin-top: 30px">
-                                <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
-                                <div class="dropdown-content">
-                                    <a href="{{ route('logout')}}"
-                                       onclick="event.preventDefault();
-                                               document.getElementById('logout-form').submit();">
-                                        Logout                                       
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        {{ csrf_field() }}
+                        </li>
+                        <li>
+                            <div class="search">
+                                <input class="search_box" type="checkbox" id="search_box">
+                                <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
+                                <div class="search_form">
+                                    <form action="{{url('/search')}}" method="GET" role="search">
+                                        <input type="text" name="key_search" id="key_search_button" placeholder="Search..."">
+                                        <input type="submit" value="Search">
                                     </form>
-                                    <a href="{{asset('/profile')}}">View profile</a>
                                 </div>
-                            </li>
-                            @endguest                           
-                            <!-- Authentication Links -->                           
-                        </ul>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <!---->
-                    <div class="cart box_1 test">
-
-                        <a href="{{ url('shoppingcart') }}">
-                            <h3> <div class="total">
-                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"><span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </h3>
-                        </a>
-                    </div>
-                    <div class="clearfix"> </div>
-                    <!---->			 
+                            </div>
+                        </li> 
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    @guest
+                    <li class="grid"><a href="{{ route('login') }}"><b>Login/Register</b></a></li>
+                    @else
+                    <li class="dropdown" style="float: right; margin-top: 30px">
+                        <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
+                        <div class="dropdown-content">
+                            <a href="{{ route('logout')}}"
+                               onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                                Logout                                       
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                            <a href="{{asset('/profile')}}">View profile</a>
+                        </div>
+                    </li>
+                    @endguest                           
+                    <!-- Authentication Links -->                           
+                    </ul>
                 </div>
                 <div class="clearfix"> </div>
             </div>
         </div>
         <!---->
+        <div class="cart box_1 test">
 
-        <!---->
-        @yield('welcome')
-        <!---->
-        @yield('ads')
-        <!---->
-        <div class="featured">
-            @yield('container')
+            <a href="{{ url('shoppingcart') }}">
+                <h3> <div class="total">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"><span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </h3>
+            </a>
         </div>
-        <!---->
-        <div class="arrivals">
-            @yield('slide1')
+        <div class="clearfix"> </div>
+        <!---->			 
+    </div>
+    <div class="clearfix"> </div>
+</div>
+</div>
+<!---->
+
+<!---->
+@yield('welcome')
+<!---->
+@yield('ads')
+<!---->
+<div class="featured">
+    @yield('container')
+</div>
+<!---->
+<div class="arrivals">
+    @yield('slide1')
+</div>
+<!---->
+<div class="clearfix"></div>
+<div class="shoping">
+    <div class="container">
+        <div class="shpng-grids">
+            <div class="col-md-4 shpng-grid">
+                <h3>Miễn phí ship</h3>
+                <p>với hóa đơn trên 200k</p>
+            </div>
+            <div class="col-md-4 shpng-grid">
+                <h3>Hủy hóa đơn</h3>
+                <p>Trước 1 ngày</p>
+            </div>
+            <div class="col-md-4 shpng-grid">
+                <h3>Thanh toán</h3>
+                <p>ngay khi nhận thức ăn</p>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <!---->
-        <div class="clearfix"></div>
-        <div class="shoping">
-            <div class="container">
-                <div class="shpng-grids">
-                    <div class="col-md-4 shpng-grid">
-                        <h3>Free Shipping</h3>
-                        <p>On Order Over Rs999</p>
-                    </div>
-                    <div class="col-md-4 shpng-grid">
-                        <h3>Order Return</h3>
-                        <p>Return Within 14days</p>
-                    </div>
-                    <div class="col-md-4 shpng-grid">
-                        <h3>COD</h3>
-                        <p>Cash On Delivery</p>
-                    </div>
-                    <div class="clearfix"></div>
+    </div>
+</div>
+<!---->
+<div class="footer">
+    <div class="ftr-grids">
+        <div class="col-md-3 ftr-grid">
+            <h4>Địa chỉ</h4>
+            <div class="maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.1103360974585!2d108.24146331471736!3d16.05976319395768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142177f2ced6d8b%3A0xeac35f2960ca74a4!2zOTkgVMO0IEhp4bq_biBUaMOgbmgsIFBoxrDhu5tjIE3hu7ksIFPGoW4gVHLDoCwgxJDDoCBO4bq1bmcsIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1523962542866" width="360" height="200" frameborder="0" style="border:1px; margin-top: 5px;" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-md-6 ftr-grid">
+            <h4>Giới thiệu</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{asset('images/cooker.jpg')}}" alt="Image" style="height: 120px; width: 190px; margin-left: 15px;"/>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{asset('images/rau.gif')}}" alt="Image" style="height: 120px; width: 190px; margin-left: 20px;"/>
+                </div>
+                <div class="col-md-4">
+                    <img src="{{asset('images/food.jpg')}}" alt="Image" style="height: 120px; width: 190px; margin-left: 20px;"/>
                 </div>
             </div>
+            <ul>
+                <li><a href="#">
+                        <p style="text-align: center; margin-top: 5px;">4 Pandas là website chính thức của chuỗi cửa hàng thức ăn 4PANDAS nổi tiếng. Ngoài việc cung 
+                            cấp các món ăn ngon của cửa hàng đến thực khách. Chúng tôi còn liên kết với các chuỗi nhà hàng nổi
+                            tiếng khác để đem đến cho các bạn thật nhiều món ăn ngon miệng. Chất lượng hàng đầu, giá thành hợp lý.
+                        </p>
+                    </a>
+                </li>				 
+            </ul>
         </div>
-        <!---->
-        <div class="footer">
-            <div class="container">
-                <div class="ftr-grids">
-                    <div class="col-md-3 ftr-grid">
-                        <h4>About Us</h4>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Our Sites</a></li>
-                            <li><a href="#">In The News</a></li>
-                            <li><a href="#">Team</a></li>
-                            <li><a href="#">Careers</a></li>					 
-                        </ul>
-                    </div>
-                    <div class="col-md-3 ftr-grid">
-                        <h4>Customer service</h4>
-                        <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Shipping</a></li>
-                            <li><a href="#">Cancellation</a></li>
-                            <li><a href="#">Returns</a></li>
-                            <li><a href="#">Bulk Orders</a></li>
-                            <li><a href="#">Buying Guides</a></li>					 
-                        </ul>
-                    </div>
-                    <div class="col-md-3 ftr-grid">
-                        <h4>Your account</h4>
-                        <ul>
-                            <li><a href="#">Your Account</a></li>
-                            <li><a href="#">Personal Information</a></li>
-                            <li><a href="#">Addresses</a></li>
-                            <li><a href="#">Discount</a></li>
-                            <li><a href="#">Track your order</a></li>					 					 
-                        </ul>
-                    </div>
-                    <div class="col-md-3 ftr-grid">
-                        <h4>Categories</h4>
-                        <ul>
-                            <li><a href="#">> Wedding</a></li>
-                            <li><a href="#">> Jewellerys</a></li>
-                            <li><a href="#">> Shoes</a></li>
-                            <li><a href="#">> Flowers</a></li>
-                            <li><a href="#">> Cakes</a></li>
-                            <li><a href="#">...More</a></li>					 
-                        </ul>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>		
-            </div>
+        <div class="col-md-3 ftr-grid">
+            <h4>Thông tin hỗ trợ</h4>
+            <ul>                                   
+                <li><a href="#"><img src="{{asset('images/panda-icon.png')}}" alt="Image" style="height: 50px; width: 50px;"/></li>
+                <li><a href="#">Mentor: Mr.Ngo Ho (SEA DEV Company)</a></li>
+                <li><a href="#">Phone: 0236 3888 503</a></li>
+                <li><a href="#">Address: 99 Tô Hiến Thành, Phước Mỹ, Sơn Trà, Đà Nẵng</a></li>
+                <li><a href="#">Email: dant4pandas@gmail.com</a></li>
+                <li><a href="#">Hour: Opend 7:30 AM - 10:00 PM</a></li>					 
+            </ul>
         </div>
-        <!---->
-        <div class="copywrite">
-            <div class="container">
-                <p>Copyright Â© 2015 Wedding Store. All Rights Reserved | Design by <a href="#">4 DOGS</a></p>
-            </div>
-        </div>		 
-    </body>
+        <div class="clearfix"></div>
+    </div>
+    <div class="copywrite">
+        <div class="container">
+            <p style="text-align: center; margin-top: 35px;">Copyright Â© 2018 4 Pandas Store. All Rights Reserved | Design by <a href="#">4 DOGS</a></p>
+        </div>
+    </div>
+</div>
+<!---->
+
+</body>
 
 </html>
