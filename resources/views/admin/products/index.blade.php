@@ -35,7 +35,7 @@
             <tr>
                 <td>{{$product->id}}</td>
                 <td><a href="{{ url('admin/products/'. $product->id.'/edit') }}">{{$product->name}}</a></td>        
-                <td><img height="50" src="{{$product->thumbnail()? asset( $product->thumbnail()->link_image ): 'http://placehold.it/400x400'}}" alt=""></td>
+                <td><img width="75" height="60" src="{{$product->thumbnail()? asset( $product->thumbnail()->link_image ): 'http://placehold.it/400x400'}}" alt=""></td>
                 <td>{{$product->category ? $product->category->name : 'Uncategorized'}}</td>
                 <td>{{str_limit($product->description)}}</td>
                 <td>{{$product->is_price() ? $product->is_price() ->size :  'Unsized'}}</td>

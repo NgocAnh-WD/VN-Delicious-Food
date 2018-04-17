@@ -50,6 +50,10 @@ class HomeController extends Controller {
         $comments = Comment::where([['product_id', $product_detail->id], ['parent_id', '=', '0']])->orderBy('created_at', 'desc')->paginate(9);
         return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'sizes'));
     }
+    
+    public function index4(){
+        return view('layouts/admin');
+    }
 
     public function getSizeAddtoCart(Request $request) {
         $id = $request->id;
