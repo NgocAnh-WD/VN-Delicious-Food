@@ -94,8 +94,7 @@
                 <div class="arrival-info">
                     <h4>{{$product->category ? $product->category->name : 'Uncategorized'}}</h4>
                     <p>{{$product->name}}</p>
-                    <!--<span class="pric1"><del>{{$product->name}}</del></span>-->
-                    <!--<span class="disc">[12% Off]</span>-->
+                    <span>{{$product->is_price()->price}}</span>
                 </div>
                 <div class="viw">
                     <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
@@ -123,14 +122,14 @@
                     <div class="arrival-info">
                         <h4>{{$product_new->category ? $product_new->category->name : 'Uncategorized'}}</h4>
                         <p>{{$product_new->name}}</p>
-                        <span class="pric1"><del>{{$product_new->name}}</del></span>
-                        <span class="disc">[10% Off]</span>
+                        <span class="pric1"><del>{{$product_new->is_price()->price}}</del></span>
+                        <span class="disc">[0% Off]</span>
                     </div>
                     <div class="viw">
                         <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
                     </div>
                     <div class="shrt">
-                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Product Detail</a>
+                        <a href="{{ url('/single',$product_new->id) }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Product Detail</a>
                     </div></a>
             </li>
             @endforeach
