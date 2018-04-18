@@ -3,11 +3,15 @@
 @section('container')
 <div class="product-model">	 
     <div class="container">
-        <ol class="breadcrumb">
-            <li><a href="{{ url('/home') }}">Home</a></li>
-            <li class="active">Products</li>
-        </ol>
-        <h2>Our Products</h2>			
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="{{ url('/home') }}">Home</a></li>
+                <li class="active">Products</li>
+            </ol>
+        </div>
+        <div class="container">
+            <img src="images/1.png" alt="Image" style="height: 300px; width: 100%;"/>
+        </div>
         <div class="col-md-9 product-model-sec" id="product-container">
             @if(isset($products))
             @if (session('order'))
