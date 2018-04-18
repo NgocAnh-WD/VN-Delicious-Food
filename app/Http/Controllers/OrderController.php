@@ -264,11 +264,14 @@ class OrderController extends Controller {
         $update = $request->all();
         $orders = Order::findorFail($id);
         if(isset($request['dagiao'])){
-            
+            $orders['status'] = 1;
         }
         if(isset($request['chuagiao'])){
-            echo 'chua giao';
+            $orders['status'] = 0;
         }
+        
+        $orders->update($update);
+        return redirect('admin/orders');
     }
 
     /**

@@ -46,10 +46,10 @@
                         <span class="text-danger">{{ $errors->first('shipped') }}</span>
                     </div>
 
-                    <div class=" row  col-md-7 form-group {{ $errors->has('is_active') ? 'has-error' : '' }}">
+                    <div class=" row  col-md-7 form-group {{ $errors->has('status') ? 'has-error' : '' }}">
                         <label class="checkbox-inline"><input type="checkbox" name="chuagiao" id="chuagiao" value="0" @if($order ->status ==0) checked @endif>Đang chờ giao</label>
                         <label class="checkbox-inline"><input type="checkbox" name="dagiao" id="dagiao" value="1"@if($order ->status ==1) checked @endif>Đã giao</label>
-                        <span class="text-danger">{{ $errors->first('is_active') }}</span>
+                        <span class="text-danger">{{ $errors->first('status') }}</span>
                     </div> 
 
                     <div class="row col-md-7 form-group {{ $errors->has('note') ? ' has-error' : '' }}">
