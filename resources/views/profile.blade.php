@@ -1,6 +1,11 @@
-@extends('layouts.index')
-@section('container')
 
+<html lang="en">
+    <head>
+        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
+        <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
+        <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
+    </head>
     <body>
         <div class="container">
             <div class="page-content">
@@ -42,6 +47,7 @@
                                                         <span class="white">{{ Auth::user()->username }} </span>
                                                     </a>                                 
                                                 </div>
+
                                             </div>
                                             <div class="space-4"></div>
                                             <div class="profile-info-row {{ $errors->has('avata_image') ? 'has-error' : '' }}">                                 
@@ -50,44 +56,8 @@
                                             </div>
                                         </div>
                                         <div class="space-6"></div>
-                                        <!--                                        <div class="profile-contact-info">
-                                                                                    <div class="profile-contact-links align-left">
-                                                                                        <a href="#" class="btn btn-link">
-                                                                                            <i class="ace-icon fa fa-plus-circle bigger-120 green"></i>
-                                        
-                                                                                        </a>
-                                        
-                                                                                        <a href="#" class="btn btn-link">
-                                                                                            <i class="ace-icon fa fa-envelope bigger-120 pink"></i>
-                                        
-                                                                                        </a>
-                                        
-                                                                                        <a href="#" class="btn btn-link">
-                                                                                            <i class="ace-icon fa fa-globe bigger-125 blue"></i>
-                                        
-                                                                                        </a>
-                                                                                    </div>
-                                        
-                                                                                    <div class="space-6"></div>            
-                                                                                </div>-->
 
                                         <div class="hr hr12 dotted"></div>
-
-                                        <!--                                        <div class="clearfix">
-                                                                                    <div class="grid2">
-                                                                                        <span class="bigger-175 blue"></span>
-                                        
-                                                                                        <br />
-                                        
-                                                                                    </div>
-                                        
-                                                                                    <div class="grid2">
-                                                                                        <span class="bigger-175 blue"></span>
-                                        
-                                                                                        <br />
-                                        
-                                                                                    </div>
-                                                                                </div>-->
 
                                         <div class="hr hr16 dotted"></div>
                                     </div>
@@ -118,13 +88,13 @@
                                                 <input type="password" id="password" name="password" class="form-control" value="">
                                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                                             </div>
-                                            
+
                                             <div class="profile-info-row {{ $errors->has('password') ? 'has-error' : '' }}" >
                                                 <div class="profile-info-name">Password-confirm</div>
                                                 <input type="password" id="repassword" name="repassword" class="form-control" value="">
                                                 <span class="text-danger">{{ $errors->first('password') }}</span>
                                             </div>
-                                          
+
                                             <div class="profile-info-row {{ $errors->has('address') ? 'has-error' : '' }}">
                                                 <div class="profile-info-name"> Address </div>
                                                 <input type="text" id="address" name="address" class="form-control" placeholder="" value="{{ Auth::user()->address }}">
@@ -165,6 +135,12 @@
                                                 <input type="submit" class="btn btn-success" value="Save" />
                                                 <input type="hidden" value="{{ Session::token() }}" name="_token">
                                             </div>
+                                           
+                                                <div class="foot-lnk">
+                                                    <a class="btn btn-link" href="{{ url('/home') }}">
+                                                        Back home
+                                                    </a>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -175,4 +151,4 @@
             </div>
         </div>
     </body>
-@stop
+</html>
