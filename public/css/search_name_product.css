@@ -15,7 +15,7 @@ label.icon-search {
     right:0;
     top:15px;
     overflow: hidden;
-    width: 20px;
+    width: 50px;
     height:0px;
     background:#fff;
     border: 1px solid #adadad;
@@ -60,8 +60,8 @@ label.icon-search {
     visibility: hidden;
 }
 .search_box:checked~.search_form{
-   width: 350px;
-   height: 35px;
+   width: 470px;
+   height: 70px;
    padding: 0;
    top: 24px;
    right: 40px;
