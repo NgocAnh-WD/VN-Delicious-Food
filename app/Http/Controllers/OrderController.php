@@ -247,10 +247,10 @@ class OrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $order = Order::where('id',$id)->orderBy('created_at', 'asc')->first();
-        $details = OrderDetail::where('order_id',$id)->get();
+        $order = Order::where('id', $id)->orderBy('created_at', 'asc')->first();
+        $details = OrderDetail::where('order_id', $id)->get();
 //        $customer = Customer::where('id',$order->customer_id)->get();
-        return view('admin.orders.edit', ['order' => $order,'details' => $details]);
+        return view('admin.orders.edit', ['order' => $order, 'details' => $details]);
     }
 
     /**
@@ -263,11 +263,21 @@ class OrderController extends Controller {
     public function update(Request $request, $id) {
         $update = $request->all();
         $orders = Order::findorFail($id);
-        if(isset($request['dagiao'])){
-            $orders['status'] = 1;
-        }
-        if(isset($request['chuagiao'])){
-            $orders['status'] = 0;
+
+        if (strtotime($orders->order_date) > strtotime($request['shipped'])) {
+            return redirect()->back()->with('date', 'Kiểm tra ngày giao hàng');
+        } else {
+
+            $orders['note'] = $request['note'];
+            $orders['shipped_date'] = $request['shipped'];
+            if (isset($request['dagiao'])) {
+                $orders['status'] = 1;
+            }
+            if (isset($request['chuagiao'])) {
+                $orders['status'] = 0;
+            }
+            $orders->save();
+            return redirect()->back()->with('update', 'Cập nhật trạng thái thành công');
         }
         
         $orders->update($update);
@@ -283,12 +293,10 @@ class OrderController extends Controller {
     public function destroy($id) {
 //
     }
-    
-    public function getDetailByOrderID($id){
-        $detail = OrderDetail::where("order_id",$id)->orderBy('created_at', 'asc')->paginate(4);
+
+    public function getDetailByOrderID($id) {
+        $detail = OrderDetail::where("order_id", $id)->orderBy('created_at', 'asc')->paginate(4);
         return view('admin.orders.detail', compact('detail'));
     }
- 
-    
 
 }

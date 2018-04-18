@@ -1,8 +1,11 @@
 @extends('layouts.admin')
 @section('content')
+@if (session('update'))
+            <div class="alert alert-success">
+                {{ session('update') }}
+            </div>
+            @endif
 <h1 class="panel">Thông tin chi tiết hóa đơn</h1>
-
-
 <div class="row">
     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
         <div class="content_order">
@@ -31,19 +34,19 @@
                     <input type="hidden" name="_method" value="PUT">
 
                     <div class=" row col-md-7 form-group">
-                        <label for="id">Mã hóa đơn :</label>
+                        <label for="id">Mã hóa đơn</label>
                         <input type="text" id="id" name="id" class="form-control" value="{{$order ->id}}" disabled="">
                     </div> 
 
                     <div class="row col-md-7 form-group">
-                        <label for="order">Ngày đặt:</label>
+                        <label for="order">Ngày đặt</label>
                         <input type="datetime" id="date_order" name="date_order" class="form-control" value="{{$order ->order_date}}" disabled="">
                     </div>
 
                     <div class=" row col-md-7  form-group {{ $errors->has('shipped') ? 'has-error' : '' }}">
-                        <label for="shipped">Ngày giao:</label>
-                        <input type="date" id="shipped" name="shipped" class="form-control" value="{{$order ->required_date}}">
-                        <span class="text-danger">{{ $errors->first('shipped') }}</span>
+                        <label for="shipped">Ngày giao</label>
+                        <input type="date" id="shipped" name="shipped" class="form-control" value="{{$order ->shipped_date}}">
+                        <span class="text-danger">@if (session('date')){{ session('date') }}@endif</span>
                     </div>
 
                     <div class=" row  col-md-7 form-group {{ $errors->has('status') ? 'has-error' : '' }}">
@@ -53,12 +56,19 @@
                     </div> 
 
                     <div class="row col-md-7 form-group {{ $errors->has('note') ? ' has-error' : '' }}">
-                        <label for="note">Tình trạng:</label>
+                        <label for="note">Tình trạng</label>
                         <input id="note" type="text" class="form-control" name="note" value="{{$order->note}}">
                         <span class="text-danger">{{ $errors->first('note') }}</span>
                     </div>
-                    <div class="row  col-md-7 form-group">
+                    <div class="row col-md-7 form-group">
                         <input type="submit" class="btn btn-success" value="Update Order" />
+                    </div>
+                </form>
+                <form action="{{ url('admin/orders') }} " method="POST">
+                    <input type="hidden" name="_method" value="GET">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                    <div class="row col-md-7 form-group">
+                        <input type="submit" class="btn btn-danger" value="Back"/>
                     </div>
                 </form>
             </div>
@@ -92,12 +102,12 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="amount_order">
+            <div style="float: right;font-size: 30px">
                 <?php $i = 0 ?>
                 @foreach($details as $detail)                
                 <?php $i += $detail->product->is_price()->price * $detail->quantity_pro ?>          
                 @endforeach
-                <span>Tổng cộng:</span>{!! number_format($i, 3, ',', '.') !!}
+                <span>Tổng cộng:</span><span style="color: #F44336">{!! number_format($i, 3, ',', '.') !!}VNĐ</span>
             </div>
         </div>
     </div>
