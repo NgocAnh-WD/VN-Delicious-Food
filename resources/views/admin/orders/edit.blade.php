@@ -26,38 +26,36 @@
                 </div>
             </div>
             <div class="order_status">
-                <form action="#" method="post">
+                <form action="{{ route('admin.orders.update', $order ->id) }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="PUT">
 
-                    <div class=" row col-md-7 form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+                    <div class=" row col-md-7 form-group">
                         <label for="id">Mã hóa đơn :</label>
                         <input type="text" id="id" name="id" class="form-control" value="{{$order ->id}}" disabled="">
-                        <span class="text-danger">{{ $errors->first('name') }}</span>
                     </div> 
 
-                    <div class="row col-md-7 form-group {{ $errors->has('address') ? ' has-error' : '' }}">
+                    <div class="row col-md-7 form-group">
                         <label for="order">Ngày đặt:</label>
                         <input type="datetime" id="date_order" name="date_order" class="form-control" value="{{$order ->order_date}}" disabled="">
-                        <span class="text-danger">{{ $errors->first('address') }}</span>
                     </div>
 
-                    <div class=" row col-md-7  form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                    <div class=" row col-md-7  form-group {{ $errors->has('shipped') ? 'has-error' : '' }}">
                         <label for="shipped">Ngày giao:</label>
                         <input type="date" id="shipped" name="shipped" class="form-control" value="{{$order ->required_date}}">
-                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                        <span class="text-danger">{{ $errors->first('shipped') }}</span>
                     </div>
 
                     <div class=" row  col-md-7 form-group {{ $errors->has('is_active') ? 'has-error' : '' }}">
-                        <label class="checkbox-inline"><input type="checkbox" value="0" @if($order ->status ==0) checked @endif>Đang chờ giao</label>
-                        <label class="checkbox-inline"><input type="checkbox" @if($order ->status ==1) checked @endif>Đã giao</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="chuagiao" id="chuagiao" value="0" @if($order ->status ==0) checked @endif>Đang chờ giao</label>
+                        <label class="checkbox-inline"><input type="checkbox" name="dagiao" id="dagiao" value="1"@if($order ->status ==1) checked @endif>Đã giao</label>
                         <span class="text-danger">{{ $errors->first('is_active') }}</span>
                     </div> 
 
-                    <div class="row col-md-7 form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
+                    <div class="row col-md-7 form-group {{ $errors->has('note') ? ' has-error' : '' }}">
                         <label for="note">Tình trạng:</label>
                         <input id="note" type="text" class="form-control" name="note" value="{{$order->note}}">
-                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                        <span class="text-danger">{{ $errors->first('note') }}</span>
                     </div>
                     <div class="row  col-md-7 form-group">
                         <input type="submit" class="btn btn-success" value="Update Order" />
@@ -87,7 +85,7 @@
                         <td>{{$detail->product_id}}</td>
                         <td><img height="50" width="50" src="{{$detail->product->thumbnail()->link_image ? asset($detail->product->thumbnail()->link_image) : 'http://placehold.it/400x400' }}" alt="image"></td>
                         <td>{{$detail->product->name}}</td>
-                        <td>{{$detail->product->is_price()->price}}</td>
+                        <td>{{$detail->price}}</td>
                         <td>{{$detail->quantity_pro}}</td>
                         <td>{{$detail->discount}}</td>
                     </tr>
@@ -95,13 +93,22 @@
                 </tbody>
             </table>
             <div class="amount_order">
-                @foreach($details as $detail)
-                {{$detail->product->is_price()->price*$detail->quantity_pro}}
+                <?php $i = 0 ?>
+                @foreach($details as $detail)                
+                <?php $i += $detail->product->is_price()->price * $detail->quantity_pro ?>          
                 @endforeach
+                <span>Tổng cộng:</span>{!! number_format($i, 3, ',', '.') !!}
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    $('#chuagiao').click(function () {
+        $("#dagiao").prop("checked", false);
+    });
+    $('#dagiao').click(function () {
+        $("#chuagiao").prop("checked", false);
+    });
+</script>
 
 @stop

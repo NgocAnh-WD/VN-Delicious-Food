@@ -90,6 +90,7 @@ class OrderController extends Controller {
                                 $input['product_id'] = $item['id'];
                                 $input['quantity_pro'] = $item['qty'];
                                 $input['size'] = $item['size'];
+                                $input['price'] = $item['price_goc'];
                                 $input['discount'] = 0;
                                 $orderdetail = OrderDetail::create($input);
                                 $product = PriceSizes::where([['product_id', '=', $item['id']], ['size', $item['size']]])->first();
@@ -141,6 +142,7 @@ class OrderController extends Controller {
                                 $input['product_id'] = $item['id'];
                                 $input['quantity_pro'] = $item['qty'];
                                 $input['size'] = $item['size'];
+                                $input['price'] = $item['price_goc'];
                                 $input['discount'] = 0;
                                 $orderdetail = OrderDetail::create($input);
                                 $product = PriceSizes::where([['product_id', '=', $item['id']], ['size', $item['size']]])->first();
@@ -208,8 +210,9 @@ class OrderController extends Controller {
                             $input['product_id'] = $item['id'];
                             $input['quantity_pro'] = $item['qty'];
                             $input['size'] = $item['size'];
+                            $input['price'] = $item['price_goc'];
                             $input['discount'] = 0;
-                            $orderdetail = OrderDetail::create($input);
+                            $details = OrderDetail::create($input);
                             $product = PriceSizes::where([['product_id', '=', $item['id']], ['size', $item['size']]])->first();
                             $product->quantity -= $item['qty'];
                             $product->save();
@@ -258,7 +261,14 @@ class OrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-//
+        $update = $request->all();
+        $orders = Order::findorFail($id);
+        if(isset($request['dagiao'])){
+            
+        }
+        if(isset($request['chuagiao'])){
+            echo 'chua giao';
+        }
     }
 
     /**

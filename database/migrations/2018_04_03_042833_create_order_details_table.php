@@ -19,6 +19,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('product_id')->unsigned()->index();
             $table->integer('quantity_pro');
             $table->string('size');
+            $table->decimal('price', 8, 3);
             $table->float('discount', 8, 3);
             $table->timestamps();
             

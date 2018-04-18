@@ -9,7 +9,7 @@ class OrderDetail extends Model
     use Notifiable;
 
     protected $fillable = [
-        'order_id', 'product_id', 'quantity_pro', 'size', 'discount'
+        'order_id', 'product_id', 'quantity_pro', 'size', 'discount','price'
     ];
     
     public function order(){
