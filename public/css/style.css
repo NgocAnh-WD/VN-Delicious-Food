@@ -167,7 +167,7 @@ h1.b1,h2.b2,h3.b3 {
     min-height: 89px;
 }
 .header-bottom {
-    padding: 2.3em 0;
+    padding:em 0;
 }
 .logo  a h1{
     color:#333;
@@ -182,11 +182,11 @@ h1.b1,h2.b2,h3.b3 {
     float:left;
 }
 .top-nav{
-    margin-top: 0;
+    margin-top: 0px;
     width:63%;
     margin: 1% auto 0;
     display: block;
-    float: left;
+    float: right;
 }
 .skyblue{
     float:left;

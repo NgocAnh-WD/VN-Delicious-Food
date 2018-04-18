@@ -1,8 +1,6 @@
 @extends('layouts.index')
 @section('welcome')
 <div class="banner">
-    <div class="container">
-    </div>
 </div>
 <div class="welcome">
     <div class="container">

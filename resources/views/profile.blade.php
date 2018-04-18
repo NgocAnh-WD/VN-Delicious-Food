@@ -1,4 +1,3 @@
-
 <html lang="en">
     <head>
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
@@ -135,12 +134,12 @@
                                                 <input type="submit" class="btn btn-success" value="Save" />
                                                 <input type="hidden" value="{{ Session::token() }}" name="_token">
                                             </div>
-                                           
-                                                <div class="foot-lnk">
-                                                    <a class="btn btn-link" href="{{ url('/home') }}">
-                                                        Back home
-                                                    </a>
-                                                </div>
+                                            
+                                            <div class="right">
+                                                <a class="btn bnt-link" href="{{ url('/home') }}">
+                                                    Back home
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

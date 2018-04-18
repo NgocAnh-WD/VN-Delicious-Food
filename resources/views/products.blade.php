@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('container')
-<div class="product-model">	 
+<div class="product-model">
     <div class="container">
         <div class="container">
             <ol class="breadcrumb">
