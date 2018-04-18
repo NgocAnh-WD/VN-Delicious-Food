@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::get('/vieworders', 'HomeController@vieworders')->name('vieworders');
 Route::get('/products', 'HomeController@index1')->name('products');
 Route::get('/single/{id}', 'HomeController@index2')->name('product_details');
 Route::get('/pro_cate/{id}', 'HomeController@get_products_by_category')->name('product_category');
@@ -83,4 +84,16 @@ Route::group(['middleware' => ['adminLogin']], function () {
     Route::resource('admin/products','AdminProductController', array('as' =>'admin'));
     Route::resource('admin/comments','AdminCommentsController', array('as' =>'admin'));
     Route::resource('admin/orders','OrderController', array('as' => 'admin'));
+});
+
+Route::get('/homee', function()
+{
+    $products = Product::paginate(10);
+    return View::make('a')->with('products', $products);
+});
+
+Route::get('/homee/a',function()
+{
+    $products = Product::paginate(10);
+    return View::make('a')->with('products', $products)->render();
 });

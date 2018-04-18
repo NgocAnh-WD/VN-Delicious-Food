@@ -262,5 +262,16 @@ class HomeController extends Controller {
         $sizes = PriceSizes::select('price', 'quantity')->where([['product_id', $id], ['size', $size]])->first();
         return response()->json(['size' => $sizes]);
     }
+    
+    public function vieworders()
+    {
+        return view('/vieworders');
+    }
 
+        public function get_home(Request $request){
+        if($request->ajax() || 'NULL'){
+    	    $products = Product::all();
+    	    return view('a',compact('products'));
+        }
+    }
 }

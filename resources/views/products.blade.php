@@ -25,7 +25,7 @@
                                 <h4>{{$product->name}}</h4>
                                 <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
                                 <span class="item_price pric1">{{$product? $product->is_price()->price : 'Unpriced'}}VNĐ</span>
-                                <span class="disc">[0% Off]</span>
+<!--                                <span class="disc">[12% Off]</span>-->
                             </div>													
                         </div>
                     </div>

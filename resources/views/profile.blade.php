@@ -1,12 +1,6 @@
 @extends('layouts.index')
 @section('container')
-<html lang="en">
-    <head>
-        <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" />
-        <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
-        <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
-        <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
-    </head>
+
     <body>
         <div class="container">
             <div class="page-content">
@@ -181,5 +175,4 @@
             </div>
         </div>
     </body>
-</html>
 @stop
