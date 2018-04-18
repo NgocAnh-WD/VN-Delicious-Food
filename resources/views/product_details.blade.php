@@ -211,15 +211,16 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <button class="btn btn-primary reply" id="reply_{{$comment->id}}" data-id="{{$comment->id}}" value="Reply">Reply</button>
+                                            <button class="btn btn-primary reply"  data-id="{{$comment->id}}" value="Reply">Reply</button>
                                         </div>
                                     </form>  
-                                    <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
+                                    
                                 </div> 
                                 @endif
                             </div>
                             @endforeach
                             @endif
+                            <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
                             <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                         </div>
                     </div>
