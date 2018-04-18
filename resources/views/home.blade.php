@@ -122,7 +122,7 @@
                     <div class="arrival-info">
                         <h4>{{$product_new->category ? $product_new->category->name : 'Uncategorized'}}</h4>
                         <p>{{$product_new->name}}</p>
-                        <span class="pric1"><del>{{$product_new->is_price()->price}}</del></span>
+                        <span class="pric1">{{$product_new->is_price()->price}}</span>
                         <span class="disc">[0% Off]</span>
                     </div>
                     <div class="viw">

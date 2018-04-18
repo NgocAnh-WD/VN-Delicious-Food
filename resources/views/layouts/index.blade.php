@@ -27,7 +27,7 @@ var GlobleVariable = [];
 GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         </script>	
         <!-- /start menu -->      
-  
+
     </head>
     <body> 
         <!--header-->	
@@ -171,12 +171,12 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         <div class="col-md-3 ftr-grid">
             <h4>Thông tin hỗ trợ</h4>
             <ul>                                   
-                <li><a href="#"><img src="{{asset('images/panda-icon.png')}}" alt="Image" style="height: 50px; width: 50px;"/></li>
-                <li><a href="#">Mentor: Mr.Ngo Ho (SEA DEV Company)</a></li>
-                <li><a href="#">Phone: 0236 3888 503</a></li>
-                <li><a href="#">Address: 99 Tô Hiến Thành, Phước Mỹ, Sơn Trà, Đà Nẵng</a></li>
-                <li><a href="#">Email: dant4pandas@gmail.com</a></li>
-                <li><a href="#">Hour: Opend 7:30 AM - 10:00 PM</a></li>					 
+                <li><img src="{{asset('images/panda-icon.png')}}" alt="Image" style="height: 50px; width: 50px;"/></li>
+                <li><p style="font-weight: bold;">Mentor: Mr.Ngo Ho (SEA DEV Company)</p></li>
+                <li><p>Phone: 0236 3888 503</p></li>
+                <li><p>Address: 99 Tô Hiến Thành, Phước Mỹ, Sơn Trà, Đà Nẵng</p></li>
+                <li><p>Email: dant4pandas@gmail.com</p></li>
+                <li><p>Hour: Opend 7:30 AM - 10:00 PM</p></li>					 
             </ul>
         </div>
         <div class="clearfix"></div>

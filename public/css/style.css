@@ -19,7 +19,7 @@ ul{
     margin: 0;
 }
 h1,h2,h3,h4,h5,h6,label,p{
-    margin:0;	
+    margin:5px;	
 }
 h1.b1,h2.b2,h3.b3 {
     margin-bottom:25px;
