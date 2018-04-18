@@ -2,7 +2,7 @@
 <html>
     <head> 
         <title>Food Store</title>
-        <link rel="shortcut icon" href="images/img/food.png">
+        <link rel="shortcut icon" href="images/panda.png.">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!--        <script src="{{asset('js/jquery.min.js')}}"></script>-->
         <link href="{{asset('css/style.css')}}" rel="stylesheet">	
@@ -159,12 +159,12 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                 </div>
             </div>
             <ul>
-                <li><a href="#">
-                        <p style="text-align: center; margin-top: 5px;">4 Pandas là website chính thức của chuỗi cửa hàng thức ăn 4PANDAS nổi tiếng. Ngoài việc cung 
-                            cấp các món ăn ngon của cửa hàng đến thực khách. Chúng tôi còn liên kết với các chuỗi nhà hàng nổi
-                            tiếng khác để đem đến cho các bạn thật nhiều món ăn ngon miệng. Chất lượng hàng đầu, giá thành hợp lý.
-                        </p>
-                    </a>
+                <li>
+                    <p style="text-align: center; margin-top: 5px;">5 Pandas là website chính thức của chuỗi cửa hàng thức ăn 4PANDAS nổi tiếng. Ngoài việc cung 
+                        cấp các món ăn ngon của cửa hàng đến thực khách. Chúng tôi còn liên kết với các chuỗi nhà hàng nổi
+                        tiếng khác để đem đến cho các bạn thật nhiều món ăn ngon miệng. Chất lượng hàng đầu, giá thành hợp lý.
+                    </p>
+
                 </li>				 
             </ul>
         </div>

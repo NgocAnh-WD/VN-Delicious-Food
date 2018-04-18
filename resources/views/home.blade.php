@@ -7,14 +7,14 @@
 <div class="welcome">
     <div class="container">
         <div class="col-md-3 welcome-left">
-            <h2>Welcome to 4 Dogs Restaurant</h2>
+            <h2>Welcome to 5 Pandas Website</h2>
         </div>
         <div class="col-md-9 welcome-right">
-            <h3>Proin ornare massa eu enim pretium efficitur.</h3>
-            <p>Etiam fermentum consectetur nulla, sit amet dapibus orci sollicitudin vel. 
-                Nulla consequat turpis in molestie fermentum. In ornare, tellus non interdum ultricies, elit 
-                ex lobortis ex, aliquet accumsan arcu tortor in leo. Nullam molestie elit enim. Donec ac 
-                aliquam quam, ac iaculis diam. Donec finibus scelerisque erat, non convallis felis commodo ac.</p>
+            <h3>Food 5 Pandas.</h3>
+            <p>5 Pandas là website chính thức của chuỗi cửa hàng thức ăn 5PANDAS nổi tiếng. Ngoài việc cung 
+                cấp các món ăn ngon của cửa hàng đến thực khách. Chúng tôi còn liên kết với các chuỗi nhà hàng nổi
+                tiếng khác để đem đến cho các bạn thật nhiều món ăn ngon miệng. Chất lượng hàng đầu, giá thành hợp 
+                lý và được đưa đến tận nhà một cách nhanh chóng, đảm bảo vệ sinh an toàn thực phẩm.</p>
         </div>
     </div>
 </div>
@@ -28,8 +28,9 @@
                 <figure class="effect-bubba">
                     <img src="images/d3.jpg" alt=""/>
                     <figcaption>
-                        <h4>Nullam molestie </h4>
-                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
+                        <h4>Sweet's Food</h4>
+                        <p>Tất cả các món ăn của 5 Pandas được chăm chút tỉ mỉ để có được một món ăn 
+                           tuyệt vời y như món ăn mẹ nấu. Ngọt ngào, ấm áp và ngập tràn yêu thương</p>																
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>
@@ -39,8 +40,9 @@
                 <figure class="effect-bubba">
                     <img src="images/d2.jpg" alt=""/>
                     <figcaption>
-                        <h4>Nullam molestie </h4>
-                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
+                        <h4>France's Food</h4>
+                        <p>Món ăn truyền thống Pháp được các đầu bếp hàng đầu chế biến với 
+                           tất cả tâm huyết, tạo nên món ăn tuyệt vời.</p>																
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
@@ -50,8 +52,6 @@
         <div class="col-md-4 bride-grid">
             <div class="content-grid l-grids">
                 <img src="images/d7.jpg" alt="Image" style="width: 350px; height: 550px;"/>
-
-                <h3 style="text-align: center;">Ice-cream Delicious</h3>
             </div>
         </div>
         <div class="col-md-4 bride-grid">
@@ -59,8 +59,10 @@
                 <figure class="effect-bubba">
                     <img src="images/d6.jpg" alt="Image" style="height: 252.93px;"/>
                     <figcaption>
-                        <h4>Nullam molestie</h4>
-                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
+                        <h4>Vegetables & Fruit</h4>
+                        <p>Với tâm huyết thúc đẩy cộng đồng người trẻ có được thói quen ăn uống lành 
+                           mạnh, tốt cho sức khỏe. Các món ăn của chúng tôi luôn là sự kết hợp
+                          hoàn hảo giữa nguyên liệu và rau củ.</p>																
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
@@ -70,12 +72,13 @@
                 <figure class="effect-bubba">
                     <img src="images/d5.jpg" alt="Image" style="height: 214.38px;"/>
                     <figcaption>
-                        <h4>Nullam molestie </h4>
-                        <p>In sit amet sapien eros Integer in tincidunt labore et dolore magna aliqua</p>																
+                        <h4>Vietnam's Food</h4>
+                        <p>Những món ăn truyền thống là không thể thiếu trong các bữa cơm người Việt.
+                        Những món ăn đậm đà, mang nhiều bản sắc dân tộc.</p>																
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>
-                <h3 style="text-align: center;">Most Beautiful</h3>
+                <h3 style="text-align: center;">Vietnam's Food</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -112,7 +115,7 @@
 
 @section('slide1')
 <div class="container">	
-    <h3>New Arrivals</h3>
+    <h3>New Products</h3>
     <div class="arrival-grids">			 
         <ul id="flexiselDemo1">
             @if($products_new)
@@ -136,7 +139,7 @@
             @endif
         </ul>
         <script type="text/javascript">
-                $(function () {
+            $(function () {
                 $("#flexiselDemo1").flexisel({
                     visibleItems: 4,
                     animationSpeed: 1000,
