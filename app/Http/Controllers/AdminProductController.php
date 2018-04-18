@@ -25,7 +25,7 @@ class AdminProductController extends Controller {
     }
 
     public function index() {
-        $products = Product::orderBy('created_at', 'desc')->paginate(3);
+        $products = Product::orderBy('created_at', 'asc')->paginate(3);
         return view('admin.products.index', compact('products'));
     }
 

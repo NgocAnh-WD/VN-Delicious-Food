@@ -72,31 +72,24 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                             </a>
                         </li>
                         <ul class="nav navbar-nav navbar-right">
-                            <!-- Authentication Links -->
-                            @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                            @else
+                        @guest
+                        <li><a href="{{ route('login') }}"><b>Login/Register</b></a></li>
+                            
+                        @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->username }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
+                               <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
+                                    <div class="dropdown-content">
+                                        <a href="{{ route('logout')}}"
                                            onclick="event.preventDefault();
-    document.getElementById('logout-form').submit();">
-                                            Logout
+                                                   document.getElementById('logout-form').submit();">
+                                            Logout                                       
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                </ul>
+                                    </div>
                             </li>
-                            @endguest
+                        @endguest
                         </ul>
                     </ul>
                 </div>

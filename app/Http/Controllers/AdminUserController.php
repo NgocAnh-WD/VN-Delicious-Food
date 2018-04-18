@@ -17,7 +17,7 @@ class AdminUserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $users = User::orderBy('id', 'desc')->paginate(5); //phần phân trang back end trong lavavel
+        $users = User::orderBy('id', 'asc')->paginate(5); //phần phân trang back end trong lavavel
 //        $users = DB::table('users')->get();
         $images = Image::all();
         return view('admin.users.index', compact('users', 'images'));

@@ -14,7 +14,7 @@ class AdminCategoriesController extends Controller {
      */
     public function index() {
         $categories = Category::where('parent_id', 0)->get();
-        $cate = Category::where('is_delete', '=', '0')->orderBy('id', 'desc')->paginate(10);
+        $cate = Category::where('is_delete', '=', '0')->orderBy('id', 'asc')->paginate(10);
         return view('admin.categories.index', compact('categories', 'cate'));
     }
 
