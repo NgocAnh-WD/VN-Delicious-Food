@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@profile')->name('profile');
+Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/vieworders', 'HomeController@vieworders')->name('vieworders');
 Route::get('/products', 'HomeController@index1')->name('products');
 Route::get('/single/{id}', 'HomeController@index2')->name('product_details');

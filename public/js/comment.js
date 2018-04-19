@@ -54,6 +54,8 @@ $("#comment-btn").click(function (e) {
 
                     + '</div>';
             $('#show_comment').append(comment);
+            $('#title').val('');
+            $('#content').val('');
         },
         error: function (data) {
             console.log('Error:', data);

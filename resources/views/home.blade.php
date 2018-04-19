@@ -1,7 +1,9 @@
 @extends('layouts.index')
 @section('welcome')
-<div class="banner">
-</div>
+<!--<div class="banner">
+    <div class="container">
+    </div>
+</div>-->
 <div class="welcome">
     <div class="container">
         <div class="col-md-3 welcome-left">
@@ -39,7 +41,7 @@
                     <img src="images/d2.jpg" alt=""/>
                     <figcaption>
                         <h4>France's Food</h4>
-                        <p>Món ăn truyền thống Pháp được các đầu bếp hàng đầu chế biến với 
+                        <p>Các món ăn Pháp được các đầu bếp hàng đầu chế biến với 
                            tất cả tâm huyết, tạo nên món ăn tuyệt vời.</p>																
                     </figcaption>			
                 </figure>	
@@ -58,8 +60,7 @@
                     <img src="images/d6.jpg" alt="Image" style="height: 252.93px;"/>
                     <figcaption>
                         <h4>Vegetables & Fruit</h4>
-                        <p>Với tâm huyết thúc đẩy cộng đồng người trẻ có được thói quen ăn uống lành 
-                           mạnh, tốt cho sức khỏe. Các món ăn của chúng tôi luôn là sự kết hợp
+                        <p>Các món ăn của chúng tôi luôn là sự kết hợp
                           hoàn hảo giữa nguyên liệu và rau củ.</p>																
                     </figcaption>			
                 </figure>	
@@ -71,8 +72,7 @@
                     <img src="images/d5.jpg" alt="Image" style="height: 214.38px;"/>
                     <figcaption>
                         <h4>Vietnam's Food</h4>
-                        <p>Những món ăn truyền thống là không thể thiếu trong các bữa cơm người Việt.
-                        Những món ăn đậm đà, mang nhiều bản sắc dân tộc.</p>																
+                        <p>Những món ăn truyền thống đậm đà, mang nhiều bản sắc dân tộc.</p>																
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>

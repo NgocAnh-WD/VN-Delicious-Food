@@ -227,6 +227,14 @@ class HomeController extends Controller {
     public function profile() {
         return view('/profile');
     }
+    
+    public function contact() {
+        return view('/contact');
+    }
+    
+    public function about() {
+        return view('/about');
+    }
 
     public function searchprice(Request $request) {
 

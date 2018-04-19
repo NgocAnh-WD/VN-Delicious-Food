@@ -164,178 +164,179 @@
                                             @endif
                                         </div>
                                         <div id="show_reply_{{$comment->id}}" style="margin-top: 35px;"></div>
-                                    
-                                    <div id="showMoreReply_{{$comment->id}}" class="collapse">
-                                        @foreach($comment->children as $replyComment)
-                                        <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 150px; margin-right: 150px;">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    @if($replyComment->user)                          
-                                                    <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
-                                                    {{$replyComment->user->username}}<br>
-                                                    @endif
+
+                                        <div id="showMoreReply_{{$comment->id}}" class="collapse">
+                                            @foreach($comment->children as $replyComment)
+                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 150px; margin-right: 150px;">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        @if($replyComment->user)                          
+                                                        <img src="{{asset($replyComment->user->avata_image)}}" width="50px" height="50px" style="border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin: 5px;">                               
+                                                        {{$replyComment->user->username}}<br>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        {{str_limit($replyComment->content, 300)}} 
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
+                                                    </div>  
                                                 </div>
-                                                <div class="col-md-6">
-                                                    {{str_limit($replyComment->content, 300)}} 
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <p><span class="glyphicon glyphicon-time"></span> Posted: {{$replyComment->created_at->diffForhumans()}}</p>
-                                                </div>  
                                             </div>
+                                            @endforeach 
                                         </div>
-                                        @endforeach 
+
                                     </div>
+                                    @if(Auth::check())
+                                    <div class="button">
+                                        <button type="button" class="replyPro btn btn-primary" data-toggle="collapse" data-target="#replyForProduct_{{$comment->id}}">
+                                            <span class="glyphicon glyphicon-collapse-down"></span>Write Reply
+                                        </button>
+                                    </div>
+                                    <div class="well collapse" id="replyForProduct_{{$comment->id}}">
+                                        <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
+                                            <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
+                                            <input type="hidden" id="pro_id_{{$comment->id}}" name="product_id" value="{{$product_detail->id}}">
+                                            <input type="hidden" id="parent_id_{{$comment->id}}" name="parent_id" value="{{$comment->id}}">
+                                            <input type="hidden" id="user_id" value="{{Auth::check() ? Auth::user()->id : 0}}"/>
+                                            <input type="hidden" id="avata_image1" value="{{Auth::check() ? Auth::user()->avata_image : ""}}"/>
+                                            <input type="hidden" id="username1" value="{{Auth::check()?Auth::user()->username :""}}"/>
 
+                                            <div class="form-group">
+                                                <label for="content">Content:</label>
+                                                <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
+                                                    <textarea id="reply_content_{{$comment->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
+                                                    <span class="text-danger">{{ $errors->first('content') }}</span>
+                                                </div>                                           
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button class="btn btn-primary reply"  data-id="{{$comment->id}}" value="Reply">Reply</button>
+                                            </div>
+                                        </form>  
+
+                                    </div> 
+                                    @endif
                                 </div>
-                                @if(Auth::check())
-                                <div class="button">
-                                    <button type="button" class="replyPro btn btn-primary" data-toggle="collapse" data-target="#replyForProduct_{{$comment->id}}">
-                                        <span class="glyphicon glyphicon-collapse-down"></span>Write Reply
-                                    </button>
-                                </div>
-                                <div class="well collapse" id="replyForProduct_{{$comment->id}}">
-                                    <form id="replyComment_{{$comment->id}}" name="comment" method="POST" enctype='multipart/form-data'>
-                                        <input type="hidden" id="token_reply" name="_token" value="{{ csrf_token() }}"/>
-                                        <input type="hidden" id="pro_id_{{$comment->id}}" name="product_id" value="{{$product_detail->id}}">
-                                        <input type="hidden" id="parent_id_{{$comment->id}}" name="parent_id" value="{{$comment->id}}">
-                                        <input type="hidden" id="user_id" value="{{Auth::check() ? Auth::user()->id : 0}}"/>
-                                        <input type="hidden" id="avata_image1" value="{{Auth::check() ? Auth::user()->avata_image : ""}}"/>
-                                        <input type="hidden" id="username1" value="{{Auth::check()?Auth::user()->username :""}}"/>
-
-                                        <div class="form-group">
-                                            <label for="content">Content:</label>
-                                            <div class=" row {{ $errors->has('content') ? 'has-error' : '' }}">
-                                                <textarea id="reply_content_{{$comment->id}}" name="content" class="form-control" rows="5" placeholder="Enter Content" value="{{ old('content') }}" required></textarea>
-                                                <span class="text-danger">{{ $errors->first('content') }}</span>
-                                            </div>                                           
-                                        </div>
-
-                                        <div class="form-group">
-                                            <button class="btn btn-primary reply"  data-id="{{$comment->id}}" value="Reply">Reply</button>
-                                        </div>
-                                    </form>  
-                                    
-                                </div> 
+                                @endforeach
                                 @endif
-                            </div>
-                            @endforeach
-                            @endif
-                            <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
-                            <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
-                        </div>
-                    </div>
-                </div>
-                <div id="menu" class="tab-pane fade">
-                    <div class="arrivals" style="margin-left: 65px;">
-                        <h4>Tổng hợp menu</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="feature-grids">
-                                    <div class="content-grid l-grids">
-                                        <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                            <img src="{{asset('images/menu/menu5.jpg')}}" style="width: 450px; height:550px;"/>	
-                                            <figcaption>
-                                                <h4>4 DOGS - PIZZA</h4>
-                                                <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                            </figcaption>
-                                        </figure>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="feature-grids">
-                                    <div class="content-grid l-grids">
-                                        <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                            <img src="{{asset('images/menu/menu4.jpg')}}" style="width: 450px; height:550px;"/>	
-                                            <figcaption>
-                                                <h4>4 DOGS - PIZZA</h4>
-                                                <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                            </figcaption>
-                                        </figure>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="feature-grids">
-                                    <div class="content-grid l-grids">
-                                        <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                            <img src="{{asset('images/menu/menu2.jpg')}}" style="width: 450px; height:550px;"/>	
-                                            <figcaption>
-                                                <h4>4 DOGS - PIZZA</h4>
-                                                <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                            </figcaption>
-                                        </figure>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="feature-grids">
-                                    <div class="content-grid l-grids">
-                                        <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                            <img src="{{asset('images/menu/menu1.jpg')}}" style="width: 450px; height:550px;"/>	
-                                            <figcaption>
-                                                <h4>4 DOGS - Drink - CHOCO</h4>
-                                                <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                            </figcaption>
-                                        </figure>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="feature-grids">
-                                    <div class="content-grid l-grids">
-                                        <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                            <img src="{{asset('images/menu/menu3.jpg')}}" style="width: 450px; height:550px;"/>	
-                                            <figcaption>
-                                                <h4>4 DOGS - PIZZA</h4>
-                                                <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                            </figcaption>
-                                        </figure>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="feature-grids">
-                                    <div class="content-grid l-grids">
-                                        <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                            <img src="{{asset('images/menu/menu6.jpg')}}" style="width: 450px; height:550px;"/>	
-                                            <figcaption>
-                                                <h4>4 DOGS - PIZZA</h4>
-                                                <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                            </figcaption>
-                                        </figure>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
+                                <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
+                                <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                             </div>
                         </div>
                     </div>
+                    <div id="menu" class="tab-pane fade">
+                        <div class="arrivals" style="margin-left: 65px;">
+                            <h4>Tổng hợp menu</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-grids">
+                                        <div class="content-grid l-grids">
+                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
+                                                <img src="{{asset('images/menu/menu5.jpg')}}" style="width: 450px; height:550px;"/>	
+                                                <figcaption>
+                                                    <h4>4 DOGS - PIZZA</h4>
+                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
+                                                </figcaption>
+                                            </figure>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-grids">
+                                        <div class="content-grid l-grids">
+                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
+                                                <img src="{{asset('images/menu/menu4.jpg')}}" style="width: 450px; height:550px;"/>	
+                                                <figcaption>
+                                                    <h4>4 DOGS - PIZZA</h4>
+                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
+                                                </figcaption>
+                                            </figure>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-grids">
+                                        <div class="content-grid l-grids">
+                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
+                                                <img src="{{asset('images/menu/menu2.jpg')}}" style="width: 450px; height:550px;"/>	
+                                                <figcaption>
+                                                    <h4>4 DOGS - PIZZA</h4>
+                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
+                                                </figcaption>
+                                            </figure>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-grids">
+                                        <div class="content-grid l-grids">
+                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
+                                                <img src="{{asset('images/menu/menu1.jpg')}}" style="width: 450px; height:550px;"/>	
+                                                <figcaption>
+                                                    <h4>4 DOGS - Drink - CHOCO</h4>
+                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
+                                                </figcaption>
+                                            </figure>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="feature-grids">
+                                        <div class="content-grid l-grids">
+                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
+                                                <img src="{{asset('images/menu/menu3.jpg')}}" style="width: 450px; height:550px;"/>	
+                                                <figcaption>
+                                                    <h4>4 DOGS - PIZZA</h4>
+                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
+                                                </figcaption>
+                                            </figure>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-grids">
+                                        <div class="content-grid l-grids">
+                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
+                                                <img src="{{asset('images/menu/menu6.jpg')}}" style="width: 450px; height:550px;"/>	
+                                                <figcaption>
+                                                    <h4>4 DOGS - PIZZA</h4>
+                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
+                                                </figcaption>
+                                            </figure>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>	
-        <div class="clearfix"></div>
+            </div>	
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>
-</div>
 <script>
-                                    $(document).ready(function(){
-                                    var comment_id = document.getElementById("parent_id_{{$comment->id}}");
-                                    $('#replyForProduct' + comment_id).on("hide.bs.collapse", function(){
-                                    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-down"></span> Write Reply');
-                                    });
-                                    $('#replyForProduct' + comment_id).on("show.bs.collapse", function(){
-                                    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-up"></span> Close Reply');
-                                    });
-                                    });</script>
+    $(document).ready(function(){
+    var comment_id = document.getElementById("parent_id_{{$comment->id}}");
+    $('#replyForProduct' + comment_id).on("hide.bs.collapse", function(){
+    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-down"></span> Write Reply');
+    });
+    $('#replyForProduct' + comment_id).on("show.bs.collapse", function(){
+    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-up"></span> Close Reply');
+    });
+    });
+</script>
 
 <script>
     $(document).ready(function(){

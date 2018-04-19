@@ -167,7 +167,7 @@ h1.b1,h2.b2,h3.b3 {
     min-height: 89px;
 }
 .header-bottom {
-    padding:em 0;
+    padding: 2.3em 0;
 }
 .logo  a h1{
     color:#333;
@@ -182,22 +182,17 @@ h1.b1,h2.b2,h3.b3 {
     float:left;
 }
 .top-nav{
-    margin-top: 0px;
+    margin-top: 0;
     width:63%;
     margin: 1% auto 0;
     display: block;
-    float: right;
+    float: left;
 }
 .skyblue{
     float:left;
 }
 /*----*/
-.banner{
-    background:url(../images/banner.jpg) no-repeat 0px 0px;
-    background-size:cover;
-    min-height:700px;
-}
-/*--welcome--*/
+
 .welcome{
     padding:4em 0;
 }
@@ -598,8 +593,7 @@ ul.tabs-menu li a{
     font-size: 1em;
     padding: 0.5em 2em;
     text-decoration: none;
-    background: #fa558f;
-    color: #fff;
+   
 }
 ul.tabs-menu li.active a{
     background:#333;
