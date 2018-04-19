@@ -28,8 +28,6 @@
 var GlobleVariable = [];
 GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         </script>	
-        <!-- /start menu -->      
-
     </head>
     <body> 
         <div class="banner inner-bg-w3" id="home">
@@ -45,7 +43,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                 <div class="contact-bnr-w3-agile">
                     <ul>
                         <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="5Pandas@passerellesnumeriques.org">5Pandas@passerellesnumeriques.org</a></li>
-                        <li><i class="fa fa-phone" aria-hidden="true"></i>0946777888</li>	
+                        <li><i class="fa fa-phone" aria-hidden="true"></i>02357478528</li>	
                         <li>
                             <div class="search">
                                 <input class="search_box" type="checkbox" id="search_box">
@@ -80,13 +78,13 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                             <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
                                 <nav class="menu menu--miranda">
                                     <ul class="nav navbar-nav menu__list">
-                                        <li class="menu__item"><a href="{{asset('/home')}}" class="menu__link">Home</a></li>
-                                        <li class="menu__item"><a href="{{asset('/about')}}" class=" menu__link">About Us</a></li>
-                                        <li class="menu__item"><a href="{{asset('/products')}}" class=" menu__link">Products</a></li>
-                                        <li class="menu__item"><a href="{{asset('/contact')}}" class=" menu__link">Contact</a></li>
+                                        <li class="menu__item"><a href="{{asset('/home')}}" class="menu__link">Trang chủ</a></li>
+                                        <li class="menu__item"><a href="{{asset('/about')}}" class=" menu__link">Giới thiệu</a></li>
+                                        <li class="menu__item"><a href="{{asset('/products')}}" class=" menu__link">Sản phẩm</a></li>
+                                        <li class="menu__item"><a href="{{asset('/contact')}}" class=" menu__link">Liên hệ</a></li>
 
                                         @guest
-                                        <li class="dropdown menu__item"><a href="{{ route('login') }}"><b>Login/Register</b></a></li>
+                                        <li class="dropdown menu__item"><a href="{{ route('login') }}"><b>Đăng nhập/Đăng kí</b></a></li>
                                         @else
                                         <li class="dropdown" style="float: right; margin-top: 30px; padding-right: px">
                                             <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
@@ -94,13 +92,13 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                                 <a href="{{ route('logout')}}"
                                                    onclick="event.preventDefault();
                                                            document.getElementById('logout-form').submit();">
-                                                    Logout                                       
+                                                    Đăng xuất                                      
                                                 </a>
                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                     {{ csrf_field() }}
                                                 </form>
-                                                <a href="{{asset('/profile')}}">View profile</a>
-                                                <a href="{{asset('/profile')}}">View Orders</a>
+                                                <a href="{{asset('/profile')}}">Trang cá nhân</a>
+                                                <a href="{{asset('/profile')}}">Xem đơn hàng</a>
                                             </div>
                                         </li>
                                         @endguest  
@@ -132,12 +130,8 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         <!---->
         <div class="featured">
             @yield('container')
-        </div>
-        <!---->
-        <div class="arrivals">
-            @yield('slide1')
-        </div>
-        <!---->
+        </div>    
+        @yield('slide1')
         <div class="clearfix"></div>
         <div class="shoping">
             <div class="container">

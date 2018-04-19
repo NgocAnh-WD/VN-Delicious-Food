@@ -30,7 +30,7 @@
                     <figcaption>
                         <h4>Sweet's Food</h4>
                         <p>Tất cả các món ăn của 5 Pandas được chăm chút tỉ mỉ để có được một món ăn 
-                           tuyệt vời y như món ăn mẹ nấu. Ngọt ngào, ấm áp và ngập tràn yêu thương</p>																
+                            tuyệt vời y như món ăn mẹ nấu. Ngọt ngào, ấm áp và ngập tràn yêu thương</p>																
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>
@@ -42,7 +42,7 @@
                     <figcaption>
                         <h4>France's Food</h4>
                         <p>Các món ăn Pháp được các đầu bếp hàng đầu chế biến với 
-                           tất cả tâm huyết, tạo nên món ăn tuyệt vời.</p>																
+                            tất cả tâm huyết, tạo nên món ăn tuyệt vời.</p>																
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
@@ -61,7 +61,7 @@
                     <figcaption>
                         <h4>Vegetables & Fruit</h4>
                         <p>Các món ăn của chúng tôi luôn là sự kết hợp
-                          hoàn hảo giữa nguyên liệu và rau củ.</p>																
+                            hoàn hảo giữa nguyên liệu và rau củ.</p>																
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
@@ -112,57 +112,59 @@
 @endsection
 
 @section('slide1')
-<div class="container">	
-    <h3>New Products</h3>
-    <div class="arrival-grids">			 
-        <ul id="flexiselDemo1">
-            @if($products_new)
-            @foreach($products_new as $key => $product_new)
-            <li>
-                <a href="{{ url('/products') }}"><img src="{{asset($product_new->thumbnail()->link_image)}}" style="height:240px;" alt=""/>
-                    <div class="arrival-info">
-                        <h4>{{$product_new->category ? $product_new->category->name : 'Uncategorized'}}</h4>
-                        <p>{{$product_new->name}}</p>
-                        <span class="pric1">{{$product_new->is_price()->price}}</span>
-                        <span class="disc">[0% Off]</span>
-                    </div>
-                    <div class="viw">
-                        <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
-                    </div>
-                    <div class="shrt">
-                        <a href="{{ url('/single',$product_new->id) }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Product Detail</a>
-                    </div></a>
-            </li>
-            @endforeach
-            @endif
-        </ul>
-        <script type="text/javascript">
-            $(function () {
-                $("#flexiselDemo1").flexisel({
-                    visibleItems: 4,
-                    animationSpeed: 1000,
-                    autoPlay: true,
-                    autoPlaySpeed: 3000,
-                    pauseOnHover: true,
-                    enableResponsiveBreakpoints: true,
-                    responsiveBreakpoints: {
-                        portrait: {
-                            changePoint: 480,
-                            visibleItems: 1
-                        },
-                        landscape: {
-                            changePoint: 640,
-                            visibleItems: 2
-                        },
-                        tablet: {
-                            changePoint: 768,
-                            visibleItems: 3
+<div class="arrivals">
+    <div class="container">	
+        <h3>New Products</h3>
+        <div class="arrival-grids">			 
+            <ul id="flexiselDemo1">
+                @if($products_new)
+                @foreach($products_new as $key => $product_new)
+                <li>
+                    <a href="{{ url('/products') }}"><img src="{{asset($product_new->thumbnail()->link_image)}}" style="height:240px;" alt=""/>
+                        <div class="arrival-info">
+                            <h4>{{$product_new->category ? $product_new->category->name : 'Uncategorized'}}</h4>
+                            <p>{{$product_new->name}}</p>
+                            <span class="pric1">{{$product_new->is_price()->price}}</span>
+                            <span class="disc">[0% Off]</span>
+                        </div>
+                        <div class="viw">
+                            <a href="{{ url('/products') }}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>View Products</a>
+                        </div>
+                        <div class="shrt">
+                            <a href="{{ url('/single',$product_new->id) }}"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>Product Detail</a>
+                        </div></a>
+                </li>
+                @endforeach
+                @endif
+            </ul>
+            <script type="text/javascript">
+                $(function () {
+                    $("#flexiselDemo1").flexisel({
+                        visibleItems: 4,
+                        animationSpeed: 1000,
+                        autoPlay: true,
+                        autoPlaySpeed: 3000,
+                        pauseOnHover: true,
+                        enableResponsiveBreakpoints: true,
+                        responsiveBreakpoints: {
+                            portrait: {
+                                changePoint: 480,
+                                visibleItems: 1
+                            },
+                            landscape: {
+                                changePoint: 640,
+                                visibleItems: 2
+                            },
+                            tablet: {
+                                changePoint: 768,
+                                visibleItems: 3
+                            }
                         }
-                    }
+                    });
                 });
-            });
-        </script>
-        <script type="text/javascript" src="js/jquery.flexisel.js"></script>			 
+            </script>
+            <script type="text/javascript" src="{{asset('js/jquery.flexisel.js')}}"></script>			 
+        </div>
     </div>
 </div>
 @endsection
