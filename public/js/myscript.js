@@ -70,6 +70,8 @@ function sizeAjax(id_product) {
         success: function (data) {
             $('#show_price').html(data.size.price);
             $('#show_quantity').html(data.size.quantity);
+            $('.hangtonkho').val(data.size.quantity);
+            $('.hethang').html('');
             $('#hidden_price').html(data.size.price);
         }
     })
@@ -90,7 +92,7 @@ $(document).on('click', '.price_cart', function () {
         type: "get",
         url: GlobleVariable.app_url + '/addtocart',
         dataType: "json",
-        data: {id: product_id, price: price,quantity: quantity},
+        data: {id: product_id, price: price, quantity: quantity},
         success: function (data) {
             $('.badge').html(data['quantyti']);
         }
@@ -144,7 +146,7 @@ $(document).on('click', '.closecart', function () {
 });
 $(document).on('click', '.plus', function () {
     var product_id = $(this).val();
-    var gia = '#price_goc'+product_id;
+    var gia = '#price_goc' + product_id;
     var price = $(gia).val();
     $.ajaxSetup({
         headers: {
@@ -155,7 +157,7 @@ $(document).on('click', '.plus', function () {
         type: "get",
         url: GlobleVariable.app_url + '/addtocart/' + product_id,
         dataType: "json",
-        data: {id: product_id, price:price},
+        data: {id: product_id, price: price},
         success: function (data) { // What to do if we succeed
             var plus = '#quantity' + product_id;
             var price = '#price_update' + product_id;
@@ -201,14 +203,19 @@ $(document).on('click', '.subtract', function () {
 $(document).on('click', '.plus1', function () {
     var text = '#quantity1';
     var quantity = parseInt($(text).text());
-    quantity++;
-    $(text).html(quantity);
+    if (quantity >= parseInt($('.hangtonkho').val())) {
+        $('.hethang').html('Đã hết hàng trong kho');
+    } else {
+        quantity++;
+        $(text).html(quantity);
+    }
 });
 $(document).on('click', '.subtract1', function () {
     var text = '#quantity1';
     var quantity = parseInt($(text).text());
-    if(quantity>1){
+    if (quantity > 1) {
         quantity--;
-    $(text).html(quantity);
-    }    
+        $(text).html(quantity);
+        $('.hethang').html('');
+    }
 });

@@ -40,6 +40,7 @@
                         </div>
                         <div class="pdp-mod-product-info-section pdp-mod-promotion-tags">
                             <h6 class="section-title" style="margin-top: 5px">Kích thước</h6>
+                            <input type="hidden" class="hangtonkho" value="{{$sizes->quantity}}">
                             <div class="section-content">
                                 <select id="price_size" class="form-control" name="price_size" onchange="sizeAjax({{$product_detail->id}})">
                                     @foreach($price_sizes as $price_size)
@@ -57,7 +58,8 @@
                                 1
                             </div>
                             <button class="plus1" value="">+</button>
-                            <div class="clearfix"></div>
+                            <!--<div class="clearfix"></div>-->
+                            <span style="margin-left: 25px; font-size: 18px; color: #F57224" class="hethang"></span>
                         </div>
                         <div class="to_pay_btn1">
                             <button type="submit" class="next-btn next-btn-primary next-btn-large checkout-order-total-button price_cart" style="background-color: #F57224" value="{{$product_detail->id}}">THÊM VÀO GIỎ HÀNG</button>
@@ -207,17 +209,38 @@
 
                                     </div> 
                                     @endif
-                                </div>                             
+                                </div>
+                                <script>
+                                    var comment_id = document.getElementById("parent_id_{{$comment->id}}");
+                                    $('#replyForProduct' + comment_id).on("hide.bs.collapse", function(){
+                                    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-down"></span> Write Reply');
+                                    });
+                                    $('#replyForProduct' + comment_id).on("show.bs.collapse", function(){
+                                    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-up"></span> Close Reply');
+                                    });
+                                </script>
+
+                                <script>
+                                    var comment_id = document.getElementById("parent_id_{{$comment->id}}");
+                                    $('#showMoreReply_' + comment_id).on("hide.bs.collapse", function(){
+                                    $(".showMorePro").html('<span class="glyphicon glyphicon-collapse-down"></span>View More Reply');
+                                    });
+                                    $('#showMoreReply_' + comment_id).on("show.bs.collapse", function(){
+                                    $(".showMorePro").html('<span class="glyphicon glyphicon-collapse-up"></span>Hide Reply');
+                                    });
+                                </script>
                                 @endforeach
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-offset-5" style="text-align: left">
+                                        {{ $comments->render() }}
+                                    </div>
+                                </div>
+                                
                                 @endif
                                 <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
                                 <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-6 col-sm-offset-5" style="text-align: left">
-                                    {{ $comments->render() }}
-                                </div>
-                            </div>
+                            
                         </div>                      
                     </div>                    
                     <div id="menu" class="tab-pane fade">
@@ -291,27 +314,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-    var comment_id = document.getElementById("parent_id_{{$comment->id}}");
-    $('#replyForProduct' + comment_id).on("hide.bs.collapse", function(){
-    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-down"></span> Write Reply');
-    });
-    $('#replyForProduct' + comment_id).on("show.bs.collapse", function(){
-    $(".replyPro").html('<span class="glyphicon glyphicon-collapse-up"></span> Close Reply');
-    });
-    });
-</script>
-
-<script>
-    $(document).ready(function(){
-    var comment_id = document.getElementById("parent_id_{{$comment->id}}");
-    $('#showMoreReply_' + comment_id).on("hide.bs.collapse", function(){
-    $(".showMorePro").html('<span class="glyphicon glyphicon-collapse-down"></span>View More Reply');
-    });
-    $('#showMoreReply_' + comment_id).on("show.bs.collapse", function(){
-    $(".showMorePro").html('<span class="glyphicon glyphicon-collapse-up"></span>Hide Reply');
-    });
-    });
-</script>
 @endsection
