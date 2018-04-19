@@ -21,8 +21,8 @@ class Cart {
         }
     }
 
-    public function priceadd($item, $id, $price, $quantity) {
-        $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'item' => $item];
+    public function priceadd($item, $id, $price, $quantity,$totalquantity) {
+        $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'totalquantity' => $totalquantity, 'item' => $item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {

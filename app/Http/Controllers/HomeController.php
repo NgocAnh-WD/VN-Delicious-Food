@@ -51,16 +51,21 @@ class HomeController extends Controller {
         return view('product_details', compact('product_detail', 'images', 'price_sizes', 'comments', 'sizes'));
     }
 
+    public function index4(){
+        return view('layouts/admin');
+    }
+
     public function getSizeAddtoCart(Request $request) {
         $id = $request->id;
         $price = $request->price;
         $quantity = $request->quantity;
+        $totalquantity = $request->total_quantity;
         $product = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->priceadd($product, $product->id, $price, $quantity);
+        $cart->priceadd($product, $product->id, $price, $quantity,$totalquantity);
         $request->session()->put('cart', $cart);
-        return response()->json(['quantyti' => Session::get('cart')->totalQty]);
+        return response()->json(['quantyti' => Session::get('cart')->totalQty, 'totalqty' => Session::get('cart')->items[$id]['totalquantity']]);
     }
 
     public function getAddToCart(Request $request, $id) {

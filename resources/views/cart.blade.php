@@ -44,6 +44,7 @@
                                         <div class="quantity" id="quantity{{$product['id']}}">
                                             {{$product['qty']}}
                                         </div>
+                                        <input type="hidden" value="{{$product['totalquantity']}}" id="totalquantity{{$product['id']}}">
                                         <button class="plus" value="{{$product['id']}}">+</button>
                                         <div class="clearfix"></div>
                                     </div></li>
@@ -57,7 +58,6 @@
                         </div>
                         @endif
                     </div>
-                    <!--                    <div class="clearfix"></div>-->
                 </div>					  
             </div>
         </div>
