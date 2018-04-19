@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,17 +9,18 @@ use App\PriceSizes;
 use App\Order;
 use Session;
 use App\Cart;
+use Carbon\Carbon;
 use App\OrderDetail;
 use Illuminate\Support\Facades\DB;
-class ViewOrderController extends Controller
-{
+
+class ViewOrderController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $orders = Order::where('status', 0)->paginate(3);
         return view('vieworders', compact('orders'));
     }
@@ -28,8 +30,7 @@ class ViewOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -39,9 +40,8 @@ class ViewOrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-       $user = Auth::user();
+    public function store(Request $request) {
+        $user = Auth::user();
         if ($user) {
             if (isset($request['check_address'])) {
                 $this->validate($request, [
@@ -230,8 +230,7 @@ class ViewOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -241,12 +240,11 @@ class ViewOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $order = Order::where('id',$id)->orderBy('created_at', 'asc')->first();
-        $details = OrderDetail::where('order_id',$id)->get();
+    public function edit($id) {
+        $order = Order::where('id', $id)->orderBy('created_at', 'asc')->first();
+        $details = OrderDetail::where('order_id', $id)->get();
 //        $customer = Customer::where('id',$order->customer_id)->get();
-        return view('/viewdetail', ['order' => $order,'details' => $details]);
+        return view('/viewdetail', ['order' => $order, 'details' => $details]);
     }
 
     /**
@@ -256,8 +254,7 @@ class ViewOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id) {
         //
     }
 
@@ -267,11 +264,18 @@ class ViewOrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
+
         $orders = Order::findOrFail($id);
-        $orders->delete();
-        \Illuminate\Support\Facades\Session::flash('deleted_order', 'The order has been deleted');
+        $date = date("Y-m-d H:i:s", strtotime("-1 day"));
+        if (strtotime($date) - strtotime($orders->order_date) <= 0) {
+            $orders->delete();
+            \Illuminate\Support\Facades\Session::flash('deleted_order', 'The order has been deleted!!!');
+            return redirect('/vieworders');
+        } else {
+           
+        \Illuminate\Support\Facades\Session::flash('deleted_order', 'The order has not been deleted!!!');
         return redirect('/vieworders');
+    }
     }
 }

@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="{{asset('css/ace.min.css')}}" class="ace-main-stylesheet" id="main-ace-style" />
         <link rel="stylesheet" href="{{asset('css/ace-skins.min.css')}}" />
         <link rel="stylesheet" href="{{asset('css/ace-rtl.min.css')}}" />
+        <link rel="shortcut icon" href="images/img/food.png">
     </head>
     <body>
         <div class="space-24"></div>
