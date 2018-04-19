@@ -3,7 +3,7 @@
 
 <div class="agile-about-top">
     <!--    <div class="container">-->
-    <h2 class="tittle-w3">Giới<span>thiệu</span></h2>
+    <h2 class="tittle-w3">Giới <span>thiệu</span></h2>
     <div class="about-section">
         <div class="col-md-7 ab-left">
             <div class="grid">
@@ -11,7 +11,7 @@
                     <figure class="effect-jazz">
                         <img src="images/s1.jpg" alt="img25">
                         <figcaption>
-                            <h4>Chất lượng<span>hàng đầu</span></h4>
+                            <h4>Chất lượng <span>hàng đầu</span></h4>
                             <p>Bảo đảm an toàn vệ sinh thực phẩm, thực phẩm luôn tươi mới.</p>
                         </figcaption>			
                     </figure>
@@ -21,7 +21,7 @@
                     <figure class="effect-jazz">
                         <img src="images/s2.jpg" alt="img25">
                         <figcaption>
-                            <h4>Thức ăn<span>ngon</span></h4>
+                            <h4>Thức ăn <span>ngon</span></h4>
                             <p>Với những món ăn đầy đủ dinh dưỡng</p>
                         </figcaption>			
                     </figure>
@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="col-md-5 ab-text">
-            <h3 class="tittle-w3"><span>Sứ mệnh</span>của chúng tôi.</h3>
+            <h3 class="tittle-w3"><span>Sứ mệnh </span>của chúng tôi.</h3>
             <p>5 Pandas là website chính thức của chuỗi cửa hàng thức ăn 5PANDAS nổi tiếng. Ngoài việc cung 
                 cấp các món ăn ngon của cửa hàng đến thực khách. Chúng tôi còn liên kết với các chuỗi nhà hàng nổi
                 tiếng khác để đem đến cho các bạn thật nhiều món ăn ngon miệng. Chất lượng hàng đầu, giá thành hợp 
@@ -46,14 +46,15 @@
     <div id="particles-js"></div>
 
     <div class="count-grids">
-        <h3 class="tittle-w3">Handling <span>your needs</span> with care</h3>
+        <h3 class="tittle-w3">Số liệu <span>thống kê</span></h3>
         <div class="count-bgcolor-w3ls">
             <div class="col-md-4 count-grid">
                 <i class="fa fa-cutlery" aria-hidden="true"></i>
                 <div class="count hvr-bounce-to-bottom">
-                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='1052' data-delay='.5' data-increment="100">1052</div>
+                    <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='1052' data-delay='.5' data-increment="100">
+                    </div>
                     <span></span>
-                    <h5>Products available</h5>
+                    <h5>Số lượng sản phẩm</h5>
                 </div>
             </div>
             <div class="col-md-4 count-grid">
@@ -61,7 +62,7 @@
                 <div class="count hvr-bounce-to-bottom">
                     <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='372' data-delay='.5' data-increment="100">372</div>
                     <span></span>
-                    <h5>Clients come back</h5>
+                    <h5>Số lượng khách truy cập</h5>
                 </div>
             </div>
             <div class="col-md-4 count-grid">
@@ -69,7 +70,7 @@
                 <div class="count hvr-bounce-to-bottom">
                     <div class='numscroller numscroller-big-bottom' data-slno='1' data-min='0' data-max='105209' data-delay='.5' data-increment="100">105209</div>
                     <span></span>
-                    <h5>Site members</h5>
+                    <h5>Số lượng thành viên</h5>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -78,11 +79,11 @@
 </div>
 <div class="team">
     <div class="container">
-        <h3 class="tittle-w3"><span>Our </span>Chefs</h3>
+        <h3 class="tittle-w3"><span>Đầu bếp </span>của chúng tôi</h3>
         <div class="team-row">
             <div class="col-md-3 team-grids wow fadeInUp animated" data-wow-delay=".5s">
-                <h5>Thom<span>son</span></h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipi est eligendi scing elit consectetur</p>
+                <h5>Duyen <span>Ngo</span></h5>
+                <p>Chúng tôi tự hào khi là một thành viên và được làm việc cùng 5 Pandas</p>
                 <div class="social-bnr-agileits about-agile">
                     <ul>
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -92,12 +93,12 @@
                     </ul>
                 </div>
                 <div class="team-img">
-                    <img src="images/t1.jpg" alt="">
+                    <img src="images/duyen.jpg" alt="">
                 </div>
             </div>
             <div class="col-md-3 team-grids team-mdl wow fadeInUp animated" data-wow-delay=".5s">
-                <h5>Mary <span>Doe</span></h5>
-                <p>Consectetur adipi lorem ipsum dolor sit amet, est eligendi scing elit consectetur.</p>
+                <h5>Anh <span>Nguyen</span></h5>
+                <p>Tại 5 Pandas tôi đã học được rất nhiều điều với sự hỗ trợ tận tình của mọi người.</p>
                 <div class="social-bnr-agileits about-agile">
                     <ul>
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -107,12 +108,12 @@
                     </ul>
                 </div>
                 <div class="team-img">
-                    <img src="images/t2.jpg" alt="">
+                    <img src="images/anhn.jpg" alt="">
                 </div>
             </div>
             <div class="col-md-3 team-grids team-mdl1 wow fadeInUp animated" data-wow-delay=".5s">
-                <h5>Victo<span>ria</span></h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipi est eligendi scing elit consectetur.</p>
+                <h5>Thuong <span>Nguyen</span></h5>
+                <p>Môi trường làm việc luôn đặt chất lượng của mỗi sản phẩm luôn được đặt lên hàng đầu.</p>
                 <div class="social-bnr-agileits about-agile">
                     <ul>
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -122,12 +123,12 @@
                     </ul>
                 </div>
                 <div class="team-img">
-                    <img src="images/t3.jpg" alt="">
+                    <img src="images/thuong.jpg" alt="">
                 </div>
             </div>
             <div class="col-md-3 team-grids wow fadeInUp animated" data-wow-delay=".5s">
-                <h5>Patrick <span>Pool</span></h5>
-                <p>Eligendi scing elit lorem ipsum dolor sit amet, consectetur dolore magnam aliquam</p>
+                <h5>Nhi <span>Nguyen</span></h5>
+                <p>Chúng tôi chân thành cảm ơn sự hỗ trợ và hướng dẫn của Mr. Thuận và Mr. Ngô.</p>
                 <div class="social-bnr-agileits about-agile">
                     <ul>
                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>

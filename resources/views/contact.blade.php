@@ -35,7 +35,7 @@
     <div class="clearfix"></div>
 </div>
 <div class="contact-btm-w3ls">
-    <h3 class="tittle-w3"><span>Get in touch </span>with us</h3>
+    <h3 class="tittle-w3"><span>Liên hệ với </span>chúng tôi</h3>
     <ul>
         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
