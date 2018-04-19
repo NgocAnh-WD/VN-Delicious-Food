@@ -48,7 +48,7 @@ Route::resource('/vieworders', 'ViewOrderController');
 
 Route::get('/products', 'HomeController@index1')->name('products');
 Route::get('/single/{id}', 'HomeController@index2')->name('product_details');
-Route::get('/pro_cate/{id}', 'HomeController@get_products_by_category')->name('product_category');
+Route::get('/category_products/{id}', 'HomeController@get_products_by_category')->name('product_category');
 Route::get('/cart', 'HomeController@index3')->name('cart');
 Route::get('/admin', 'HomeController@index4')->name('admin');
 Route::get('admin/comments/{id}/reply', 'AdminCommentsController@getReplyComment');

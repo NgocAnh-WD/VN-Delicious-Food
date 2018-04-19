@@ -806,3 +806,36 @@ ul.cart-header li .price_product {
 
 .no_search{margin-top: 65px; text-align: center;font-size: 20px !important;}
 .no_search span{color: #F44336}
+/*Trang index*/
+.image_cooker{height: 120px; width: 190px; margin-left: 15px;}
+.image_food{height: 120px; width: 190px; margin-left: 20px;}
+.image_support{height: 50px; width: 50px;}
+.copyrighter{text-align: center; margin-top: 35px; color: white;}
+.mentor_info{font-weight: bold; color: white;}
+.text_introduce_footer{text-align: center; margin-top: 5px; color: white;}
+
+/*Trang home*/
+.content_grid_sweet{text-align: center;}
+
+/*Trang product*/
+.image_content{height: 300px; width: 100%}
+.text_product{text-align: center;}
+.name_product{font-size: 1.1em !important}
+.size_picture{width: 247px; height:240px;}
+.button_search_price{background: #00a0dc; color: white; margin-top: 7px}
+.title_menu{font-weight: bold}
+.image_title_menu{margin-top: 10px; width: 200px; height: 200px;}
+.discount_menu{margin-top: 25px;}
+
+/*Trang Single*/
+.container_single{width: 1310px;}
+.detail_product_div{padding: 16px 0 10px 0}
+.id_single{font-size: 16px;}
+.show_price{color: #f57224; font-size: 30px; display: inline-block}
+.vnd{color: #f57224; font-size: 30px; display: inline-block}
+.size_single{margin-top: 5px}
+.quantyti_single{padding-bottom: 15px; margin-top: 5px}
+.title_quantyti{display: inline-block;width: 92px}
+.hethang{margin-left: 25px; font-size: 18px; color: #F57224}
+.description{margin-top: 20px;margin-bottom: 20px;text-align: center;}
+.media{border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 150px; margin-right: 150px;}

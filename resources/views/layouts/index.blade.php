@@ -165,18 +165,18 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                     <h4 style="color: white;">Giới thiệu</h4>
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{asset('images/cooker.jpg')}}" alt="Image" style="height: 120px; width: 190px; margin-left: 15px;"/>
+                            <img src="{{asset('images/cooker.jpg')}}" alt="Image" class="image_cooker"/>
                         </div>
                         <div class="col-md-4">
-                            <img src="{{asset('images/rau.gif')}}" alt="Image" style="height: 120px; width: 190px; margin-left: 20px;"/>
+                            <img src="{{asset('images/rau.gif')}}" alt="Image" class="image_food"/>
                         </div>
                         <div class="col-md-4">
-                            <img src="{{asset('images/food.jpg')}}" alt="Image" style="height: 120px; width: 190px; margin-left: 20px;"/>
+                            <img src="{{asset('images/food.jpg')}}" alt="Image" class="image_food"/>
                         </div>
                     </div>
                     <ul>
                         <li>
-                            <p style="text-align: center; margin-top: 5px; color: white;">5 Pandas là website chính thức của chuỗi cửa hàng thức ăn 4PANDAS nổi tiếng. Ngoài việc cung 
+                            <p class="text_introduce_footer">5 Pandas là website chính thức của chuỗi cửa hàng thức ăn 4PANDAS nổi tiếng. Ngoài việc cung 
                                 cấp các món ăn ngon của cửa hàng đến thực khách. Chúng tôi còn liên kết với các chuỗi nhà hàng nổi
                                 tiếng khác để đem đến cho các bạn thật nhiều món ăn ngon miệng. Chất lượng hàng đầu, giá thành hợp lý.
                             </p>
@@ -187,8 +187,8 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                 <div class="col-md-3 ftr-grid">
                     <h4 style="color: white;">Thông tin hỗ trợ</h4>
                     <ul>                                   
-                        <li><img src="{{asset('images/panda-icon.png')}}" alt="Image" style="height: 50px; width: 50px;"/></li>
-                        <li><p style="font-weight: bold; color: white;">Mentor: Mr.Ngo Ho (SEA DEV Company)</p></li>
+                        <li><img src="{{asset('images/panda-icon.png')}}" alt="Image" class="image_support"/></li>
+                        <li><p class="mentor_info">Mentor: Mr.Ngo Ho (SEA DEV Company)</p></li>
                         <li><p style="color: white;">Phone: 0236 3888 503</p></li>
                         <li><p style="color: white;">Address: 99 Tô Hiến Thành, Phước Mỹ, Sơn Trà, Đà Nẵng</p></li>
                         <li><p style="color: white;">Email: dant4pandas@gmail.com</p></li>
@@ -199,7 +199,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
             </div>
             <div class="copywrite">
                 <div class="container">
-                    <p style="text-align: center; margin-top: 35px; color: white;">Copyright Â© 2018 5 Pandas Store. All Rights Reserved | Design by <a href="#">5 PANDAS</a></p>
+                    <p class="copyrighter">Copyright Â© 2018 5 Pandas Store. All Rights Reserved | Design by <a href="#">5 PANDAS</a></p>
                 </div>
             </div>
         </div>

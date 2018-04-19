@@ -9,7 +9,7 @@
                 <div class="single-bottom">
                     @if(count($category->children))
                     @foreach($category->children as $subcate)
-                    <a href="{{ url('pro_cate',$subcate->id) }}"><p>{{$subcate->name}}</p></a>
+                    <a href="{{ url('/category_products',$subcate->id) }}"><p>{{$subcate->name}}</p></a>
                     @endforeach
                     @endif
                 </div>

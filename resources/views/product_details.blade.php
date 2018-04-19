@@ -3,7 +3,7 @@
 @section('container')
 <div class="featured">
     <div class="single-sec">
-        <div class="container" style="width: 1310px;">
+        <div class="container container_single">
             <ol class="breadcrumb">
                 <li><a href="{{asset('/home')}}">Home</a></li>
                 <li class="active"><a href="{{asset('/products')}}">Products</a></li>
@@ -24,12 +24,12 @@
                 </div>
                 <div class="single-right">
                     <h3>{{$product_detail ->name}}</h3>
-                    <h4 style=" font-size: 16px;">Mã sản phẩm: {{$product_detail->id}}</h4>
+                    <h4 class="id_single">Mã sản phẩm: {{$product_detail->id}}</h4>
                     <div class="item-sec">
                         <h4>Chi tiết sản phẩm</h4>
-                        <div style="padding: 16px 0 10px 0">
-                            <p id="show_price" style="color: #f57224; font-size: 30px; display: inline-block">{{$sizes->price}}</p>
-                            <p style="color: #f57224; font-size: 30px; display: inline-block">VNĐ</p>
+                        <div class="detail_product_div">
+                            <p id="show_price" class="show_price">{{$sizes->price}}</p>
+                            <p class="vnd">VNĐ</p>
                         </div>                        
                         <div class="pdp-mod-product-info-section pdp-mod-promotion-tags">
                             <h6 class="section-title">Giảm giá</h6>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div class="pdp-mod-product-info-section pdp-mod-promotion-tags">
-                            <h6 class="section-title" style="margin-top: 5px">Kích thước</h6>
+                            <h6 class="section-title size_single">Kích thước</h6>
                             <input type="hidden" class="hangtonkho" value="{{$sizes->quantity}}">
                             <div class="section-content">
                                 <select id="price_size" class="form-control" name="price_size" onchange="sizeAjax({{$product_detail->id}})">
@@ -51,21 +51,21 @@
                                 </select>
                             </div>
                         </div>
-                        <div style="padding-bottom: 15px; margin-top: 5px">
-                            <div style="display: inline-block;width: 92px">Còn lại</div>
-                            <div class="hangdu" id="hangdu" style="display: inline-block; color: #f57224">
+                        <div class="quantyti_single">
+                            <div class="title_quantyti">Còn lại</div>
+                            <div class="hangdu title_quantyti" id="hangdu">
                                 {{$sizes->quantity}}
                             </div>
                         </div>
-                        <div style="padding-bottom: 15px; margin-top: 5px">
-                            <div style="display: inline-block;width: 92px">Số lượng</div>
+                        <div class="quantyti_single">
+                            <div class="title_quantyti">Số lượng</div>
                             <button class="subtract1" id="" value="">-</button>
                             <div class="quantity1" id="quantity1">
                                 1
                             </div>
                             <button class="plus1" value="">+</button>
                             <!--<div class="clearfix"></div>-->
-                            <span style="margin-left: 25px; font-size: 18px; color: #F57224" class="hethang"></span>
+                            <span class="hethang"></span>
                         </div>
                         <div class="to_pay_btn1">
                             <button type="submit" class="next-btn next-btn-primary next-btn-large checkout-order-total-button price_cart" style="background-color: #F57224" value="{{$product_detail->id}}">THÊM VÀO GIỎ HÀNG</button>
@@ -90,7 +90,7 @@
             <div class="clearfix">
             </div>
             <div class="arrivals">
-                <h4 style="margin-top: 20px;margin-bottom: 20px;text-align: center;">Mô tả chi tiết sản phẩm</h4>
+                <h4 class="description">Mô tả chi tiết sản phẩm</h4>
                 <ul class="nav nav-tabs">
 <!--                    <li class="active"><a data-toggle="tab" href="#description">Giới thiệu món</a></li>-->
                     <li><a data-toggle="tab" href="#menu">Menu cửa hàng</a></li>
@@ -165,7 +165,7 @@
 
                                         <div id="showMoreReply_{{$comment->id}}" class="collapse">
                                             @foreach($comment->children as $replyComment)
-                                            <div class="media" style="border: 1px solid #e3e3e3; margin-top: 10px; margin-left: 150px; margin-right: 150px;">
+                                            <div class="media">
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         @if($replyComment->user)                          

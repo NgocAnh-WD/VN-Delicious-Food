@@ -1,9 +1,5 @@
 @extends('layouts.index')
 @section('welcome')
-<!--<div class="banner">
-    <div class="container">
-    </div>
-</div>-->
 <div class="welcome">
     <div class="container">
         <div class="col-md-3 welcome-left">
@@ -34,7 +30,7 @@
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>
-                <h3 style="text-align: center;">Sweet's Food</h3>
+                <h3 class="content_grid_sweet">Sweet's Food</h3>
             </div>
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
@@ -46,7 +42,7 @@
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
-                <h3 style="text-align: center;">France's Food</h3>
+                <h3 class="content_grid_sweet">France's Food</h3>
             </div>
         </div>
         <div class="col-md-4 bride-grid">
@@ -65,7 +61,7 @@
                     </figcaption>			
                 </figure>	
                 <div class="clearfix"></div>
-                <h3 style="text-align: center;">Vegetables & Fruit</h3>
+                <h3 class="content_grid_sweet">Vegetables & Fruit</h3>
             </div>
             <div class="content-grid l-grids">
                 <figure class="effect-bubba">
@@ -76,7 +72,7 @@
                     </figcaption>			
                 </figure>
                 <div class="clearfix"></div>
-                <h3 style="text-align: center;">Vietnam's Food</h3>
+                <h3 class="content_grid_sweet">Vietnam's Food</h3>
             </div>
         </div>
         <div class="clearfix"></div>

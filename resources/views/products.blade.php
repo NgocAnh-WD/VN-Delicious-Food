@@ -10,7 +10,7 @@
             </ol>
         </div>
         <div class="container">
-            <img src="images/1.png" alt="Image" style="height: 300px; width: 100%;"/>
+            <img src="images/1.png" alt="Image" class="image_content"/>
         </div>
         <div class="col-md-9 product-model-sec" id="product-container">
             @if(count($products)<=0)
@@ -24,12 +24,12 @@
             @endif
             @foreach($products as $key => $product)
             <div class="col-md-4 feature-grid jewel">
-                <a href="{{url('single', ['id' => $product->id])}}"><img src="{{asset($product->thumbnail()->link_image)}}" style="width: 247px; height:240px;"/>
+                <a href="{{url('single', ['id' => $product->id])}}"><img src="{{asset($product->thumbnail()->link_image)}}" class="size_picture"/>
                     <div class="arrival-info">
 
                         <div class="product-info simpleCart_shelfItem">
-                            <div class="product-info-cust prt_name" style="text-align: center;">
-                                <h4 style="font-size: 1.1em">{{$product->name}}</h4>
+                            <div class="product-info-cust prt_name text_product" style="">
+                                <h4 class="name_product">{{$product->name}}</h4>
                                 <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
                                 <span class="item_price pric1">{{$product? $product->is_price()->price : 'Unpriced'}}VNĐ</span>
 <!--                                <span class="disc">[12% Off]</span>-->
@@ -42,7 +42,7 @@
             @endif
 
             <div class="row">
-                <div class="col-lg-6 col-sm-offset-5" style="text-align: left">
+                <div class="col-lg-6 col-sm-offset-5">
                     {{ $products->render() }}
                 </div>
             </div>
@@ -129,7 +129,7 @@
                                         Size L</label>
                                 </div>
 
-                                <button style="background: #00a0dc; color: white; margin-top: 7px" type="button" id="search-product">Search</button>
+                                <button style="" class="button_search_price" type="button" id="search-product">Search</button>
                             </div>
                         </div>
                     </form>
@@ -157,12 +157,12 @@
             </script>
             <section  class="sky-form">
                 <div class="qc">
-                    <h4 class="title" style="font-weight: bold">Đơn hàng của bạn sẽ được bảo quản như thế nào?</h4>
+                    <h4 class="title title_menu">Đơn hàng của bạn sẽ được bảo quản như thế nào?</h4>
                     <p class="font15">4 DOGS Food Store sẽ bảo quản đơn hàng của bạn bằng túi & thùng để chống nắng mưa, giữ nhiệt... trên đường đi một cách tốt nhất. Đem đến cho bạn một món ăn nóng hổi y như vừa mới nấu xong vậy.</p>
-                    <img src="{{asset('images/ship.jpg')}}" alt="food preservation" data-change-lang style="margin-top: 10px; width: 200px; height: 200px;"/>
+                    <img src="{{asset('images/ship.jpg')}}" alt="food preservation" data-change-lang class="image_title_menu"/>
                 </div>
             </section>
-            <section class="sky-form" style="margin-top: 25px;">
+            <section class="sky-form" class="discount_menu">
                 <h4>Khuyến mãi</h4>
                 <iframe width="250" height="200" src="https://www.youtube.com/embed/Wzy5CYJm3DM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </section>
