@@ -228,6 +228,10 @@ class HomeController extends Controller {
     public function viewdetail(){
         return view('/viewdetail');
     }
+    
+    public function index4(){
+        return view('layouts/admin');
+    }
 
     public function get_home(Request $request){
         if($request->ajax() || 'NULL'){
