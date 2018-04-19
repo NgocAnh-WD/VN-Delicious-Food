@@ -55,12 +55,6 @@
                             <span class="text-danger">{{ $errors->first('address') }}</span>
                         </div>
 
-                        <div class=" row col-md-12  form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                            <label for="shipped">Ngày giao:</label>
-                            <input type="date" id="shipped" name="shipped" class="form-control" value="{{$order ->required_date}}" disabled="">
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                        </div>
-
                         <div class="row col-md-12 form-group {{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="note">Tình trạng:</label>
                             <input id="note" type="text" class="form-control" name="note" value="{{$order->note}}" disabled="">

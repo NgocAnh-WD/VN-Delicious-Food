@@ -61,7 +61,6 @@ Route::resource('admin/products', 'AdminProductController', array('as' => 'admin
 Route::resource('admin/categories', 'AdminCategoriesController', array('as' => 'admin'));
 Route::resource('admin/users', 'AdminUserController', array('as' => 'admin'));
 Route::resource('admin/comments', 'AdminCommentsController', array('as' => 'admin'));
-//Route::get('admin/orders', 'OrderController@getDetailByOrderID',array('as' => 'admin'));
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -87,6 +86,6 @@ Route::group(['middleware' => ['adminLogin']], function () {
     Route::resource('admin/users','AdminUserController', array('as' =>'admin'));
     Route::resource('admin/categories','AdminCategoriesController', array('as' =>'admin'));
     Route::resource('admin/products','AdminProductController', array('as' =>'admin'));
-    Route::resource('admin/comments','AdminCommentsController', array('as' =>'admin'));
-    Route::resource('admin/orders','OrderController', array('as' => 'admin'));
+    Route::resource('admin/comments','AdminCommentsController', array('as' =>'admin'));    
 });
+Route::resource('admin/orders','OrderController', array('as' => 'admin'));

@@ -21,7 +21,12 @@ class ViewOrderController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $orders = Order::where('status', 0)->paginate(3);
+        $user = Auth::user();
+        $orders = DB::table('orders')
+            ->join('customers', 'customers.id', '=', 'orders.customer_id')
+            ->where([['orders.status', 0],['customers.full_name',$user->username]])
+            ->select('orders.*', 'customers.full_name')
+            ->paginate(10);
         return view('vieworders', compact('orders'));
     }
 
@@ -269,12 +274,14 @@ class ViewOrderController extends Controller {
         $orders = Order::findOrFail($id);
         $date = date("Y-m-d H:i:s", strtotime("-1 day"));
         if (strtotime($date) - strtotime($orders->order_date) <= 0) {
+            $customers = Customer::findOrFail($orders->customer_id);
+            $customers->delete();
             $orders->delete();
             \Illuminate\Support\Facades\Session::flash('deleted_order', 'The order has been deleted!!!');
             return redirect('/vieworders');
         } else {
            
-        \Illuminate\Support\Facades\Session::flash('deleted_order', 'The order has not been deleted!!!');
+        \Illuminate\Support\Facades\Session::flash('undeleted_order', 'You can not delete after 24 hours');
         return redirect('/vieworders');
     }
     }

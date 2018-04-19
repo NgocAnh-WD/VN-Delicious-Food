@@ -105,7 +105,7 @@
             <div style="float: right;font-size: 30px">
                 <?php $i = 0 ?>
                 @foreach($details as $detail)                
-                <?php $i += $detail->product->is_price()->price * $detail->quantity_pro ?>          
+                <?php $i += $detail->price * $detail->quantity_pro ?>          
                 @endforeach
                 <span>Tổng cộng:</span><span style="color: #F44336">{!! number_format($i, 3, ',', '.') !!}VNĐ</span>
             </div>

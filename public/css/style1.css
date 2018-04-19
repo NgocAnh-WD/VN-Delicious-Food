@@ -803,3 +803,6 @@ ul.cart-header li .price_product {
     text-transform: uppercase;
 }
 .content_product{padding-right: 30px}
+
+.no_search{margin-top: 65px; text-align: center;font-size: 20px !important;}
+.no_search span{color: #F44336}

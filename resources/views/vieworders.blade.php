@@ -14,10 +14,10 @@
                 <div class="page-header">
                     <h1>
                         View Your Orders
-                        <div class="space-12"></div>
+                        <div class="space-12"></div>  
                         <small>                 
                             @if(Session::has('deleted_order'))
-                            <p class="bg-danger">{{session('deleted_order')}}</p>
+                            {{session('deleted_order')}}
                             @endif
                         </small>
                     </h1>
@@ -78,7 +78,6 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Order_date</th>
-                                                <th>Required_date</th>
                                                 <th>Customer</th>
                                                 <th>Shipped_date</th>
                                                 <th>Status</th>
@@ -92,17 +91,21 @@
                                             <tr>
                                                 <td>{{$order->id}}</td>
                                                 <td>{{$order->order_date}}</td>
-                                                <td>{{$order->required_date}}</td>
-                                                <td><a href="{{url('vieworders/'. $order->id.'/edit') }}">{{$order->customer ? $order->customer->full_name : 'Uncategorized'}}</a></td>
+                                                <td><a href="{{url('vieworders/'. $order->id.'/edit') }}">{{$order->full_name ? $order->full_name : 'Unname'}}</a></td>
                                                 <td>{{$order->shipped_date}}</td>
                                                 <td>Đang chờ giao</td>
-                                                <td>{{$order->created_at->diffForhumans()}}</td>
+                                                <td>{{$order->created_at}}</td>
                                                 <td>
                                                     <form class="delete" id="delete" action="{{ route('vieworders.destroy', $order->id)}}" method="POST">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                                                        <input type="submit" class="btn btn-danger" value="Delete">
+                                                        <input type="submit" class="btn btn-danger" value="Hủy hóa đơn">
                                                     </form>
+                                                    <span><small>                 
+                                                            @if(Session::has('undeleted_order'))
+                                                            {{session('undeleted_order')}}
+                                                            @endif
+                                                        </small></span>
                                                 </td>
                                             </tr>
                                             @endforeach

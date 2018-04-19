@@ -71,6 +71,7 @@ function sizeAjax(id_product) {
             $('#show_price').html(data.size.price);
             $('#show_quantity').html(data.size.quantity);
             $('.hangtonkho').val(data.size.quantity);
+            $('.hangdu').text(data.size.quantity);
             $('.hethang').html('');
             $('#hidden_price').html(data.size.price);
         }
@@ -80,6 +81,7 @@ function sizeAjax(id_product) {
 $(document).on('click', '.price_cart', function () {
     var product_id = $(this).val();
     var total = $('.hangtonkho').val();
+    var value = $('#price_size').val();
     var quantity = '#quantity1';
     quantity = parseInt($(quantity).text());
     var price = $('#show_price').text();
@@ -93,7 +95,7 @@ $(document).on('click', '.price_cart', function () {
         type: "get",
         url: GlobleVariable.app_url + '/addtocart',
         dataType: "json",
-        data: {id: product_id, price: price, quantity: quantity, total_quantity: total},
+        data: {id: product_id, price: price, quantity: quantity, total_quantity: total,size:value},
         success: function (data) {
             $('.badge').html(data['quantyti']);
         }

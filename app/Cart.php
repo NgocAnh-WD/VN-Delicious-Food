@@ -21,8 +21,8 @@ class Cart {
         }
     }
 
-    public function priceadd($item, $id, $price, $quantity,$totalquantity) {
-        $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'totalquantity' => $totalquantity, 'item' => $item];
+    public function priceadd($item, $id, $price, $quantity,$totalquantity,$size) {
+        $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $price, 'image' => $item->thumbnail()->link_image, 'size' => $size, 'totalquantity' => $totalquantity, 'item' => $item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -35,7 +35,7 @@ class Cart {
         $storedItem['price'] = $price * $storedItem['qty'];
         $storedItem['price_goc'] = $price;
         $storedItem['image'] = $item->thumbnail()->link_image;
-        $storedItem['size'] = $item->is_price()->size;
+        $storedItem['size'] = $size;
         $this->items[$id] = $storedItem;
         $this->totalQty+= $quantity;
         $this->totalPrice += $price*$quantity;
@@ -43,7 +43,7 @@ class Cart {
     }
     
     public function add($item, $id, $price) {
-        $storedItem = ['qty' => 0, 'name' => $item->name, 'id' => $id, 'price' => $price, 'image' => $item->thumbnail()->link_image, 'size' => $item->is_price()->size, 'item' => $item];
+        $storedItem = ['qty' => 0, 'price' => $price, 'item' => $item];
 
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
@@ -51,12 +51,8 @@ class Cart {
             }
         }
         $storedItem['qty'] ++;
-        $storedItem['name'] = $item->name;
-        $storedItem['id'] = $id;
         $storedItem['price'] = $price * $storedItem['qty'];
         $storedItem['price_goc'] = $price;
-        $storedItem['image'] = $item->thumbnail()->link_image;
-        $storedItem['size'] = $item->is_price()->size;
         $this->items[$id] = $storedItem;
         $this->totalQty++;
         $this->totalPrice += $price;

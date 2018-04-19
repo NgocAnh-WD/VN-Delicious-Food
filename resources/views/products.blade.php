@@ -13,6 +13,9 @@
             <img src="images/1.png" alt="Image" style="height: 300px; width: 100%;"/>
         </div>
         <div class="col-md-9 product-model-sec" id="product-container">
+            @if(count($products)<=0)
+            <h1 class="no_search">Không có kết quả tìm kiếm sản phẩm"<span>{{$key_search}}</span>"</h1>
+            @endif
             @if(isset($products))
             @if (session('order'))
             <div class="alert alert-success">
@@ -26,7 +29,7 @@
 
                         <div class="product-info simpleCart_shelfItem">
                             <div class="product-info-cust prt_name" style="text-align: center;">
-                                <h4>{{$product->name}}</h4>
+                                <h4 style="font-size: 1.1em">{{$product->name}}</h4>
                                 <p>{{$product->category? $product->category->name : 'Uncategorized'}}</p>
                                 <span class="item_price pric1">{{$product? $product->is_price()->price : 'Unpriced'}}VNĐ</span>
 <!--                                <span class="disc">[12% Off]</span>-->

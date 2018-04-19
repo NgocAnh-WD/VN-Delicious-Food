@@ -60,10 +60,11 @@ class HomeController extends Controller {
         $price = $request->price;
         $quantity = $request->quantity;
         $totalquantity = $request->total_quantity;
+        $size = $request->size;
         $product = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->priceadd($product, $product->id, $price, $quantity,$totalquantity);
+        $cart->priceadd($product, $product->id, $price, $quantity,$totalquantity,$size);
         $request->session()->put('cart', $cart);
         return response()->json(['quantyti' => Session::get('cart')->totalQty, 'totalqty' => Session::get('cart')->items[$id]['totalquantity']]);
     }
@@ -234,9 +235,9 @@ class HomeController extends Controller {
         return view('/viewdetail');
     }
     
-    public function index4(){
-        return view('layouts/admin');
-    }
+//    public function index4(){
+//        return view('layouts/admin');
+//    }
 
     public function get_home(Request $request){
         if($request->ajax() || 'NULL'){

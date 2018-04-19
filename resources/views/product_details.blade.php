@@ -52,6 +52,12 @@
                             </div>
                         </div>
                         <div style="padding-bottom: 15px; margin-top: 5px">
+                            <div style="display: inline-block;width: 92px">Còn lại</div>
+                            <div class="hangdu" id="hangdu" style="display: inline-block; color: #f57224">
+                                {{$sizes->quantity}}
+                            </div>
+                        </div>
+                        <div style="padding-bottom: 15px; margin-top: 5px">
                             <div style="display: inline-block;width: 92px">Số lượng</div>
                             <button class="subtract1" id="" value="">-</button>
                             <div class="quantity1" id="quantity1">

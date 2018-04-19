@@ -19,12 +19,9 @@ class OrderController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct() {
-        $this->middleware('auth');
-    }
 
     public function index() {
-        $orders = Order::orderBy('created_at', 'desc')->paginate(3);
+        $orders = Order::orderBy('created_at', 'desc')->paginate(10);
         return view('admin.orders.index', compact('orders'));
     }
 
