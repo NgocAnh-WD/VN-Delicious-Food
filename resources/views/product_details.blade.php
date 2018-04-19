@@ -84,23 +84,13 @@
             <div class="arrivals">
                 <h4 style="margin-top: 20px;margin-bottom: 20px;text-align: center;">Mô tả chi tiết sản phẩm</h4>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#description">Giới thiệu món</a></li>
+<!--                    <li class="active"><a data-toggle="tab" href="#description">Giới thiệu món</a></li>-->
                     <li><a data-toggle="tab" href="#menu">Menu cửa hàng</a></li>
                     <!--                    <li><a data-toggle="tab" href="#vote">Đánh giá sản phẩm</a></li>-->
                     <li><a data-toggle="tab" href="#think">Bình luận của khách hàng</a></li>  
                 </ul>
 
                 <div class="tab-content">
-                    <div id="description" class="tab-pane fade in active">
-                        <div class="arrivals">
-                            <h4 style="font-size: 18px;">Cách làm món: {{$product_detail ->name}}</h4><br><br>
-                            <h4 style="font-size: 16px;">Nguyên liệu:</h4>
-                        </div>
-                    </div>
-                    <!--                    <div id="vote" class="tab-pane fade">
-                                            <h3>Menu 1</h3>
-                                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                        </div>-->
                     <div id="think" class="tab-pane fade">
                         <div class="arrivals">                  
                             @if(Auth::check())
@@ -186,7 +176,7 @@
                                             @endforeach 
                                         </div>
 
-                                    </div>
+                                    </div>                                    
                                     @if(Auth::check())
                                     <div class="button">
                                         <button type="button" class="replyPro btn btn-primary" data-toggle="collapse" data-target="#replyForProduct_{{$comment->id}}">
@@ -217,17 +207,22 @@
 
                                     </div> 
                                     @endif
-                                </div>
+                                </div>                             
                                 @endforeach
                                 @endif
                                 <script type="text/javascript" src="{{asset('js/reply.js')}}"></script>
                                 <script type="text/javascript" src="{{asset('js/diffForHumans.js')}}"></script>
                             </div>
-                        </div>
-                    </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-sm-offset-5" style="text-align: left">
+                                    {{ $comments->render() }}
+                                </div>
+                            </div>
+                        </div>                      
+                    </div>                    
                     <div id="menu" class="tab-pane fade">
                         <div class="arrivals" style="margin-left: 65px;">
-                            <h4>Tổng hợp menu</h4>
+                            <h4>5PANDAS Thực Đơn</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="feature-grids">
@@ -256,9 +251,9 @@
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>                               
                             </div>
-                            <div class="row">
+                            <div class="row"> 
                                 <div class="col-md-6">
                                     <div class="feature-grids">
                                         <div class="content-grid l-grids">
@@ -287,37 +282,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="feature-grids">
-                                        <div class="content-grid l-grids">
-                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                                <img src="{{asset('images/menu/menu3.jpg')}}" style="width: 450px; height:550px;"/>	
-                                                <figcaption>
-                                                    <h4>4 DOGS - PIZZA</h4>
-                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                                </figcaption>
-                                            </figure>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="feature-grids">
-                                        <div class="content-grid l-grids">
-                                            <figure class="effect-bubba" style="width: 450px; height:550px;">
-                                                <img src="{{asset('images/menu/menu6.jpg')}}" style="width: 450px; height:550px;"/>	
-                                                <figcaption>
-                                                    <h4>4 DOGS - PIZZA</h4>
-                                                    <p>Thực đơn của 4 DOGS dành cho những tín đồ pizza với nhiều loại pizza tuyệt ngon và nổi tiếng với giới trẻ. Các bạn hãy tham khảo rồi chọn đặt một món thật ngon cho mình nhé!</p>																
-                                                </figcaption>
-                                            </figure>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>                         
                         </div>
                     </div>
                 </div>
