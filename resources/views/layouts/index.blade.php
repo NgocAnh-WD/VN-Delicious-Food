@@ -59,7 +59,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                     </ul>
                 </div>
                 <div class="clearfix"></div>
-            </div>
+            </div>            
             <header>
                 <div class="container">
                     <div class="w3_navigation">
@@ -98,7 +98,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                                     {{ csrf_field() }}
                                                 </form>
                                                 <a href="{{asset('/profile')}}">Trang cá nhân</a>
-                                                <a href="{{asset('/profile')}}">Xem đơn hàng</a>
+                                                <a href="{{asset('/vieworders')}}">Xem đơn hàng</a>
                                             </div>
                                         </li>
                                         @endguest  
@@ -130,27 +130,25 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
         <!---->
         <div class="featured">
             @yield('container')
-        </div>    
-        @yield('slide1')
-        <div class="clearfix"></div>
-        <div class="shoping">
-            <div class="container">
-                <div class="shpng-grids">
-                    <div class="col-md-4 shpng-grid">
-                        <h3>Miễn phí ship</h3>
-                        <p>với hóa đơn trên 200k</p>
-                    </div>
-                    <div class="col-md-4 shpng-grid">
-                        <h3>Hủy hóa đơn</h3>
-                        <p>Trước 1 ngày</p>
-                    </div>
-                    <div class="col-md-4 shpng-grid">
-                        <h3>Thanh toán</h3>
-                        <p>ngay khi nhận thức ăn</p>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
+        </div>
+    @yield('slide1')
+<div class="clearfix"></div>
+<div class="shoping">
+    <div class="container">
+        <div class="shpng-grids">
+            <div class="col-md-4 shpng-grid">
+                <h3>Miễn phí ship</h3>
+                <p>với hóa đơn trên 200k</p>
             </div>
+            <div class="col-md-4 shpng-grid">
+                <h3>Hủy hóa đơn</h3>
+                <p>Trước 1 ngày</p>
+            </div>
+            <div class="col-md-4 shpng-grid">
+                <h3>Thanh toán</h3>
+                <p>ngay khi nhận thức ăn</p>
+            </div>
+            <div class="clearfix"></div>
         </div>
         <!---->
         <div class="footer">
@@ -194,15 +192,13 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                         <li><p style="color: white;">Email: dant4pandas@gmail.com</p></li>
                         <li><p style="color: white;">Hour: Opend 7:30 AM - 10:00 PM</p></li>					 
                     </ul>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+    </div>
+</div>
             <div class="copywrite">
                 <div class="container">
                     <p style="text-align: center; margin-top: 35px; color: white;">Copyright Â© 2018 5 Pandas Store. All Rights Reserved | Design by <a href="#">5 PANDAS</a></p>
                 </div>
             </div>
         </div>
-    </body>
-
+</body>
 </html>
