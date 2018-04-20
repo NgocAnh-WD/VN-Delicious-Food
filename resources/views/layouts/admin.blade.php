@@ -71,10 +71,10 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                                 <span class="badge badge-success">0</span>
                             </a>
                         </li>
+                        
                         <ul class="nav navbar-nav navbar-right">
                         @guest
-                        <li><a href="{{ route('login') }}"><b>Login/Register</b></a></li>
-                            
+                        <li><a href="{{ route('login') }}"><b>Login/Register</b></a></li>                           
                         @else
                             <li class="dropdown">
                                <button class="dropbtn">{{ Auth::user()->username }}<span class="caret"></span></button>
@@ -142,16 +142,7 @@ GlobleVariable.app_url = "<?php echo env('APP_URL'); ?>";
                     </div>
                 </div><!-- /.sidebar-shortcuts -->
 
-                <ul class="nav nav-list">
-                    <li class="active">
-                        <a href="#">
-                            <i class="menu-icon fa fa-tachometer"></i>
-                            <span class="menu-text"> Images </span>
-                        </a>
-
-                        <b class="arrow"></b>
-                    </li>
-
+                <ul class="nav nav-list">                   
                     <li class="">
                         <a href="#" class="dropdown-toggle">
                             <i class="menu-icon fa fa-list"></i>

@@ -7,6 +7,7 @@
             <div class="col-md-4 mail-agileits-w3layouts">
                 <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
                 <div class="contact-right">
+
                     <p>Điện thoại</p><span>02357478528</span>
                 </div>
             </div>
@@ -19,6 +20,7 @@
             <div class="col-md-4 mail-agileits-w3layouts">
                 <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
                 <div class="contact-right">
+
                     <p>Địa chỉ</p><span>99 Tô Hiến Thành, Đà Nẵng</span>
                 </div>
             </div>

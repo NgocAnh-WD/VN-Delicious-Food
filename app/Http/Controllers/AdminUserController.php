@@ -54,7 +54,7 @@ class AdminUserController extends Controller {
             $input['is_active'] = 1;
         } else {
             $input['is_active'] = 0;
-        }
+        }      
         $input['username'] = $request['username'];
         $input['is_delete'] = 1;
         $input['date_of_birth'] = $request['date'];
