@@ -123,11 +123,13 @@
                         <div class="group">
                             <label for="phone" class="label">Phone</label>
                             <input id="phone" type="number" class="input" name="phone" placeholder="Your Phone" value="{{ old('phone') }}">
+                            <label style="color: #CA5952" >{{ $errors->has('phone') ? 'Vui lòng kiểm tra số điện thoại người dùng.' : '' }} </label>
                         </div>
 
                         <div class="group">
                             <label for="address" class="label">Address</label>
                             <input id="address" type="text" class="input" name="address" placeholder="Your Address" required>
+                            <!--<label style="color: #CA5952" >{{ $errors->has('phone') ? 'Vui lòng kiểm tra số điện thoại người dùng.' : '' }} </label>-->
                         </div>
 
 <!--                        <div class="group">
