@@ -7,19 +7,19 @@
             <div class="col-md-4 mail-agileits-w3layouts">
                 <i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>
                 <div class="contact-right">
-                    <p>Phone</p><span>+1 (100)222-23-33</span>
+                    <p>Điện thoại</p><span>02357478528</span>
                 </div>
             </div>
             <div class="col-md-4 mail-agileits-w3layouts">
                 <i class="glyphicon glyphicon-envelope" aria-hidden="true"></i>
                 <div class="contact-right">
-                    <p>Email</p><a href="mailto:info@example.com">info@example.com</a>
+                    <p>Email</p><a href="mailto:info@example.com">5Pandas@passerellesnumeriques.org</a>
                 </div>
             </div>
             <div class="col-md-4 mail-agileits-w3layouts">
                 <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>
                 <div class="contact-right">
-                    <p>Address</p><span>7784 Diamonds street, California, US.</span>
+                    <p>Địa chỉ</p><span>99 Tô Hiến Thành, Đà Nẵng</span>
                 </div>
             </div>
             <div class="clearfix"></div>
