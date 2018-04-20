@@ -37,16 +37,11 @@
                     <th>{{$comment->content}}</th>
                     <th>{{$comment->created_at}}</th>
                     <th>
-                        <form class="delete" id="delete" action="{{ route('admin.comments.destroy',$comment->id) }}" method="POST">
+                        <form action="{{ route('admin.comments.destroy',$comment->id) }}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
                             {{ csrf_field() }}
                             <input type="submit" class="btn btn-danger" value="Delete Comment">
                         </form>                     
-                        <script>
-                            $("#delete").on("submit", function () {
-                                return confirm("Are you sure?");
-                            });
-                        </script>
                     </th>
                 </tr>
                 @endforeach
